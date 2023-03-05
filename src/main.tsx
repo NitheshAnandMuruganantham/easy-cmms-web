@@ -23,7 +23,7 @@ SuperTokens.init({
   appInfo: {
     appName: import.meta.env["VITE_APP_NAME"],
     apiDomain: import.meta.env["VITE_ENDPOINT"],
-    websiteDomain: import.meta.env["BASE_URL"],
+    websiteDomain: import.meta.env["VITE_BASE_URL"],
     apiBasePath: "/auth",
     websiteBasePath: "/auth",
   },
