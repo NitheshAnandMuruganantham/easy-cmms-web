@@ -47,14 +47,16 @@ const ViewMaintance: React.FunctionComponent<Props> = (props) => {
             justifyContent: "center",
           }}
         >
-          <img
-            src={data?.maintenance.photo}
-            style={{
-              marginBottom: "20px",
-              borderRadius: "10px",
-              height: "300px",
-            }}
-          />
+          {data?.maintenance?.photo && (
+            <img
+              src={data?.maintenance?.photo}
+              style={{
+                marginBottom: "20px",
+                borderRadius: "10px",
+                height: "300px",
+              }}
+            />
+          )}
         </Box>
         <Box
           style={{
