@@ -1,0 +1,84 @@
+query Maintenance($where: MaintenanceWhereInput, $orderBy: MaintenanceOrderByWithRelationInput, $offset: Int, $limit: Int) {
+  maintenances(where: $where,orderBy: $orderBy,offset: $offset,limit: $limit) {
+     id
+     assignee {
+        id
+        name
+     }
+     from
+     to
+     elapsed
+     created_at
+     description
+     resolved
+    name
+    machine {
+      id
+      label
+    }
+  }
+}
+
+query maintanceCount($where: MaintenanceWhereInput, $offset: Int, $orderBy: MaintenanceOrderByWithRelationInput, $limit: Int) {
+  maintenanceCount(where: $where,offset: $offset,orderBy: $orderBy,limit: $limit)
+}
+
+query getMaintanance($maintenanceId: Int!) {
+  maintenance(id: $maintenanceId) {
+    created_at
+    updated_at
+    photo
+    description
+    name
+    id  
+    from
+    to
+    assigned
+    elapsed
+    resolved
+    un_planned
+    ticket {
+      id
+      name
+      created_at
+    }
+    assignee {
+      id
+      name
+      phone
+    }
+    machine {
+    id
+   label
+   priority
+   block {
+     id
+     name
+   }
+   section {
+     id
+     name
+   }
+}
+  }
+}
+
+
+mutation updateMaintanance($updateMaintananceId: Int!, $updateMaintananceInput: MaintenanceUpdateInput!) {
+  updateMaintanance(id: $updateMaintananceId, updateMaintananceInput: $updateMaintananceInput) {
+    id
+  }
+}
+
+mutation createMaintanance($createMaintananceInput: MaintenanceCreateInput!) {
+    createMaintanance(createMaintananceInput: $createMaintananceInput) {
+        id
+    }
+}
+
+
+mutation deleteMaintanance($removeMaintananceId: Int!) {
+    removeMaintanance(id: $removeMaintananceId) {
+         id
+    }
+}

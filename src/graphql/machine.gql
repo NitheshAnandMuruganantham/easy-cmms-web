@@ -1,0 +1,32 @@
+query getAllMachinesDropdown{
+    machines {
+        value:id
+        label
+    }
+}
+
+
+query Machines($limit: Int, $orderBy: MachinesOrderByWithRelationInput, $offset: Int, $where: MachinesWhereInput) {
+    machines(limit: $limit,orderBy: $orderBy,offset: $offset,where: $where) {
+        id
+        label
+        name
+        priority
+        profile
+        section {
+            id
+            name
+        }
+        block {
+            id
+            name
+        }
+        priority
+    }
+}
+
+
+
+query MachinesCount($limit: Int, $orderBy: MachinesOrderByWithRelationInput, $offset: Int, $where: MachinesWhereInput) {
+    machinesCount(limit: $limit,orderBy: $orderBy,offset: $offset,where: $where)
+}

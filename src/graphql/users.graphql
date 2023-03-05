@@ -1,0 +1,37 @@
+query Users($where: UsersWhereInput, $offset: Int, $orderBy: UsersOrderByWithRelationInput, $limit: Int) {
+    users(where: $where,offset: $offset,orderBy: $orderBy,limit: $limit) {
+        id
+        name
+        role
+        profile
+        phone
+        created_at
+    }
+}
+
+
+ 
+query usersCount($where: UsersWhereInput, $orderBy: UsersOrderByWithRelationInput, $limit: Int, $offset: Int) {
+  usersCount(where: $where,orderBy: $orderBy,limit: $limit,offset: $offset)
+}
+
+query usersDropDown($where: UsersWhereInput, $orderBy: UsersOrderByWithRelationInput, $limit: Int, $offset: Int) {
+    users(where: $where,orderBy: $orderBy,limit: $limit,offset: $offset) {
+        value:id
+        name
+        phone
+    }
+}
+
+mutation createUser($createUserInput: UsersCreateInput!) {
+    createUser(createUserInput: $createUserInput) {
+        id
+    }
+}
+
+
+mutation deleteUsers($removeUserId: Int!) {
+    removeUser(id: $removeUserId) {
+        id
+    }
+}

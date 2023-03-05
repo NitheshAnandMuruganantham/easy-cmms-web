@@ -1,0 +1,73 @@
+query routineMaintanances($where: routine_maintanancesWhereInput, $limit: Int, $orderBy: routine_maintanancesSumOrderByAggregateInput, $offset: Int) {
+  routineMaintanances(where: $where,limit: $limit,orderBy: $orderBy,offset: $offset) {
+    id
+    name
+    from
+    to
+    created_at
+    cron
+    description
+    meachine {
+    id
+    name
+    label
+    section_id
+    block_id
+    }
+
+    assignee {
+      id
+      name
+      phone
+    }
+  }
+}
+
+query routineMaintanancesCount($where: routine_maintanancesWhereInput, $limit: Int, $offset: Int, $orderBy: routine_maintanancesSumOrderByAggregateInput) {
+  routineMaintanancesCount(where: $where,limit: $limit,offset: $offset,orderBy: $orderBy)
+}
+
+query routineMaintanance($routineMaintananceId: Int!) {
+  routineMaintanance(id: $routineMaintananceId) {
+     id
+    name
+    from
+    to
+    created_at
+    cron
+    description
+    meachine {
+    id
+    name
+    label
+    section_id
+    block_id
+    }
+
+    assignee {
+      id
+      name
+      phone
+    }
+  }
+}
+
+
+mutation createRoutineMaintanance($createRoutineMaintananceInput: routine_maintanancesCreateInput!) {
+  createRoutineMaintanance(createRoutineMaintananceInput: $createRoutineMaintananceInput) {
+     id
+  }
+}
+
+
+mutation updateRoutineMaintanance($updateRoutineMaintananceId: Int!, $updateRoutineMaintananceInput: routine_maintanancesUpdateInput!) {
+  updateRoutineMaintanance(id: $updateRoutineMaintananceId, updateRoutineMaintananceInput: $updateRoutineMaintananceInput) {
+    id
+  }
+}
+
+mutation removeRoutineMaintanance($removeRoutineMaintananceId: Int!) {
+  removeRoutineMaintanance(id: $removeRoutineMaintananceId) {
+    id
+  }
+}

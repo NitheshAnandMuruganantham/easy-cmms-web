@@ -1,0 +1,87 @@
+query Tickets($where: TicketWhereInput, $skip: Float, $take: Float, $orderBy: TicketOrderByWithRelationInput) {
+  tickets(where: $where,skip: $skip,take: $take,orderBy: $orderBy) {
+    id
+    description
+    name
+   machine {
+     id
+     name
+     label
+   } 
+   name
+   photos
+   status
+   user {
+     id
+     name
+   }
+   created_at
+  }
+}
+
+
+mutation createTickets($createTicketInput: TicketCreateInput!) {
+  createTicket(createTicketInput: $createTicketInput) {
+     id
+    description
+   machine {
+     id
+     name
+     label
+   } 
+   name
+   photos
+   status
+   user {
+     id
+     name
+   }
+   created_at
+  }
+}
+
+
+query getTicket($ticketId: Int!) {
+  ticket(id: $ticketId) {
+id
+description
+machine {
+    id
+   label
+   priority
+   block {
+     id
+     name
+   }
+   section {
+     id
+     name
+   }
+}    
+name
+photos
+status
+updated_at
+created_at
+user {
+  id
+  name
+}
+
+  }
+}
+
+
+query ticketsCount($orderBy: TicketOrderByWithRelationInput, $skip: Float, $take: Float, $where: TicketWhereInput) {
+  ticketsCount(orderBy: $orderBy,skip: $skip,take: $take,where: $where) 
+}
+
+
+
+mutation deleteTicket($id:Int!) {
+    removeTicket(
+        id:$id
+    ) {
+        id
+    }
+}
