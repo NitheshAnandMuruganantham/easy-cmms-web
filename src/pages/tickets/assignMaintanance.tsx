@@ -19,7 +19,7 @@ import { DateTimePicker } from "formik-mui-x-date-pickers";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import MenuItem from "@mui/material/MenuItem";
 import { toast } from "react-toastify";
-
+import { client } from "../../utils/apollo";
 interface Props {
   open: boolean;
   close: () => void;
@@ -78,12 +78,20 @@ const AssignMaintenance: React.FunctionComponent<Props> = (props) => {
                 },
               },
             },
+          })
+            .catch(() => {
+              toast.error("something went wrong 🤯");
+            })
+            .then(() => {
+              toast.success("maintenance added successfully 🚀");
+            });
+          client.refetchQueries({
+            include: ["Tickets", "ticketsCount"],
           });
-          toast.success("maintenance added successfully");
           props.close();
         }}
       >
-        {({ submitForm }) => {
+        {({ submitForm, values }) => {
           return (
             <>
               <DialogContent>
@@ -112,12 +120,14 @@ const AssignMaintenance: React.FunctionComponent<Props> = (props) => {
                   <LocalizationProvider dateAdapter={AdapterDateFns}>
                     <Field
                       fullWidth
+                      minDateTime={new Date()}
                       component={DateTimePicker}
                       label="from"
                       name="from"
                     />
                     <Field
                       fullWidth
+                      minDateTime={new Date(values.from)}
                       component={DateTimePicker}
                       label="to"
                       name="to"

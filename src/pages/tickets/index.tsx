@@ -40,6 +40,7 @@ function Ticket() {
     loading: GetTicketsLoading,
     refetch: refetchTickets,
   } = useTicketsQuery({
+    pollInterval: 1000,
     variables: {
       skip: (page - 1) * pageSize,
       take: pageSize,
@@ -53,6 +54,7 @@ function Ticket() {
     loading: TicketCountLoading,
     refetch: refetchTicketCount,
   } = useTicketsCountQuery({
+    pollInterval: 1000,
     variables: {
       where: formattedFilter,
     },

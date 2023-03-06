@@ -126,18 +126,6 @@ function RoutineMaintenance() {
         >
           New Routine Maintenance
         </Button>
-        <Button
-          color="secondary"
-          size="small"
-          endIcon={<AssessmentIcon />}
-          style={{
-            marginRight: 10,
-            marginBottom: 10,
-          }}
-          variant="contained"
-        >
-          Generate Report
-        </Button>
       </Box>
       <ViewMaintance
         rowId={showViewMaintanceModal.rowId}

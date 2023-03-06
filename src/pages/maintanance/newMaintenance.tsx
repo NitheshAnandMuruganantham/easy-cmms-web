@@ -38,7 +38,7 @@ const NewMaintenance: React.FunctionComponent<Props> = (props) => {
           name: "",
           description: "",
           from: new Date(),
-          to: new Date(),
+          to: new Date(new Date().setHours(new Date().getHours() + 1)),
           machine: "",
           user: "",
         }}

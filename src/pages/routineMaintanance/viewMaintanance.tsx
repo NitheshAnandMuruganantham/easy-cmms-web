@@ -8,14 +8,10 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import DialogTitle from "@mui/material/DialogTitle";
-import Chip from "@mui/material/Chip";
+import cronstrue from "cronstrue";
 
 import React from "react";
-import {
-  useGetMaintananceLazyQuery,
-  useGetTicketLazyQuery,
-} from "../../generated";
-import { Badge } from "@mui/material";
+import { useRoutineMaintananceLazyQuery } from "../../generated";
 
 interface Props {
   open: boolean;
@@ -24,13 +20,14 @@ interface Props {
 }
 
 const ViewMaintance: React.FunctionComponent<Props> = (props) => {
-  const [fetchData, { data, loading, error }] = useGetMaintananceLazyQuery();
+  const [fetchData, { data, loading, error }] =
+    useRoutineMaintananceLazyQuery();
 
   React.useEffect(() => {
     if (props.open === true) {
       fetchData({
         variables: {
-          maintenanceId: props.rowId,
+          routineMaintananceId: props.rowId,
         },
       });
     }
@@ -38,26 +35,10 @@ const ViewMaintance: React.FunctionComponent<Props> = (props) => {
 
   return (
     <Dialog open={props.open} onClose={close}>
-      <DialogTitle>Ticket #{data?.maintenance.id}</DialogTitle>
+      <DialogTitle>
+        Routine Maintenance #{data?.routineMaintanance.id}
+      </DialogTitle>
       <DialogContent>
-        <Box
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          {data?.maintenance?.photo && (
-            <img
-              src={data?.maintenance?.photo}
-              style={{
-                marginBottom: "20px",
-                borderRadius: "10px",
-                height: "300px",
-              }}
-            />
-          )}
-        </Box>
         <Box
           style={{
             display: "flex",
@@ -72,25 +53,22 @@ const ViewMaintance: React.FunctionComponent<Props> = (props) => {
             <TableHead>
               <TableRow>
                 <TableCell>Id</TableCell>
-                <TableCell>{data?.maintenance.id}</TableCell>
+                <TableCell>{data?.routineMaintanance.id}</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>Name</TableCell>
-                <TableCell>{data?.maintenance.name}</TableCell>
+                <TableCell>{data?.routineMaintanance.name}</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>Description</TableCell>
-                <TableCell>{data?.maintenance.description}</TableCell>
+                <TableCell>{data?.routineMaintanance.description}</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell>Status</TableCell>
+                <TableCell>Run At</TableCell>
                 <TableCell>
-                  <Chip
-                    color="primary"
-                    label={
-                      data?.maintenance.resolved ? "resolved" : "un-resolved"
-                    }
-                  />
+                  {data?.routineMaintanance.cron
+                    ? cronstrue.toString(data?.routineMaintanance.cron)
+                    : "--"}
                 </TableCell>
               </TableRow>
             </TableHead>
@@ -104,13 +82,23 @@ const ViewMaintance: React.FunctionComponent<Props> = (props) => {
               <TableRow>
                 <TableCell>Created By</TableCell>
                 <TableCell>
-                  {data?.maintenance?.assignee?.name || "un assigned"}
+                  {data?.routineMaintanance?.assignee?.name || "un assigned"}
                 </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>from</TableCell>
+                <TableCell>{data?.routineMaintanance?.from}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>to</TableCell>
+                <TableCell>{data?.routineMaintanance?.to}</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>Created At</TableCell>
                 <TableCell>
-                  {new Date(data?.maintenance.created_at).toLocaleString()}
+                  {new Date(
+                    data?.routineMaintanance.created_at
+                  ).toLocaleString()}
                 </TableCell>
               </TableRow>
             </TableHead>

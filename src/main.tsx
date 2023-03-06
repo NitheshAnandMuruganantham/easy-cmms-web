@@ -9,15 +9,9 @@ import Passwordless from "supertokens-auth-react/recipe/passwordless";
 import Session from "supertokens-auth-react/recipe/session";
 import { BrowserRouter } from "react-router-dom";
 import { ApolloProvider, HttpLink } from "@apollo/client";
-import {
-  ApolloClient,
-  ApolloLink,
-  createHttpLink,
-  InMemoryCache,
-} from "@apollo/client";
-// @ts-ignore
-import apolloLogger from "apollo-link-logger";
+
 import { ToastContainer } from "react-toastify";
+import { client } from "./utils/apollo";
 
 SuperTokens.init({
   appInfo: {
@@ -33,20 +27,6 @@ SuperTokens.init({
     }),
     Session.init(),
   ],
-});
-
-const client = new ApolloClient({
-  link: apolloLogger.concat(
-    new HttpLink({
-      uri: `${import.meta.env["VITE_ENDPOINT"]}/graphql`,
-      fetchOptions: {
-        mode: "cors",
-        credentials: "include",
-      },
-    })
-  ),
-
-  cache: new InMemoryCache(),
 });
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
