@@ -23,6 +23,7 @@ import {
   useUsersCountQuery,
   useUsersQuery,
 } from "../../generated";
+import { CircularProgress } from "@mui/material";
 import { filterTransform } from "../../utils/filterTransform";
 import columns from "./col";
 import NewUser from "./newUser";
@@ -36,7 +37,7 @@ function Users() {
   const [formattedFilter, SetFormattedFilter] = useState<
     InputMaybe<UsersWhereInput>
   >({});
-  const [deleteUser] = useDeleteUsersMutation();
+  const [deleteUser,{loading:deleteUserLoading}] = useDeleteUsersMutation();
   const [formattedSort, setFormattedSort] = useState<any>({});
   const [ShowNewUser, SetShowNewUser] = useState<boolean>(false);
   const [sort, setSort] = useState<any>([
@@ -68,6 +69,8 @@ function Users() {
       where: formattedFilter,
     },
   });
+  
+  const [delCol,SetDelCol] = useState();
 
   return (
     <div>
@@ -135,6 +138,8 @@ function Users() {
             sortable: false,
             renderCell: (params) => (
               <Button
+            
+              disabled={deleteUserLoading && delCol === params.row.id}
                 onClick={() => {
                   confirmAlert({
                     title: "Confirm to submit",
@@ -143,6 +148,7 @@ function Users() {
                       {
                         label: "Yes",
                         onClick: async () => {
+                          SetDelCol(params.row.id);
                           await deleteUser({
                             variables: {
                               removeUserId: params.row.id,
@@ -163,7 +169,11 @@ function Users() {
                 variant="contained"
                 size="small"
               >
-                DELETE
+                
+                {deleteUserLoading && delCol === params.row.id ? <CircularProgress size={17} style={{
+                  color:"white"
+                  
+                }}/> :  "DELETE"}
               </Button>
             ),
           },

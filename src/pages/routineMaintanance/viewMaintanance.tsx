@@ -9,7 +9,7 @@ import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import DialogTitle from "@mui/material/DialogTitle";
 import cronstrue from "cronstrue";
-
+import CircularProgress from "@mui/material/CircularProgress/CircularProgress";
 import React from "react";
 import { useRoutineMaintananceLazyQuery } from "../../generated";
 
@@ -37,8 +37,11 @@ const ViewMaintance: React.FunctionComponent<Props> = (props) => {
     <Dialog open={props.open} onClose={close}>
       <DialogTitle>
         Routine Maintenance #{data?.routineMaintanance.id}
+      {loading && <CircularProgress  size={20} style={{
+        marginLeft:10
+      }}/>}
       </DialogTitle>
-      <DialogContent>
+      <DialogContent hidden={loading}>
         <Box
           style={{
             display: "flex",

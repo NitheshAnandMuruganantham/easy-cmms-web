@@ -19,6 +19,9 @@ import { DateTimePicker, TimePicker } from "formik-mui-x-date-pickers";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import MenuItem from "@mui/material/MenuItem";
 import { toast } from "react-toastify";
+import LinearProgress from "@mui/material/LinearProgress";
+import { ProgressBar } from "react-toastify/dist/components";
+import { CircularProgress } from "@mui/material";
 
 interface Props {
   open: boolean;
@@ -28,8 +31,8 @@ interface Props {
 const NewMaintenance: React.FunctionComponent<Props> = (props) => {
   const [createRoutineMaintanance, { data, error, loading }] =
     useCreateRoutineMaintananceMutation();
-  const { data: MachinesDropdown } = useGetAllMachinesDropdownQuery();
-  const { data: UsersDropdown } = useUsersDropDownQuery();
+  const { data: MachinesDropdown,loading:MachinesDropdownLoading } = useGetAllMachinesDropdownQuery();
+  const { data: UsersDropdown,loading:UsersDropdownLoading } = useUsersDropDownQuery();
   return (
     <Dialog maxWidth="lg" open={props.open} onClose={close}>
       <DialogTitle>New Routine Maintanances</DialogTitle>
@@ -81,7 +84,7 @@ const NewMaintenance: React.FunctionComponent<Props> = (props) => {
           props.close(true);
         }}
       >
-        {({ submitForm, values, setFieldValue }) => {
+        {({ submitForm, values, setFieldValue,isSubmitting }) => {
           return (
             <>
               <DialogContent>
@@ -145,17 +148,22 @@ const NewMaintenance: React.FunctionComponent<Props> = (props) => {
                       />
                       <Field
                         fullWidth
+                        loading
                         component={Select}
                         label="machine"
                         name="machine"
                       >
-                        {MachinesDropdown?.machines.map((data) => {
+                        
+                        {MachinesDropdown?.machines ? MachinesDropdown?.machines.map((data) => {
                           return (
                             <MenuItem key={data.value} value={data.value}>
                               {data.label}
                             </MenuItem>
                           );
-                        })}
+                        }) : <LinearProgress style={{
+                          marginRight:"auto",
+                          marginLeft:"auto"
+                        }} />}
                       </Field>
                       <Field
                         fullWidth
@@ -163,21 +171,22 @@ const NewMaintenance: React.FunctionComponent<Props> = (props) => {
                         label="user"
                         name="user"
                       >
-                        {UsersDropdown?.users.map((data) => {
+                        {UsersDropdown?.users ? UsersDropdown?.users.map((data) => {
                           return (
                             <MenuItem key={data.value} value={data.value}>
                               {data.name} - ({data.phone})
                             </MenuItem>
                           );
-                        })}
+                        }) : <LinearProgress/>}
                       </Field>
                     </LocalizationProvider>
                   </Form>
                 </Box>
               </DialogContent>
               <DialogActions>
-                <Button color="success" onClick={() => submitForm()}>
-                  save
+                <Button disabled={isSubmitting} color="success" onClick={() => submitForm()}>
+                  <CircularProgress size={17} style={{marginRight:3}}/>
+                save
                 </Button>
                 <Button onClick={() => props.close(false)}>Cancel</Button>
               </DialogActions>

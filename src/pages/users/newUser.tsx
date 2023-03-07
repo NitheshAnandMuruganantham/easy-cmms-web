@@ -19,6 +19,7 @@ import { MuiTelInput } from "mui-tel-input";
 import MenuItem from "@mui/material/MenuItem";
 import { toast } from "react-toastify";
 import { phoneRegExp } from "../../utils/patterns";
+import { CircularProgress } from "@mui/material";
 
 interface Props {
   open: boolean;
@@ -112,7 +113,8 @@ const NewUser: React.FunctionComponent<Props> = (props) => {
                 </Form>
               </DialogContent>
               <DialogActions>
-                <Button color="success" onClick={() => submitForm()}>
+                <Button disabled={isSubmitting}  color="success"  onClick={() => submitForm()} >
+                {isSubmitting && <CircularProgress size={17} style={{marginRight:10}} />}
                   save
                 </Button>
                 <Button onClick={() => props.close(false)}>Cancel</Button>
