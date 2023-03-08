@@ -4,6 +4,7 @@ import { useState } from "react";
 import {
   InputMaybe,
   SortOrder,
+  Ticket,
   TicketWhereInput,
   useDeleteTicketMutation,
   useTicketsCountQuery,
@@ -62,51 +63,51 @@ function Ticket() {
 
   const [showViewTicketModal, setShowTicketModal] = useState<{
     open: boolean;
-    rowId: number;
+    data: Ticket | null;
   }>({
-    rowId: 1,
+    data: null,
     open: false,
   });
 
   const [showAssignMaintanceModal, setShowAssignMaintanceModal] = useState<{
     open: boolean;
-    rowId: number;
+    data: Ticket | null;
   }>({
-    rowId: 1,
+    data: null,
     open: false,
   });
 
   return (
     <div>
       <AssignMaintenance
-        rowId={showAssignMaintanceModal.rowId}
+        data={showAssignMaintanceModal.data as Ticket}
         open={showAssignMaintanceModal.open}
         close={() =>
           setShowAssignMaintanceModal({
             open: false,
-            rowId: showAssignMaintanceModal.rowId,
+            data: null,
           })
         }
       />
       <ViewTicket
+        data={showViewTicketModal.data as Ticket}
         assignMaintance={() => {
-          setShowTicketModal({
-            open: false,
-            rowId: showViewTicketModal.rowId,
-          });
           setShowAssignMaintanceModal({
             open: true,
-            rowId: showViewTicketModal.rowId,
+            data: showViewTicketModal.data,
+          });
+          setShowTicketModal({
+            open: false,
+            data: null,
           });
         }}
         open={showViewTicketModal.open}
         close={() =>
           setShowTicketModal({
             open: false,
-            rowId: showViewTicketModal.rowId,
+            data: null,
           })
         }
-        rowId={showViewTicketModal.rowId}
       />
 
       <DataGrid
@@ -154,7 +155,7 @@ function Ticket() {
                 onClick={() => {
                   setShowTicketModal({
                     open: true,
-                    rowId: params.row.id,
+                    data: params.row,
                   });
                 }}
                 variant="contained"

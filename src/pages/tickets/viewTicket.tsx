@@ -11,14 +11,13 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Chip from "@mui/material/Chip";
 
 import React from "react";
-import { useGetTicketLazyQuery } from "../../generated";
-import { Badge } from "@mui/material";
+import { Ticket, useGetTicketLazyQuery } from "../../generated";
 
 interface Props {
   assignMaintance: () => void;
   open: boolean;
   close: () => void;
-  rowId: number;
+  data: Ticket;
 }
 
 const ViewTicket: React.FunctionComponent<Props> = (props) => {
@@ -28,12 +27,14 @@ const ViewTicket: React.FunctionComponent<Props> = (props) => {
     if (props.open === true) {
       fetchData({
         variables: {
-          ticketId: props.rowId,
+          ticketId: props.data.id,
         },
       });
     }
   }, [props.open]);
-
+  if(!props.open){
+    return null
+  } else
   return (
     <Dialog open={props.open} onClose={close}>
       <DialogTitle>Ticket #{data?.ticket.id}</DialogTitle>

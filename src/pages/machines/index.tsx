@@ -74,19 +74,20 @@ function Machines() {
         }}
         rowCount={TicketsCount?.machinesCount || 0}
         columns={[
-          { field: "id", headerName: "ID", width: 70 },
-          { field: "label", headerName: "name", width: 200 },
-          { field: "name", headerName: "code", width: 100 },
+          { field: "id", headerName: "ID", width: 30 },
+          { field: "label", headerName: "name", flex:2 },
+          { field: "catagory", headerName: "catagory", flex:2 },
           {
             field: "section",
             headerName: "Section",
-            width: 150,
+            flex : 1,
             valueFormatter(params) {
               return params.value?.name;
             },
           },
           {
             field: "block",
+            flex : 0.25,
             headerName: "Block",
             width: 150,
             valueFormatter(params) {

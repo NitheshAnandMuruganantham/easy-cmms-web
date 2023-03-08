@@ -185,7 +185,7 @@ const NewMaintenance: React.FunctionComponent<Props> = (props) => {
               </DialogContent>
               <DialogActions>
                 <Button disabled={isSubmitting} color="success" onClick={() => submitForm()}>
-                  <CircularProgress size={17} style={{marginRight:3}}/>
+                  {isSubmitting && <CircularProgress size={17} style={{marginRight:3}}/>}
                 save
                 </Button>
                 <Button onClick={() => props.close(false)}>Cancel</Button>

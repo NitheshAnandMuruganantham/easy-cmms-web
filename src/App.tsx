@@ -10,17 +10,14 @@ import Maintanances from "./pages/maintanance";
 import Ticket from "./pages/tickets";
 import Machines from "./pages/machines";
 import { useUserContext } from "supertokens-auth-react";
+import { createTheme } from "@mui/material";
+import useMediaQuery from '@mui/material/useMediaQuery';
 
-import { useEffect } from "react";
-import axios from "./utils/axios";
 import RoutineMaintenance from "./pages/routineMaintanance";
 function App() {
-  const data = useUserContext();
-  useEffect(() => {
-    axios.get("/token").then((res) => {
-      localStorage.setItem("token", res.data.token);
-    });
-  }, [data]);
+
+
+  
   return (
     <Routes>
       <reactRouterDom.Route element={<NavSidebar />}>

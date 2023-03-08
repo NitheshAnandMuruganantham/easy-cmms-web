@@ -118,12 +118,14 @@ const NavBar: FunctionComponent<{
     setAnchorElUser(event.currentTarget);
   };
 
-  const handleCloseUserMenu = () => {
+  
+    const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
 
   const theme = createTheme({
-    palette: {},
+    palette: {
+    },
     typography: {
       fontFamily: "Poppins",
     },
@@ -198,7 +200,7 @@ const NavBar: FunctionComponent<{
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" sx={{ mx: "10px" }} component="div">
-              Easy CMMS
+              Easy CMMS | {<Currentpage/>}
             </Typography>
 
             <Box
@@ -308,3 +310,54 @@ const NavBar: FunctionComponent<{
 };
 
 export default NavBar;
+
+
+const Currentpage = () => {
+  const links = [
+    {
+      name: "home",
+      path: "/",
+      icon: HomeIcon,
+      active: useMatch("/"),
+    },
+    {
+      name: "tickets",
+      path: "/tickets",
+      icon: SupportAgentIcon,
+      active: useMatch("/tickets"),
+    },
+    {
+      name: "maintenance",
+      path: "/maintanance",
+      icon: EngineeringIcon,
+      active: useMatch("/maintanance"),
+    },
+    {
+      name: "routine maintenance",
+      path: "/routine-maintenance",
+      icon: CachedIcon,
+      active: useMatch("/routine-maintenance"),
+    },
+    {
+      name: "users",
+      path: "/users",
+      icon: AdminPanelSettingsIcon,
+      active: useMatch("/users"),
+    },
+    {
+      name: "machines",
+      path: "/machines",
+      icon: PrecisionManufacturingIcon,
+      active: useMatch("/machines"),
+    },
+  ];
+  return (
+    <>
+      {links.map((data, index) => {
+        if (data.active) {
+          return data.name;
+        }
+      })}
+    </>
+  );
+};

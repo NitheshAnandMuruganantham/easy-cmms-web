@@ -17,6 +17,9 @@ query Machines($limit: Int, $orderBy: MachinesOrderByWithRelationInput, $offset:
             id
             name
         }
+        machine_catagory {
+        name 
+        }
         block {
             id
             name

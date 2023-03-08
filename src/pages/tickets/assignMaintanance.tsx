@@ -9,10 +9,12 @@ import DialogTitle from "@mui/material/DialogTitle";
 import {
   useGetAllMachinesDropdownQuery,
   useCreateMaintananceMutation,
-  useGetTicketLazyQuery,
   useUsersDropDownQuery,
+  Ticket,
 } from "../../generated";
 import * as yup from "yup";
+import LinearProgress from "@mui/material/LinearProgress"
+import CircularProgress from "@mui/material/CircularProgress"
 import { Field, Form, Formik } from "formik";
 import { Select, TextField } from "formik-mui";
 import { DateTimePicker } from "formik-mui-x-date-pickers";
@@ -23,41 +25,43 @@ import { client } from "../../utils/apollo";
 interface Props {
   open: boolean;
   close: () => void;
-  rowId: number;
+  data: Ticket
 }
 
 const AssignMaintenance: React.FunctionComponent<Props> = (props) => {
-  const [createMaintanance, { data, error, loading }] =
+  const [createMaintanance] =
     useCreateMaintananceMutation();
   const { data: MachinesDropdown } = useGetAllMachinesDropdownQuery();
   const { data: UsersDropdown } = useUsersDropDownQuery();
+  if(!props.open){
+    return null
+  } else
   return (
     <Dialog fullWidth open={props.open} onClose={close}>
-      <DialogTitle> Assign Maintance For Ticket #{props.rowId}</DialogTitle>
+      <DialogTitle> Assign Maintance For Ticket #{props.data.id}</DialogTitle>
       <Formik
         initialValues={{
           name: "",
           description: "",
           from: new Date(),
           to: new Date(),
-          machine: "",
           user: "",
         }}
         validationSchema={yup.object().shape({
           name: yup.string().required(),
           description: yup.string().required(),
-          machine: yup.string().required(),
           user: yup.string().required(),
           from: yup.date().required(),
           to: yup.date().required(),
         })}
         onSubmit={async (values) => {
+          console.log("data",props.data)
           await createMaintanance({
             variables: {
               createMaintananceInput: {
                 ticket: {
                   connect: {
-                    id: props.rowId,
+                    id: props.data.id,
                   },
                 },
                 name: values.name,
@@ -68,7 +72,7 @@ const AssignMaintenance: React.FunctionComponent<Props> = (props) => {
                 resolved: false,
                 machines: {
                   connect: {
-                    id: values.machine,
+                    id: props.data.machine.id,
                   },
                 },
                 assignee: {
@@ -82,8 +86,10 @@ const AssignMaintenance: React.FunctionComponent<Props> = (props) => {
             .catch(() => {
               toast.error("something went wrong 🤯");
             })
-            .then(() => {
-              toast.success("maintenance added successfully 🚀");
+            .then((r) => {
+              if(r){
+                toast.success("maintenance added successfully 🚀");
+              }
             });
           client.refetchQueries({
             include: ["Tickets", "ticketsCount"],
@@ -91,7 +97,7 @@ const AssignMaintenance: React.FunctionComponent<Props> = (props) => {
           props.close();
         }}
       >
-        {({ submitForm, values }) => {
+        {({ submitForm, values,isSubmitting }) => {
           return (
             <>
               <DialogContent>
@@ -138,13 +144,13 @@ const AssignMaintenance: React.FunctionComponent<Props> = (props) => {
                       label="machine"
                       name="machine"
                     >
-                      {MachinesDropdown?.machines.map((data) => {
+                      {MachinesDropdown?.machines ? MachinesDropdown?.machines.map((data) => {
                         return (
                           <MenuItem key={data.value} value={data.value}>
                             {data.label}
                           </MenuItem>
                         );
-                      })}
+                      }): <LinearProgress/>}
                     </Field>
                     <Field
                       fullWidth
@@ -152,20 +158,21 @@ const AssignMaintenance: React.FunctionComponent<Props> = (props) => {
                       label="user"
                       name="user"
                     >
-                      {UsersDropdown?.users.map((data) => {
+                      {UsersDropdown?.users ? UsersDropdown?.users.map((data) => {
                         return (
                           <MenuItem key={data.value} value={data.value}>
                             {data.name} - ({data.phone})
                           </MenuItem>
                         );
-                      })}
+                      }) : <LinearProgress/>}
                     </Field>
                   </LocalizationProvider>
                 </Form>
               </DialogContent>
               <DialogActions>
-                <Button color="success" onClick={() => submitForm()}>
-                  save
+                <Button disabled={isSubmitting} color="success" onClick={() => submitForm()}>
+                {isSubmitting && <CircularProgress size={17} style={{marginRight:3}}/>}
+                 save
                 </Button>
                 <Button onClick={() => props.close()}>Cancel</Button>
               </DialogActions>

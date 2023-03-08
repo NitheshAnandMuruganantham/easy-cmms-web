@@ -4,6 +4,7 @@ import {
   GridFilterInputMultipleValue,
   GridFilterInputValue,
   GridRenderCellParams,
+  getGridStringOperators,
 } from "@mui/x-data-grid";
 import { Ticket, Ticket_Status } from "../../generated";
 import { getGridDateOperators } from "../../utils/dateFilterOpertors";
@@ -18,8 +19,8 @@ const columns: GridColumns<any> = [
     width: 5,
     filterOperators: getIdFIlters(),
   },
-  { field: "name", headerName: "Title", flex: 1 },
-  { field: "description", headerName: "Description", flex: 2 },
+  { field: "name", headerName: "Title", flex: 1,type: "string", filterOperators:getGridStringOperators().slice(0,-3) },
+  { field: "description", headerName: "Description", flex: 2,type: "string", filterOperators:getGridStringOperators().slice(0,-3) },
   {
     field: "machine",
     headerName: "Machine",
