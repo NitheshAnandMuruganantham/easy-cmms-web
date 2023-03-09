@@ -6,7 +6,7 @@ import {
   GridToolbar,
 } from "@mui/x-data-grid";
 import AssessmentIcon from "@mui/icons-material/Assessment";
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { confirmAlert } from "react-confirm-alert";
 import {
   InputMaybe,
@@ -23,14 +23,18 @@ import NewMaintance from "./newMeachine";
 import Reports from "./reports";
 import { toast } from "react-toastify";
 import { client } from "../../utils/apollo";
+import axios from "../../utils/axios";
 
 function Maintenance() {
   const [page, setPage] = useState(1);
+  const [data, setData] = useState<any>([]);
   const [showReport, setShowReport] = useState<boolean>(false);
   const [pageSize, setPageSize] = useState(10);
   const [filter, SetFilter] = useState<any>({
     items: [],
   });
+
+
   const [showViewMaintanceModal, setShowViewMaintanceModal] = useState<{
     open: boolean;
     rowId: number;
@@ -51,20 +55,9 @@ function Maintenance() {
   ]);
 
   const [newMaintance, setNewMaintance] = useState<boolean>(false);
+  const [GetMachineLoading, setGetMachineLoading] = useState<boolean>(false);
 
-  const {
-    data: machines,
-    error: GetMachineError,
-    loading: GetMachineLoading,
-    refetch: RefetchMaintenances,
-  } = useMachinesQuery({
-    variables: {
-      offset: (page - 1) * pageSize,
-      limit: pageSize,
-      where: formattedFilter,
-      orderBy: formattedSort,
-    },
-  });
+ 
   const {
     data: MachinesCount,
     error: MachineCountError,
@@ -76,6 +69,34 @@ function Maintenance() {
     },
   });
   const [DeleteMachine] = useRemoveMachineMutation();
+
+  const RefetchMaintenances = () => {
+    setGetMachineLoading(true);
+    axios.get('machines',{
+      params:{
+        limit: pageSize,
+        offset: (page - 1) * pageSize,
+        where: formattedFilter,
+        orderBy: formattedSort,
+      }
+    }).then(res => {
+      setData(res.data);
+      setGetMachineLoading(false);
+    });
+  };
+
+  useEffect(() => {
+    setGetMachineLoading(true);
+    axios.post('machines',{
+        take: pageSize,
+        skip: (page - 1) * pageSize,
+        where: formattedFilter,
+        orderBy: formattedSort,
+    }).then(res => {
+      setData(res.data);
+      setGetMachineLoading(false);
+    });
+  }, [page, pageSize, formattedFilter, formattedSort])
 
   return (
     <div>
@@ -137,7 +158,7 @@ function Maintenance() {
         paginationMode="server"
         autoHeight
         logLevel="debug"
-        error={GetMachineError || MachineCountError}
+        error={ MachineCountError}
         disableSelectionOnClick
         rowsPerPageOptions={[10, 20, 50, 100]}
         disableColumnMenu
@@ -154,7 +175,7 @@ function Maintenance() {
           });
         }}
         onPageSizeChange={(s) => setPageSize(s)}
-        rows={machines?.machines || []}
+        rows={data || []}
         sortModel={sort}
         onSortModelChange={(s) => {
           setSort(s);
