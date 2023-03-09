@@ -8668,9 +8668,13 @@
             "description": null,
             "args": [],
             "type": {
-              "kind": "OBJECT",
-              "name": "machine_catagory",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "machine_catagory",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -8680,9 +8684,13 @@
             "description": null,
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "BigInt",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "BigInt",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -9475,9 +9483,13 @@
             "name": "machine_catagory",
             "description": null,
             "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "machine_catagoryCreateNestedOneWithoutMachinesInput",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "INPUT_OBJECT",
+                "name": "machine_catagoryCreateNestedOneWithoutMachinesInput",
+                "ofType": null
+              }
             },
             "defaultValue": null,
             "isDeprecated": false,
@@ -9634,9 +9646,13 @@
             "name": "machine_catagory_id",
             "description": null,
             "type": {
-              "kind": "SCALAR",
-              "name": "BigInt",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "BigInt",
+                "ofType": null
+              }
             },
             "defaultValue": null,
             "isDeprecated": false,
@@ -10520,9 +10536,13 @@
             "name": "machine_catagory",
             "description": null,
             "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "machine_catagoryCreateNestedOneWithoutMachinesInput",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "INPUT_OBJECT",
+                "name": "machine_catagoryCreateNestedOneWithoutMachinesInput",
+                "ofType": null
+              }
             },
             "defaultValue": null,
             "isDeprecated": false,
@@ -10707,9 +10727,13 @@
             "name": "machine_catagory",
             "description": null,
             "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "machine_catagoryCreateNestedOneWithoutMachinesInput",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "INPUT_OBJECT",
+                "name": "machine_catagoryCreateNestedOneWithoutMachinesInput",
+                "ofType": null
+              }
             },
             "defaultValue": null,
             "isDeprecated": false,
@@ -10882,9 +10906,13 @@
             "name": "machine_catagory",
             "description": null,
             "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "machine_catagoryCreateNestedOneWithoutMachinesInput",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "INPUT_OBJECT",
+                "name": "machine_catagoryCreateNestedOneWithoutMachinesInput",
+                "ofType": null
+              }
             },
             "defaultValue": null,
             "isDeprecated": false,
@@ -11180,9 +11208,13 @@
             "name": "machine_catagory",
             "description": null,
             "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "machine_catagoryCreateNestedOneWithoutMachinesInput",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "INPUT_OBJECT",
+                "name": "machine_catagoryCreateNestedOneWithoutMachinesInput",
+                "ofType": null
+              }
             },
             "defaultValue": null,
             "isDeprecated": false,
@@ -12347,7 +12379,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "BigIntNullableFilter",
+              "name": "BigIntFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -12632,7 +12664,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "machine_catagoryUpdateOneWithoutMachinesNestedInput",
+              "name": "machine_catagoryUpdateOneRequiredWithoutMachinesNestedInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -13713,7 +13745,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "machine_catagoryUpdateOneWithoutMachinesNestedInput",
+              "name": "machine_catagoryUpdateOneRequiredWithoutMachinesNestedInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -13880,7 +13912,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "machine_catagoryUpdateOneWithoutMachinesNestedInput",
+              "name": "machine_catagoryUpdateOneRequiredWithoutMachinesNestedInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -14035,7 +14067,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "machine_catagoryUpdateOneWithoutMachinesNestedInput",
+              "name": "machine_catagoryUpdateOneRequiredWithoutMachinesNestedInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -14297,7 +14329,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "machine_catagoryUpdateOneWithoutMachinesNestedInput",
+              "name": "machine_catagoryUpdateOneRequiredWithoutMachinesNestedInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -14795,7 +14827,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "BigIntNullableFilter",
+              "name": "BigIntFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -42862,7 +42894,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "machine_catagoryUpdateOneWithoutMachinesNestedInput",
+        "name": "machine_catagoryUpdateOneRequiredWithoutMachinesNestedInput",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -42896,30 +42928,6 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "machine_catagoryCreateWithoutMachinesInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "delete",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Boolean",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "disconnect",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Boolean",
               "ofType": null
             },
             "defaultValue": null,

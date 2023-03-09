@@ -945,8 +945,8 @@ export type Machines = {
   created_at: Scalars['DateTime'];
   id: Scalars['BigInt'];
   label: Scalars['String'];
-  machine_catagory?: Maybe<Machine_Catagory>;
-  machine_catagory_id?: Maybe<Scalars['BigInt']>;
+  machine_catagory: Machine_Catagory;
+  machine_catagory_id: Scalars['BigInt'];
   maintenance?: Maybe<Array<Maintenance>>;
   name: Scalars['String'];
   priority: Scalars['Int'];
@@ -1023,7 +1023,7 @@ export type MachinesCreateInput = {
   created_at?: InputMaybe<Scalars['DateTime']>;
   id?: InputMaybe<Scalars['BigInt']>;
   label: Scalars['String'];
-  machine_catagory?: InputMaybe<Machine_CatagoryCreateNestedOneWithoutMachinesInput>;
+  machine_catagory: Machine_CatagoryCreateNestedOneWithoutMachinesInput;
   maintenance?: InputMaybe<MaintenanceCreateNestedManyWithoutMachinesInput>;
   name: Scalars['String'];
   priority: Scalars['Int'];
@@ -1037,7 +1037,7 @@ export type MachinesCreateManyBlockInput = {
   created_at?: InputMaybe<Scalars['DateTime']>;
   id?: InputMaybe<Scalars['BigInt']>;
   label: Scalars['String'];
-  machine_catagory_id?: InputMaybe<Scalars['BigInt']>;
+  machine_catagory_id: Scalars['BigInt'];
   name: Scalars['String'];
   priority: Scalars['Int'];
   profile?: InputMaybe<Scalars['JSON']>;
@@ -1128,7 +1128,7 @@ export type MachinesCreateWithoutBlockInput = {
   created_at?: InputMaybe<Scalars['DateTime']>;
   id?: InputMaybe<Scalars['BigInt']>;
   label: Scalars['String'];
-  machine_catagory?: InputMaybe<Machine_CatagoryCreateNestedOneWithoutMachinesInput>;
+  machine_catagory: Machine_CatagoryCreateNestedOneWithoutMachinesInput;
   maintenance?: InputMaybe<MaintenanceCreateNestedManyWithoutMachinesInput>;
   name: Scalars['String'];
   priority: Scalars['Int'];
@@ -1144,7 +1144,7 @@ export type MachinesCreateWithoutMaintenanceInput = {
   created_at?: InputMaybe<Scalars['DateTime']>;
   id?: InputMaybe<Scalars['BigInt']>;
   label: Scalars['String'];
-  machine_catagory?: InputMaybe<Machine_CatagoryCreateNestedOneWithoutMachinesInput>;
+  machine_catagory: Machine_CatagoryCreateNestedOneWithoutMachinesInput;
   name: Scalars['String'];
   priority: Scalars['Int'];
   profile?: InputMaybe<Scalars['JSON']>;
@@ -1159,7 +1159,7 @@ export type MachinesCreateWithoutRoutine_MaintanancesInput = {
   created_at?: InputMaybe<Scalars['DateTime']>;
   id?: InputMaybe<Scalars['BigInt']>;
   label: Scalars['String'];
-  machine_catagory?: InputMaybe<Machine_CatagoryCreateNestedOneWithoutMachinesInput>;
+  machine_catagory: Machine_CatagoryCreateNestedOneWithoutMachinesInput;
   maintenance?: InputMaybe<MaintenanceCreateNestedManyWithoutMachinesInput>;
   name: Scalars['String'];
   priority: Scalars['Int'];
@@ -1185,7 +1185,7 @@ export type MachinesCreateWithoutTicketInput = {
   created_at?: InputMaybe<Scalars['DateTime']>;
   id?: InputMaybe<Scalars['BigInt']>;
   label: Scalars['String'];
-  machine_catagory?: InputMaybe<Machine_CatagoryCreateNestedOneWithoutMachinesInput>;
+  machine_catagory: Machine_CatagoryCreateNestedOneWithoutMachinesInput;
   maintenance?: InputMaybe<MaintenanceCreateNestedManyWithoutMachinesInput>;
   name: Scalars['String'];
   priority: Scalars['Int'];
@@ -1302,7 +1302,7 @@ export type MachinesScalarWhereInput = {
   created_at?: InputMaybe<DateTimeFilter>;
   id?: InputMaybe<BigIntFilter>;
   label?: InputMaybe<StringFilter>;
-  machine_catagory_id?: InputMaybe<BigIntNullableFilter>;
+  machine_catagory_id?: InputMaybe<BigIntFilter>;
   name?: InputMaybe<StringFilter>;
   priority?: InputMaybe<IntFilter>;
   profile?: InputMaybe<JsonFilter>;
@@ -1333,7 +1333,7 @@ export type MachinesUpdateInput = {
   created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
   label?: InputMaybe<StringFieldUpdateOperationsInput>;
-  machine_catagory?: InputMaybe<Machine_CatagoryUpdateOneWithoutMachinesNestedInput>;
+  machine_catagory?: InputMaybe<Machine_CatagoryUpdateOneRequiredWithoutMachinesNestedInput>;
   maintenance?: InputMaybe<MaintenanceUpdateManyWithoutMachinesNestedInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   priority?: InputMaybe<IntFieldUpdateOperationsInput>;
@@ -1430,7 +1430,7 @@ export type MachinesUpdateWithoutBlockInput = {
   created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
   label?: InputMaybe<StringFieldUpdateOperationsInput>;
-  machine_catagory?: InputMaybe<Machine_CatagoryUpdateOneWithoutMachinesNestedInput>;
+  machine_catagory?: InputMaybe<Machine_CatagoryUpdateOneRequiredWithoutMachinesNestedInput>;
   maintenance?: InputMaybe<MaintenanceUpdateManyWithoutMachinesNestedInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   priority?: InputMaybe<IntFieldUpdateOperationsInput>;
@@ -1446,7 +1446,7 @@ export type MachinesUpdateWithoutMaintenanceInput = {
   created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
   label?: InputMaybe<StringFieldUpdateOperationsInput>;
-  machine_catagory?: InputMaybe<Machine_CatagoryUpdateOneWithoutMachinesNestedInput>;
+  machine_catagory?: InputMaybe<Machine_CatagoryUpdateOneRequiredWithoutMachinesNestedInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   priority?: InputMaybe<IntFieldUpdateOperationsInput>;
   profile?: InputMaybe<Scalars['JSON']>;
@@ -1461,7 +1461,7 @@ export type MachinesUpdateWithoutRoutine_MaintanancesInput = {
   created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
   label?: InputMaybe<StringFieldUpdateOperationsInput>;
-  machine_catagory?: InputMaybe<Machine_CatagoryUpdateOneWithoutMachinesNestedInput>;
+  machine_catagory?: InputMaybe<Machine_CatagoryUpdateOneRequiredWithoutMachinesNestedInput>;
   maintenance?: InputMaybe<MaintenanceUpdateManyWithoutMachinesNestedInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   priority?: InputMaybe<IntFieldUpdateOperationsInput>;
@@ -1487,7 +1487,7 @@ export type MachinesUpdateWithoutTicketInput = {
   created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
   label?: InputMaybe<StringFieldUpdateOperationsInput>;
-  machine_catagory?: InputMaybe<Machine_CatagoryUpdateOneWithoutMachinesNestedInput>;
+  machine_catagory?: InputMaybe<Machine_CatagoryUpdateOneRequiredWithoutMachinesNestedInput>;
   maintenance?: InputMaybe<MaintenanceUpdateManyWithoutMachinesNestedInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   priority?: InputMaybe<IntFieldUpdateOperationsInput>;
@@ -1535,7 +1535,7 @@ export type MachinesWhereInput = {
   id?: InputMaybe<BigIntFilter>;
   label?: InputMaybe<StringFilter>;
   machine_catagory?: InputMaybe<Machine_CatagoryRelationFilter>;
-  machine_catagory_id?: InputMaybe<BigIntNullableFilter>;
+  machine_catagory_id?: InputMaybe<BigIntFilter>;
   maintenance?: InputMaybe<MaintenanceListRelationFilter>;
   name?: InputMaybe<StringFilter>;
   priority?: InputMaybe<IntFilter>;
@@ -4333,12 +4333,10 @@ export type Machine_CatagoryCreateWithoutMachinesInput = {
   updated_at?: InputMaybe<Scalars['DateTime']>;
 };
 
-export type Machine_CatagoryUpdateOneWithoutMachinesNestedInput = {
+export type Machine_CatagoryUpdateOneRequiredWithoutMachinesNestedInput = {
   connect?: InputMaybe<Machine_CatagoryWhereUniqueInput>;
   connectOrCreate?: InputMaybe<Machine_CatagoryCreateOrConnectWithoutMachinesInput>;
   create?: InputMaybe<Machine_CatagoryCreateWithoutMachinesInput>;
-  delete?: InputMaybe<Scalars['Boolean']>;
-  disconnect?: InputMaybe<Scalars['Boolean']>;
   update?: InputMaybe<Machine_CatagoryUpdateWithoutMachinesInput>;
   upsert?: InputMaybe<Machine_CatagoryUpsertWithoutMachinesInput>;
 };
@@ -4652,7 +4650,7 @@ export type MachinesQueryVariables = Exact<{
 }>;
 
 
-export type MachinesQuery = { __typename?: 'Query', machines: Array<{ __typename?: 'Machines', id: any, label: string, name: string, priority: number, profile: any, section: { __typename?: 'Sections', id: any, name: string }, machine_catagory?: { __typename?: 'machine_catagory', name: string } | null, block: { __typename?: 'Block', id: any, name: string } }> };
+export type MachinesQuery = { __typename?: 'Query', machines: Array<{ __typename?: 'Machines', id: any, label: string, name: string, priority: number, profile: any, section: { __typename?: 'Sections', id: any, name: string }, machine_catagory: { __typename?: 'machine_catagory', name: string }, block: { __typename?: 'Block', id: any, name: string } }> };
 
 export type MachinesCountQueryVariables = Exact<{
   limit?: InputMaybe<Scalars['Int']>;

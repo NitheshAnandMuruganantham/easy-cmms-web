@@ -76,7 +76,7 @@ function Machines() {
         columns={[
           { field: "id", headerName: "ID", width: 30 },
           { field: "label", headerName: "name", flex:2 },
-          { field: "catagory", headerName: "catagory", flex:2 },
+          { field: "machine_catagory", headerName: "catagory", flex:2,valueGetter: (params) => params.row.machine_catagory?.name },
           {
             field: "section",
             headerName: "Section",
