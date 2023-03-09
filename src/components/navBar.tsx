@@ -129,7 +129,7 @@ const NavBar: FunctionComponent<{
     palette: {
     },
     typography: {
-      fontFamily: "Poppins",
+      fontFamily: "Roboto",
     },
   });
   const [open, setOpen] = React.useState(false);
