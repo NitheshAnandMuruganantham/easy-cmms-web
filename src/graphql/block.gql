@@ -1,0 +1,102 @@
+mutation createBlock($createBlockInput: BlockCreateInput!) {
+  createBlock(createBlockInput: $createBlockInput) {
+    id
+  }
+}
+
+
+mutation createSection($createSectionInput: SectionCreateWithoutMachinesInput!) {
+  createSection(createSectionInput: $createSectionInput) {
+    id
+  }
+}
+
+mutation createCatagories($createCategoryInput: machine_catagoryCreateWithoutMachinesInput!) {
+  createMachineCategory(createCategoryInput: $createCategoryInput) {
+    id
+  }
+}
+
+query blockDropdown { 
+  blocks {
+    value:id
+    name
+  }
+}
+
+query MeachineCatagoryDropdown  {
+  machineCatagories {
+    value:id
+    name
+  }
+}
+
+query sectionsDropdown {
+  sections {
+    value:id
+    name
+  }
+}
+
+query Block($limit: Int, $offset: Int, $orderBy: BlockOrderByWithAggregationInput, $where: BlockWhereInput) {
+  blocks(limit: $limit,offset: $offset,orderBy: $orderBy,where: $where) {
+    id
+    name
+    location
+    _count {
+      machines
+    }
+  }
+}
+
+query Sections($orderBy: SectionOrderByWithRelationInput, $skip: Int, $take: Int, $where: SectionWhereInput) {
+sections(orderBy: $orderBy,skip: $skip,take: $take,where: $where) {
+  id
+  name
+  _count {
+    machines
+  }
+}
+}
+
+query SectionsCount($orderBy: SectionOrderByWithRelationInput, $skip: Int, $take: Int, $where: SectionWhereInput) {
+  sectionsCount(orderBy: $orderBy,skip: $skip,take: $take,where: $where)
+}
+
+query machineCatagories($orderBy: machine_catagoryOrderByWithRelationAndSearchRelevanceInput, $skip: Int, $take: Int, $where: machine_catagoryWhereInput) {
+  machineCatagories(orderBy: $orderBy,skip: $skip,take: $take,where: $where) {
+  id
+  name
+  _count {
+    machines
+  }  
+  }
+}
+
+query machineCatagoriesCount($orderBy: machine_catagoryOrderByWithRelationAndSearchRelevanceInput, $skip: Int, $take: Int, $where: machine_catagoryWhereInput) {
+  machineCatagoriesCount(orderBy: $orderBy,skip: $skip,take: $take,where: $where)
+}
+
+
+mutation removeSection($removeSectionId: Int!) {
+  removeSection(id: $removeSectionId) {
+    id
+  }
+}
+
+mutation removeBlock($removeBlockId: Int!) {
+  removeBlock(id: $removeBlockId) {
+    id
+  }
+}
+
+mutation removeMachineCatagories($removeMachineCatagoriesId: Int!) {
+  removeMachineCatagories(id: $removeMachineCatagoriesId) {
+    id
+  }
+}
+
+
+query blocksCount($limit: Int, $offset: Int, $orderBy: BlockOrderByWithAggregationInput, $where: BlockWhereInput) {
+  blocksCount(limit: $limit,offset: $offset,orderBy: $orderBy,where: $where)
+}

@@ -33,3 +33,15 @@ query Machines($limit: Int, $orderBy: MachinesOrderByWithRelationInput, $offset:
 query MachinesCount($limit: Int, $orderBy: MachinesOrderByWithRelationInput, $offset: Int, $where: MachinesWhereInput) {
     machinesCount(limit: $limit,orderBy: $orderBy,offset: $offset,where: $where)
 }
+
+mutation removeMachine($removeMachineId: Int!) {
+  removeMachine(id: $removeMachineId) {
+    id
+  }
+}
+
+mutation createMachine($createMachineInput: MachinesCreateInput!) {
+  createMachine(createMachineInput: $createMachineInput) {
+    id
+  }
+}

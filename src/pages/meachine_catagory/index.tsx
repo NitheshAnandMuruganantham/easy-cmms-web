@@ -9,40 +9,27 @@ import AssessmentIcon from "@mui/icons-material/Assessment";
 import React, { useState } from "react";
 import { confirmAlert } from "react-confirm-alert";
 import {
-  InputMaybe,
-  MachinesWhereInput,
-  MaintenanceWhereInput,
   SortOrder,
-  useMachinesCountQuery,
-  useMachinesQuery,
-  useRemoveMachineMutation,
+  useMachineCatagoriesCountQuery,
+  useMachineCatagoriesQuery,
+  useRemoveMachineCatagoriesMutation,
 } from "../../generated";
 import { filterTransform } from "../../utils/filterTransform";
 import columns from "./cols";
-import NewMaintance from "./newMeachine";
+import NewMaintance from "./newCatagory";
 import Reports from "./reports";
 import { toast } from "react-toastify";
 import { client } from "../../utils/apollo";
 
-function Maintenance() {
+function Machine_category() {
   const [page, setPage] = useState(1);
   const [showReport, setShowReport] = useState<boolean>(false);
   const [pageSize, setPageSize] = useState(10);
   const [filter, SetFilter] = useState<any>({
     items: [],
   });
-  const [showViewMaintanceModal, setShowViewMaintanceModal] = useState<{
-    open: boolean;
-    rowId: number;
-  }>({
-    rowId: 1,
-    open: false,
-  });
-  const [formattedFilter, SetFormattedFilter] = useState<
-    InputMaybe<MachinesWhereInput>
-  >({});
+  const [formattedFilter, SetFormattedFilter] = useState<any>({});
   const [formattedSort, setFormattedSort] = useState<any>({});
-  const [onlyUnResolved, setUnResolvedView] = useState<boolean>(false);
   const [sort, setSort] = useState<any>([
     {
       field: "created_at",
@@ -50,19 +37,18 @@ function Maintenance() {
     },
   ]);
 
-  const [newMaintance, setNewMaintance] = useState<boolean>(false);
+  const [newCategory, setNewCategory] = useState<boolean>(false);
 
   const {
     data: machines,
     error: GetMachineError,
     loading: GetMachineLoading,
     refetch: RefetchMaintenances,
-  } = useMachinesQuery({
+  } = useMachineCatagoriesQuery({
     variables: {
-      offset: (page - 1) * pageSize,
-      limit: pageSize,
+      skip: (page - 1) * pageSize,
+      take: pageSize,
       where: formattedFilter,
-      orderBy: formattedSort,
     },
   });
   const {
@@ -70,12 +56,12 @@ function Maintenance() {
     error: MachineCountError,
     loading: MachineCountLoading,
     refetch: RefetchMaintenanceCount,
-  } = useMachinesCountQuery({
+  } = useMachineCatagoriesCountQuery({
     variables: {
       where: formattedFilter,
     },
   });
-  const [DeleteMachine] = useRemoveMachineMutation();
+  const [DeleteCategory] = useRemoveMachineCatagoriesMutation();
 
   return (
     <div>
@@ -86,14 +72,14 @@ function Maintenance() {
         }}
       />
       <NewMaintance
-        open={newMaintance}
+        open={newCategory}
         close={(refetch: boolean) => {
-          setNewMaintance(false);
+          setNewCategory(false);
           if (refetch) {
             RefetchMaintenanceCount();
             RefetchMaintenances();
             client.refetchQueries({
-              include: ["getAllMachinesDropdown"],
+              include: ["MeachineCatagoryDropdown"],
             });
           }
         }}
@@ -101,7 +87,7 @@ function Maintenance() {
       <Box flex={1}>
         <Button
           onClick={() => {
-            setNewMaintance(true);
+            setNewCategory(true);
           }}
           color="info"
           endIcon={<GridAddIcon />}
@@ -112,7 +98,7 @@ function Maintenance() {
           size="small"
           variant="contained"
         >
-          New Machine
+          New category
         </Button>
         <Button
           color="secondary"
@@ -154,7 +140,7 @@ function Maintenance() {
           });
         }}
         onPageSizeChange={(s) => setPageSize(s)}
-        rows={machines?.machines || []}
+        rows={machines?.machineCatagories || []}
         sortModel={sort}
         onSortModelChange={(s) => {
           setSort(s);
@@ -166,7 +152,7 @@ function Maintenance() {
             [s[0].field]: s[0].sort === "asc" ? SortOrder.Asc : SortOrder.Desc,
           });
         }}
-        rowCount={MachinesCount?.machinesCount || 0}
+        rowCount={MachinesCount?.machineCatagoriesCount || 0}
         columns={[
           ...columns,
           {
@@ -184,13 +170,13 @@ function Maintenance() {
                       {
                         label: "Yes",
                         onClick: async () => {
-                          await DeleteMachine({
+                          await DeleteCategory({
                             variables: {
-                              removeMachineId: params.row.id,
+                              removeMachineCatagoriesId: params.row.id,
                             },
                           })
                             .then((res) => {
-                              if (res.data?.removeMachine) {
+                              if (res.data?.removeMachineCatagories) {
                                 toast.success("Deleted Successfully");
                               }
                             })
@@ -202,7 +188,7 @@ function Maintenance() {
                           RefetchMaintenanceCount();
                           RefetchMaintenances();
                           client.refetchQueries({
-                            include: ["getAllMachinesDropdown"],
+                            include: ["blockDropdown"],
                           });
                         },
                       },
@@ -228,4 +214,4 @@ function Maintenance() {
   );
 }
 
-export default Maintenance;
+export default Machine_category;

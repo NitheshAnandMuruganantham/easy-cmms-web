@@ -2,29 +2,29 @@ import { Box, Button, Switch, Typography } from "@mui/material";
 import {
   DataGrid,
   GridAddIcon,
-  GridPanel,
   GridToolbar,
 } from "@mui/x-data-grid";
 import AssessmentIcon from "@mui/icons-material/Assessment";
-import React, { useState } from "react";
+import React, {
+  useState,
+} from "react";
 import { confirmAlert } from "react-confirm-alert";
 import {
   InputMaybe,
-  MachinesWhereInput,
-  MaintenanceWhereInput,
+  SectionsWhereInput,
   SortOrder,
-  useMachinesCountQuery,
-  useMachinesQuery,
-  useRemoveMachineMutation,
+  useRemoveSectionMutation,
+  useSectionsCountQuery,
+  useSectionsQuery,
 } from "../../generated";
 import { filterTransform } from "../../utils/filterTransform";
 import columns from "./cols";
-import NewMaintance from "./newMeachine";
+import NewSection from "./newSection";
 import Reports from "./reports";
 import { toast } from "react-toastify";
 import { client } from "../../utils/apollo";
 
-function Maintenance() {
+function Section() {
   const [page, setPage] = useState(1);
   const [showReport, setShowReport] = useState<boolean>(false);
   const [pageSize, setPageSize] = useState(10);
@@ -39,7 +39,7 @@ function Maintenance() {
     open: false,
   });
   const [formattedFilter, SetFormattedFilter] = useState<
-    InputMaybe<MachinesWhereInput>
+    InputMaybe<SectionsWhereInput>
   >({});
   const [formattedSort, setFormattedSort] = useState<any>({});
   const [onlyUnResolved, setUnResolvedView] = useState<boolean>(false);
@@ -50,17 +50,17 @@ function Maintenance() {
     },
   ]);
 
-  const [newMaintance, setNewMaintance] = useState<boolean>(false);
+  const [newMaintenance, setNewMaintenance] = useState<boolean>(false);
 
   const {
     data: machines,
     error: GetMachineError,
     loading: GetMachineLoading,
     refetch: RefetchMaintenances,
-  } = useMachinesQuery({
+  } = useSectionsQuery({
     variables: {
-      offset: (page - 1) * pageSize,
-      limit: pageSize,
+      skip: (page - 1) * pageSize,
+      take: pageSize,
       where: formattedFilter,
       orderBy: formattedSort,
     },
@@ -70,12 +70,12 @@ function Maintenance() {
     error: MachineCountError,
     loading: MachineCountLoading,
     refetch: RefetchMaintenanceCount,
-  } = useMachinesCountQuery({
+  } = useSectionsCountQuery({
     variables: {
       where: formattedFilter,
     },
   });
-  const [DeleteMachine] = useRemoveMachineMutation();
+  const [DeleteSection] = useRemoveSectionMutation();
 
   return (
     <div>
@@ -85,15 +85,15 @@ function Maintenance() {
           setShowReport(false);
         }}
       />
-      <NewMaintance
-        open={newMaintance}
+      <NewSection
+        open={newMaintenance}
         close={(refetch: boolean) => {
-          setNewMaintance(false);
+          setNewMaintenance(false);
           if (refetch) {
             RefetchMaintenanceCount();
             RefetchMaintenances();
             client.refetchQueries({
-              include: ["getAllMachinesDropdown"],
+              include: ["sectionsDropdown"],
             });
           }
         }}
@@ -101,7 +101,7 @@ function Maintenance() {
       <Box flex={1}>
         <Button
           onClick={() => {
-            setNewMaintance(true);
+            setNewMaintenance(true);
           }}
           color="info"
           endIcon={<GridAddIcon />}
@@ -112,7 +112,7 @@ function Maintenance() {
           size="small"
           variant="contained"
         >
-          New Machine
+          New Section
         </Button>
         <Button
           color="secondary"
@@ -142,7 +142,7 @@ function Maintenance() {
         rowsPerPageOptions={[10, 20, 50, 100]}
         disableColumnMenu
         components={{
-          Toolbar: GridToolbar,
+          Toolbar: GridToolbar
         }}
         loading={GetMachineLoading || MachineCountLoading}
         onPageChange={(p) => setPage(p + 1)}
@@ -154,7 +154,7 @@ function Maintenance() {
           });
         }}
         onPageSizeChange={(s) => setPageSize(s)}
-        rows={machines?.machines || []}
+        rows={machines?.sections || []}
         sortModel={sort}
         onSortModelChange={(s) => {
           setSort(s);
@@ -166,7 +166,7 @@ function Maintenance() {
             [s[0].field]: s[0].sort === "asc" ? SortOrder.Asc : SortOrder.Desc,
           });
         }}
-        rowCount={MachinesCount?.machinesCount || 0}
+        rowCount={MachinesCount?.sectionsCount || 0}
         columns={[
           ...columns,
           {
@@ -184,25 +184,21 @@ function Maintenance() {
                       {
                         label: "Yes",
                         onClick: async () => {
-                          await DeleteMachine({
+                          await DeleteSection({
                             variables: {
-                              removeMachineId: params.row.id,
+                              removeSectionId: parseInt(params.row.id,10),
                             },
+                          }).then((res) => {
+                            if (res.data?.removeSection) {
+                              toast.success("Deleted Successfully");
+                            } 
+                          }).catch((e)=>{
+                            toast.error("Failed to delete some data depend on it");
                           })
-                            .then((res) => {
-                              if (res.data?.removeMachine) {
-                                toast.success("Deleted Successfully");
-                              }
-                            })
-                            .catch((e) => {
-                              toast.error(
-                                "Failed to delete some data depend on it"
-                              );
-                            });
                           RefetchMaintenanceCount();
                           RefetchMaintenances();
                           client.refetchQueries({
-                            include: ["getAllMachinesDropdown"],
+                            include: ["sectionsDropdown"],
                           });
                         },
                       },
@@ -228,4 +224,4 @@ function Maintenance() {
   );
 }
 
-export default Maintenance;
+export default Section;

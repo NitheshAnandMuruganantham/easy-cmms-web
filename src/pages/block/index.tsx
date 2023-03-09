@@ -6,61 +6,53 @@ import {
   GridToolbar,
 } from "@mui/x-data-grid";
 import AssessmentIcon from "@mui/icons-material/Assessment";
-import React, { useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { confirmAlert } from "react-confirm-alert";
 import {
+  BlockWhereInput,
   InputMaybe,
-  MachinesWhereInput,
-  MaintenanceWhereInput,
   SortOrder,
-  useMachinesCountQuery,
-  useMachinesQuery,
-  useRemoveMachineMutation,
+  useBlockQuery,
+  useBlocksCountQuery,
+  useRemoveBlockMutation,
 } from "../../generated";
 import { filterTransform } from "../../utils/filterTransform";
 import columns from "./cols";
-import NewMaintance from "./newMeachine";
+import NewBlock from "./newBlock";
 import Reports from "./reports";
 import { toast } from "react-toastify";
 import { client } from "../../utils/apollo";
 
-function Maintenance() {
+function Block() {
   const [page, setPage] = useState(1);
   const [showReport, setShowReport] = useState<boolean>(false);
   const [pageSize, setPageSize] = useState(10);
   const [filter, SetFilter] = useState<any>({
     items: [],
   });
-  const [showViewMaintanceModal, setShowViewMaintanceModal] = useState<{
-    open: boolean;
-    rowId: number;
-  }>({
-    rowId: 1,
-    open: false,
-  });
   const [formattedFilter, SetFormattedFilter] = useState<
-    InputMaybe<MachinesWhereInput>
+    InputMaybe<BlockWhereInput>
   >({});
   const [formattedSort, setFormattedSort] = useState<any>({});
-  const [onlyUnResolved, setUnResolvedView] = useState<boolean>(false);
-  const [sort, setSort] = useState<any>([
-    {
-      field: "created_at",
-      sort: "asc",
-    },
-  ]);
+  const [sort, setSort] = useState<any>([]);
 
-  const [newMaintance, setNewMaintance] = useState<boolean>(false);
+  const [newBlock, setNewBlock] = useState<boolean>(false);
 
   const {
     data: machines,
     error: GetMachineError,
     loading: GetMachineLoading,
     refetch: RefetchMaintenances,
-  } = useMachinesQuery({
+  } = useBlockQuery({
     variables: {
+    limit: pageSize,
       offset: (page - 1) * pageSize,
-      limit: pageSize,
       where: formattedFilter,
       orderBy: formattedSort,
     },
@@ -70,12 +62,12 @@ function Maintenance() {
     error: MachineCountError,
     loading: MachineCountLoading,
     refetch: RefetchMaintenanceCount,
-  } = useMachinesCountQuery({
+  } = useBlocksCountQuery({
     variables: {
       where: formattedFilter,
-    },
+    } as any,
   });
-  const [DeleteMachine] = useRemoveMachineMutation();
+  const [DeleteBlock] = useRemoveBlockMutation();
 
   return (
     <div>
@@ -85,15 +77,15 @@ function Maintenance() {
           setShowReport(false);
         }}
       />
-      <NewMaintance
-        open={newMaintance}
+      <NewBlock
+        open={newBlock}
         close={(refetch: boolean) => {
-          setNewMaintance(false);
+          setNewBlock(false);
           if (refetch) {
             RefetchMaintenanceCount();
             RefetchMaintenances();
             client.refetchQueries({
-              include: ["getAllMachinesDropdown"],
+              include: ["blockDropdown"],
             });
           }
         }}
@@ -101,7 +93,7 @@ function Maintenance() {
       <Box flex={1}>
         <Button
           onClick={() => {
-            setNewMaintance(true);
+            setNewBlock(true);
           }}
           color="info"
           endIcon={<GridAddIcon />}
@@ -112,7 +104,7 @@ function Maintenance() {
           size="small"
           variant="contained"
         >
-          New Machine
+          New Block
         </Button>
         <Button
           color="secondary"
@@ -142,7 +134,7 @@ function Maintenance() {
         rowsPerPageOptions={[10, 20, 50, 100]}
         disableColumnMenu
         components={{
-          Toolbar: GridToolbar,
+          Toolbar: GridToolbar
         }}
         loading={GetMachineLoading || MachineCountLoading}
         onPageChange={(p) => setPage(p + 1)}
@@ -154,7 +146,7 @@ function Maintenance() {
           });
         }}
         onPageSizeChange={(s) => setPageSize(s)}
-        rows={machines?.machines || []}
+        rows={machines?.blocks || []}
         sortModel={sort}
         onSortModelChange={(s) => {
           setSort(s);
@@ -166,7 +158,7 @@ function Maintenance() {
             [s[0].field]: s[0].sort === "asc" ? SortOrder.Asc : SortOrder.Desc,
           });
         }}
-        rowCount={MachinesCount?.machinesCount || 0}
+        rowCount={MachinesCount?.blocksCount || 0}
         columns={[
           ...columns,
           {
@@ -184,25 +176,21 @@ function Maintenance() {
                       {
                         label: "Yes",
                         onClick: async () => {
-                          await DeleteMachine({
+                          await DeleteBlock({
                             variables: {
-                              removeMachineId: params.row.id,
+                              removeBlockId: parseInt(params.row.id,10),
                             },
+                          }).then((res) => {
+                            if (res.data?.removeBlock) {
+                              toast.success("Deleted Successfully");
+                            } 
+                          }).catch((e)=>{
+                            toast.error("Failed to delete some data depend on it");
                           })
-                            .then((res) => {
-                              if (res.data?.removeMachine) {
-                                toast.success("Deleted Successfully");
-                              }
-                            })
-                            .catch((e) => {
-                              toast.error(
-                                "Failed to delete some data depend on it"
-                              );
-                            });
                           RefetchMaintenanceCount();
                           RefetchMaintenances();
                           client.refetchQueries({
-                            include: ["getAllMachinesDropdown"],
+                            include: ["blockDropdown"],
                           });
                         },
                       },
@@ -228,4 +216,4 @@ function Maintenance() {
   );
 }
 
-export default Maintenance;
+export default Block;

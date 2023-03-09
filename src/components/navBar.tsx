@@ -13,6 +13,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import PrecisionManufacturingIcon from "@mui/icons-material/PrecisionManufacturing";
 import SupportAgentIcon from "@mui/icons-material/SupportAgent";
+import ApartmentIcon from '@mui/icons-material/Apartment';
 import {
   Avatar,
   CircularProgress,
@@ -28,6 +29,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Divider from "@mui/material/Divider";
 import MuiDrawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
+import WorkspacesIcon from '@mui/icons-material/Workspaces';
 import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
@@ -38,7 +40,7 @@ import Typography from "@mui/material/Typography";
 import HomeIcon from "@mui/icons-material/Home";
 import CachedIcon from "@mui/icons-material/Cached";
 import { signOut } from "supertokens-auth-react/recipe/passwordless";
-
+import BallotIcon from '@mui/icons-material/Ballot';
 const drawerWidth = 240;
 
 const openedMixin = (theme: Theme): CSSObject => ({
@@ -176,6 +178,24 @@ const NavBar: FunctionComponent<{
       path: "/machines",
       icon: PrecisionManufacturingIcon,
       active: useMatch("/machines"),
+    },
+    {
+      name: "machine category",
+      path: "/machineCategory",
+      icon: BallotIcon,
+      active: useMatch("/machineCategory"),
+    },
+    {
+      name: "sections",
+      path: "/sections",
+      icon: WorkspacesIcon,
+      active: useMatch("/sections"),
+    },
+    {
+      name: "Blocks",
+      path: "/blocks",
+      icon: ApartmentIcon,
+      active: useMatch("/blocks"),
     },
   ];
   const navigate = useNavigate();
@@ -349,6 +369,24 @@ const Currentpage = () => {
       path: "/machines",
       icon: PrecisionManufacturingIcon,
       active: useMatch("/machines"),
+    },
+    {
+      name: "sections",
+      path: "/sections",
+      icon: WorkspacesIcon,
+      active: useMatch("/sections"),
+    },
+    {
+      name: "machine category",
+      path: "/machineCategory",
+      icon: BallotIcon,
+      active: useMatch("/machineCategory"),
+    },
+    {
+      name: "Blocks",
+      path: "/blocks",
+      icon: ApartmentIcon,
+      active: useMatch("/blocks"),
     },
   ];
   return (

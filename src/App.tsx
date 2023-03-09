@@ -14,6 +14,9 @@ import { createTheme } from "@mui/material";
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 import RoutineMaintenance from "./pages/routineMaintanance";
+import Machine_category from "./pages/meachine_catagory";
+import Section from "./pages/section";
+import Block from "./pages/block";
 function App() {
 
 
@@ -66,6 +69,30 @@ function App() {
           element={
             <SessionAuth>
               <Machines />
+            </SessionAuth>
+          }
+        />
+        <reactRouterDom.Route
+          path="/machineCategory"
+          element={
+            <SessionAuth>
+              <Machine_category/>
+            </SessionAuth>
+          }
+        />
+        <reactRouterDom.Route
+          path="/sections"
+          element={
+            <SessionAuth>
+              <Section/>
+            </SessionAuth>
+          }
+        />
+        <reactRouterDom.Route
+          path="/blocks"
+          element={
+            <SessionAuth>
+              <Block/>
             </SessionAuth>
           }
         />

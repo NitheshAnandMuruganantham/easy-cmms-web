@@ -72,9 +72,16 @@ const NewMaintenance: React.FunctionComponent<Props> = (props) => {
                 },
               },
             },
+          })
+          .then((res) => {
+            if (res.data?.createMaintanance) {
+              toast.success("machine created successfully");
+              props.close(true);
+            }
+          })
+          .catch(() => {
+            toast.error("something went wrong");
           });
-          toast.success("maintenance added successfully");
-          props.close(true);
         }}
       >
         {({ submitForm }) => {

@@ -83,14 +83,14 @@ const AssignMaintenance: React.FunctionComponent<Props> = (props) => {
               },
             },
           })
-            .catch(() => {
-              toast.error("something went wrong 🤯");
-            })
-            .then((r) => {
-              if(r){
-                toast.success("maintenance added successfully 🚀");
-              }
-            });
+          .then((res) => {
+            if(res.data?.createMaintanance){
+              toast.success("maintenance added successfully 🚀");
+            }
+          })
+          .catch(() => {
+            toast.error("something went wrong 🤯");
+          })
           client.refetchQueries({
             include: ["Tickets", "ticketsCount"],
           });

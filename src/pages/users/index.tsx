@@ -27,6 +27,7 @@ import { CircularProgress } from "@mui/material";
 import { filterTransform } from "../../utils/filterTransform";
 import columns from "./col";
 import NewUser from "./newUser";
+import { client } from "../../utils/apollo";
 
 function Users() {
   const [page, setPage] = useState(1);
@@ -80,6 +81,9 @@ function Users() {
           if (refetch) {
             refetchUsers();
             refetchUsersCount();
+            client.refetchQueries({
+              include: ["usersDropDown"],
+            });
           }
           SetShowNewUser(false);
         }}
@@ -156,6 +160,9 @@ function Users() {
                           });
                           refetchUsers();
                           refetchUsersCount();
+                          client.refetchQueries({
+                            include: ["usersDropDown"],
+                          });
                         },
                       },
                       {

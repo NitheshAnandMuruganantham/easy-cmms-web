@@ -1050,34 +1050,11 @@ export type MachinesCreateManyBlockInputEnvelope = {
   skipDuplicates?: InputMaybe<Scalars['Boolean']>;
 };
 
-export type MachinesCreateManySection_Machines_SectionTosectionInput = {
-  block_id: Scalars['BigInt'];
-  created_at?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['BigInt']>;
-  label: Scalars['String'];
-  name: Scalars['String'];
-  priority: Scalars['Int'];
-  profile?: InputMaybe<Scalars['JSON']>;
-  updated_at?: InputMaybe<Scalars['DateTime']>;
-};
-
-export type MachinesCreateManySection_Machines_SectionTosectionInputEnvelope = {
-  data: Array<MachinesCreateManySection_Machines_SectionTosectionInput>;
-  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
-};
-
 export type MachinesCreateNestedManyWithoutBlockInput = {
   connect?: InputMaybe<Array<MachinesWhereUniqueInput>>;
   connectOrCreate?: InputMaybe<Array<MachinesCreateOrConnectWithoutBlockInput>>;
   create?: InputMaybe<Array<MachinesCreateWithoutBlockInput>>;
   createMany?: InputMaybe<MachinesCreateManyBlockInputEnvelope>;
-};
-
-export type MachinesCreateNestedManyWithoutSection_Machines_SectionTosectionInput = {
-  connect?: InputMaybe<Array<MachinesWhereUniqueInput>>;
-  connectOrCreate?: InputMaybe<Array<MachinesCreateOrConnectWithoutSection_Machines_SectionTosectionInput>>;
-  create?: InputMaybe<Array<MachinesCreateWithoutSection_Machines_SectionTosectionInput>>;
-  createMany?: InputMaybe<MachinesCreateManySection_Machines_SectionTosectionInputEnvelope>;
 };
 
 export type MachinesCreateNestedOneWithoutMaintenanceInput = {
@@ -1110,11 +1087,6 @@ export type MachinesCreateOrConnectWithoutMaintenanceInput = {
 
 export type MachinesCreateOrConnectWithoutRoutine_MaintanancesInput = {
   create: MachinesCreateWithoutRoutine_MaintanancesInput;
-  where: MachinesWhereUniqueInput;
-};
-
-export type MachinesCreateOrConnectWithoutSection_Machines_SectionTosectionInput = {
-  create: MachinesCreateWithoutSection_Machines_SectionTosectionInput;
   where: MachinesWhereUniqueInput;
 };
 
@@ -1165,18 +1137,6 @@ export type MachinesCreateWithoutRoutine_MaintanancesInput = {
   priority: Scalars['Int'];
   profile?: InputMaybe<Scalars['JSON']>;
   section: SectionsCreateNestedOneWithoutMachinesInput;
-  updated_at?: InputMaybe<Scalars['DateTime']>;
-};
-
-export type MachinesCreateWithoutSection_Machines_SectionTosectionInput = {
-  block: BlockCreateNestedOneWithoutMachinesInput;
-  created_at?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['BigInt']>;
-  label: Scalars['String'];
-  maintenance?: InputMaybe<MaintenanceCreateNestedManyWithoutMachinesInput>;
-  name: Scalars['String'];
-  priority: Scalars['Int'];
-  profile?: InputMaybe<Scalars['JSON']>;
   updated_at?: InputMaybe<Scalars['DateTime']>;
 };
 
@@ -1358,11 +1318,6 @@ export type MachinesUpdateManyWithWhereWithoutBlockInput = {
   where: MachinesScalarWhereInput;
 };
 
-export type MachinesUpdateManyWithWhereWithoutSection_Machines_SectionTosectionInput = {
-  data: MachinesUpdateManyMutationInput;
-  where: MachinesScalarWhereInput;
-};
-
 export type MachinesUpdateManyWithoutBlockNestedInput = {
   connect?: InputMaybe<Array<MachinesWhereUniqueInput>>;
   connectOrCreate?: InputMaybe<Array<MachinesCreateOrConnectWithoutBlockInput>>;
@@ -1375,20 +1330,6 @@ export type MachinesUpdateManyWithoutBlockNestedInput = {
   update?: InputMaybe<Array<MachinesUpdateWithWhereUniqueWithoutBlockInput>>;
   updateMany?: InputMaybe<Array<MachinesUpdateManyWithWhereWithoutBlockInput>>;
   upsert?: InputMaybe<Array<MachinesUpsertWithWhereUniqueWithoutBlockInput>>;
-};
-
-export type MachinesUpdateManyWithoutSection_Machines_SectionTosectionNestedInput = {
-  connect?: InputMaybe<Array<MachinesWhereUniqueInput>>;
-  connectOrCreate?: InputMaybe<Array<MachinesCreateOrConnectWithoutSection_Machines_SectionTosectionInput>>;
-  create?: InputMaybe<Array<MachinesCreateWithoutSection_Machines_SectionTosectionInput>>;
-  createMany?: InputMaybe<MachinesCreateManySection_Machines_SectionTosectionInputEnvelope>;
-  delete?: InputMaybe<Array<MachinesWhereUniqueInput>>;
-  deleteMany?: InputMaybe<Array<MachinesScalarWhereInput>>;
-  disconnect?: InputMaybe<Array<MachinesWhereUniqueInput>>;
-  set?: InputMaybe<Array<MachinesWhereUniqueInput>>;
-  update?: InputMaybe<Array<MachinesUpdateWithWhereUniqueWithoutSection_Machines_SectionTosectionInput>>;
-  updateMany?: InputMaybe<Array<MachinesUpdateManyWithWhereWithoutSection_Machines_SectionTosectionInput>>;
-  upsert?: InputMaybe<Array<MachinesUpsertWithWhereUniqueWithoutSection_Machines_SectionTosectionInput>>;
 };
 
 export type MachinesUpdateOneRequiredWithoutMaintenanceNestedInput = {
@@ -1417,11 +1358,6 @@ export type MachinesUpdateOneRequiredWithoutTicketNestedInput = {
 
 export type MachinesUpdateWithWhereUniqueWithoutBlockInput = {
   data: MachinesUpdateWithoutBlockInput;
-  where: MachinesWhereUniqueInput;
-};
-
-export type MachinesUpdateWithWhereUniqueWithoutSection_Machines_SectionTosectionInput = {
-  data: MachinesUpdateWithoutSection_Machines_SectionTosectionInput;
   where: MachinesWhereUniqueInput;
 };
 
@@ -1470,18 +1406,6 @@ export type MachinesUpdateWithoutRoutine_MaintanancesInput = {
   updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
-export type MachinesUpdateWithoutSection_Machines_SectionTosectionInput = {
-  block?: InputMaybe<BlockUpdateOneRequiredWithoutMachinesNestedInput>;
-  created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
-  label?: InputMaybe<StringFieldUpdateOperationsInput>;
-  maintenance?: InputMaybe<MaintenanceUpdateManyWithoutMachinesNestedInput>;
-  name?: InputMaybe<StringFieldUpdateOperationsInput>;
-  priority?: InputMaybe<IntFieldUpdateOperationsInput>;
-  profile?: InputMaybe<Scalars['JSON']>;
-  updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-};
-
 export type MachinesUpdateWithoutTicketInput = {
   block?: InputMaybe<BlockUpdateOneRequiredWithoutMachinesNestedInput>;
   created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
@@ -1500,12 +1424,6 @@ export type MachinesUpdateWithoutTicketInput = {
 export type MachinesUpsertWithWhereUniqueWithoutBlockInput = {
   create: MachinesCreateWithoutBlockInput;
   update: MachinesUpdateWithoutBlockInput;
-  where: MachinesWhereUniqueInput;
-};
-
-export type MachinesUpsertWithWhereUniqueWithoutSection_Machines_SectionTosectionInput = {
-  create: MachinesCreateWithoutSection_Machines_SectionTosectionInput;
-  update: MachinesUpdateWithoutSection_Machines_SectionTosectionInput;
   where: MachinesWhereUniqueInput;
 };
 
@@ -2185,6 +2103,7 @@ export type Mutation = {
   createItem: Items;
   createItemCatagory: ItemCatagory;
   createMachine: Machines;
+  createMachineCategory: Machine_Catagory;
   createMaintanance: Maintenance;
   createReplacement: Replacements;
   createReport: Reports;
@@ -2196,6 +2115,7 @@ export type Mutation = {
   removeItem: Items;
   removeItemCatagory: ItemCatagory;
   removeMachine: Machines;
+  removeMachineCatagories: Machine_Catagory;
   removeMaintanance: Maintenance;
   removeReplacement: Replacements;
   removeReport: Reports;
@@ -2207,6 +2127,7 @@ export type Mutation = {
   updateItem: Items;
   updateItemCatagory: ItemCatagory;
   updateMachine: Machines;
+  updateMachineCatagories: Machine_Catagory;
   updateMaintanance: Maintenance;
   updateReplacement: Replacements;
   updateReport: Reports;
@@ -2237,6 +2158,11 @@ export type MutationCreateMachineArgs = {
 };
 
 
+export type MutationCreateMachineCategoryArgs = {
+  createCategoryInput: Machine_CatagoryCreateWithoutMachinesInput;
+};
+
+
 export type MutationCreateMaintananceArgs = {
   createMaintananceInput: MaintenanceCreateInput;
 };
@@ -2258,7 +2184,7 @@ export type MutationCreateRoutineMaintananceArgs = {
 
 
 export type MutationCreateSectionArgs = {
-  createSectionInput: SectionCreateInput;
+  createSectionInput: SectionCreateWithoutMachinesInput;
 };
 
 
@@ -2288,6 +2214,11 @@ export type MutationRemoveItemCatagoryArgs = {
 
 
 export type MutationRemoveMachineArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type MutationRemoveMachineCatagoriesArgs = {
   id: Scalars['Int'];
 };
 
@@ -2351,6 +2282,12 @@ export type MutationUpdateMachineArgs = {
 };
 
 
+export type MutationUpdateMachineCatagoriesArgs = {
+  data: Machine_CatagoryUpdateOneWithoutMachinesNestedInput;
+  id: Scalars['Int'];
+};
+
+
 export type MutationUpdateMaintananceArgs = {
   id: Scalars['Int'];
   updateMaintananceInput: MaintenanceUpdateInput;
@@ -2377,7 +2314,7 @@ export type MutationUpdateRoutineMaintananceArgs = {
 
 export type MutationUpdateSectionArgs = {
   id: Scalars['Int'];
-  updateSectionInput: SectionUpdateInput;
+  updateSectionInput: SectionUpdateWithoutMachinesInput;
 };
 
 
@@ -2519,11 +2456,15 @@ export type Query = {
   __typename?: 'Query';
   block: Block;
   blocks: Array<Block>;
+  blocksCount: Scalars['Int'];
   item: Items;
   itemCatagories: Array<ItemCatagory>;
   itemCatagory: ItemCatagory;
   items: Array<Items>;
   machine: Machines;
+  machineCatagories: Array<Machine_Catagory>;
+  machineCatagoriesCount: Scalars['Int'];
+  machineCategory: Machine_Catagory;
   machines: Array<Machines>;
   machinesCount: Scalars['Int'];
   maintenance: Maintenance;
@@ -2536,6 +2477,8 @@ export type Query = {
   routineMaintanances: Array<Routine_Maintanances>;
   routineMaintanancesCount: Scalars['Int'];
   section: Section;
+  sections: Array<Section>;
+  sectionsCount: Scalars['Int'];
   ticket: Ticket;
   tickets: Array<Ticket>;
   ticketsCount: Scalars['Int'];
@@ -2551,6 +2494,14 @@ export type QueryBlockArgs = {
 
 
 export type QueryBlocksArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  orderBy?: InputMaybe<BlockOrderByWithAggregationInput>;
+  where?: InputMaybe<BlockWhereInput>;
+};
+
+
+export type QueryBlocksCountArgs = {
   limit?: InputMaybe<Scalars['Int']>;
   offset?: InputMaybe<Scalars['Int']>;
   orderBy?: InputMaybe<BlockOrderByWithAggregationInput>;
@@ -2585,6 +2536,27 @@ export type QueryItemsArgs = {
 
 
 export type QueryMachineArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type QueryMachineCatagoriesArgs = {
+  orderBy?: InputMaybe<Machine_CatagoryOrderByWithRelationAndSearchRelevanceInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<Machine_CatagoryWhereInput>;
+};
+
+
+export type QueryMachineCatagoriesCountArgs = {
+  orderBy?: InputMaybe<Machine_CatagoryOrderByWithRelationAndSearchRelevanceInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<Machine_CatagoryWhereInput>;
+};
+
+
+export type QueryMachineCategoryArgs = {
   id: Scalars['Int'];
 };
 
@@ -2667,6 +2639,22 @@ export type QueryRoutineMaintanancesCountArgs = {
 
 export type QuerySectionArgs = {
   id: Scalars['Int'];
+};
+
+
+export type QuerySectionsArgs = {
+  orderBy?: InputMaybe<SectionOrderByWithRelationInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<SectionWhereInput>;
+};
+
+
+export type QuerySectionsCountArgs = {
+  orderBy?: InputMaybe<SectionOrderByWithRelationInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<SectionWhereInput>;
 };
 
 
@@ -3393,10 +3381,9 @@ export type SectionCountAggregate = {
   updated_at: Scalars['Int'];
 };
 
-export type SectionCreateInput = {
+export type SectionCreateWithoutMachinesInput = {
   created_at?: InputMaybe<Scalars['DateTime']>;
   id?: InputMaybe<Scalars['String']>;
-  machines?: InputMaybe<MachinesCreateNestedManyWithoutSection_Machines_SectionTosectionInput>;
   name: Scalars['String'];
   updated_at?: InputMaybe<Scalars['DateTime']>;
 };
@@ -3417,17 +3404,35 @@ export type SectionMinAggregate = {
   updated_at?: Maybe<Scalars['DateTime']>;
 };
 
+export type SectionOrderByWithRelationInput = {
+  created_at?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  machines?: InputMaybe<MachinesOrderByRelationAggregateInput>;
+  name?: InputMaybe<SortOrder>;
+  updated_at?: InputMaybe<SortOrder>;
+};
+
 export type SectionSumAggregate = {
   __typename?: 'SectionSumAggregate';
   id?: Maybe<Scalars['String']>;
 };
 
-export type SectionUpdateInput = {
+export type SectionUpdateWithoutMachinesInput = {
   created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
-  machines?: InputMaybe<MachinesUpdateManyWithoutSection_Machines_SectionTosectionNestedInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type SectionWhereInput = {
+  AND?: InputMaybe<Array<SectionWhereInput>>;
+  NOT?: InputMaybe<Array<SectionWhereInput>>;
+  OR?: InputMaybe<Array<SectionWhereInput>>;
+  created_at?: InputMaybe<DateTimeFilter>;
+  id?: InputMaybe<BigIntFilter>;
+  machines?: InputMaybe<MachinesListRelationFilter>;
+  name?: InputMaybe<StringFilter>;
+  updated_at?: InputMaybe<DateTimeFilter>;
 };
 
 export type Sections = {
@@ -4315,6 +4320,14 @@ export type Machine_Catagory = {
   updated_at: Scalars['DateTime'];
 };
 
+
+export type Machine_CatagoryMachinesArgs = {
+  orderBy?: InputMaybe<MachinesOrderByWithRelationInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<MachinesWhereInput>;
+};
+
 export type Machine_CatagoryCreateNestedOneWithoutMachinesInput = {
   connect?: InputMaybe<Machine_CatagoryWhereUniqueInput>;
   connectOrCreate?: InputMaybe<Machine_CatagoryCreateOrConnectWithoutMachinesInput>;
@@ -4333,10 +4346,39 @@ export type Machine_CatagoryCreateWithoutMachinesInput = {
   updated_at?: InputMaybe<Scalars['DateTime']>;
 };
 
+export enum Machine_CatagoryOrderByRelevanceFieldEnum {
+  Name = 'name'
+}
+
+export type Machine_CatagoryOrderByRelevanceInput = {
+  fields: Array<Machine_CatagoryOrderByRelevanceFieldEnum>;
+  search: Scalars['String'];
+  sort: SortOrder;
+};
+
+export type Machine_CatagoryOrderByWithRelationAndSearchRelevanceInput = {
+  _relevance?: InputMaybe<Machine_CatagoryOrderByRelevanceInput>;
+  created_at?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  machines?: InputMaybe<MachinesOrderByRelationAggregateInput>;
+  name?: InputMaybe<SortOrder>;
+  updated_at?: InputMaybe<SortOrder>;
+};
+
 export type Machine_CatagoryUpdateOneRequiredWithoutMachinesNestedInput = {
   connect?: InputMaybe<Machine_CatagoryWhereUniqueInput>;
   connectOrCreate?: InputMaybe<Machine_CatagoryCreateOrConnectWithoutMachinesInput>;
   create?: InputMaybe<Machine_CatagoryCreateWithoutMachinesInput>;
+  update?: InputMaybe<Machine_CatagoryUpdateWithoutMachinesInput>;
+  upsert?: InputMaybe<Machine_CatagoryUpsertWithoutMachinesInput>;
+};
+
+export type Machine_CatagoryUpdateOneWithoutMachinesNestedInput = {
+  connect?: InputMaybe<Machine_CatagoryWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<Machine_CatagoryCreateOrConnectWithoutMachinesInput>;
+  create?: InputMaybe<Machine_CatagoryCreateWithoutMachinesInput>;
+  delete?: InputMaybe<Scalars['Boolean']>;
+  disconnect?: InputMaybe<Scalars['Boolean']>;
   update?: InputMaybe<Machine_CatagoryUpdateWithoutMachinesInput>;
   upsert?: InputMaybe<Machine_CatagoryUpsertWithoutMachinesInput>;
 };
@@ -4637,6 +4679,123 @@ export enum Ticket_Status {
   Pending = 'PENDING'
 }
 
+export type CreateBlockMutationVariables = Exact<{
+  createBlockInput: BlockCreateInput;
+}>;
+
+
+export type CreateBlockMutation = { __typename?: 'Mutation', createBlock: { __typename?: 'Block', id: any } };
+
+export type CreateSectionMutationVariables = Exact<{
+  createSectionInput: SectionCreateWithoutMachinesInput;
+}>;
+
+
+export type CreateSectionMutation = { __typename?: 'Mutation', createSection: { __typename?: 'Section', id: string } };
+
+export type CreateCatagoriesMutationVariables = Exact<{
+  createCategoryInput: Machine_CatagoryCreateWithoutMachinesInput;
+}>;
+
+
+export type CreateCatagoriesMutation = { __typename?: 'Mutation', createMachineCategory: { __typename?: 'machine_catagory', id: any } };
+
+export type BlockDropdownQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type BlockDropdownQuery = { __typename?: 'Query', blocks: Array<{ __typename?: 'Block', name: string, value: any }> };
+
+export type MeachineCatagoryDropdownQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type MeachineCatagoryDropdownQuery = { __typename?: 'Query', machineCatagories: Array<{ __typename?: 'machine_catagory', name: string, value: any }> };
+
+export type SectionsDropdownQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type SectionsDropdownQuery = { __typename?: 'Query', sections: Array<{ __typename?: 'Section', name: string, value: string }> };
+
+export type BlockQueryVariables = Exact<{
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  orderBy?: InputMaybe<BlockOrderByWithAggregationInput>;
+  where?: InputMaybe<BlockWhereInput>;
+}>;
+
+
+export type BlockQuery = { __typename?: 'Query', blocks: Array<{ __typename?: 'Block', id: any, name: string, location: string, _count: { __typename?: 'BlockCount', machines: number } }> };
+
+export type SectionsQueryVariables = Exact<{
+  orderBy?: InputMaybe<SectionOrderByWithRelationInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<SectionWhereInput>;
+}>;
+
+
+export type SectionsQuery = { __typename?: 'Query', sections: Array<{ __typename?: 'Section', id: string, name: string, _count: { __typename?: 'SectionCount', machines: number } }> };
+
+export type SectionsCountQueryVariables = Exact<{
+  orderBy?: InputMaybe<SectionOrderByWithRelationInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<SectionWhereInput>;
+}>;
+
+
+export type SectionsCountQuery = { __typename?: 'Query', sectionsCount: number };
+
+export type MachineCatagoriesQueryVariables = Exact<{
+  orderBy?: InputMaybe<Machine_CatagoryOrderByWithRelationAndSearchRelevanceInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<Machine_CatagoryWhereInput>;
+}>;
+
+
+export type MachineCatagoriesQuery = { __typename?: 'Query', machineCatagories: Array<{ __typename?: 'machine_catagory', id: any, name: string, _count: { __typename?: 'Machine_catagoryCount', machines: number } }> };
+
+export type MachineCatagoriesCountQueryVariables = Exact<{
+  orderBy?: InputMaybe<Machine_CatagoryOrderByWithRelationAndSearchRelevanceInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<Machine_CatagoryWhereInput>;
+}>;
+
+
+export type MachineCatagoriesCountQuery = { __typename?: 'Query', machineCatagoriesCount: number };
+
+export type RemoveSectionMutationVariables = Exact<{
+  removeSectionId: Scalars['Int'];
+}>;
+
+
+export type RemoveSectionMutation = { __typename?: 'Mutation', removeSection: { __typename?: 'Section', id: string } };
+
+export type RemoveBlockMutationVariables = Exact<{
+  removeBlockId: Scalars['Int'];
+}>;
+
+
+export type RemoveBlockMutation = { __typename?: 'Mutation', removeBlock: { __typename?: 'Block', id: any } };
+
+export type RemoveMachineCatagoriesMutationVariables = Exact<{
+  removeMachineCatagoriesId: Scalars['Int'];
+}>;
+
+
+export type RemoveMachineCatagoriesMutation = { __typename?: 'Mutation', removeMachineCatagories: { __typename?: 'machine_catagory', id: any } };
+
+export type BlocksCountQueryVariables = Exact<{
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  orderBy?: InputMaybe<BlockOrderByWithAggregationInput>;
+  where?: InputMaybe<BlockWhereInput>;
+}>;
+
+
+export type BlocksCountQuery = { __typename?: 'Query', blocksCount: number };
+
 export type GetAllMachinesDropdownQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -4661,6 +4820,20 @@ export type MachinesCountQueryVariables = Exact<{
 
 
 export type MachinesCountQuery = { __typename?: 'Query', machinesCount: number };
+
+export type RemoveMachineMutationVariables = Exact<{
+  removeMachineId: Scalars['Int'];
+}>;
+
+
+export type RemoveMachineMutation = { __typename?: 'Mutation', removeMachine: { __typename?: 'Machines', id: any } };
+
+export type CreateMachineMutationVariables = Exact<{
+  createMachineInput: MachinesCreateInput;
+}>;
+
+
+export type CreateMachineMutation = { __typename?: 'Mutation', createMachine: { __typename?: 'Machines', id: any } };
 
 export type MaintenanceQueryVariables = Exact<{
   where?: InputMaybe<MaintenanceWhereInput>;
@@ -4846,6 +5019,549 @@ export type DeleteUsersMutationVariables = Exact<{
 export type DeleteUsersMutation = { __typename?: 'Mutation', removeUser: { __typename?: 'Users', id: any } };
 
 
+export const CreateBlockDocument = gql`
+    mutation createBlock($createBlockInput: BlockCreateInput!) {
+  createBlock(createBlockInput: $createBlockInput) {
+    id
+  }
+}
+    `;
+export type CreateBlockMutationFn = Apollo.MutationFunction<CreateBlockMutation, CreateBlockMutationVariables>;
+
+/**
+ * __useCreateBlockMutation__
+ *
+ * To run a mutation, you first call `useCreateBlockMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateBlockMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createBlockMutation, { data, loading, error }] = useCreateBlockMutation({
+ *   variables: {
+ *      createBlockInput: // value for 'createBlockInput'
+ *   },
+ * });
+ */
+export function useCreateBlockMutation(baseOptions?: Apollo.MutationHookOptions<CreateBlockMutation, CreateBlockMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateBlockMutation, CreateBlockMutationVariables>(CreateBlockDocument, options);
+      }
+export type CreateBlockMutationHookResult = ReturnType<typeof useCreateBlockMutation>;
+export type CreateBlockMutationResult = Apollo.MutationResult<CreateBlockMutation>;
+export type CreateBlockMutationOptions = Apollo.BaseMutationOptions<CreateBlockMutation, CreateBlockMutationVariables>;
+export const CreateSectionDocument = gql`
+    mutation createSection($createSectionInput: SectionCreateWithoutMachinesInput!) {
+  createSection(createSectionInput: $createSectionInput) {
+    id
+  }
+}
+    `;
+export type CreateSectionMutationFn = Apollo.MutationFunction<CreateSectionMutation, CreateSectionMutationVariables>;
+
+/**
+ * __useCreateSectionMutation__
+ *
+ * To run a mutation, you first call `useCreateSectionMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateSectionMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createSectionMutation, { data, loading, error }] = useCreateSectionMutation({
+ *   variables: {
+ *      createSectionInput: // value for 'createSectionInput'
+ *   },
+ * });
+ */
+export function useCreateSectionMutation(baseOptions?: Apollo.MutationHookOptions<CreateSectionMutation, CreateSectionMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateSectionMutation, CreateSectionMutationVariables>(CreateSectionDocument, options);
+      }
+export type CreateSectionMutationHookResult = ReturnType<typeof useCreateSectionMutation>;
+export type CreateSectionMutationResult = Apollo.MutationResult<CreateSectionMutation>;
+export type CreateSectionMutationOptions = Apollo.BaseMutationOptions<CreateSectionMutation, CreateSectionMutationVariables>;
+export const CreateCatagoriesDocument = gql`
+    mutation createCatagories($createCategoryInput: machine_catagoryCreateWithoutMachinesInput!) {
+  createMachineCategory(createCategoryInput: $createCategoryInput) {
+    id
+  }
+}
+    `;
+export type CreateCatagoriesMutationFn = Apollo.MutationFunction<CreateCatagoriesMutation, CreateCatagoriesMutationVariables>;
+
+/**
+ * __useCreateCatagoriesMutation__
+ *
+ * To run a mutation, you first call `useCreateCatagoriesMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateCatagoriesMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createCatagoriesMutation, { data, loading, error }] = useCreateCatagoriesMutation({
+ *   variables: {
+ *      createCategoryInput: // value for 'createCategoryInput'
+ *   },
+ * });
+ */
+export function useCreateCatagoriesMutation(baseOptions?: Apollo.MutationHookOptions<CreateCatagoriesMutation, CreateCatagoriesMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateCatagoriesMutation, CreateCatagoriesMutationVariables>(CreateCatagoriesDocument, options);
+      }
+export type CreateCatagoriesMutationHookResult = ReturnType<typeof useCreateCatagoriesMutation>;
+export type CreateCatagoriesMutationResult = Apollo.MutationResult<CreateCatagoriesMutation>;
+export type CreateCatagoriesMutationOptions = Apollo.BaseMutationOptions<CreateCatagoriesMutation, CreateCatagoriesMutationVariables>;
+export const BlockDropdownDocument = gql`
+    query blockDropdown {
+  blocks {
+    value: id
+    name
+  }
+}
+    `;
+
+/**
+ * __useBlockDropdownQuery__
+ *
+ * To run a query within a React component, call `useBlockDropdownQuery` and pass it any options that fit your needs.
+ * When your component renders, `useBlockDropdownQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useBlockDropdownQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useBlockDropdownQuery(baseOptions?: Apollo.QueryHookOptions<BlockDropdownQuery, BlockDropdownQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<BlockDropdownQuery, BlockDropdownQueryVariables>(BlockDropdownDocument, options);
+      }
+export function useBlockDropdownLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<BlockDropdownQuery, BlockDropdownQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<BlockDropdownQuery, BlockDropdownQueryVariables>(BlockDropdownDocument, options);
+        }
+export type BlockDropdownQueryHookResult = ReturnType<typeof useBlockDropdownQuery>;
+export type BlockDropdownLazyQueryHookResult = ReturnType<typeof useBlockDropdownLazyQuery>;
+export type BlockDropdownQueryResult = Apollo.QueryResult<BlockDropdownQuery, BlockDropdownQueryVariables>;
+export const MeachineCatagoryDropdownDocument = gql`
+    query MeachineCatagoryDropdown {
+  machineCatagories {
+    value: id
+    name
+  }
+}
+    `;
+
+/**
+ * __useMeachineCatagoryDropdownQuery__
+ *
+ * To run a query within a React component, call `useMeachineCatagoryDropdownQuery` and pass it any options that fit your needs.
+ * When your component renders, `useMeachineCatagoryDropdownQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useMeachineCatagoryDropdownQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useMeachineCatagoryDropdownQuery(baseOptions?: Apollo.QueryHookOptions<MeachineCatagoryDropdownQuery, MeachineCatagoryDropdownQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<MeachineCatagoryDropdownQuery, MeachineCatagoryDropdownQueryVariables>(MeachineCatagoryDropdownDocument, options);
+      }
+export function useMeachineCatagoryDropdownLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<MeachineCatagoryDropdownQuery, MeachineCatagoryDropdownQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<MeachineCatagoryDropdownQuery, MeachineCatagoryDropdownQueryVariables>(MeachineCatagoryDropdownDocument, options);
+        }
+export type MeachineCatagoryDropdownQueryHookResult = ReturnType<typeof useMeachineCatagoryDropdownQuery>;
+export type MeachineCatagoryDropdownLazyQueryHookResult = ReturnType<typeof useMeachineCatagoryDropdownLazyQuery>;
+export type MeachineCatagoryDropdownQueryResult = Apollo.QueryResult<MeachineCatagoryDropdownQuery, MeachineCatagoryDropdownQueryVariables>;
+export const SectionsDropdownDocument = gql`
+    query sectionsDropdown {
+  sections {
+    value: id
+    name
+  }
+}
+    `;
+
+/**
+ * __useSectionsDropdownQuery__
+ *
+ * To run a query within a React component, call `useSectionsDropdownQuery` and pass it any options that fit your needs.
+ * When your component renders, `useSectionsDropdownQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useSectionsDropdownQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useSectionsDropdownQuery(baseOptions?: Apollo.QueryHookOptions<SectionsDropdownQuery, SectionsDropdownQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<SectionsDropdownQuery, SectionsDropdownQueryVariables>(SectionsDropdownDocument, options);
+      }
+export function useSectionsDropdownLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<SectionsDropdownQuery, SectionsDropdownQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<SectionsDropdownQuery, SectionsDropdownQueryVariables>(SectionsDropdownDocument, options);
+        }
+export type SectionsDropdownQueryHookResult = ReturnType<typeof useSectionsDropdownQuery>;
+export type SectionsDropdownLazyQueryHookResult = ReturnType<typeof useSectionsDropdownLazyQuery>;
+export type SectionsDropdownQueryResult = Apollo.QueryResult<SectionsDropdownQuery, SectionsDropdownQueryVariables>;
+export const BlockDocument = gql`
+    query Block($limit: Int, $offset: Int, $orderBy: BlockOrderByWithAggregationInput, $where: BlockWhereInput) {
+  blocks(limit: $limit, offset: $offset, orderBy: $orderBy, where: $where) {
+    id
+    name
+    location
+    _count {
+      machines
+    }
+  }
+}
+    `;
+
+/**
+ * __useBlockQuery__
+ *
+ * To run a query within a React component, call `useBlockQuery` and pass it any options that fit your needs.
+ * When your component renders, `useBlockQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useBlockQuery({
+ *   variables: {
+ *      limit: // value for 'limit'
+ *      offset: // value for 'offset'
+ *      orderBy: // value for 'orderBy'
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useBlockQuery(baseOptions?: Apollo.QueryHookOptions<BlockQuery, BlockQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<BlockQuery, BlockQueryVariables>(BlockDocument, options);
+      }
+export function useBlockLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<BlockQuery, BlockQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<BlockQuery, BlockQueryVariables>(BlockDocument, options);
+        }
+export type BlockQueryHookResult = ReturnType<typeof useBlockQuery>;
+export type BlockLazyQueryHookResult = ReturnType<typeof useBlockLazyQuery>;
+export type BlockQueryResult = Apollo.QueryResult<BlockQuery, BlockQueryVariables>;
+export const SectionsDocument = gql`
+    query Sections($orderBy: SectionOrderByWithRelationInput, $skip: Int, $take: Int, $where: SectionWhereInput) {
+  sections(orderBy: $orderBy, skip: $skip, take: $take, where: $where) {
+    id
+    name
+    _count {
+      machines
+    }
+  }
+}
+    `;
+
+/**
+ * __useSectionsQuery__
+ *
+ * To run a query within a React component, call `useSectionsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useSectionsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useSectionsQuery({
+ *   variables: {
+ *      orderBy: // value for 'orderBy'
+ *      skip: // value for 'skip'
+ *      take: // value for 'take'
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useSectionsQuery(baseOptions?: Apollo.QueryHookOptions<SectionsQuery, SectionsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<SectionsQuery, SectionsQueryVariables>(SectionsDocument, options);
+      }
+export function useSectionsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<SectionsQuery, SectionsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<SectionsQuery, SectionsQueryVariables>(SectionsDocument, options);
+        }
+export type SectionsQueryHookResult = ReturnType<typeof useSectionsQuery>;
+export type SectionsLazyQueryHookResult = ReturnType<typeof useSectionsLazyQuery>;
+export type SectionsQueryResult = Apollo.QueryResult<SectionsQuery, SectionsQueryVariables>;
+export const SectionsCountDocument = gql`
+    query SectionsCount($orderBy: SectionOrderByWithRelationInput, $skip: Int, $take: Int, $where: SectionWhereInput) {
+  sectionsCount(orderBy: $orderBy, skip: $skip, take: $take, where: $where)
+}
+    `;
+
+/**
+ * __useSectionsCountQuery__
+ *
+ * To run a query within a React component, call `useSectionsCountQuery` and pass it any options that fit your needs.
+ * When your component renders, `useSectionsCountQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useSectionsCountQuery({
+ *   variables: {
+ *      orderBy: // value for 'orderBy'
+ *      skip: // value for 'skip'
+ *      take: // value for 'take'
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useSectionsCountQuery(baseOptions?: Apollo.QueryHookOptions<SectionsCountQuery, SectionsCountQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<SectionsCountQuery, SectionsCountQueryVariables>(SectionsCountDocument, options);
+      }
+export function useSectionsCountLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<SectionsCountQuery, SectionsCountQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<SectionsCountQuery, SectionsCountQueryVariables>(SectionsCountDocument, options);
+        }
+export type SectionsCountQueryHookResult = ReturnType<typeof useSectionsCountQuery>;
+export type SectionsCountLazyQueryHookResult = ReturnType<typeof useSectionsCountLazyQuery>;
+export type SectionsCountQueryResult = Apollo.QueryResult<SectionsCountQuery, SectionsCountQueryVariables>;
+export const MachineCatagoriesDocument = gql`
+    query machineCatagories($orderBy: machine_catagoryOrderByWithRelationAndSearchRelevanceInput, $skip: Int, $take: Int, $where: machine_catagoryWhereInput) {
+  machineCatagories(orderBy: $orderBy, skip: $skip, take: $take, where: $where) {
+    id
+    name
+    _count {
+      machines
+    }
+  }
+}
+    `;
+
+/**
+ * __useMachineCatagoriesQuery__
+ *
+ * To run a query within a React component, call `useMachineCatagoriesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useMachineCatagoriesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useMachineCatagoriesQuery({
+ *   variables: {
+ *      orderBy: // value for 'orderBy'
+ *      skip: // value for 'skip'
+ *      take: // value for 'take'
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useMachineCatagoriesQuery(baseOptions?: Apollo.QueryHookOptions<MachineCatagoriesQuery, MachineCatagoriesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<MachineCatagoriesQuery, MachineCatagoriesQueryVariables>(MachineCatagoriesDocument, options);
+      }
+export function useMachineCatagoriesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<MachineCatagoriesQuery, MachineCatagoriesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<MachineCatagoriesQuery, MachineCatagoriesQueryVariables>(MachineCatagoriesDocument, options);
+        }
+export type MachineCatagoriesQueryHookResult = ReturnType<typeof useMachineCatagoriesQuery>;
+export type MachineCatagoriesLazyQueryHookResult = ReturnType<typeof useMachineCatagoriesLazyQuery>;
+export type MachineCatagoriesQueryResult = Apollo.QueryResult<MachineCatagoriesQuery, MachineCatagoriesQueryVariables>;
+export const MachineCatagoriesCountDocument = gql`
+    query machineCatagoriesCount($orderBy: machine_catagoryOrderByWithRelationAndSearchRelevanceInput, $skip: Int, $take: Int, $where: machine_catagoryWhereInput) {
+  machineCatagoriesCount(
+    orderBy: $orderBy
+    skip: $skip
+    take: $take
+    where: $where
+  )
+}
+    `;
+
+/**
+ * __useMachineCatagoriesCountQuery__
+ *
+ * To run a query within a React component, call `useMachineCatagoriesCountQuery` and pass it any options that fit your needs.
+ * When your component renders, `useMachineCatagoriesCountQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useMachineCatagoriesCountQuery({
+ *   variables: {
+ *      orderBy: // value for 'orderBy'
+ *      skip: // value for 'skip'
+ *      take: // value for 'take'
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useMachineCatagoriesCountQuery(baseOptions?: Apollo.QueryHookOptions<MachineCatagoriesCountQuery, MachineCatagoriesCountQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<MachineCatagoriesCountQuery, MachineCatagoriesCountQueryVariables>(MachineCatagoriesCountDocument, options);
+      }
+export function useMachineCatagoriesCountLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<MachineCatagoriesCountQuery, MachineCatagoriesCountQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<MachineCatagoriesCountQuery, MachineCatagoriesCountQueryVariables>(MachineCatagoriesCountDocument, options);
+        }
+export type MachineCatagoriesCountQueryHookResult = ReturnType<typeof useMachineCatagoriesCountQuery>;
+export type MachineCatagoriesCountLazyQueryHookResult = ReturnType<typeof useMachineCatagoriesCountLazyQuery>;
+export type MachineCatagoriesCountQueryResult = Apollo.QueryResult<MachineCatagoriesCountQuery, MachineCatagoriesCountQueryVariables>;
+export const RemoveSectionDocument = gql`
+    mutation removeSection($removeSectionId: Int!) {
+  removeSection(id: $removeSectionId) {
+    id
+  }
+}
+    `;
+export type RemoveSectionMutationFn = Apollo.MutationFunction<RemoveSectionMutation, RemoveSectionMutationVariables>;
+
+/**
+ * __useRemoveSectionMutation__
+ *
+ * To run a mutation, you first call `useRemoveSectionMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useRemoveSectionMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [removeSectionMutation, { data, loading, error }] = useRemoveSectionMutation({
+ *   variables: {
+ *      removeSectionId: // value for 'removeSectionId'
+ *   },
+ * });
+ */
+export function useRemoveSectionMutation(baseOptions?: Apollo.MutationHookOptions<RemoveSectionMutation, RemoveSectionMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<RemoveSectionMutation, RemoveSectionMutationVariables>(RemoveSectionDocument, options);
+      }
+export type RemoveSectionMutationHookResult = ReturnType<typeof useRemoveSectionMutation>;
+export type RemoveSectionMutationResult = Apollo.MutationResult<RemoveSectionMutation>;
+export type RemoveSectionMutationOptions = Apollo.BaseMutationOptions<RemoveSectionMutation, RemoveSectionMutationVariables>;
+export const RemoveBlockDocument = gql`
+    mutation removeBlock($removeBlockId: Int!) {
+  removeBlock(id: $removeBlockId) {
+    id
+  }
+}
+    `;
+export type RemoveBlockMutationFn = Apollo.MutationFunction<RemoveBlockMutation, RemoveBlockMutationVariables>;
+
+/**
+ * __useRemoveBlockMutation__
+ *
+ * To run a mutation, you first call `useRemoveBlockMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useRemoveBlockMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [removeBlockMutation, { data, loading, error }] = useRemoveBlockMutation({
+ *   variables: {
+ *      removeBlockId: // value for 'removeBlockId'
+ *   },
+ * });
+ */
+export function useRemoveBlockMutation(baseOptions?: Apollo.MutationHookOptions<RemoveBlockMutation, RemoveBlockMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<RemoveBlockMutation, RemoveBlockMutationVariables>(RemoveBlockDocument, options);
+      }
+export type RemoveBlockMutationHookResult = ReturnType<typeof useRemoveBlockMutation>;
+export type RemoveBlockMutationResult = Apollo.MutationResult<RemoveBlockMutation>;
+export type RemoveBlockMutationOptions = Apollo.BaseMutationOptions<RemoveBlockMutation, RemoveBlockMutationVariables>;
+export const RemoveMachineCatagoriesDocument = gql`
+    mutation removeMachineCatagories($removeMachineCatagoriesId: Int!) {
+  removeMachineCatagories(id: $removeMachineCatagoriesId) {
+    id
+  }
+}
+    `;
+export type RemoveMachineCatagoriesMutationFn = Apollo.MutationFunction<RemoveMachineCatagoriesMutation, RemoveMachineCatagoriesMutationVariables>;
+
+/**
+ * __useRemoveMachineCatagoriesMutation__
+ *
+ * To run a mutation, you first call `useRemoveMachineCatagoriesMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useRemoveMachineCatagoriesMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [removeMachineCatagoriesMutation, { data, loading, error }] = useRemoveMachineCatagoriesMutation({
+ *   variables: {
+ *      removeMachineCatagoriesId: // value for 'removeMachineCatagoriesId'
+ *   },
+ * });
+ */
+export function useRemoveMachineCatagoriesMutation(baseOptions?: Apollo.MutationHookOptions<RemoveMachineCatagoriesMutation, RemoveMachineCatagoriesMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<RemoveMachineCatagoriesMutation, RemoveMachineCatagoriesMutationVariables>(RemoveMachineCatagoriesDocument, options);
+      }
+export type RemoveMachineCatagoriesMutationHookResult = ReturnType<typeof useRemoveMachineCatagoriesMutation>;
+export type RemoveMachineCatagoriesMutationResult = Apollo.MutationResult<RemoveMachineCatagoriesMutation>;
+export type RemoveMachineCatagoriesMutationOptions = Apollo.BaseMutationOptions<RemoveMachineCatagoriesMutation, RemoveMachineCatagoriesMutationVariables>;
+export const BlocksCountDocument = gql`
+    query blocksCount($limit: Int, $offset: Int, $orderBy: BlockOrderByWithAggregationInput, $where: BlockWhereInput) {
+  blocksCount(limit: $limit, offset: $offset, orderBy: $orderBy, where: $where)
+}
+    `;
+
+/**
+ * __useBlocksCountQuery__
+ *
+ * To run a query within a React component, call `useBlocksCountQuery` and pass it any options that fit your needs.
+ * When your component renders, `useBlocksCountQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useBlocksCountQuery({
+ *   variables: {
+ *      limit: // value for 'limit'
+ *      offset: // value for 'offset'
+ *      orderBy: // value for 'orderBy'
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useBlocksCountQuery(baseOptions?: Apollo.QueryHookOptions<BlocksCountQuery, BlocksCountQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<BlocksCountQuery, BlocksCountQueryVariables>(BlocksCountDocument, options);
+      }
+export function useBlocksCountLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<BlocksCountQuery, BlocksCountQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<BlocksCountQuery, BlocksCountQueryVariables>(BlocksCountDocument, options);
+        }
+export type BlocksCountQueryHookResult = ReturnType<typeof useBlocksCountQuery>;
+export type BlocksCountLazyQueryHookResult = ReturnType<typeof useBlocksCountLazyQuery>;
+export type BlocksCountQueryResult = Apollo.QueryResult<BlocksCountQuery, BlocksCountQueryVariables>;
 export const GetAllMachinesDropdownDocument = gql`
     query getAllMachinesDropdown {
   machines {
@@ -4971,6 +5687,72 @@ export function useMachinesCountLazyQuery(baseOptions?: Apollo.LazyQueryHookOpti
 export type MachinesCountQueryHookResult = ReturnType<typeof useMachinesCountQuery>;
 export type MachinesCountLazyQueryHookResult = ReturnType<typeof useMachinesCountLazyQuery>;
 export type MachinesCountQueryResult = Apollo.QueryResult<MachinesCountQuery, MachinesCountQueryVariables>;
+export const RemoveMachineDocument = gql`
+    mutation removeMachine($removeMachineId: Int!) {
+  removeMachine(id: $removeMachineId) {
+    id
+  }
+}
+    `;
+export type RemoveMachineMutationFn = Apollo.MutationFunction<RemoveMachineMutation, RemoveMachineMutationVariables>;
+
+/**
+ * __useRemoveMachineMutation__
+ *
+ * To run a mutation, you first call `useRemoveMachineMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useRemoveMachineMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [removeMachineMutation, { data, loading, error }] = useRemoveMachineMutation({
+ *   variables: {
+ *      removeMachineId: // value for 'removeMachineId'
+ *   },
+ * });
+ */
+export function useRemoveMachineMutation(baseOptions?: Apollo.MutationHookOptions<RemoveMachineMutation, RemoveMachineMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<RemoveMachineMutation, RemoveMachineMutationVariables>(RemoveMachineDocument, options);
+      }
+export type RemoveMachineMutationHookResult = ReturnType<typeof useRemoveMachineMutation>;
+export type RemoveMachineMutationResult = Apollo.MutationResult<RemoveMachineMutation>;
+export type RemoveMachineMutationOptions = Apollo.BaseMutationOptions<RemoveMachineMutation, RemoveMachineMutationVariables>;
+export const CreateMachineDocument = gql`
+    mutation createMachine($createMachineInput: MachinesCreateInput!) {
+  createMachine(createMachineInput: $createMachineInput) {
+    id
+  }
+}
+    `;
+export type CreateMachineMutationFn = Apollo.MutationFunction<CreateMachineMutation, CreateMachineMutationVariables>;
+
+/**
+ * __useCreateMachineMutation__
+ *
+ * To run a mutation, you first call `useCreateMachineMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateMachineMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createMachineMutation, { data, loading, error }] = useCreateMachineMutation({
+ *   variables: {
+ *      createMachineInput: // value for 'createMachineInput'
+ *   },
+ * });
+ */
+export function useCreateMachineMutation(baseOptions?: Apollo.MutationHookOptions<CreateMachineMutation, CreateMachineMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateMachineMutation, CreateMachineMutationVariables>(CreateMachineDocument, options);
+      }
+export type CreateMachineMutationHookResult = ReturnType<typeof useCreateMachineMutation>;
+export type CreateMachineMutationResult = Apollo.MutationResult<CreateMachineMutation>;
+export type CreateMachineMutationOptions = Apollo.BaseMutationOptions<CreateMachineMutation, CreateMachineMutationVariables>;
 export const MaintenanceDocument = gql`
     query Maintenance($where: MaintenanceWhereInput, $orderBy: MaintenanceOrderByWithRelationInput, $offset: Int, $limit: Int) {
   maintenances(where: $where, orderBy: $orderBy, offset: $offset, limit: $limit) {
