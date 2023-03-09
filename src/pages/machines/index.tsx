@@ -72,21 +72,6 @@ function Maintenance() {
 
   const RefetchMaintenances = () => {
     setGetMachineLoading(true);
-    axios.get('machines',{
-      params:{
-        limit: pageSize,
-        offset: (page - 1) * pageSize,
-        where: formattedFilter,
-        orderBy: formattedSort,
-      }
-    }).then(res => {
-      setData(res.data);
-      setGetMachineLoading(false);
-    });
-  };
-
-  useEffect(() => {
-    setGetMachineLoading(true);
     axios.post('machines',{
         take: pageSize,
         skip: (page - 1) * pageSize,
@@ -96,6 +81,10 @@ function Maintenance() {
       setData(res.data);
       setGetMachineLoading(false);
     });
+  };
+
+  useEffect(() => {
+    RefetchMaintenances();
   }, [page, pageSize, formattedFilter, formattedSort])
 
   return (
