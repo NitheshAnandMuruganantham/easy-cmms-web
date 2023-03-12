@@ -61,6 +61,8 @@ function Maintenance() {
     error: GetMaintenanceError,
     loading: GetMaintenanceLoading,
     refetch: RefetchMaintenances,
+    startPolling: StartPollingMaintenances,
+    stopPolling: StopPollingMaintenances,
   } = useMaintenanceQuery({
     variables: {
       offset: (page - 1) * pageSize,
@@ -74,12 +76,23 @@ function Maintenance() {
     error: MaintenancesCountError,
     loading: MaintenancesCountLoading,
     refetch: RefetchMaintenanceCount,
+    startPolling: StartPollingMaintenanceCount,
+    stopPolling: StopPollingMaintenanceCount,
   } = useMaintanceCountQuery({
     variables: {
       where: formattedFilter,
     },
   });
   const [DeleteMaintenance] = useDeleteMaintananceMutation();
+
+  useEffect(() => {
+    StartPollingMaintenances(10000);
+    StartPollingMaintenanceCount(10000);
+    return () => {
+      StopPollingMaintenances();
+      StopPollingMaintenanceCount();
+    };
+  }, []);
 
   useEffect(() => {
     if (onlyUnResolved) {

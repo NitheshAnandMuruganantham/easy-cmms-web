@@ -60,6 +60,8 @@ function RoutineMaintenance() {
     error: GetMaintenanceError,
     loading: GetMaintenanceLoading,
     refetch: RefetchMaintenances,
+    startPolling: startPollingMaintenances,
+    stopPolling: stopPollingMaintenances,
   } = useRoutineMaintanancesQuery({
     variables: {
       offset: (page - 1) * pageSize,
@@ -73,12 +75,23 @@ function RoutineMaintenance() {
     error: MaintenancesCountError,
     loading: MaintenancesCountLoading,
     refetch: RefetchMaintenanceCount,
+    startPolling: startPollingMaintenanceCount,
+    stopPolling: stopPollingMaintenanceCount,
   } = useRoutineMaintanancesCountQuery({
     variables: {
       where: formattedFilter,
     },
   });
   const [DeleteRoutineMaintenance] = useRemoveRoutineMaintananceMutation();
+
+  useEffect(() => {
+    startPollingMaintenanceCount(1000);
+    startPollingMaintenances(1000);
+    return () => {
+      stopPollingMaintenanceCount();
+      stopPollingMaintenances();
+    };
+  }, []);
 
   useEffect(() => {
     if (onlyUnResolved) {

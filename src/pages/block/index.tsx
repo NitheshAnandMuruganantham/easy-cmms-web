@@ -45,13 +45,15 @@ function Block() {
   const [newBlock, setNewBlock] = useState<boolean>(false);
 
   const {
-    data: machines,
-    error: GetMachineError,
-    loading: GetMachineLoading,
-    refetch: RefetchMaintenances,
+    data: blocks,
+    error: GetBlockError,
+    loading: GetBlockLoading,
+    refetch: RefetchBlock,
+    startPolling: startPollingBlock,
+    stopPolling: stopPollingBlock,
   } = useBlockQuery({
     variables: {
-    limit: pageSize,
+      limit: pageSize,
       offset: (page - 1) * pageSize,
       where: formattedFilter,
       orderBy: formattedSort,
@@ -61,12 +63,24 @@ function Block() {
     data: MachinesCount,
     error: MachineCountError,
     loading: MachineCountLoading,
-    refetch: RefetchMaintenanceCount,
+    startPolling: startPollingBlockCount,
+    stopPolling: stopPollingBlockCount,
+    refetch: RefetchBlockCount,
   } = useBlocksCountQuery({
     variables: {
       where: formattedFilter,
     } as any,
   });
+
+  useEffect(() => {
+    startPollingBlockCount(10000);
+    startPollingBlock(10000);
+    return () => {
+      stopPollingBlockCount();
+      stopPollingBlock();
+    };
+  }, []);
+
   const [DeleteBlock] = useRemoveBlockMutation();
 
   return (
@@ -82,8 +96,8 @@ function Block() {
         close={(refetch: boolean) => {
           setNewBlock(false);
           if (refetch) {
-            RefetchMaintenanceCount();
-            RefetchMaintenances();
+            RefetchBlockCount();
+            RefetchBlock();
             client.refetchQueries({
               include: ["blockDropdown"],
             });
@@ -129,14 +143,14 @@ function Block() {
         paginationMode="server"
         autoHeight
         logLevel="debug"
-        error={GetMachineError || MachineCountError}
+        error={GetBlockError || MachineCountError}
         disableSelectionOnClick
         rowsPerPageOptions={[10, 20, 50, 100]}
         disableColumnMenu
         components={{
-          Toolbar: GridToolbar
+          Toolbar: GridToolbar,
         }}
-        loading={GetMachineLoading || MachineCountLoading}
+        loading={GetBlockLoading || MachineCountLoading}
         onPageChange={(p) => setPage(p + 1)}
         filterModel={filter}
         onFilterModelChange={(f) => {
@@ -146,7 +160,7 @@ function Block() {
           });
         }}
         onPageSizeChange={(s) => setPageSize(s)}
-        rows={machines?.blocks || []}
+        rows={blocks?.blocks || []}
         sortModel={sort}
         onSortModelChange={(s) => {
           setSort(s);
@@ -178,17 +192,21 @@ function Block() {
                         onClick: async () => {
                           await DeleteBlock({
                             variables: {
-                              removeBlockId: parseInt(params.row.id,10),
+                              removeBlockId: parseInt(params.row.id, 10),
                             },
-                          }).then((res) => {
-                            if (res.data?.removeBlock) {
-                              toast.success("Deleted Successfully");
-                            } 
-                          }).catch((e)=>{
-                            toast.error("Failed to delete some data depend on it");
                           })
-                          RefetchMaintenanceCount();
-                          RefetchMaintenances();
+                            .then((res) => {
+                              if (res.data?.removeBlock) {
+                                toast.success("Deleted Successfully");
+                              }
+                            })
+                            .catch((e) => {
+                              toast.error(
+                                "Failed to delete some data depend on it"
+                              );
+                            });
+                          RefetchBlockCount();
+                          RefetchBlock();
                           client.refetchQueries({
                             include: ["blockDropdown"],
                           });

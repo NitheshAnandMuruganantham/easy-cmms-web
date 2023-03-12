@@ -24,6 +24,7 @@ import Reports from "./reports";
 import { toast } from "react-toastify";
 import { client } from "../../utils/apollo";
 import axios from "../../utils/axios";
+import { useInterval } from "../../utils/reFetchQueries";
 
 function Maintenance() {
   const [page, setPage] = useState(1);
@@ -33,7 +34,6 @@ function Maintenance() {
   const [filter, SetFilter] = useState<any>({
     items: [],
   });
-
 
   const [showViewMaintanceModal, setShowViewMaintanceModal] = useState<{
     open: boolean;
@@ -57,7 +57,6 @@ function Maintenance() {
   const [newMaintance, setNewMaintance] = useState<boolean>(false);
   const [GetMachineLoading, setGetMachineLoading] = useState<boolean>(false);
 
- 
   const {
     data: MachinesCount,
     error: MachineCountError,
@@ -71,21 +70,42 @@ function Maintenance() {
   const [DeleteMachine] = useRemoveMachineMutation();
 
   const RefetchMaintenances = () => {
+    RefetchMaintenanceCount();
     setGetMachineLoading(true);
-    axios.post('machines',{
+    axios
+      .post("machines", {
         take: pageSize,
         skip: (page - 1) * pageSize,
         where: formattedFilter,
         orderBy: formattedSort,
-    }).then(res => {
-      setData(res.data);
-      setGetMachineLoading(false);
-    });
+      })
+      .then((res) => {
+        setData(res.data);
+        setGetMachineLoading(false);
+      });
   };
+
+  useInterval(() => {
+    RefetchMaintenanceCount();
+    axios
+      .post("machines", {
+        take: pageSize,
+        skip: (page - 1) * pageSize,
+        where: formattedFilter,
+        orderBy: formattedSort,
+      })
+      .then((res) => {
+        setData(res.data);
+      });
+  }, 10000);
 
   useEffect(() => {
     RefetchMaintenances();
-  }, [page, pageSize, formattedFilter, formattedSort])
+  }, []);
+
+  useEffect(() => {
+    RefetchMaintenances();
+  }, [page, pageSize, formattedFilter, formattedSort]);
 
   return (
     <div>
@@ -147,7 +167,7 @@ function Maintenance() {
         paginationMode="server"
         autoHeight
         logLevel="debug"
-        error={ MachineCountError}
+        error={MachineCountError}
         disableSelectionOnClick
         rowsPerPageOptions={[10, 20, 50, 100]}
         disableColumnMenu

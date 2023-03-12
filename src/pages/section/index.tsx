@@ -1,13 +1,7 @@
 import { Box, Button, Switch, Typography } from "@mui/material";
-import {
-  DataGrid,
-  GridAddIcon,
-  GridToolbar,
-} from "@mui/x-data-grid";
+import { DataGrid, GridAddIcon, GridToolbar } from "@mui/x-data-grid";
 import AssessmentIcon from "@mui/icons-material/Assessment";
-import React, {
-  useState,
-} from "react";
+import React, { useEffect, useState } from "react";
 import { confirmAlert } from "react-confirm-alert";
 import {
   InputMaybe,
@@ -57,6 +51,8 @@ function Section() {
     error: GetMachineError,
     loading: GetMachineLoading,
     refetch: RefetchMaintenances,
+    startPolling: startPollingMaintenances,
+    stopPolling: stopPollingMaintenances,
   } = useSectionsQuery({
     variables: {
       skip: (page - 1) * pageSize,
@@ -70,12 +66,22 @@ function Section() {
     error: MachineCountError,
     loading: MachineCountLoading,
     refetch: RefetchMaintenanceCount,
+    startPolling: startPollingMaintenanceCount,
+    stopPolling: stopPollingMaintenanceCount,
   } = useSectionsCountQuery({
     variables: {
       where: formattedFilter,
     },
   });
   const [DeleteSection] = useRemoveSectionMutation();
+  useEffect(() => {
+    startPollingMaintenanceCount(10000);
+    startPollingMaintenances(10000);
+    return () => {
+      stopPollingMaintenanceCount();
+      stopPollingMaintenances();
+    };
+  }, []);
 
   return (
     <div>
@@ -142,7 +148,7 @@ function Section() {
         rowsPerPageOptions={[10, 20, 50, 100]}
         disableColumnMenu
         components={{
-          Toolbar: GridToolbar
+          Toolbar: GridToolbar,
         }}
         loading={GetMachineLoading || MachineCountLoading}
         onPageChange={(p) => setPage(p + 1)}
@@ -186,15 +192,19 @@ function Section() {
                         onClick: async () => {
                           await DeleteSection({
                             variables: {
-                              removeSectionId: parseInt(params.row.id,10),
+                              removeSectionId: parseInt(params.row.id, 10),
                             },
-                          }).then((res) => {
-                            if (res.data?.removeSection) {
-                              toast.success("Deleted Successfully");
-                            } 
-                          }).catch((e)=>{
-                            toast.error("Failed to delete some data depend on it");
                           })
+                            .then((res) => {
+                              if (res.data?.removeSection) {
+                                toast.success("Deleted Successfully");
+                              }
+                            })
+                            .catch((e) => {
+                              toast.error(
+                                "Failed to delete some data depend on it"
+                              );
+                            });
                           RefetchMaintenanceCount();
                           RefetchMaintenances();
                           client.refetchQueries({

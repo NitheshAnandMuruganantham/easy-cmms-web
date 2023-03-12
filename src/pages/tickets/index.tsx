@@ -1,6 +1,6 @@
 import Button from "@mui/material/Button";
 import { DataGrid, GridFilterModel, GridToolbar } from "@mui/x-data-grid";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   InputMaybe,
   SortOrder,
@@ -40,6 +40,8 @@ function Ticket() {
     error: GetTicketsError,
     loading: GetTicketsLoading,
     refetch: refetchTickets,
+    startPolling: startPollingTickets,
+    stopPolling: stopPollingTickets,
   } = useTicketsQuery({
     pollInterval: 1000,
     variables: {
@@ -54,6 +56,8 @@ function Ticket() {
     error: TicketsCountError,
     loading: TicketCountLoading,
     refetch: refetchTicketCount,
+    startPolling: startPollingTicketCount,
+    stopPolling: stopPollingTicketCount,
   } = useTicketsCountQuery({
     pollInterval: 1000,
     variables: {
@@ -61,6 +65,14 @@ function Ticket() {
     },
   });
 
+  useEffect(() => {
+    startPollingTickets(10000);
+    startPollingTicketCount(10000);
+    return () => {
+      stopPollingTickets();
+      stopPollingTicketCount();
+    };
+  }, []);
   const [showViewTicketModal, setShowTicketModal] = useState<{
     open: boolean;
     data: Ticket | null;

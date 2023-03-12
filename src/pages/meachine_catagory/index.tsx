@@ -6,7 +6,7 @@ import {
   GridToolbar,
 } from "@mui/x-data-grid";
 import AssessmentIcon from "@mui/icons-material/Assessment";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { confirmAlert } from "react-confirm-alert";
 import {
   SortOrder,
@@ -44,6 +44,8 @@ function Machine_category() {
     error: GetMachineError,
     loading: GetMachineLoading,
     refetch: RefetchMaintenances,
+    startPolling: startPollingMaintenances,
+    stopPolling: stopPollingMaintenances,
   } = useMachineCatagoriesQuery({
     variables: {
       skip: (page - 1) * pageSize,
@@ -56,12 +58,23 @@ function Machine_category() {
     error: MachineCountError,
     loading: MachineCountLoading,
     refetch: RefetchMaintenanceCount,
+    startPolling: startPollingMaintenancesCount,
+    stopPolling: stopPollingMaintenancesCount,
   } = useMachineCatagoriesCountQuery({
     variables: {
       where: formattedFilter,
     },
   });
   const [DeleteCategory] = useRemoveMachineCatagoriesMutation();
+
+  useEffect(() => {
+    startPollingMaintenances(10000);
+    startPollingMaintenancesCount(10000);
+    return () => {
+      stopPollingMaintenances();
+      stopPollingMaintenancesCount();
+    };
+  }, []);
 
   return (
     <div>

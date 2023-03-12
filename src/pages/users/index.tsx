@@ -38,7 +38,7 @@ function Users() {
   const [formattedFilter, SetFormattedFilter] = useState<
     InputMaybe<UsersWhereInput>
   >({});
-  const [deleteUser,{loading:deleteUserLoading}] = useDeleteUsersMutation();
+  const [deleteUser, { loading: deleteUserLoading }] = useDeleteUsersMutation();
   const [formattedSort, setFormattedSort] = useState<any>({});
   const [ShowNewUser, SetShowNewUser] = useState<boolean>(false);
   const [sort, setSort] = useState<any>([
@@ -52,6 +52,8 @@ function Users() {
     error: GetUsersError,
     loading: GetUsersLoading,
     refetch: refetchUsers,
+    startPolling: startPollingUsers,
+    stopPolling: stopPollingUsers,
   } = useUsersQuery({
     variables: {
       offset: (page - 1) * pageSize,
@@ -65,13 +67,24 @@ function Users() {
     error: UsersCountError,
     refetch: refetchUsersCount,
     loading: UserCountLoading,
+    startPolling: startPollingUsersCount,
+    stopPolling: stopPollingUsersCount,
   } = useUsersCountQuery({
     variables: {
       where: formattedFilter,
     },
   });
-  
-  const [delCol,SetDelCol] = useState();
+
+  useEffect(() => {
+    startPollingUsers(10000);
+    startPollingUsersCount(10000);
+    return () => {
+      stopPollingUsers();
+      stopPollingUsersCount();
+    };
+  }, []);
+
+  const [delCol, SetDelCol] = useState();
 
   return (
     <div>
@@ -142,8 +155,7 @@ function Users() {
             sortable: false,
             renderCell: (params) => (
               <Button
-            
-              disabled={deleteUserLoading && delCol === params.row.id}
+                disabled={deleteUserLoading && delCol === params.row.id}
                 onClick={() => {
                   confirmAlert({
                     title: "Confirm to submit",
@@ -176,11 +188,16 @@ function Users() {
                 variant="contained"
                 size="small"
               >
-                
-                {deleteUserLoading && delCol === params.row.id ? <CircularProgress size={17} style={{
-                  color:"white"
-                  
-                }}/> :  "DELETE"}
+                {deleteUserLoading && delCol === params.row.id ? (
+                  <CircularProgress
+                    size={17}
+                    style={{
+                      color: "white",
+                    }}
+                  />
+                ) : (
+                  "DELETE"
+                )}
               </Button>
             ),
           },
