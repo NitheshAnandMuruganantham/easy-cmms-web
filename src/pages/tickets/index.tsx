@@ -16,6 +16,7 @@ import ViewTicket from "./viewTicket";
 
 import columns from "./col";
 import { confirmAlert } from "react-confirm-alert";
+import axios from "../../utils/axios";
 
 function Ticket() {
   const [page, setPage] = useState(1);
@@ -29,35 +30,20 @@ function Ticket() {
   >({});
   const [formattedSort, setFormattedSort] = useState<any>({});
   const [search, setSearch] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
+  const [data, setData] = useState<any[]>([]);
   const [sort, setSort] = useState<any>([
     {
       field: "created_at",
       sort: "asc",
     },
   ]);
-  const {
-    data: tickets,
-    error: GetTicketsError,
-    loading: GetTicketsLoading,
-    refetch: refetchTickets,
-    startPolling: startPollingTickets,
-    stopPolling: stopPollingTickets,
-  } = useTicketsQuery({
-    pollInterval: 1000,
-    variables: {
-      skip: (page - 1) * pageSize,
-      take: pageSize,
-      orderBy: formattedSort,
-      where: formattedFilter,
-    },
-  });
+
   const {
     data: TicketsCount,
     error: TicketsCountError,
     loading: TicketCountLoading,
     refetch: refetchTicketCount,
-    startPolling: startPollingTicketCount,
-    stopPolling: stopPollingTicketCount,
   } = useTicketsCountQuery({
     pollInterval: 1000,
     variables: {
@@ -65,14 +51,30 @@ function Ticket() {
     },
   });
 
+  const RefetchTickets = () => {
+    refetchTicketCount();
+    setLoading(true);
+    axios
+      .post("tickets", {
+        take: pageSize,
+        skip: (page - 1) * pageSize,
+        where: formattedFilter,
+        orderBy: formattedSort,
+      })
+      .then((res) => {
+        setData(res.data);
+        setLoading(false);
+      });
+  };
+
   useEffect(() => {
-    startPollingTickets(10000);
-    startPollingTicketCount(10000);
-    return () => {
-      stopPollingTickets();
-      stopPollingTicketCount();
-    };
+    RefetchTickets();
+  }, [page, pageSize, formattedFilter, formattedSort]);
+
+  useEffect(() => {
+    RefetchTickets();
   }, []);
+
   const [showViewTicketModal, setShowTicketModal] = useState<{
     open: boolean;
     data: Ticket | null;
@@ -131,12 +133,12 @@ function Ticket() {
         components={{
           Toolbar: GridToolbar,
         }}
-        error={GetTicketsError || TicketsCountError}
+        error={TicketsCountError}
         rowsPerPageOptions={[10, 20, 50, 100]}
-        loading={GetTicketsLoading || TicketCountLoading}
+        loading={loading || TicketCountLoading}
         onPageChange={(p) => setPage(p + 1)}
         onPageSizeChange={(s) => setPageSize(s)}
-        rows={tickets?.tickets || []}
+        rows={data || []}
         sortModel={sort}
         filterModel={filter}
         onFilterModelChange={(f) => {
@@ -196,8 +198,7 @@ function Ticket() {
                               id: params.row.id,
                             },
                           });
-                          refetchTicketCount();
-                          refetchTickets();
+                          RefetchTickets();
                         },
                       },
                       {
