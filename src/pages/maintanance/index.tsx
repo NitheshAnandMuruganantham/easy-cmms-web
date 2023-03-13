@@ -131,6 +131,8 @@ function Maintenance() {
       });
     }
   }, [onlyUnResolved, filter]);
+  
+  
   return (
     <div>
       <Reports
