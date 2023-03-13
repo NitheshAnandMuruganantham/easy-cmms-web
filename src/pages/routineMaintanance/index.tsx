@@ -27,6 +27,8 @@ import { filterTransform } from "../../utils/filterTransform";
 import columns from "./cols";
 import ViewMaintance from "./viewMaintanance";
 import NewMaintance from "./newMaintenance";
+import axios from "../../utils/axios";
+import { useInterval } from "../../utils/reFetchQueries";
 
 function RoutineMaintenance() {
   const [page, setPage] = useState(1);
@@ -56,21 +58,6 @@ function RoutineMaintenance() {
   const [newMaintance, setNewMaintance] = useState<boolean>(false);
 
   const {
-    data: maintenances,
-    error: GetMaintenanceError,
-    loading: GetMaintenanceLoading,
-    refetch: RefetchMaintenances,
-    startPolling: startPollingMaintenances,
-    stopPolling: stopPollingMaintenances,
-  } = useRoutineMaintanancesQuery({
-    variables: {
-      offset: (page - 1) * pageSize,
-      limit: pageSize,
-      where: formattedFilter,
-      orderBy: formattedSort,
-    },
-  });
-  const {
     data: MaintenancesCount,
     error: MaintenancesCountError,
     loading: MaintenancesCountLoading,
@@ -83,15 +70,47 @@ function RoutineMaintenance() {
     },
   });
   const [DeleteRoutineMaintenance] = useRemoveRoutineMaintananceMutation();
+  const [Maintenances, setMaintenances] = useState<any>([]);
+
+  const [GetMaintenanceLoading, setGetMaintenanceLoading] =
+    useState<boolean>(false);
+  const RefetchMaintenances = () => {
+    RefetchMaintenanceCount();
+    setGetMaintenanceLoading(true);
+    axios
+      .post("RoutineMaintenance", {
+        take: pageSize,
+        skip: (page - 1) * pageSize,
+        where: formattedFilter,
+        orderBy: formattedSort,
+      })
+      .then((res) => {
+        setMaintenances(res.data);
+        setGetMaintenanceLoading(false);
+      });
+  };
+
+  useInterval(() => {
+    RefetchMaintenanceCount();
+    axios
+      .post("RoutineMaintenance", {
+        take: pageSize,
+        skip: (page - 1) * pageSize,
+        where: formattedFilter,
+        orderBy: formattedSort,
+      })
+      .then((res) => {
+        setMaintenances(res.data);
+      });
+  }, 10000);
 
   useEffect(() => {
-    startPollingMaintenanceCount(1000);
-    startPollingMaintenances(1000);
-    return () => {
-      stopPollingMaintenanceCount();
-      stopPollingMaintenances();
-    };
+    RefetchMaintenances();
   }, []);
+
+  useEffect(() => {
+    RefetchMaintenances();
+  }, [page, pageSize, formattedFilter, formattedSort]);
 
   useEffect(() => {
     if (onlyUnResolved) {
@@ -156,7 +175,7 @@ function RoutineMaintenance() {
         paginationMode="server"
         autoHeight
         logLevel="debug"
-        error={GetMaintenanceError || MaintenancesCountError}
+        error={MaintenancesCountError}
         disableSelectionOnClick
         rowsPerPageOptions={[10, 20, 50, 100]}
         disableColumnMenu
@@ -173,7 +192,7 @@ function RoutineMaintenance() {
           });
         }}
         onPageSizeChange={(s) => setPageSize(s)}
-        rows={maintenances?.routineMaintanances || []}
+        rows={Maintenances || []}
         sortModel={sort}
         onSortModelChange={(s) => {
           setSort(s);

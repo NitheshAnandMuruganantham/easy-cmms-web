@@ -6,13 +6,7 @@ import {
   GridToolbar,
 } from "@mui/x-data-grid";
 import AssessmentIcon from "@mui/icons-material/Assessment";
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import React, { useEffect, useState } from "react";
 import { confirmAlert } from "react-confirm-alert";
 import {
   InputMaybe,
@@ -27,6 +21,13 @@ import columns from "./cols";
 import ViewMaintance from "./viewMaintanance";
 import NewMaintance from "./newMaintenance";
 import Reports from "./reports";
+import { useQuery } from "react-query";
+import axios from "../../utils/axios";
+import { useInterval } from "../../utils/reFetchQueries";
+
+const fortmatResponse = (res: any) => {
+  return JSON.stringify(res, null, 2);
+};
 
 function Maintenance() {
   const [page, setPage] = useState(1);
@@ -35,6 +36,7 @@ function Maintenance() {
   const [filter, SetFilter] = useState<any>({
     items: [],
   });
+
   const [showViewMaintanceModal, setShowViewMaintanceModal] = useState<{
     open: boolean;
     rowId: number;
@@ -55,22 +57,10 @@ function Maintenance() {
   ]);
 
   const [newMaintance, setNewMaintance] = useState<boolean>(false);
+  const [maintenanceLoading, setGetMaintenanceLoading] =
+    useState<boolean>(false);
+  const [maintenances, setMaintenances] = useState<any[]>([]);
 
-  const {
-    data: maintenances,
-    error: GetMaintenanceError,
-    loading: GetMaintenanceLoading,
-    refetch: RefetchMaintenances,
-    startPolling: StartPollingMaintenances,
-    stopPolling: StopPollingMaintenances,
-  } = useMaintenanceQuery({
-    variables: {
-      offset: (page - 1) * pageSize,
-      limit: pageSize,
-      where: formattedFilter,
-      orderBy: formattedSort,
-    },
-  });
   const {
     data: MaintenancesCount,
     error: MaintenancesCountError,
@@ -85,14 +75,43 @@ function Maintenance() {
   });
   const [DeleteMaintenance] = useDeleteMaintananceMutation();
 
+  const RefetchMaintenances = () => {
+    RefetchMaintenanceCount();
+    setGetMaintenanceLoading(true);
+    axios
+      .post("maintenance", {
+        take: pageSize,
+        skip: (page - 1) * pageSize,
+        where: formattedFilter,
+        orderBy: formattedSort,
+      })
+      .then((res) => {
+        setMaintenances(res.data);
+        setGetMaintenanceLoading(false);
+      });
+  };
+
+  useInterval(() => {
+    RefetchMaintenanceCount();
+    axios
+      .post("maintenance", {
+        take: pageSize,
+        skip: (page - 1) * pageSize,
+        where: formattedFilter,
+        orderBy: formattedSort,
+      })
+      .then((res) => {
+        setMaintenances(res.data);
+      });
+  }, 10000);
+
   useEffect(() => {
-    StartPollingMaintenances(10000);
-    StartPollingMaintenanceCount(10000);
-    return () => {
-      StopPollingMaintenances();
-      StopPollingMaintenanceCount();
-    };
+    RefetchMaintenances();
   }, []);
+
+  useEffect(() => {
+    RefetchMaintenances();
+  }, [page, pageSize, formattedFilter, formattedSort]);
 
   useEffect(() => {
     if (onlyUnResolved) {
@@ -178,7 +197,7 @@ function Maintenance() {
         paginationMode="server"
         autoHeight
         logLevel="debug"
-        error={GetMaintenanceError || MaintenancesCountError}
+        error={MaintenancesCountError}
         disableSelectionOnClick
         rowsPerPageOptions={[10, 20, 50, 100]}
         disableColumnMenu
@@ -217,7 +236,7 @@ function Maintenance() {
             </div>
           ),
         }}
-        loading={GetMaintenanceLoading || MaintenancesCountLoading}
+        loading={maintenanceLoading || MaintenancesCountLoading}
         onPageChange={(p) => setPage(p + 1)}
         filterModel={filter}
         onFilterModelChange={(f) => {
@@ -227,7 +246,7 @@ function Maintenance() {
           });
         }}
         onPageSizeChange={(s) => setPageSize(s)}
-        rows={maintenances?.maintenances || []}
+        rows={maintenances || []}
         sortModel={sort}
         onSortModelChange={(s) => {
           setSort(s);
