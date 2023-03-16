@@ -37,9 +37,14 @@ const ViewMaintance: React.FunctionComponent<Props> = (props) => {
     <Dialog open={props.open} onClose={close}>
       <DialogTitle>
         Routine Maintenance #{data?.routineMaintanance.id}
-      {loading && <CircularProgress  size={20} style={{
-        marginLeft:10
-      }}/>}
+        {loading && (
+          <CircularProgress
+            size={20}
+            style={{
+              marginLeft: 10,
+            }}
+          />
+        )}
       </DialogTitle>
       <DialogContent hidden={loading}>
         <Box
@@ -89,12 +94,8 @@ const ViewMaintance: React.FunctionComponent<Props> = (props) => {
                 </TableCell>
               </TableRow>
               <TableRow>
-                <TableCell>from</TableCell>
-                <TableCell>{data?.routineMaintanance?.from}</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell>to</TableCell>
-                <TableCell>{data?.routineMaintanance?.to}</TableCell>
+                <TableCell>duration</TableCell>
+                <TableCell>{data?.routineMaintanance?.duration}</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>Created At</TableCell>

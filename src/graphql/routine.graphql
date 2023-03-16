@@ -2,10 +2,9 @@ query routineMaintanances($where: routine_maintanancesWhereInput, $limit: Int, $
   routineMaintanances(where: $where,limit: $limit,orderBy: $orderBy,offset: $offset) {
     id
     name
-    from
-    to
     created_at
     cron
+    duration
     description
     meachine {
     id
@@ -31,10 +30,9 @@ query routineMaintanance($routineMaintananceId: Int!) {
   routineMaintanance(id: $routineMaintananceId) {
      id
     name
-    from
-    to
     created_at
     cron
+    duration
     description
     meachine {
     id

@@ -31510,6 +31510,18 @@
             "deprecationReason": null
           },
           {
+            "name": "duration",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "id",
             "description": null,
             "args": [],
@@ -31625,7 +31637,7 @@
             "deprecationReason": null
           },
           {
-            "name": "from",
+            "name": "duration",
             "description": null,
             "args": [],
             "type": {
@@ -31674,22 +31686,6 @@
           },
           {
             "name": "name",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "to",
             "description": null,
             "args": [],
             "type": {
@@ -31827,12 +31823,12 @@
             "deprecationReason": null
           },
           {
-            "name": "from",
+            "name": "duration",
             "description": null,
             "args": [],
             "type": {
               "kind": "SCALAR",
-              "name": "String",
+              "name": "Int",
               "ofType": null
             },
             "isDeprecated": false,
@@ -31864,18 +31860,6 @@
           },
           {
             "name": "name",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "to",
             "description": null,
             "args": [],
             "type": {
@@ -31958,12 +31942,12 @@
             "deprecationReason": null
           },
           {
-            "name": "from",
+            "name": "duration",
             "description": null,
             "args": [],
             "type": {
               "kind": "SCALAR",
-              "name": "String",
+              "name": "Int",
               "ofType": null
             },
             "isDeprecated": false,
@@ -32006,18 +31990,6 @@
             "deprecationReason": null
           },
           {
-            "name": "to",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "updated_at",
             "description": null,
             "args": [],
@@ -32047,6 +32019,18 @@
             "type": {
               "kind": "SCALAR",
               "name": "BigInt",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "duration",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
               "ofType": null
             },
             "isDeprecated": false,
@@ -43365,7 +43349,7 @@
             "deprecationReason": null
           },
           {
-            "name": "from",
+            "name": "duration",
             "description": null,
             "args": [],
             "type": {
@@ -43373,7 +43357,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "String",
+                "name": "Int",
                 "ofType": null
               }
             },
@@ -43430,22 +43414,6 @@
           },
           {
             "name": "name",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "to",
             "description": null,
             "args": [],
             "type": {
@@ -43549,14 +43517,14 @@
             "deprecationReason": null
           },
           {
-            "name": "from",
+            "name": "duration",
             "description": null,
             "type": {
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "String",
+                "name": "Int",
                 "ofType": null
               }
             },
@@ -43594,22 +43562,6 @@
           },
           {
             "name": "name",
-            "description": null,
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "to",
             "description": null,
             "type": {
               "kind": "NON_NULL",
@@ -43692,14 +43644,14 @@
             "deprecationReason": null
           },
           {
-            "name": "from",
+            "name": "duration",
             "description": null,
             "type": {
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "String",
+                "name": "Int",
                 "ofType": null
               }
             },
@@ -43737,22 +43689,6 @@
           },
           {
             "name": "name",
-            "description": null,
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "to",
             "description": null,
             "type": {
               "kind": "NON_NULL",
@@ -43898,14 +43834,14 @@
             "deprecationReason": null
           },
           {
-            "name": "from",
+            "name": "duration",
             "description": null,
             "type": {
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "String",
+                "name": "Int",
                 "ofType": null
               }
             },
@@ -43927,22 +43863,6 @@
           },
           {
             "name": "name",
-            "description": null,
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "to",
             "description": null,
             "type": {
               "kind": "NON_NULL",
@@ -44324,14 +44244,14 @@
             "deprecationReason": null
           },
           {
-            "name": "from",
+            "name": "duration",
             "description": null,
             "type": {
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "String",
+                "name": "Int",
                 "ofType": null
               }
             },
@@ -44369,22 +44289,6 @@
           },
           {
             "name": "name",
-            "description": null,
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "to",
             "description": null,
             "type": {
               "kind": "NON_NULL",
@@ -44483,14 +44387,14 @@
             "deprecationReason": null
           },
           {
-            "name": "from",
+            "name": "duration",
             "description": null,
             "type": {
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "String",
+                "name": "Int",
                 "ofType": null
               }
             },
@@ -44512,22 +44416,6 @@
           },
           {
             "name": "name",
-            "description": null,
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "to",
             "description": null,
             "type": {
               "kind": "NON_NULL",
@@ -44674,11 +44562,11 @@
             "deprecationReason": null
           },
           {
-            "name": "from",
+            "name": "duration",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringFilter",
+              "name": "IntFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -44722,18 +44610,6 @@
             "deprecationReason": null
           },
           {
-            "name": "to",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringFilter",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "updated_at",
             "description": null,
             "type": {
@@ -44758,6 +44634,18 @@
         "inputFields": [
           {
             "name": "assignee_id",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "SortOrder",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "duration",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -44852,11 +44740,11 @@
             "deprecationReason": null
           },
           {
-            "name": "from",
+            "name": "duration",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringFieldUpdateOperationsInput",
+              "name": "IntFieldUpdateOperationsInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -44889,18 +44777,6 @@
           },
           {
             "name": "name",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringFieldUpdateOperationsInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "to",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -44971,11 +44847,11 @@
             "deprecationReason": null
           },
           {
-            "name": "from",
+            "name": "duration",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringFieldUpdateOperationsInput",
+              "name": "IntFieldUpdateOperationsInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -44996,18 +44872,6 @@
           },
           {
             "name": "name",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringFieldUpdateOperationsInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "to",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -45696,11 +45560,11 @@
             "deprecationReason": null
           },
           {
-            "name": "from",
+            "name": "duration",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringFieldUpdateOperationsInput",
+              "name": "IntFieldUpdateOperationsInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -45733,18 +45597,6 @@
           },
           {
             "name": "name",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringFieldUpdateOperationsInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "to",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -45827,11 +45679,11 @@
             "deprecationReason": null
           },
           {
-            "name": "from",
+            "name": "duration",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringFieldUpdateOperationsInput",
+              "name": "IntFieldUpdateOperationsInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -45852,18 +45704,6 @@
           },
           {
             "name": "name",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringFieldUpdateOperationsInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "to",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -46136,11 +45976,11 @@
             "deprecationReason": null
           },
           {
-            "name": "from",
+            "name": "duration",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringFilter",
+              "name": "IntFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -46185,18 +46025,6 @@
           },
           {
             "name": "name",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringFilter",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "to",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",

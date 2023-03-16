@@ -28,6 +28,7 @@ import { filterTransform } from "../../utils/filterTransform";
 import columns from "./col";
 import NewUser from "./newUser";
 import { client } from "../../utils/apollo";
+import { toast } from "react-toastify";
 
 function Users() {
   const [page, setPage] = useState(1);
@@ -169,6 +170,8 @@ function Users() {
                             variables: {
                               removeUserId: params.row.id,
                             },
+                          }).catch(() => {
+                            toast.error("user linked with other resources");
                           });
                           refetchUsers();
                           refetchUsersCount();

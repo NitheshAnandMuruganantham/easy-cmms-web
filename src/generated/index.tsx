@@ -3284,6 +3284,7 @@ export enum Role {
 export type Routine_MaintanancesAvgAggregate = {
   __typename?: 'Routine_maintanancesAvgAggregate';
   assignee_id?: Maybe<Scalars['Float']>;
+  duration?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['Float']>;
   meachine_id?: Maybe<Scalars['Float']>;
 };
@@ -3295,11 +3296,10 @@ export type Routine_MaintanancesCountAggregate = {
   created_at: Scalars['Int'];
   cron: Scalars['Int'];
   description: Scalars['Int'];
-  from: Scalars['Int'];
+  duration: Scalars['Int'];
   id: Scalars['Int'];
   meachine_id: Scalars['Int'];
   name: Scalars['Int'];
-  to: Scalars['Int'];
   updated_at: Scalars['Int'];
 };
 
@@ -3315,11 +3315,10 @@ export type Routine_MaintanancesMaxAggregate = {
   created_at?: Maybe<Scalars['DateTime']>;
   cron?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
-  from?: Maybe<Scalars['String']>;
+  duration?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['BigInt']>;
   meachine_id?: Maybe<Scalars['BigInt']>;
   name?: Maybe<Scalars['String']>;
-  to?: Maybe<Scalars['String']>;
   updated_at?: Maybe<Scalars['DateTime']>;
 };
 
@@ -3329,17 +3328,17 @@ export type Routine_MaintanancesMinAggregate = {
   created_at?: Maybe<Scalars['DateTime']>;
   cron?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
-  from?: Maybe<Scalars['String']>;
+  duration?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['BigInt']>;
   meachine_id?: Maybe<Scalars['BigInt']>;
   name?: Maybe<Scalars['String']>;
-  to?: Maybe<Scalars['String']>;
   updated_at?: Maybe<Scalars['DateTime']>;
 };
 
 export type Routine_MaintanancesSumAggregate = {
   __typename?: 'Routine_maintanancesSumAggregate';
   assignee_id?: Maybe<Scalars['BigInt']>;
+  duration?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['BigInt']>;
   meachine_id?: Maybe<Scalars['BigInt']>;
 };
@@ -4417,12 +4416,11 @@ export type Routine_Maintanances = {
   created_at: Scalars['DateTime'];
   cron: Scalars['String'];
   description: Scalars['String'];
-  from: Scalars['String'];
+  duration: Scalars['Int'];
   id: Scalars['BigInt'];
   meachine: Machines;
   meachine_id: Scalars['BigInt'];
   name: Scalars['String'];
-  to: Scalars['String'];
   updated_at: Scalars['DateTime'];
 };
 
@@ -4431,11 +4429,10 @@ export type Routine_MaintanancesCreateInput = {
   created_at?: InputMaybe<Scalars['DateTime']>;
   cron: Scalars['String'];
   description: Scalars['String'];
-  from: Scalars['String'];
+  duration: Scalars['Int'];
   id?: InputMaybe<Scalars['BigInt']>;
   meachine: MachinesCreateNestedOneWithoutRoutine_MaintanancesInput;
   name: Scalars['String'];
-  to: Scalars['String'];
   updated_at?: InputMaybe<Scalars['DateTime']>;
 };
 
@@ -4443,11 +4440,10 @@ export type Routine_MaintanancesCreateManyAssigneeInput = {
   created_at?: InputMaybe<Scalars['DateTime']>;
   cron: Scalars['String'];
   description: Scalars['String'];
-  from: Scalars['String'];
+  duration: Scalars['Int'];
   id?: InputMaybe<Scalars['BigInt']>;
   meachine_id: Scalars['BigInt'];
   name: Scalars['String'];
-  to: Scalars['String'];
   updated_at?: InputMaybe<Scalars['DateTime']>;
 };
 
@@ -4461,10 +4457,9 @@ export type Routine_MaintanancesCreateManyMeachineInput = {
   created_at?: InputMaybe<Scalars['DateTime']>;
   cron: Scalars['String'];
   description: Scalars['String'];
-  from: Scalars['String'];
+  duration: Scalars['Int'];
   id?: InputMaybe<Scalars['BigInt']>;
   name: Scalars['String'];
-  to: Scalars['String'];
   updated_at?: InputMaybe<Scalars['DateTime']>;
 };
 
@@ -4501,11 +4496,10 @@ export type Routine_MaintanancesCreateWithoutAssigneeInput = {
   created_at?: InputMaybe<Scalars['DateTime']>;
   cron: Scalars['String'];
   description: Scalars['String'];
-  from: Scalars['String'];
+  duration: Scalars['Int'];
   id?: InputMaybe<Scalars['BigInt']>;
   meachine: MachinesCreateNestedOneWithoutRoutine_MaintanancesInput;
   name: Scalars['String'];
-  to: Scalars['String'];
   updated_at?: InputMaybe<Scalars['DateTime']>;
 };
 
@@ -4514,10 +4508,9 @@ export type Routine_MaintanancesCreateWithoutMeachineInput = {
   created_at?: InputMaybe<Scalars['DateTime']>;
   cron: Scalars['String'];
   description: Scalars['String'];
-  from: Scalars['String'];
+  duration: Scalars['Int'];
   id?: InputMaybe<Scalars['BigInt']>;
   name: Scalars['String'];
-  to: Scalars['String'];
   updated_at?: InputMaybe<Scalars['DateTime']>;
 };
 
@@ -4529,16 +4522,16 @@ export type Routine_MaintanancesScalarWhereInput = {
   created_at?: InputMaybe<DateTimeFilter>;
   cron?: InputMaybe<StringFilter>;
   description?: InputMaybe<StringFilter>;
-  from?: InputMaybe<StringFilter>;
+  duration?: InputMaybe<IntFilter>;
   id?: InputMaybe<BigIntFilter>;
   meachine_id?: InputMaybe<BigIntFilter>;
   name?: InputMaybe<StringFilter>;
-  to?: InputMaybe<StringFilter>;
   updated_at?: InputMaybe<DateTimeFilter>;
 };
 
 export type Routine_MaintanancesSumOrderByAggregateInput = {
   assignee_id?: InputMaybe<SortOrder>;
+  duration?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
   meachine_id?: InputMaybe<SortOrder>;
 };
@@ -4548,11 +4541,10 @@ export type Routine_MaintanancesUpdateInput = {
   created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   cron?: InputMaybe<StringFieldUpdateOperationsInput>;
   description?: InputMaybe<StringFieldUpdateOperationsInput>;
-  from?: InputMaybe<StringFieldUpdateOperationsInput>;
+  duration?: InputMaybe<IntFieldUpdateOperationsInput>;
   id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
   meachine?: InputMaybe<MachinesUpdateOneRequiredWithoutRoutine_MaintanancesNestedInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
-  to?: InputMaybe<StringFieldUpdateOperationsInput>;
   updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
@@ -4560,10 +4552,9 @@ export type Routine_MaintanancesUpdateManyMutationInput = {
   created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   cron?: InputMaybe<StringFieldUpdateOperationsInput>;
   description?: InputMaybe<StringFieldUpdateOperationsInput>;
-  from?: InputMaybe<StringFieldUpdateOperationsInput>;
+  duration?: InputMaybe<IntFieldUpdateOperationsInput>;
   id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
-  to?: InputMaybe<StringFieldUpdateOperationsInput>;
   updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
@@ -4619,11 +4610,10 @@ export type Routine_MaintanancesUpdateWithoutAssigneeInput = {
   created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   cron?: InputMaybe<StringFieldUpdateOperationsInput>;
   description?: InputMaybe<StringFieldUpdateOperationsInput>;
-  from?: InputMaybe<StringFieldUpdateOperationsInput>;
+  duration?: InputMaybe<IntFieldUpdateOperationsInput>;
   id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
   meachine?: InputMaybe<MachinesUpdateOneRequiredWithoutRoutine_MaintanancesNestedInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
-  to?: InputMaybe<StringFieldUpdateOperationsInput>;
   updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
@@ -4632,10 +4622,9 @@ export type Routine_MaintanancesUpdateWithoutMeachineInput = {
   created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   cron?: InputMaybe<StringFieldUpdateOperationsInput>;
   description?: InputMaybe<StringFieldUpdateOperationsInput>;
-  from?: InputMaybe<StringFieldUpdateOperationsInput>;
+  duration?: InputMaybe<IntFieldUpdateOperationsInput>;
   id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
-  to?: InputMaybe<StringFieldUpdateOperationsInput>;
   updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
@@ -4660,12 +4649,11 @@ export type Routine_MaintanancesWhereInput = {
   created_at?: InputMaybe<DateTimeFilter>;
   cron?: InputMaybe<StringFilter>;
   description?: InputMaybe<StringFilter>;
-  from?: InputMaybe<StringFilter>;
+  duration?: InputMaybe<IntFilter>;
   id?: InputMaybe<BigIntFilter>;
   meachine?: InputMaybe<MachinesRelationFilter>;
   meachine_id?: InputMaybe<BigIntFilter>;
   name?: InputMaybe<StringFilter>;
-  to?: InputMaybe<StringFilter>;
   updated_at?: InputMaybe<DateTimeFilter>;
 };
 
@@ -4892,7 +4880,7 @@ export type RoutineMaintanancesQueryVariables = Exact<{
 }>;
 
 
-export type RoutineMaintanancesQuery = { __typename?: 'Query', routineMaintanances: Array<{ __typename?: 'routine_maintanances', id: any, name: string, from: string, to: string, created_at: any, cron: string, description: string, meachine: { __typename?: 'Machines', id: any, name: string, label: string, section_id: any, block_id: any }, assignee: { __typename?: 'Users', id: any, name: string, phone: string } }> };
+export type RoutineMaintanancesQuery = { __typename?: 'Query', routineMaintanances: Array<{ __typename?: 'routine_maintanances', id: any, name: string, created_at: any, cron: string, duration: number, description: string, meachine: { __typename?: 'Machines', id: any, name: string, label: string, section_id: any, block_id: any }, assignee: { __typename?: 'Users', id: any, name: string, phone: string } }> };
 
 export type RoutineMaintanancesCountQueryVariables = Exact<{
   where?: InputMaybe<Routine_MaintanancesWhereInput>;
@@ -4909,7 +4897,7 @@ export type RoutineMaintananceQueryVariables = Exact<{
 }>;
 
 
-export type RoutineMaintananceQuery = { __typename?: 'Query', routineMaintanance: { __typename?: 'routine_maintanances', id: any, name: string, from: string, to: string, created_at: any, cron: string, description: string, meachine: { __typename?: 'Machines', id: any, name: string, label: string, section_id: any, block_id: any }, assignee: { __typename?: 'Users', id: any, name: string, phone: string } } };
+export type RoutineMaintananceQuery = { __typename?: 'Query', routineMaintanance: { __typename?: 'routine_maintanances', id: any, name: string, created_at: any, cron: string, duration: number, description: string, meachine: { __typename?: 'Machines', id: any, name: string, label: string, section_id: any, block_id: any }, assignee: { __typename?: 'Users', id: any, name: string, phone: string } } };
 
 export type CreateRoutineMaintananceMutationVariables = Exact<{
   createRoutineMaintananceInput: Routine_MaintanancesCreateInput;
@@ -6029,10 +6017,9 @@ export const RoutineMaintanancesDocument = gql`
   ) {
     id
     name
-    from
-    to
     created_at
     cron
+    duration
     description
     meachine {
       id
@@ -6126,10 +6113,9 @@ export const RoutineMaintananceDocument = gql`
   routineMaintanance(id: $routineMaintananceId) {
     id
     name
-    from
-    to
     created_at
     cron
+    duration
     description
     meachine {
       id

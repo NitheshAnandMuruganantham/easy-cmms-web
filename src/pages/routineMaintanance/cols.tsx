@@ -6,6 +6,7 @@ import {
   GridRenderCellParams,
   getGridStringOperators,
 } from "@mui/x-data-grid";
+import cronstrue from "cronstrue";
 import { Ticket, Ticket_Status } from "../../generated";
 import { getGridDateOperators } from "../../utils/dateFilterOpertors";
 import Chip from "@mui/material/Chip";
@@ -19,9 +20,37 @@ const columns: GridColumns<any> = [
     width: 5,
     filterOperators: getIdFIlters(),
   },
-  { field: "name", headerName: "Title", flex: 1,type: "string", filterOperators:getGridStringOperators().slice(0,-3) },
-  { field: "description", headerName: "Description", flex: 2,type: "string", filterOperators:getGridStringOperators().slice(0,-3) },
-
+  {
+    field: "name",
+    headerName: "Title",
+    flex: 1,
+    type: "string",
+    filterOperators: getGridStringOperators().slice(0, -3),
+  },
+  {
+    field: "description",
+    headerName: "Description",
+    flex: 2,
+    type: "string",
+    filterOperators: getGridStringOperators().slice(0, -3),
+  },
+  {
+    field: "duration",
+    headerName: "Duration",
+    flex: 1,
+    type: "number",
+    filterable: false,
+  },
+  {
+    field: "cron",
+    headerName: "Run At",
+    flex: 1,
+    type: "string",
+    filterable: false,
+    valueFormatter(params) {
+      return cronstrue.toString(params.value);
+    },
+  },
   {
     field: "meachine",
     headerName: "Machine",

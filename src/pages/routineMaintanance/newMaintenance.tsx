@@ -31,8 +31,10 @@ interface Props {
 const NewMaintenance: React.FunctionComponent<Props> = (props) => {
   const [createRoutineMaintanance, { data, error, loading }] =
     useCreateRoutineMaintananceMutation();
-  const { data: MachinesDropdown,loading:MachinesDropdownLoading } = useGetAllMachinesDropdownQuery();
-  const { data: UsersDropdown,loading:UsersDropdownLoading } = useUsersDropDownQuery();
+  const { data: MachinesDropdown, loading: MachinesDropdownLoading } =
+    useGetAllMachinesDropdownQuery();
+  const { data: UsersDropdown, loading: UsersDropdownLoading } =
+    useUsersDropDownQuery();
   return (
     <Dialog maxWidth="lg" open={props.open} onClose={close}>
       <DialogTitle>New Routine Maintanances</DialogTitle>
@@ -41,17 +43,15 @@ const NewMaintenance: React.FunctionComponent<Props> = (props) => {
         initialValues={{
           name: "",
           description: "",
-          from: "",
-          to: "",
+          duration: 60,
           machine: "",
           user: "",
-          cron: "",
+          cron: "0 0 00 1/1 * ? *",
         }}
         validationSchema={yup.object().shape({
           name: yup.string().required(),
           description: yup.string().required(),
-          from: yup.string().required(),
-          to: yup.string().required(),
+          duration: yup.number().required(),
           machine: yup.string().required(),
           user: yup.string().required(),
           cron: yup.string().required(),
@@ -62,8 +62,7 @@ const NewMaintenance: React.FunctionComponent<Props> = (props) => {
               createRoutineMaintananceInput: {
                 name: values.name,
                 description: values.description,
-                from: values.from,
-                to: values.to,
+                duration: values.duration,
                 meachine: {
                   connect: {
                     id: values.machine,
@@ -84,7 +83,7 @@ const NewMaintenance: React.FunctionComponent<Props> = (props) => {
           props.close(true);
         }}
       >
-        {({ submitForm, values, setFieldValue,isSubmitting }) => {
+        {({ submitForm, values, setFieldValue, isSubmitting }) => {
           return (
             <>
               <DialogContent>
@@ -105,7 +104,7 @@ const NewMaintenance: React.FunctionComponent<Props> = (props) => {
                     showResultCron={false}
                     locale="en"
                     options={{
-                      headers: ["DAILY", "HOURLY", "MONTHLY", "WEEKLY"],
+                      headers: ["DAILY", "HOURLY", "WEEKLY"],
                     }}
                   />
                   <Form
@@ -135,16 +134,10 @@ const NewMaintenance: React.FunctionComponent<Props> = (props) => {
                     <LocalizationProvider dateAdapter={AdapterDateFns}>
                       <Field
                         fullWidth
-                        component={TimePicker}
-                        label="from"
-                        name="from"
-                      />
-                      <Field
-                        fullWidth
-                        minTime={values.from}
-                        component={TimePicker}
-                        label="to"
-                        name="to"
+                        type="number"
+                        component={TextField}
+                        label="duration (minutes)"
+                        name="duration"
                       />
                       <Field
                         fullWidth
@@ -153,17 +146,22 @@ const NewMaintenance: React.FunctionComponent<Props> = (props) => {
                         label="machine"
                         name="machine"
                       >
-                        
-                        {MachinesDropdown?.machines ? MachinesDropdown?.machines.map((data) => {
-                          return (
-                            <MenuItem key={data.value} value={data.value}>
-                              {data.label}
-                            </MenuItem>
-                          );
-                        }) : <LinearProgress style={{
-                          marginRight:"auto",
-                          marginLeft:"auto"
-                        }} />}
+                        {MachinesDropdown?.machines ? (
+                          MachinesDropdown?.machines.map((data) => {
+                            return (
+                              <MenuItem key={data.value} value={data.value}>
+                                {data.label}
+                              </MenuItem>
+                            );
+                          })
+                        ) : (
+                          <LinearProgress
+                            style={{
+                              marginRight: "auto",
+                              marginLeft: "auto",
+                            }}
+                          />
+                        )}
                       </Field>
                       <Field
                         fullWidth
@@ -171,22 +169,32 @@ const NewMaintenance: React.FunctionComponent<Props> = (props) => {
                         label="user"
                         name="user"
                       >
-                        {UsersDropdown?.users ? UsersDropdown?.users.map((data) => {
-                          return (
-                            <MenuItem key={data.value} value={data.value}>
-                              {data.name} - ({data.phone})
-                            </MenuItem>
-                          );
-                        }) : <LinearProgress/>}
+                        {UsersDropdown?.users ? (
+                          UsersDropdown?.users.map((data) => {
+                            return (
+                              <MenuItem key={data.value} value={data.value}>
+                                {data.name} - ({data.phone})
+                              </MenuItem>
+                            );
+                          })
+                        ) : (
+                          <LinearProgress />
+                        )}
                       </Field>
                     </LocalizationProvider>
                   </Form>
                 </Box>
               </DialogContent>
               <DialogActions>
-                <Button disabled={isSubmitting} color="success" onClick={() => submitForm()}>
-                  {isSubmitting && <CircularProgress size={17} style={{marginRight:3}}/>}
-                save
+                <Button
+                  disabled={isSubmitting}
+                  color="success"
+                  onClick={() => submitForm()}
+                >
+                  {isSubmitting && (
+                    <CircularProgress size={17} style={{ marginRight: 3 }} />
+                  )}
+                  save
                 </Button>
                 <Button onClick={() => props.close(false)}>Cancel</Button>
               </DialogActions>
