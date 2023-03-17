@@ -52,7 +52,7 @@ function Maintenance() {
   const [sort, setSort] = useState<any>([
     {
       field: "created_at",
-      sort: "asc",
+      sort: "desc",
     },
   ]);
 
@@ -131,8 +131,7 @@ function Maintenance() {
       });
     }
   }, [onlyUnResolved, filter]);
-  
-  
+
   return (
     <div>
       <Reports

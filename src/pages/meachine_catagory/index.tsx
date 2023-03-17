@@ -33,7 +33,7 @@ function Machine_category() {
   const [sort, setSort] = useState<any>([
     {
       field: "created_at",
-      sort: "asc",
+      sort: "desc",
     },
   ]);
 

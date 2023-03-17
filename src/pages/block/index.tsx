@@ -40,7 +40,12 @@ function Block() {
     InputMaybe<BlockWhereInput>
   >({});
   const [formattedSort, setFormattedSort] = useState<any>({});
-  const [sort, setSort] = useState<any>([]);
+  const [sort, setSort] = useState<any>([
+    {
+      field: "created_at",
+      sort: "desc",
+    },
+  ]);
 
   const [newBlock, setNewBlock] = useState<boolean>(false);
 
