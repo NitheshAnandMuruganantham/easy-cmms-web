@@ -11,6 +11,7 @@ import {
   useGetAllMachinesDropdownQuery,
   useUsersDropDownQuery,
   useCreateRoutineMaintananceMutation,
+  Role,
 } from "../../generated";
 import * as yup from "yup";
 import { Field, Form, Formik } from "formik";
@@ -34,7 +35,15 @@ const NewMaintenance: React.FunctionComponent<Props> = (props) => {
   const { data: MachinesDropdown, loading: MachinesDropdownLoading } =
     useGetAllMachinesDropdownQuery();
   const { data: UsersDropdown, loading: UsersDropdownLoading } =
-    useUsersDropDownQuery();
+    useUsersDropDownQuery({
+      variables: {
+        where: {
+          role: {
+            equals: Role.Fitter,
+          },
+        },
+      },
+    });
   return (
     <Dialog maxWidth="lg" open={props.open} onClose={close}>
       <DialogTitle>New Routine Maintanances</DialogTitle>
