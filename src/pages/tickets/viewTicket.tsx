@@ -14,7 +14,7 @@ import React from "react";
 import { Ticket, useGetTicketLazyQuery } from "../../generated";
 
 interface Props {
-  assignMaintance: () => void;
+  assignMaintance: (data: any) => void;
   open: boolean;
   close: () => void;
   data: Ticket;
@@ -111,7 +111,7 @@ const ViewTicket: React.FunctionComponent<Props> = (props) => {
           <Button
             color="success"
             onClick={() => {
-              props.assignMaintance();
+              props.assignMaintance(data?.ticket);
             }}
           >
             Assign Maintenance

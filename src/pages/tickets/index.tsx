@@ -105,10 +105,11 @@ function Ticket() {
       />
       <ViewTicket
         data={showViewTicketModal.data as Ticket}
-        assignMaintance={() => {
+        assignMaintance={(data) => {
+          console.log(data);
           setShowAssignMaintanceModal({
             open: true,
-            data: showViewTicketModal.data,
+            data,
           });
           setShowTicketModal({
             open: false,

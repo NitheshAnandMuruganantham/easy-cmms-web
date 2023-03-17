@@ -63,6 +63,8 @@ const AssignMaintenance: React.FunctionComponent<Props> = (props) => {
             to: yup.date().required(),
           })}
           onSubmit={async (values) => {
+            console.log(values);
+
             await createMaintanance({
               variables: {
                 createMaintananceInput: {
