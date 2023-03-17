@@ -11,6 +11,7 @@ import {
   useCreateMaintananceMutation,
   useGetTicketLazyQuery,
   useUsersDropDownQuery,
+  Role,
 } from "../../generated";
 import * as yup from "yup";
 import { Field, Form, Formik } from "formik";
@@ -29,7 +30,15 @@ const NewMaintenance: React.FunctionComponent<Props> = (props) => {
   const [createMaintanance, { data, error, loading }] =
     useCreateMaintananceMutation();
   const { data: MachinesDropdown } = useGetAllMachinesDropdownQuery();
-  const { data: UsersDropdown } = useUsersDropDownQuery();
+  const { data: UsersDropdown } = useUsersDropDownQuery({
+    variables: {
+      where: {
+        role: {
+          equals: Role.Fitter,
+        },
+      },
+    },
+  });
   return (
     <Dialog fullWidth open={props.open} onClose={close}>
       <DialogTitle>New Standalone Maintenance</DialogTitle>
@@ -73,15 +82,15 @@ const NewMaintenance: React.FunctionComponent<Props> = (props) => {
               },
             },
           })
-          .then((res) => {
-            if (res.data?.createMaintanance) {
-              toast.success("machine created successfully");
-              props.close(true);
-            }
-          })
-          .catch(() => {
-            toast.error("something went wrong");
-          });
+            .then((res) => {
+              if (res.data?.createMaintanance) {
+                toast.success("machine created successfully");
+                props.close(true);
+              }
+            })
+            .catch(() => {
+              toast.error("something went wrong");
+            });
         }}
       >
         {({ submitForm }) => {
