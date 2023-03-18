@@ -24,6 +24,7 @@ import Reports from "./reports";
 import { useQuery } from "react-query";
 import axios from "../../utils/axios";
 import { useInterval } from "../../utils/reFetchQueries";
+import EditMaintenance from "./editMaintenance";
 
 const fortmatResponse = (res: any) => {
   return JSON.stringify(res, null, 2);
@@ -74,7 +75,13 @@ function Maintenance() {
     },
   });
   const [DeleteMaintenance] = useDeleteMaintananceMutation();
-
+  const [showEditMaintenance, setShowEditMaintenance] = useState<{
+    open: boolean;
+    data: any;
+  }>({
+    open: false,
+    data: null,
+  });
   const RefetchMaintenances = () => {
     RefetchMaintenanceCount();
     setGetMaintenanceLoading(true);
@@ -139,6 +146,19 @@ function Maintenance() {
         close={() => {
           setShowReport(false);
         }}
+      />
+      <EditMaintenance
+        close={(refetch) => {
+          if (refetch) {
+            RefetchMaintenances();
+          }
+          setShowEditMaintenance({
+            open: false,
+            data: null,
+          });
+        }}
+        open={showEditMaintenance.open}
+        data={showEditMaintenance.data}
       />
       <NewMaintance
         open={newMaintance}
@@ -262,6 +282,27 @@ function Maintenance() {
         rowCount={MaintenancesCount?.maintenanceCount || 0}
         columns={[
           ...columns,
+          {
+            field: "edit",
+            headerName: "",
+            flex: 0.75,
+            sortable: false,
+            filterable: false,
+            renderCell: (params) => (
+              <Button
+                onClick={() => {
+                  setShowEditMaintenance({
+                    open: true,
+                    data: params.row,
+                  });
+                }}
+                variant="contained"
+                size="small"
+              >
+                Edit
+              </Button>
+            ),
+          },
           {
             field: "view ticket",
             headerName: "",

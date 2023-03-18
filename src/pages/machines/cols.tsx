@@ -19,9 +19,15 @@ const columns: GridColumns<any> = [
     width: 5,
     filterOperators: getIdFIlters(),
   },
-  { field: "name", headerName: "Title", flex: 1,type: "string", filterOperators:getGridStringOperators().slice(0,-3) },
   {
-    headerName:'catagory',
+    field: "name",
+    headerName: "Title",
+    flex: 1,
+    type: "string",
+    filterOperators: getGridStringOperators().slice(0, -3),
+  },
+  {
+    headerName: "category",
     field: "machine_catagory",
     flex: 1,
     valueFormatter(params) {
@@ -41,14 +47,12 @@ const columns: GridColumns<any> = [
   {
     field: "block",
     flex: 0.5,
-    headerName: "block",
+    headerName: "unit",
     valueFormatter(params) {
       return `${params.value?.name}`;
     },
     sortable: false,
   },
-
-  
 ];
 
 export default columns;

@@ -19,10 +19,33 @@ const columns: GridColumns<any> = [
     width: 5,
     filterOperators: getIdFIlters(),
   },
-  { field: "name", headerName: "name", flex: 1,type: "string", filterOperators:getGridStringOperators().slice(0,-3) },
-  { field: "phone", headerName: "Phone", flex: 2,type: "string", filterOperators:getGridStringOperators().slice(0,-3) },
   {
-    field: "role",
+    field: "name",
+    headerName: "name",
+    flex: 1,
+    type: "string",
+    filterOperators: getGridStringOperators().slice(0, -3),
+  },
+  {
+    field: "phone",
+    headerName: "Phone",
+    flex: 2,
+    type: "string",
+    filterOperators: getGridStringOperators().slice(0, -3),
+  },
+  {
+    field: "block",
+    headerName: "unit",
+    flex: 2,
+    type: "string",
+    filterable: false,
+    sortable: false,
+    valueFormatter(params) {
+      return `${params.value.name} (#${params.value.id})`;
+    },
+  },
+  {
+    field: "role_alias",
     headerName: "Role",
     flex: 1,
     type: "singleSelect",

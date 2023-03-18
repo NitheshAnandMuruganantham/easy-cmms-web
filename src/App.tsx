@@ -9,18 +9,12 @@ import Users from "./pages/users";
 import Maintanances from "./pages/maintanance";
 import Ticket from "./pages/tickets";
 import Machines from "./pages/machines";
-import { useUserContext } from "supertokens-auth-react";
-import { createTheme } from "@mui/material";
-import useMediaQuery from '@mui/material/useMediaQuery';
-
 import RoutineMaintenance from "./pages/routineMaintanance";
 import Machine_category from "./pages/meachine_catagory";
 import Section from "./pages/section";
 import Block from "./pages/block";
+import Production from "./pages/production";
 function App() {
-
-
-  
   return (
     <Routes>
       <reactRouterDom.Route element={<NavSidebar />}>
@@ -76,7 +70,7 @@ function App() {
           path="/machineCategory"
           element={
             <SessionAuth>
-              <Machine_category/>
+              <Machine_category />
             </SessionAuth>
           }
         />
@@ -84,15 +78,15 @@ function App() {
           path="/sections"
           element={
             <SessionAuth>
-              <Section/>
+              <Section />
             </SessionAuth>
           }
         />
         <reactRouterDom.Route
-          path="/blocks"
+          path="/units"
           element={
             <SessionAuth>
-              <Block/>
+              <Block />
             </SessionAuth>
           }
         />
@@ -104,8 +98,20 @@ function App() {
             </SessionAuth>
           }
         />
+        <reactRouterDom.Route
+          path="/production"
+          element={
+            <SessionAuth>
+              <Production />
+            </SessionAuth>
+          }
+        />
       </reactRouterDom.Route>
       {getSuperTokensRoutesForReactRouterDom(reactRouterDom)}
+      <reactRouterDom.Route
+        path="*"
+        element={<reactRouterDom.Navigate to="/" />}
+      />
     </Routes>
   );
 }

@@ -29,6 +29,7 @@ import columns from "./col";
 import NewUser from "./newUser";
 import { client } from "../../utils/apollo";
 import { toast } from "react-toastify";
+import EditUser from "./editUser";
 
 function Users() {
   const [page, setPage] = useState(1);
@@ -48,6 +49,14 @@ function Users() {
       sort: "desc",
     },
   ]);
+  const [showEdit, setShowEdit] = useState<{
+    data: any;
+    show: boolean;
+  }>({
+    data: {},
+    show: false,
+  });
+
   const {
     data: users,
     error: GetUsersError,
@@ -102,6 +111,23 @@ function Users() {
           SetShowNewUser(false);
         }}
       />
+      <EditUser
+        close={(refetch: boolean) => {
+          if (refetch) {
+            refetchUsers();
+            refetchUsersCount();
+            client.refetchQueries({
+              include: ["usersDropDown"],
+            });
+          }
+          setShowEdit({
+            data: {},
+            show: false,
+          });
+        }}
+        data={showEdit.data}
+        open={showEdit.show}
+      />
       <Button
         variant="contained"
         size="small"
@@ -150,6 +176,27 @@ function Users() {
         rowCount={UsersCount?.usersCount || 0}
         columns={[
           ...columns,
+          {
+            field: "edit",
+            headerName: "",
+            sortable: false,
+            filterable: false,
+            renderCell: (params) => (
+              <Button
+                variant="contained"
+                size="small"
+                onClick={() => {
+                  console.log(params.row);
+                  setShowEdit({
+                    data: params.row,
+                    show: true,
+                  });
+                }}
+              >
+                EDIT
+              </Button>
+            ),
+          },
           {
             field: "delete",
             headerName: "",

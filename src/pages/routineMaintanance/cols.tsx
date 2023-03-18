@@ -40,6 +40,9 @@ const columns: GridColumns<any> = [
     flex: 1,
     type: "number",
     filterable: false,
+    valueFormatter(params) {
+      return `${params.value} minutes`;
+    },
   },
   {
     field: "cron",

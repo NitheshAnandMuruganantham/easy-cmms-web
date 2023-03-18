@@ -13,7 +13,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import PrecisionManufacturingIcon from "@mui/icons-material/PrecisionManufacturing";
 import SupportAgentIcon from "@mui/icons-material/SupportAgent";
-import ApartmentIcon from '@mui/icons-material/Apartment';
+import ApartmentIcon from "@mui/icons-material/Apartment";
 import {
   Avatar,
   CircularProgress,
@@ -29,7 +29,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Divider from "@mui/material/Divider";
 import MuiDrawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
-import WorkspacesIcon from '@mui/icons-material/Workspaces';
+import WorkspacesIcon from "@mui/icons-material/Workspaces";
 import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
@@ -40,7 +40,9 @@ import Typography from "@mui/material/Typography";
 import HomeIcon from "@mui/icons-material/Home";
 import CachedIcon from "@mui/icons-material/Cached";
 import { signOut } from "supertokens-auth-react/recipe/passwordless";
-import BallotIcon from '@mui/icons-material/Ballot';
+import BallotIcon from "@mui/icons-material/Ballot";
+import DynamicFormIcon from "@mui/icons-material/DynamicForm";
+
 const drawerWidth = 240;
 
 const openedMixin = (theme: Theme): CSSObject => ({
@@ -120,14 +122,12 @@ const NavBar: FunctionComponent<{
     setAnchorElUser(event.currentTarget);
   };
 
-  
-    const handleCloseUserMenu = () => {
+  const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
 
   const theme = createTheme({
-    palette: {
-    },
+    palette: {},
     typography: {
       fontFamily: "Roboto",
     },
@@ -192,10 +192,16 @@ const NavBar: FunctionComponent<{
       active: useMatch("/sections"),
     },
     {
-      name: "Blocks",
-      path: "/blocks",
+      name: "Units",
+      path: "/units",
       icon: ApartmentIcon,
-      active: useMatch("/blocks"),
+      active: useMatch("/units"),
+    },
+    {
+      name: "production metrics",
+      path: "/production",
+      icon: DynamicFormIcon,
+      active: useMatch("/production"),
     },
   ];
   const navigate = useNavigate();
@@ -220,7 +226,7 @@ const NavBar: FunctionComponent<{
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" sx={{ mx: "10px" }} component="div">
-              Easy CMMS | {<Currentpage/>}
+              Easy CMMS | {<Currentpage />}
             </Typography>
 
             <Box
@@ -331,7 +337,6 @@ const NavBar: FunctionComponent<{
 
 export default NavBar;
 
-
 const Currentpage = () => {
   const links = [
     {
@@ -383,10 +388,16 @@ const Currentpage = () => {
       active: useMatch("/machineCategory"),
     },
     {
-      name: "Blocks",
-      path: "/blocks",
+      name: "Units",
+      path: "/units",
       icon: ApartmentIcon,
-      active: useMatch("/blocks"),
+      active: useMatch("/units"),
+    },
+    {
+      name: "production metrics",
+      path: "/production",
+      icon: DynamicFormIcon,
+      active: useMatch("/production"),
     },
   ];
   return (

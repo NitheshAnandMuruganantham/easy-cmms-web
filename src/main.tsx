@@ -4,6 +4,10 @@ import App from "./App";
 import "react-toastify/dist/ReactToastify.css";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import "./index.css";
+import mixpanel from "mixpanel-browser";
+
+mixpanel.init("dddafd69d4dc6248e7116119558ff724", { debug: true });
+
 import SuperTokens, { SuperTokensWrapper } from "supertokens-auth-react";
 import Passwordless, {
   signOut,

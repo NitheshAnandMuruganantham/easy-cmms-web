@@ -10,6 +10,8 @@ import {
   useUsersDropDownQuery,
   useCreateUserMutation,
   Role,
+  useUpdateUserMutation,
+  Users,
 } from "../../generated";
 import * as yup from "yup";
 import { Field, Form, Formik } from "formik";
@@ -24,10 +26,11 @@ import { CircularProgress } from "@mui/material";
 interface Props {
   open: boolean;
   close: (refresh: boolean) => void;
+  data: Users;
 }
 
-const NewUser: React.FunctionComponent<Props> = (props) => {
-  const [createUser, { data, error, loading }] = useCreateUserMutation();
+const EditUser: React.FunctionComponent<Props> = (props) => {
+  const [updateUser, { data, error, loading }] = useUpdateUserMutation();
   const { data: MachinesDropdown } = useGetAllMachinesDropdownQuery();
   const { data: UsersDropdown } = useUsersDropDownQuery();
   return (
@@ -35,45 +38,42 @@ const NewUser: React.FunctionComponent<Props> = (props) => {
       <DialogTitle>New User</DialogTitle>
       <Formik
         initialValues={{
-          phone: "+91",
-          first_name: "",
-          last_name: "",
-          role: Role.Fitter,
-          role_alias: "",
+          first_name: props.data?.name ? props.data?.name.split(" ")[0] : "",
+          last_name: props.data?.name ? props.data?.name.split(" ")[1] : "",
+          role: props.data?.role || Role.Fitter,
+          role_alias: props.data?.role_alias || "",
         }}
         validationSchema={yup.object().shape({
           first_name: yup.string().required(),
           last_name: yup.string().required(),
           role: yup.string().required(),
           role_alias: yup.string().required(),
-          phone: yup
-            .string()
-            .matches(phoneRegExp, "invalid phone number")
-            .required(),
         })}
         onSubmit={async (values) => {
-          await createUser({
+          await updateUser({
             variables: {
-              createUserInput: {
-                name: values.first_name + " " + values.last_name,
-                phone: values.phone,
-                role: values.role,
-                role_alias: values.role_alias,
+              updateUserId: props.data.id,
+              updateUserInput: {
+                name: {
+                  set: values.first_name + " " + values.last_name,
+                },
+                role: { set: values.role },
+                role_alias: { set: values.role_alias },
                 profile: {
-                  first_name: values.first_name,
-                  last_name: values.last_name,
+                  set: {
+                    first_name: values.first_name,
+                    last_name: values.last_name,
+                  },
                 },
               },
             },
           })
             .then((res) => {
-              if (res.data?.createUser) {
-                toast.success("user added successfully");
-                props.close(true);
-              }
+              toast.success("user updated successfully");
+              props.close(true);
             })
             .catch((err) => {
-              toast.error("something went wrong");
+              toast.error("error updating user");
             });
         }}
       >
@@ -105,23 +105,6 @@ const NewUser: React.FunctionComponent<Props> = (props) => {
                     label="last name"
                     name="last_name"
                   />
-                  <MuiTelInput
-                    label="phone"
-                    disableFormatting
-                    onChange={(n) => {
-                      setFieldValue("phone", n);
-                    }}
-                    disabled={isSubmitting}
-                    value={values.phone}
-                    name="phone"
-                  />
-                  <Field
-                    component={TextField}
-                    type="text"
-                    fullWidth
-                    label="role alias"
-                    name="role_alias"
-                  />
                   <Field
                     fullWidth
                     component={Select}
@@ -131,7 +114,20 @@ const NewUser: React.FunctionComponent<Props> = (props) => {
                     <MenuItem value={Role.Fitter}>Fitter</MenuItem>
                     <MenuItem value={Role.Supervisor}>Supervisor</MenuItem>
                     <MenuItem value={Role.Manager}>Manager</MenuItem>
+                    <MenuItem value={Role.InputController}>
+                      Input Controller
+                    </MenuItem>
+                    <MenuItem value={Role.ProductionController}>
+                      Production Controller
+                    </MenuItem>
                   </Field>
+                  <Field
+                    component={TextField}
+                    type="text"
+                    fullWidth
+                    label="role alias"
+                    name="role_alias"
+                  />
                 </Form>
               </DialogContent>
               <DialogActions>
@@ -155,4 +151,4 @@ const NewUser: React.FunctionComponent<Props> = (props) => {
   );
 };
 
-export default NewUser;
+export default EditUser;
