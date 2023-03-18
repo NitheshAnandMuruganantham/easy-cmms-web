@@ -3,6 +3,11 @@ query Users($where: UsersWhereInput, $offset: Int, $orderBy: UsersOrderByWithRel
         id
         name
         role
+        role_alias
+        block {
+        id
+        name
+        }
         profile
         phone
         created_at
@@ -34,4 +39,11 @@ mutation deleteUsers($removeUserId: Int!) {
     removeUser(id: $removeUserId) {
         id
     }
+}
+
+
+mutation updateUser($updateUserId: Int!, $updateUserInput: UsersUpdateInput!) {
+  updateUser(id: $updateUserId, updateUserInput: $updateUserInput) {
+    id
+  }
 }

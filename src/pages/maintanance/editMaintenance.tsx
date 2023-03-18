@@ -9,9 +9,9 @@ import DialogTitle from "@mui/material/DialogTitle";
 import {
   useGetAllMachinesDropdownQuery,
   useCreateMaintananceMutation,
-  useGetTicketLazyQuery,
   useUsersDropDownQuery,
   Role,
+  useUpdateMaintananceMutation,
 } from "../../generated";
 import * as yup from "yup";
 import { Field, Form, Formik } from "formik";
@@ -24,12 +24,13 @@ import { CircularProgress } from "@mui/material";
 
 interface Props {
   open: boolean;
+  data: any;
   close: (refresh: boolean) => void;
 }
 
-const NewMaintenance: React.FunctionComponent<Props> = (props) => {
-  const [createMaintanance, { data, error, loading }] =
-    useCreateMaintananceMutation();
+const EditMaintenance: React.FunctionComponent<Props> = (props) => {
+  const [updateMaintanance, { data, error, loading }] =
+    useUpdateMaintananceMutation();
   const { data: MachinesDropdown } = useGetAllMachinesDropdownQuery();
   const { data: UsersDropdown } = useUsersDropDownQuery({
     variables: {
@@ -42,15 +43,17 @@ const NewMaintenance: React.FunctionComponent<Props> = (props) => {
   });
   return (
     <Dialog fullWidth open={props.open} onClose={close}>
-      <DialogTitle>New Standalone Maintenance</DialogTitle>
+      <DialogTitle>Edit Maintenance</DialogTitle>
       <Formik
         initialValues={{
-          name: "",
-          description: "",
-          from: new Date(),
-          to: new Date(new Date().setHours(new Date().getHours() + 1)),
-          machine: "",
-          user: "",
+          name: props.data?.name || "",
+          description: props.data?.description || "",
+          from: props.data?.from || new Date(),
+          to:
+            props.data?.to ||
+            new Date(new Date().setHours(new Date().getHours() + 1)),
+          machine: props.data?.machines?.id || "",
+          user: props.data?.assignee?.id || "",
         }}
         validationSchema={yup.object().shape({
           name: yup.string().required(),
@@ -61,15 +64,22 @@ const NewMaintenance: React.FunctionComponent<Props> = (props) => {
           to: yup.date().required(),
         })}
         onSubmit={async (values) => {
-          await createMaintanance({
+          await updateMaintanance({
             variables: {
-              createMaintananceInput: {
-                name: values.name,
-                description: values.description,
-                un_planned: true,
-                from: values.from.toISOString(),
-                to: values.to.toISOString(),
-                resolved: false,
+              updateMaintananceId: props.data?.id,
+              updateMaintananceInput: {
+                name: {
+                  set: values.name,
+                },
+                description: {
+                  set: values.description,
+                },
+                from: {
+                  set: new Date(values.from).toISOString(),
+                },
+                to: {
+                  set: new Date(values.to).toISOString(),
+                },
                 machines: {
                   connect: {
                     id: values.machine,
@@ -84,7 +94,7 @@ const NewMaintenance: React.FunctionComponent<Props> = (props) => {
             },
           })
             .then((res) => {
-              if (res.data?.createMaintanance) {
+              if (res.data?.updateMaintanance) {
                 toast.success("machine created successfully");
                 props.close(true);
               }
@@ -181,4 +191,4 @@ const NewMaintenance: React.FunctionComponent<Props> = (props) => {
   );
 };
 
-export default NewMaintenance;
+export default EditMaintenance;
