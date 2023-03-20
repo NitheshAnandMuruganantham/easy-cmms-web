@@ -1,0 +1,56 @@
+query productionData(
+  $limit: Int
+  $offset: Int
+  $orderBy: production_dataOrderByWithAggregationInput
+  $where: production_dataWhereInput
+) {
+  productionData(
+    limit: $limit
+    offset: $offset
+    orderBy: $orderBy
+    where: $where
+  ) {
+    id
+    updatedBy {
+      id
+      name
+    }
+    total_run_time
+    total_down_time
+    target_production
+    actual_production
+
+    created_at
+    from
+    to
+  }
+}
+
+query productionDataCount($limit: Int, $offset: Int, $orderBy: production_dataOrderByWithAggregationInput, $where: production_dataWhereInput) {
+  productionDataCount(limit: $limit,offset: $offset,orderBy: $orderBy,where: $where) 
+}
+
+query production($productionId: Int!) {
+  production(id: $productionId) {
+      id
+    updatedBy {
+      id
+      name
+    }
+      total_run_time  
+    total_down_time   
+    target_production 
+    actual_production 
+
+    created_at
+    from
+    to
+  }
+}
+
+mutation removeProductionData($removeProductionDataId: Int!) {
+  removeProductionData(id: $removeProductionDataId) {
+    id
+  }
+}
+
