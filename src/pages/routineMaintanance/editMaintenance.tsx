@@ -12,6 +12,7 @@ import {
   useUsersDropDownQuery,
   useCreateRoutineMaintananceMutation,
   Role,
+  useUpdateRoutineMaintananceMutation,
 } from "../../generated";
 import * as yup from "yup";
 import { Field, Form, Formik } from "formik";
@@ -27,11 +28,13 @@ import { CircularProgress } from "@mui/material";
 interface Props {
   open: boolean;
   close: (refresh: boolean) => void;
+  id: number;
+  data: any;
 }
 
-const NewMaintenance: React.FunctionComponent<Props> = (props) => {
-  const [createRoutineMaintanance, { data, error, loading }] =
-    useCreateRoutineMaintananceMutation();
+const EditMaintenance: React.FunctionComponent<Props> = (props) => {
+  const [updateRoutineMaintanance, { data, error, loading }] =
+    useUpdateRoutineMaintananceMutation();
   const { data: MachinesDropdown, loading: MachinesDropdownLoading } =
     useGetAllMachinesDropdownQuery();
   const { data: UsersDropdown, loading: UsersDropdownLoading } =
@@ -46,40 +49,20 @@ const NewMaintenance: React.FunctionComponent<Props> = (props) => {
     });
   return (
     <Dialog maxWidth="lg" open={props.open} onClose={close}>
-      <DialogTitle>New Routine Maintanances</DialogTitle>
+      <DialogTitle>Reassign User</DialogTitle>
 
       <Formik
         initialValues={{
-          name: "",
-          description: "",
-          duration: 60,
-          machine: "",
-          user: "",
-          cron: "0 0 00 1/1 * ? *",
+          user: props.data?.assignee?.id,
         }}
         validationSchema={yup.object().shape({
-          name: yup.string().required(),
-          description: yup.string().required(),
-          duration: yup.number().required(),
-          machine: yup.string().required(),
           user: yup.string().required(),
-          cron: yup.string().required(),
         })}
         onSubmit={async (values) => {
-          await createRoutineMaintanance({
+          await updateRoutineMaintanance({
             variables: {
-              createRoutineMaintananceInput: {
-                name: values.name,
-                description: values.description,
-                duration: values.duration,
-                meachine: {
-                  connect: {
-                    id: values.machine,
-                  },
-                },
-                cron: values.cron
-                  .replace("?", "*")
-                  .slice(2, values.cron.length - 2),
+              updateRoutineMaintananceId: props.id,
+              updateRoutineMaintananceInput: {
                 assignee: {
                   connect: {
                     id: values.user,
@@ -99,23 +82,12 @@ const NewMaintenance: React.FunctionComponent<Props> = (props) => {
                 <Box
                   style={{
                     width: "60vw",
+                    marginTop: "20px",
                     display: "flex",
                     marginBottom: "20px",
                   }}
                   flexDirection="row"
                 >
-                  <Cron
-                    onChange={(e) => {
-                      setFieldValue("cron", e);
-                    }}
-                    value={values.cron}
-                    showResultText={true}
-                    showResultCron={false}
-                    locale="en"
-                    options={{
-                      headers: ["DAILY", "HOURLY", "WEEKLY"],
-                    }}
-                  />
                   <Form
                     style={{
                       width: "100%",
@@ -125,52 +97,6 @@ const NewMaintenance: React.FunctionComponent<Props> = (props) => {
                       rowGap: "20px",
                     }}
                   >
-                    <Field
-                      component={TextField}
-                      type="text"
-                      fullWidth
-                      style={{ marginTop: "5px" }}
-                      label="name"
-                      name="name"
-                    />
-                    <Field
-                      component={TextField}
-                      type="text"
-                      fullWidth
-                      label="description"
-                      name="description"
-                    />
-                    <Field
-                      fullWidth
-                      type="number"
-                      component={TextField}
-                      label="duration (minutes)"
-                      name="duration"
-                    />
-                    <Field
-                      fullWidth
-                      loading
-                      component={Select}
-                      label="machine"
-                      name="machine"
-                    >
-                      {MachinesDropdown?.machines ? (
-                        MachinesDropdown?.machines.map((data) => {
-                          return (
-                            <MenuItem key={data.value} value={data.value}>
-                              {data.label}
-                            </MenuItem>
-                          );
-                        })
-                      ) : (
-                        <LinearProgress
-                          style={{
-                            marginRight: "auto",
-                            marginLeft: "auto",
-                          }}
-                        />
-                      )}
-                    </Field>
                     <Field
                       fullWidth
                       component={Select}
@@ -213,4 +139,4 @@ const NewMaintenance: React.FunctionComponent<Props> = (props) => {
   );
 };
 
-export default NewMaintenance;
+export default EditMaintenance;

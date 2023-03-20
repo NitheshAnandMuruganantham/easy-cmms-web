@@ -1,20 +1,15 @@
 import React from "react";
 import {
   Box,
+  Card,
+  CardContent,
   Table,
   TableBody,
   TableCell,
   TableHead,
+  Typography,
   TableRow,
 } from "@mui/material";
-import {
-  CartesianGrid,
-  XAxis,
-  YAxis,
-  BarChart,
-  Bar,
-  ResponsiveContainer,
-} from "recharts";
 
 import {
   SortOrder,
@@ -22,6 +17,8 @@ import {
   useTicketsQuery,
 } from "../../generated";
 import axios from "../../utils/axios";
+import CounterCard from "../../components/CountCard";
+import { useInterval } from "../../utils/reFetchQueries";
 function Home() {
   const { data: maintenanceOngoing } = useMaintenanceQuery({
     variables: {
@@ -40,16 +37,27 @@ function Home() {
     },
   });
 
-  const [lastFiveDayTickets, setLastFiveDayTickets] = React.useState([]);
-  const [lastFiveDayMaintenances, setLastFiveDayMaintenances] = React.useState(
-    []
-  );
-
+  const [cardData, setCardData] = React.useState<any>([]);
+  const [cardDataLoading, setCardDataLoading] = React.useState<boolean>(false);
   React.useEffect(() => {
-    axios.get("/dashboard/lastFiveDayTickets").then((res) => {
-      setLastFiveDayTickets(res.data);
-    });
+    setCardDataLoading(true);
+    axios
+      .get("/dashboard/getProductionDashboard")
+      .then((res) => {
+        setCardData(res.data);
+        setCardDataLoading(false);
+      })
+      .catch((err) => {
+        setCardDataLoading(false);
+      });
   }, []);
+
+  useInterval(() => {
+    axios.get("/dashboard/getProductionDashboard").then((res) => {
+      setCardData(res.data);
+    });
+  }, 50000);
+
   return (
     <Box>
       <Box
@@ -143,54 +151,22 @@ function Home() {
       <Box
         style={{
           display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-around",
+          marginTop: "10px",
+          flexWrap: "wrap",
         }}
       >
-        <Box
-          style={{
-            marginTop: "10px",
-            marginRight: "3%",
-            display: "flex",
-            justifyContent: "center",
-            height: "300px",
-            borderStyle: "solid",
-            borderRadius: 5,
-            borderColor: "gray",
-            borderWidth: 1,
-            width: "50%",
-          }}
-        >
-          <ResponsiveContainer width="90%" height="100%">
-            <BarChart data={lastFiveDayTickets} barSize={30}>
-              <Bar type="monotone" dataKey="count" fill="#8884d8" />
-              <CartesianGrid stroke="#ccc" />
-              <XAxis dataKey="name" />
-              <YAxis />
-            </BarChart>
-          </ResponsiveContainer>
-        </Box>
-        <Box
-          style={{
-            marginTop: "10px",
-            marginRight: "3%",
-            display: "flex",
-            justifyContent: "center",
-            height: "300px",
-            borderStyle: "solid",
-            borderColor: "gray",
-            borderRadius: 5,
-            borderWidth: 1,
-            width: "50%",
-          }}
-        >
-          <ResponsiveContainer width="90%" height="100%">
-            <BarChart data={lastFiveDayTickets} barSize={30}>
-              <Bar type="monotone" dataKey="count" fill="#8884d8" />
-              <CartesianGrid stroke="#ccc" />
-              <XAxis dataKey="name" />
-              <YAxis />
-            </BarChart>
-          </ResponsiveContainer>
-        </Box>
+        {Object.keys(cardData).map((key: string) => {
+          return (
+            <CounterCard
+              key={key}
+              count={cardData[key]}
+              label={key}
+              loading={cardDataLoading}
+            />
+          );
+        })}
       </Box>
     </Box>
   );

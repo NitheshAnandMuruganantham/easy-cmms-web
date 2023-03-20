@@ -29,6 +29,7 @@ import ViewMaintance from "./viewMaintanance";
 import NewMaintance from "./newMaintenance";
 import axios from "../../utils/axios";
 import { useInterval } from "../../utils/reFetchQueries";
+import EditMaintenance from "./editMaintenance";
 
 function RoutineMaintenance() {
   const [page, setPage] = useState(1);
@@ -47,7 +48,6 @@ function RoutineMaintenance() {
     InputMaybe<MaintenanceWhereInput>
   >({});
   const [formattedSort, setFormattedSort] = useState<any>({});
-  const [onlyUnResolved, setUnResolvedView] = useState<boolean>(false);
   const [sort, setSort] = useState<any>([
     {
       field: "created_at",
@@ -71,7 +71,15 @@ function RoutineMaintenance() {
   });
   const [DeleteRoutineMaintenance] = useRemoveRoutineMaintananceMutation();
   const [Maintenances, setMaintenances] = useState<any>([]);
-
+  const [showEdit, setShowEdit] = useState<{
+    open: boolean;
+    id: number;
+    data: any;
+  }>({
+    open: false,
+    id: 0,
+    data: null,
+  });
   const [GetMaintenanceLoading, setGetMaintenanceLoading] =
     useState<boolean>(false);
   const RefetchMaintenances = () => {
@@ -113,23 +121,21 @@ function RoutineMaintenance() {
   }, [page, pageSize, formattedFilter, formattedSort]);
 
   useEffect(() => {
-    if (onlyUnResolved) {
-      SetFormattedFilter({
-        AND: [
-          {
-            resolved: {
-              equals: false,
-            },
+    SetFormattedFilter({
+      AND: [
+        {
+          resolved: {
+            equals: false,
           },
-          ...filterTransform(filter),
-        ],
-      });
-    } else {
-      SetFormattedFilter({
-        AND: filterTransform(filter),
-      });
-    }
-  }, [onlyUnResolved, filter]);
+        },
+        ...filterTransform(filter),
+      ],
+    });
+    SetFormattedFilter({
+      AND: filterTransform(filter),
+    });
+  }, [filter]);
+
   return (
     <div>
       <NewMaintance
@@ -141,6 +147,22 @@ function RoutineMaintenance() {
             RefetchMaintenances();
           }
         }}
+      />
+      <EditMaintenance
+        data={showEdit.data}
+        close={(refetch) => {
+          if (refetch) {
+            RefetchMaintenances();
+            RefetchMaintenanceCount();
+          }
+          setShowEdit({
+            open: false,
+            id: 0,
+            data: null,
+          });
+        }}
+        open={showEdit.open}
+        id={showEdit.id}
       />
       <Box flex={1}>
         <Button
@@ -208,7 +230,7 @@ function RoutineMaintenance() {
         columns={[
           ...columns,
           {
-            field: "view ticket",
+            field: "view",
             headerName: "",
             flex: 0.75,
             sortable: false,
@@ -224,6 +246,27 @@ function RoutineMaintenance() {
                 size="small"
               >
                 View
+              </Button>
+            ),
+          },
+          {
+            field: "update",
+            headerName: "",
+            flex: 0.75,
+            sortable: false,
+            renderCell: (params) => (
+              <Button
+                onClick={() => {
+                  setShowEdit({
+                    open: true,
+                    id: params.row.id,
+                    data: params.row,
+                  });
+                }}
+                variant="contained"
+                size="small"
+              >
+                re-assign
               </Button>
             ),
           },

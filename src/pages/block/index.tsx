@@ -28,6 +28,7 @@ import NewBlock from "./newBlock";
 import Reports from "./reports";
 import { toast } from "react-toastify";
 import { client } from "../../utils/apollo";
+import MailList from "./mailList";
 
 function Block() {
   const [page, setPage] = useState(1);
@@ -86,6 +87,15 @@ function Block() {
     };
   }, []);
 
+  const [showMailList, setShowMailList] = useState<{
+    open: boolean;
+    blockId: number;
+    mailList: string[];
+  }>({
+    open: false,
+    blockId: 0,
+    mailList: [],
+  });
   const [DeleteBlock] = useRemoveBlockMutation();
 
   return (
@@ -95,6 +105,22 @@ function Block() {
         close={() => {
           setShowReport(false);
         }}
+      />
+      <MailList
+        blockId={showMailList.blockId}
+        close={(refetch: boolean) => {
+          if (refetch) {
+            RefetchBlockCount();
+            RefetchBlock();
+          }
+          setShowMailList({
+            open: false,
+            blockId: 0,
+            mailList: [],
+          });
+        }}
+        open={showMailList.open}
+        mailList={showMailList.mailList}
       />
       <NewBlock
         open={newBlock}
@@ -180,6 +206,28 @@ function Block() {
         rowCount={MachinesCount?.blocksCount || 0}
         columns={[
           ...columns,
+          {
+            field: "mailList",
+            flex: 0.75,
+            headerName: "",
+            sortable: false,
+            renderCell: (params) => (
+              <Button
+                onClick={() => {
+                  setShowMailList({
+                    open: true,
+                    mailList: params.row.Mailings,
+                    blockId: params.row.id,
+                  });
+                }}
+                color="secondary"
+                size="small"
+                variant="contained"
+              >
+                Mail List
+              </Button>
+            ),
+          },
           {
             field: "delete",
             flex: 0.75,

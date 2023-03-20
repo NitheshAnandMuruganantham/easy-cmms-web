@@ -42,12 +42,16 @@ const EditUser: React.FunctionComponent<Props> = (props) => {
           last_name: props.data?.name ? props.data?.name.split(" ")[1] : "",
           role: props.data?.role || Role.Fitter,
           role_alias: props.data?.role_alias || "",
+          add_role_1: props.data?.extra_roles?.[0] || "",
+          add_role_2: props.data?.extra_roles?.[1] || "",
         }}
         validationSchema={yup.object().shape({
           first_name: yup.string().required(),
           last_name: yup.string().required(),
           role: yup.string().required(),
           role_alias: yup.string().required(),
+          add_role_2: yup.string(),
+          add_role_1: yup.string(),
         })}
         onSubmit={async (values) => {
           await updateUser({
@@ -56,6 +60,9 @@ const EditUser: React.FunctionComponent<Props> = (props) => {
               updateUserInput: {
                 name: {
                   set: values.first_name + " " + values.last_name,
+                },
+                extra_roles: {
+                  set: [values.add_role_1, values.add_role_2] as Role[],
                 },
                 role: { set: values.role },
                 role_alias: { set: values.role_alias },
@@ -128,6 +135,36 @@ const EditUser: React.FunctionComponent<Props> = (props) => {
                     label="role alias"
                     name="role_alias"
                   />
+                  <Field
+                    fullWidth
+                    component={Select}
+                    label="additional role 1"
+                    name="add_role_1"
+                  >
+                    <MenuItem value={Role.InputController}>
+                      InputController
+                    </MenuItem>
+                    <MenuItem value={Role.ProductionController}>
+                      ProductionController
+                    </MenuItem>
+                    <MenuItem value={Role.Engineer}>Engineer</MenuItem>
+                    <MenuItem value={Role.Guest}>Guest</MenuItem>
+                  </Field>
+                  <Field
+                    fullWidth
+                    component={Select}
+                    label="additional role 2"
+                    name="add_role_2"
+                  >
+                    <MenuItem value={Role.InputController}>
+                      InputController
+                    </MenuItem>
+                    <MenuItem value={Role.ProductionController}>
+                      ProductionController
+                    </MenuItem>
+                    <MenuItem value={Role.Engineer}>Engineer</MenuItem>
+                    <MenuItem value={Role.Guest}>Guest</MenuItem>
+                  </Field>
                 </Form>
               </DialogContent>
               <DialogActions>

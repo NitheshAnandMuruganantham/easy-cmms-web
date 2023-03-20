@@ -174,6 +174,12 @@ const NavBar: FunctionComponent<{
       active: useMatch("/users"),
     },
     {
+      name: "production metrics",
+      path: "/production",
+      icon: DynamicFormIcon,
+      active: useMatch("/production"),
+    },
+    {
       name: "machines",
       path: "/machines",
       icon: PrecisionManufacturingIcon,
@@ -196,12 +202,6 @@ const NavBar: FunctionComponent<{
       path: "/units",
       icon: ApartmentIcon,
       active: useMatch("/units"),
-    },
-    {
-      name: "production metrics",
-      path: "/production",
-      icon: DynamicFormIcon,
-      active: useMatch("/production"),
     },
   ];
   const navigate = useNavigate();
