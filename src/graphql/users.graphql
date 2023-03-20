@@ -4,6 +4,7 @@ query Users($where: UsersWhereInput, $offset: Int, $orderBy: UsersOrderByWithRel
         name
         role
         role_alias
+        extra_roles
         block {
         id
         name

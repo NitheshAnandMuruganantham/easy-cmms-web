@@ -265,6 +265,19 @@ export type BlockSumOrderByAggregateInput = {
   id?: InputMaybe<SortOrder>;
 };
 
+export type BlockUpdateInput = {
+  Mailings?: InputMaybe<BlockUpdateMailingsInput>;
+  Users?: InputMaybe<UsersUpdateManyWithoutBlockNestedInput>;
+  block_settings?: InputMaybe<Block_SettingsUpdateManyWithoutBlockNestedInput>;
+  created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
+  location?: InputMaybe<StringFieldUpdateOperationsInput>;
+  machines?: InputMaybe<MachinesUpdateManyWithoutBlockNestedInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  production_data?: InputMaybe<Production_DataUpdateManyWithoutBlockNestedInput>;
+  updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
 export type BlockUpdateMailingsInput = {
   push?: InputMaybe<Array<Scalars['String']>>;
   set?: InputMaybe<Array<Scalars['String']>>;
@@ -2315,12 +2328,13 @@ export type Mutation = {
   removeSection: Section;
   removeTicket: Ticket;
   removeUser: Users;
-  updateBlock: Production_Data;
+  updateBlock: Block;
   updateItem: Items;
   updateItemCatagory: ItemCatagory;
   updateMachine: Machines;
   updateMachineCatagories: Machine_Catagory;
   updateMaintanance: Maintenance;
+  updateProduction: Production_Data;
   updateReplacement: Replacements;
   updateReport: Reports;
   updateRoutineMaintanance: Routine_Maintanances;
@@ -2462,7 +2476,7 @@ export type MutationRemoveUserArgs = {
 
 export type MutationUpdateBlockArgs = {
   id: Scalars['Int'];
-  updateProductionInput: Production_DataUpdateInput;
+  updateBlockInput: BlockUpdateInput;
 };
 
 
@@ -2493,6 +2507,12 @@ export type MutationUpdateMachineCatagoriesArgs = {
 export type MutationUpdateMaintananceArgs = {
   id: Scalars['Int'];
   updateMaintananceInput: MaintenanceUpdateInput;
+};
+
+
+export type MutationUpdateProductionArgs = {
+  id: Scalars['Int'];
+  updateProductionInput: Production_DataUpdateInput;
 };
 
 
@@ -5721,7 +5741,7 @@ export type BlockQueryVariables = Exact<{
 }>;
 
 
-export type BlockQuery = { __typename?: 'Query', blocks: Array<{ __typename?: 'Block', id: any, name: string, location: string, _count: { __typename?: 'BlockCount', machines: number } }> };
+export type BlockQuery = { __typename?: 'Query', blocks: Array<{ __typename?: 'Block', id: any, name: string, Mailings?: Array<string> | null, location: string, _count: { __typename?: 'BlockCount', machines: number } }> };
 
 export type SectionsQueryVariables = Exact<{
   orderBy?: InputMaybe<SectionOrderByWithRelationInput>;
@@ -5793,6 +5813,14 @@ export type BlocksCountQueryVariables = Exact<{
 
 
 export type BlocksCountQuery = { __typename?: 'Query', blocksCount: number };
+
+export type UpdateBlockMutationVariables = Exact<{
+  updateBlockId: Scalars['Int'];
+  updateBlockInput: BlockUpdateInput;
+}>;
+
+
+export type UpdateBlockMutation = { __typename?: 'Mutation', updateBlock: { __typename?: 'Block', id: any } };
 
 export type GetAllMachinesDropdownQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -6014,7 +6042,7 @@ export type UsersQueryVariables = Exact<{
 }>;
 
 
-export type UsersQuery = { __typename?: 'Query', users: Array<{ __typename?: 'Users', id: any, name: string, role: Role, role_alias: string, profile: any, phone: string, created_at: any, block: { __typename?: 'Block', id: any, name: string } }> };
+export type UsersQuery = { __typename?: 'Query', users: Array<{ __typename?: 'Users', id: any, name: string, role: Role, role_alias: string, extra_roles?: Array<Role> | null, profile: any, phone: string, created_at: any, block: { __typename?: 'Block', id: any, name: string } }> };
 
 export type UsersCountQueryVariables = Exact<{
   where?: InputMaybe<UsersWhereInput>;
@@ -6268,6 +6296,7 @@ export const BlockDocument = gql`
   blocks(limit: $limit, offset: $offset, orderBy: $orderBy, where: $where) {
     id
     name
+    Mailings
     location
     _count {
       machines
@@ -6602,6 +6631,40 @@ export function useBlocksCountLazyQuery(baseOptions?: Apollo.LazyQueryHookOption
 export type BlocksCountQueryHookResult = ReturnType<typeof useBlocksCountQuery>;
 export type BlocksCountLazyQueryHookResult = ReturnType<typeof useBlocksCountLazyQuery>;
 export type BlocksCountQueryResult = Apollo.QueryResult<BlocksCountQuery, BlocksCountQueryVariables>;
+export const UpdateBlockDocument = gql`
+    mutation updateBlock($updateBlockId: Int!, $updateBlockInput: BlockUpdateInput!) {
+  updateBlock(id: $updateBlockId, updateBlockInput: $updateBlockInput) {
+    id
+  }
+}
+    `;
+export type UpdateBlockMutationFn = Apollo.MutationFunction<UpdateBlockMutation, UpdateBlockMutationVariables>;
+
+/**
+ * __useUpdateBlockMutation__
+ *
+ * To run a mutation, you first call `useUpdateBlockMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateBlockMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateBlockMutation, { data, loading, error }] = useUpdateBlockMutation({
+ *   variables: {
+ *      updateBlockId: // value for 'updateBlockId'
+ *      updateBlockInput: // value for 'updateBlockInput'
+ *   },
+ * });
+ */
+export function useUpdateBlockMutation(baseOptions?: Apollo.MutationHookOptions<UpdateBlockMutation, UpdateBlockMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateBlockMutation, UpdateBlockMutationVariables>(UpdateBlockDocument, options);
+      }
+export type UpdateBlockMutationHookResult = ReturnType<typeof useUpdateBlockMutation>;
+export type UpdateBlockMutationResult = Apollo.MutationResult<UpdateBlockMutation>;
+export type UpdateBlockMutationOptions = Apollo.BaseMutationOptions<UpdateBlockMutation, UpdateBlockMutationVariables>;
 export const GetAllMachinesDropdownDocument = gql`
     query getAllMachinesDropdown {
   machines {
@@ -7720,6 +7783,7 @@ export const UsersDocument = gql`
     name
     role
     role_alias
+    extra_roles
     block {
       id
       name

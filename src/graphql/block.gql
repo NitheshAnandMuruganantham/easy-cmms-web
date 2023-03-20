@@ -42,6 +42,7 @@ query Block($limit: Int, $offset: Int, $orderBy: BlockOrderByWithAggregationInpu
   blocks(limit: $limit,offset: $offset,orderBy: $orderBy,where: $where) {
     id
     name
+    Mailings
     location
     _count {
       machines
@@ -99,4 +100,12 @@ mutation removeMachineCatagories($removeMachineCatagoriesId: Int!) {
 
 query blocksCount($limit: Int, $offset: Int, $orderBy: BlockOrderByWithAggregationInput, $where: BlockWhereInput) {
   blocksCount(limit: $limit,offset: $offset,orderBy: $orderBy,where: $where)
+}
+
+
+
+mutation updateBlock($updateBlockId: Int!, $updateBlockInput: BlockUpdateInput!) {
+  updateBlock(id: $updateBlockId, updateBlockInput: $updateBlockInput) {
+    id
+  }
 }
