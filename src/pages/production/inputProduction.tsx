@@ -99,14 +99,14 @@ const NewProductionData: React.FunctionComponent<Props> = (props) => {
                     fullWidth
                     type="number"
                     component={TextField}
-                    label="total run time"
+                    label="total run time (in minutes)"
                     name="total_run_time"
                   />
                   <Field
                     fullWidth
                     type="number"
                     component={TextField}
-                    label="total down time"
+                    label="total down time (in minutes)"
                     name="total_down_time"
                   />
                   <Field

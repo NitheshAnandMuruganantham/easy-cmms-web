@@ -53,8 +53,8 @@ const ViewProduction: React.FunctionComponent<Props> = ({
                   <TableCell>Production ID</TableCell>
                   <TableCell>Production From</TableCell>
                   <TableCell>Production To</TableCell>
-                  <TableCell>Running Hours</TableCell>
-                  <TableCell>Downtime Hours</TableCell>
+                  <TableCell>Running Minutes</TableCell>
+                  <TableCell>Downtime Minutes</TableCell>
                   <TableCell>Actual Production</TableCell>
                   <TableCell>Target Production</TableCell>
                 </TableRow>
