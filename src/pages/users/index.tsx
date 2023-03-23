@@ -41,11 +41,13 @@ function Users() {
     InputMaybe<UsersWhereInput>
   >({});
   const [deleteUser, { loading: deleteUserLoading }] = useDeleteUsersMutation();
-  const [formattedSort, setFormattedSort] = useState<any>({});
+  const [formattedSort, setFormattedSort] = useState<any>({
+    id: SortOrder.Desc,
+  });
   const [ShowNewUser, SetShowNewUser] = useState<boolean>(false);
   const [sort, setSort] = useState<any>([
     {
-      field: "created_at",
+      field: "id",
       sort: "desc",
     },
   ]);

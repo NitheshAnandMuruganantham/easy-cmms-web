@@ -48,11 +48,13 @@ function Maintenance() {
   const [formattedFilter, SetFormattedFilter] = useState<
     InputMaybe<MaintenanceWhereInput>
   >({});
-  const [formattedSort, setFormattedSort] = useState<any>({});
+  const [formattedSort, setFormattedSort] = useState<any>({
+    id: SortOrder.Desc,
+  });
   const [onlyUnResolved, setUnResolvedView] = useState<boolean>(false);
   const [sort, setSort] = useState<any>([
     {
-      field: "created_at",
+      field: "id",
       sort: "desc",
     },
   ]);

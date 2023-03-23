@@ -12,6 +12,7 @@ import {
   useGetTicketLazyQuery,
   useUsersDropDownQuery,
   Role,
+  useUpdateProductionMutation,
 } from "../../generated";
 import * as yup from "yup";
 import { Field, Form, Formik } from "formik";
@@ -25,32 +26,23 @@ import axios from "../../utils/axios";
 
 interface Props {
   open: boolean;
+  data: any;
   close: (refresh: boolean) => void;
 }
 
-const NewProductionData: React.FunctionComponent<Props> = (props) => {
-  const [createMaintanance, { data, error, loading }] =
-    useCreateMaintananceMutation();
-  const { data: UsersDropdown } = useUsersDropDownQuery({
-    variables: {
-      where: {
-        role: {
-          equals: Role.Fitter,
-        },
-      },
-    },
-  });
+const EditProductionData: React.FunctionComponent<Props> = (props) => {
+  const [update, { data, error, loading }] = useUpdateProductionMutation();
   return (
     <Dialog fullWidth open={props.open} onClose={close}>
-      <DialogTitle>New Production Data</DialogTitle>
+      <DialogTitle>update Production Data</DialogTitle>
       <Formik
         initialValues={{
-          total_run_time: 0,
-          total_down_time: 0,
-          target_production: 0,
-          actual_production: 0,
-          from: new Date(),
-          to: new Date().setHours(new Date().getHours() + 1),
+          total_run_time: props.data?.total_run_time,
+          total_down_time: props.data?.total_down_time,
+          target_production: props.data?.target_production,
+          actual_production: props.data?.actual_production,
+          from: new Date(props.data?.from),
+          to: new Date(props.data?.to),
         }}
         validationSchema={yup.object().shape({
           total_run_time: yup.number().required(),
@@ -61,20 +53,24 @@ const NewProductionData: React.FunctionComponent<Props> = (props) => {
           to: yup.date().required(),
         })}
         onSubmit={async (values) => {
-          await axios
-            .post("inputProduction", {
-              data: {
-                total_run_time: values.total_run_time,
-                total_down_time: values.total_down_time,
-                target_production: values.target_production,
-                actual_production: values.actual_production,
-                from: values.from,
-                to: values.to,
+          await update({
+            variables: {
+              updateProductionId: props.data.id,
+              updateProductionInput: {
+                total_run_time: {
+                  set: values.total_run_time,
+                },
+                total_down_time: { set: values.total_down_time },
+                target_production: { set: values.target_production },
+                actual_production: { set: values.actual_production },
+                from: { set: values.from },
+                to: { set: values.to },
               },
-            })
+            },
+          })
             .then((res) => {
-              if (res.data?.createMaintanance) {
-                toast.success("production entry successfully");
+              if (res.data?.updateProduction) {
+                toast.success("updated successfully");
                 props.close(true);
               }
             })
@@ -158,4 +154,4 @@ const NewProductionData: React.FunctionComponent<Props> = (props) => {
   );
 };
 
-export default NewProductionData;
+export default EditProductionData;

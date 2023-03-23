@@ -142,6 +142,15 @@ const NewUser: React.FunctionComponent<Props> = (props) => {
                     })}
                   </Field>
                   <Field
+                    fullWidth
+                    component={Select}
+                    label="underlying role"
+                    name="role"
+                  >
+                    <MenuItem value={Role.Fitter}>Fitter</MenuItem>
+                    <MenuItem value={Role.Supervisor}>Supervisor</MenuItem>
+                  </Field>
+                  <Field
                     component={TextField}
                     type="text"
                     fullWidth

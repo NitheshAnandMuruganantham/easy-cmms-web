@@ -5944,6 +5944,14 @@ export type RemoveProductionDataMutationVariables = Exact<{
 
 export type RemoveProductionDataMutation = { __typename?: 'Mutation', removeProductionData: { __typename?: 'production_data', id: any } };
 
+export type UpdateProductionMutationVariables = Exact<{
+  updateProductionId: Scalars['Int'];
+  updateProductionInput: Production_DataUpdateInput;
+}>;
+
+
+export type UpdateProductionMutation = { __typename?: 'Mutation', updateProduction: { __typename?: 'production_data', id: any } };
+
 export type RoutineMaintanancesQueryVariables = Exact<{
   where?: InputMaybe<Routine_MaintanancesWhereInput>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -7291,6 +7299,43 @@ export function useRemoveProductionDataMutation(baseOptions?: Apollo.MutationHoo
 export type RemoveProductionDataMutationHookResult = ReturnType<typeof useRemoveProductionDataMutation>;
 export type RemoveProductionDataMutationResult = Apollo.MutationResult<RemoveProductionDataMutation>;
 export type RemoveProductionDataMutationOptions = Apollo.BaseMutationOptions<RemoveProductionDataMutation, RemoveProductionDataMutationVariables>;
+export const UpdateProductionDocument = gql`
+    mutation updateProduction($updateProductionId: Int!, $updateProductionInput: production_dataUpdateInput!) {
+  updateProduction(
+    id: $updateProductionId
+    updateProductionInput: $updateProductionInput
+  ) {
+    id
+  }
+}
+    `;
+export type UpdateProductionMutationFn = Apollo.MutationFunction<UpdateProductionMutation, UpdateProductionMutationVariables>;
+
+/**
+ * __useUpdateProductionMutation__
+ *
+ * To run a mutation, you first call `useUpdateProductionMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateProductionMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateProductionMutation, { data, loading, error }] = useUpdateProductionMutation({
+ *   variables: {
+ *      updateProductionId: // value for 'updateProductionId'
+ *      updateProductionInput: // value for 'updateProductionInput'
+ *   },
+ * });
+ */
+export function useUpdateProductionMutation(baseOptions?: Apollo.MutationHookOptions<UpdateProductionMutation, UpdateProductionMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateProductionMutation, UpdateProductionMutationVariables>(UpdateProductionDocument, options);
+      }
+export type UpdateProductionMutationHookResult = ReturnType<typeof useUpdateProductionMutation>;
+export type UpdateProductionMutationResult = Apollo.MutationResult<UpdateProductionMutation>;
+export type UpdateProductionMutationOptions = Apollo.BaseMutationOptions<UpdateProductionMutation, UpdateProductionMutationVariables>;
 export const RoutineMaintanancesDocument = gql`
     query routineMaintanances($where: routine_maintanancesWhereInput, $limit: Int, $orderBy: routine_maintanancesSumOrderByAggregateInput, $offset: Int) {
   routineMaintanances(
