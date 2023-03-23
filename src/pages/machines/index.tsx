@@ -35,21 +35,15 @@ function Maintenance() {
     items: [],
   });
 
-  const [showViewMaintanceModal, setShowViewMaintanceModal] = useState<{
-    open: boolean;
-    rowId: number;
-  }>({
-    rowId: 1,
-    open: false,
-  });
   const [formattedFilter, SetFormattedFilter] = useState<
     InputMaybe<MachinesWhereInput>
   >({});
-  const [formattedSort, setFormattedSort] = useState<any>({});
-  const [onlyUnResolved, setUnResolvedView] = useState<boolean>(false);
+  const [formattedSort, setFormattedSort] = useState<any>({
+    id: SortOrder.Desc,
+  });
   const [sort, setSort] = useState<any>([
     {
-      field: "created_at",
+      field: "id",
       sort: "desc",
     },
   ]);

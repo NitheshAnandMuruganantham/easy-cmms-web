@@ -9,6 +9,7 @@ import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import DialogTitle from "@mui/material/DialogTitle";
 import Chip from "@mui/material/Chip";
+import humanize from "humanize-duration";
 
 import React from "react";
 
@@ -68,10 +69,18 @@ const ViewProduction: React.FunctionComponent<Props> = ({
                   <TableCell>
                     {new Date(data.production.to).toLocaleString()}
                   </TableCell>
-                  <TableCell>{data.production.total_run_time}</TableCell>
-                  <TableCell>{data.production.total_down_time}</TableCell>
-                  <TableCell>{data.production.target_production}</TableCell>
-                  <TableCell>{data.production.actual_production}</TableCell>
+                  <TableCell>
+                    {humanize(data.production.total_run_time * 60 * 1000)}
+                  </TableCell>
+                  <TableCell>
+                    {humanize(data.production.total_down_time * 60 * 1000)}
+                  </TableCell>
+                  <TableCell>
+                    {data.production.target_production / 1000}
+                  </TableCell>
+                  <TableCell>
+                    {data.production.actual_production / 1000}
+                  </TableCell>
                 </TableRow>
               </TableBody>
             </Table>

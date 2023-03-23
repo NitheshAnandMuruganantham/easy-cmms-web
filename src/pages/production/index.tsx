@@ -24,6 +24,7 @@ import { client } from "../../utils/apollo";
 import { PlantSettingsContext } from "../../context/PlantSettings";
 import ViewProduction from "./viewProduction";
 import { flatten } from "flat";
+import EditProductionData from "./editProduction";
 
 function Production() {
   const [page, setPage] = useState(1);
@@ -39,11 +40,20 @@ function Production() {
     data: null,
   });
   const [formattedFilter, SetFormattedFilter] = useState<any>({});
-  const [formattedSort, setFormattedSort] = useState<any>({});
+  const [formattedSort, setFormattedSort] = useState<any>({
+    id: SortOrder.Desc,
+  });
   const [settings] = useContext(PlantSettingsContext);
+  const [showUpdate, SetShowUpdate] = useState<{
+    open: boolean;
+    data: any;
+  }>({
+    open: false,
+    data: null,
+  });
   const [sort, setSort] = useState<any>([
     {
-      field: "created_at",
+      field: "id",
       sort: "desc",
     },
   ]);
@@ -101,6 +111,20 @@ function Production() {
             RefetchProduction();
           }
         }}
+      />
+      <EditProductionData
+        close={(refetch: boolean) => {
+          SetShowUpdate({
+            open: false,
+            data: null,
+          });
+          if (refetch) {
+            RefetchProductionDataCount();
+            RefetchProduction();
+          }
+        }}
+        open={showUpdate.open}
+        data={showUpdate.data}
       />
       <ViewProduction
         open={showData.open}
@@ -185,6 +209,26 @@ function Production() {
                 size="small"
               >
                 View
+              </Button>
+            ),
+          },
+          {
+            field: "update",
+            headerName: "",
+            flex: 0.75,
+            sortable: false,
+            renderCell: (params) => (
+              <Button
+                onClick={() => {
+                  SetShowUpdate({
+                    open: true,
+                    data: params.row,
+                  });
+                }}
+                variant="contained"
+                size="small"
+              >
+                Update
               </Button>
             ),
           },

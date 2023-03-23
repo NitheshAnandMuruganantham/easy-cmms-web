@@ -40,10 +40,12 @@ function Block() {
   const [formattedFilter, SetFormattedFilter] = useState<
     InputMaybe<BlockWhereInput>
   >({});
-  const [formattedSort, setFormattedSort] = useState<any>({});
+  const [formattedSort, setFormattedSort] = useState<any>({
+    id: SortOrder.Desc,
+  });
   const [sort, setSort] = useState<any>([
     {
-      field: "created_at",
+      field: "id",
       sort: "desc",
     },
   ]);

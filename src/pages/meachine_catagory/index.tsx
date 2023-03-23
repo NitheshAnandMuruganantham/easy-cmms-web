@@ -29,10 +29,12 @@ function Machine_category() {
     items: [],
   });
   const [formattedFilter, SetFormattedFilter] = useState<any>({});
-  const [formattedSort, setFormattedSort] = useState<any>({});
+  const [formattedSort, setFormattedSort] = useState<any>({
+    id: SortOrder.Desc,
+  });
   const [sort, setSort] = useState<any>([
     {
-      field: "created_at",
+      field: "id",
       sort: "desc",
     },
   ]);
@@ -62,6 +64,9 @@ function Machine_category() {
     stopPolling: stopPollingMaintenancesCount,
   } = useMachineCatagoriesCountQuery({
     variables: {
+      orderBy: formattedSort,
+      skip: (page - 1) * pageSize,
+      take: pageSize,
       where: formattedFilter,
     },
   });

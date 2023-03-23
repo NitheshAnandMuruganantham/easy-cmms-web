@@ -28,13 +28,15 @@ function Ticket() {
   const [formattedFilter, SetFormattedFilter] = useState<
     InputMaybe<TicketWhereInput>
   >({});
-  const [formattedSort, setFormattedSort] = useState<any>({});
+  const [formattedSort, setFormattedSort] = useState<any>({
+    id: SortOrder.Desc,
+  });
   const [search, setSearch] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const [data, setData] = useState<any[]>([]);
   const [sort, setSort] = useState<any>([
     {
-      field: "created_at",
+      field: "id",
       sort: "desc",
     },
   ]);

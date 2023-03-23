@@ -44,14 +44,15 @@ function RoutineMaintenance() {
     rowId: 1,
     open: false,
   });
-  const [formattedFilter, SetFormattedFilter] = useState<
-    InputMaybe<MaintenanceWhereInput>
-  >({});
-  const [formattedSort, setFormattedSort] = useState<any>({});
+  const [formattedFilter, SetFormattedFilter] =
+    useState<InputMaybe<MaintenanceWhereInput>>();
+  const [formattedSort, setFormattedSort] = useState<any>({
+    id: SortOrder.Desc,
+  });
   const [sort, setSort] = useState<any>([
     {
-      field: "created_at",
-      sort: "asc",
+      field: "id",
+      sort: "desc",
     },
   ]);
 

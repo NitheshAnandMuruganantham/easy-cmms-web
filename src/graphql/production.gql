@@ -54,3 +54,8 @@ mutation removeProductionData($removeProductionDataId: Int!) {
   }
 }
 
+mutation updateProduction($updateProductionId: Int!, $updateProductionInput: production_dataUpdateInput!) {
+  updateProduction(id: $updateProductionId, updateProductionInput: $updateProductionInput) {
+    id
+  }
+}
