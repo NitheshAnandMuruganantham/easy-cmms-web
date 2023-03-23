@@ -76,10 +76,10 @@ const ViewProduction: React.FunctionComponent<Props> = ({
                     {humanize(data.production.total_down_time * 60 * 1000)}
                   </TableCell>
                   <TableCell>
-                    {data.production.target_production / 1000}
+                    {data.production.actual_production / 1000}
                   </TableCell>
                   <TableCell>
-                    {data.production.actual_production / 1000}
+                    {data.production.target_production / 1000}
                   </TableCell>
                 </TableRow>
               </TableBody>
