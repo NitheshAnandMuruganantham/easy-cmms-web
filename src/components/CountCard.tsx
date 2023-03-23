@@ -16,12 +16,12 @@ const CounterCard: React.FunctionComponent<CounterCardProps> = ({
     <div
       style={{
         color: "black",
-        height: "60%",
         margin: "5px",
         paddingTop: "20px",
         paddingBottom: "20px",
         flexDirection: "column",
         width: "32%",
+        textAlign: "center",
         alignItems: "center",
         display: "flex",
         justifyContent: "center",

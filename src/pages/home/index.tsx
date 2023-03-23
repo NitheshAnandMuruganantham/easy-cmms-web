@@ -85,3 +85,73 @@ function Home() {
 }
 
 export default Home;
+
+// <Box
+//   style={{
+//     display: "flex",
+//     flexDirection: "row",
+//     width: "99%",
+//     marginLeft: "auto",
+//     marginRight: "auto",
+//     justifyContent: "space-around",
+//   }}
+// >
+//   <div
+//     style={{
+//       color: "black",
+//       margin: "5px",
+//       paddingTop: "20px",
+//       paddingBottom: "20px",
+//       flexDirection: "column",
+//       width: "50%",
+//       textAlign: "center",
+//       alignItems: "center",
+//       display: "flex",
+//       justifyContent: "center",
+//       backgroundColor: "whitesmoke",
+//       borderRadius: "10px",
+//     }}
+//   >
+//     <div style={{ marginBottom: "10px", fontSize: "large" }}>
+//       <Typography
+//         sx={{
+//           textTransform: "capitalize",
+//           textAlign: "center",
+//           fontSize: "x-large",
+//         }}
+//       >
+//         Shift Ends In
+//       </Typography>
+//     </div>
+//     <div style={{ fontSize: "xxx-large", fontWeight: "bold" }}>10:55</div>
+//   </div>
+//   <div
+//     style={{
+//       color: "black",
+//       margin: "5px",
+//       paddingTop: "20px",
+//       paddingBottom: "20px",
+//       flexDirection: "column",
+//       width: "50%",
+//       textAlign: "center",
+//       alignItems: "center",
+//       display: "flex",
+//       justifyContent: "center",
+//       backgroundColor: "whitesmoke",
+//       borderRadius: "10px",
+//     }}
+//   >
+//     <div style={{ marginBottom: "10px", fontSize: "large" }}>
+//       <Typography
+//         sx={{
+//           textTransform: "capitalize",
+//           textAlign: "center",
+//           fontSize: "x-large",
+//         }}
+//       ></Typography>
+//     </div>
+//     <div style={{ fontSize: "xxx-large", fontWeight: "bold" }}>
+//       {/* {count} */}
+//     </div>
+//   </div>
+// </Box>;
