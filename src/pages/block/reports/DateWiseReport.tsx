@@ -23,36 +23,11 @@ function DateWiseReport() {
         let filters: any = {};
         filters["fromDate"] = values.from;
         filters["toDate"] = values.to;
-        filters["maintenanceFilter"] = {
-          machines: {
-            block_id: {
-              equals: values.block,
-            },
-          },
-        };
-        filters["ticketFilter"] = {
-          machines: {
-            block_id: {
-              equals: values.block,
-            },
-          },
-        };
-        filters["routineMaintenancesFilter"] = {
-          meachine: {
-            block_id: {
-              equals: values.block,
-            },
-          },
-        };
-        filters["productionFilter"] = {
-          meachine: {
-            block_id: {
-              equals: values.block,
-            },
-          },
-        };
+        filters["maintenanceFilter"] = [];
+        filters["ticketFilter"] = [];
+        filters["routineMaintenancesFilter"] = [];
+        filters["productionFilter"] = [];
         const filters_64 = btoa(JSON.stringify(filters));
-        console.log(filters_64);
         window.open(
           `${
             import.meta.env["VITE_ENDPOINT"]

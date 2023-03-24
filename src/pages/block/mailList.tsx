@@ -9,7 +9,7 @@ import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import DialogTitle from "@mui/material/DialogTitle";
 import TextField from "@mui/material/TextField";
-import React from "react";
+import React, { useEffect } from "react";
 import { useUpdateBlockMutation } from "../../generated";
 import { toast } from "react-toastify";
 interface Props {
@@ -21,8 +21,11 @@ interface Props {
 
 const MailList: React.FunctionComponent<Props> = (props) => {
   const [update] = useUpdateBlockMutation();
-  const [data, setData] = React.useState<string[]>(props.mailList || []);
+  const [data, setData] = React.useState<string[]>(props?.mailList || []);
   const [field, setField] = React.useState<string>("");
+  useEffect(() => {
+    setData(props?.mailList || []);
+  }, [props?.mailList]);
   return (
     <Dialog open={props.open} onClose={close}>
       <DialogTitle>Critical Mailing List</DialogTitle>
