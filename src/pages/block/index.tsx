@@ -216,6 +216,7 @@ function Block() {
             renderCell: (params) => (
               <Button
                 onClick={() => {
+                  console.log(params.row);
                   setShowMailList({
                     open: true,
                     mailList: params.row.Mailings,
