@@ -7,7 +7,6 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import { MenuItem } from "@mui/material";
 import DateWiseReport from "./DateWiseReport";
-import MachineWiseReport from "./MachineWiseReport";
 
 interface Props {
   open: boolean;
@@ -15,7 +14,6 @@ interface Props {
 }
 
 const Reports: React.FunctionComponent<Props> = (props) => {
-  const [type, SetType] = React.useState<number>(1);
   return (
     <Dialog fullWidth open={props.open} onClose={close}>
       <DialogTitle>Reports</DialogTitle>
@@ -31,22 +29,7 @@ const Reports: React.FunctionComponent<Props> = (props) => {
             marginBottom: 10,
           }}
         >
-          <Select
-            style={{
-              marginTop: 10,
-            }}
-            value={type}
-            fullWidth
-            label=""
-            onChange={(e) => {
-              SetType(e.target.value as any);
-            }}
-          >
-            <MenuItem value={1}>Overall Maintanances Report</MenuItem>
-            <MenuItem value={2}>Machine Maintanances Report</MenuItem>
-          </Select>
-          {type === 1 && <DateWiseReport />}
-          {type === 2 && <MachineWiseReport />}
+          <DateWiseReport />
         </div>
       </DialogContent>
       <DialogActions>
