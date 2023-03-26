@@ -149,6 +149,7 @@ const NewUser: React.FunctionComponent<Props> = (props) => {
                   >
                     <MenuItem value={Role.Fitter}>Fitter</MenuItem>
                     <MenuItem value={Role.Supervisor}>Supervisor</MenuItem>
+                    <MenuItem value={Role.Manager}>Manager</MenuItem>
                   </Field>
                   <Field
                     component={TextField}
