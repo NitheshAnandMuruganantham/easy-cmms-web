@@ -149,6 +149,7 @@ const NewUser: React.FunctionComponent<Props> = (props) => {
                   >
                     <MenuItem value={Role.Fitter}>Fitter</MenuItem>
                     <MenuItem value={Role.Supervisor}>Supervisor</MenuItem>
+                    <MenuItem value={Role.Manager}>Manager</MenuItem>
                   </Field>
                   <Field
                     component={TextField}
@@ -163,6 +164,7 @@ const NewUser: React.FunctionComponent<Props> = (props) => {
                     label="additional role 1"
                     name="add_role_1"
                   >
+                    <MenuItem value={Role.Supervisor}>Supervisor</MenuItem>
                     <MenuItem value={Role.InputController}>
                       InputController
                     </MenuItem>
@@ -178,6 +180,7 @@ const NewUser: React.FunctionComponent<Props> = (props) => {
                     label="additional role 2"
                     name="add_role_2"
                   >
+                    <MenuItem value={Role.Supervisor}>Supervisor</MenuItem>
                     <MenuItem value={Role.InputController}>
                       InputController
                     </MenuItem>
