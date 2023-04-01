@@ -148,6 +148,7 @@ const EditUser: React.FunctionComponent<Props> = (props) => {
                       ProductionController
                     </MenuItem>
                     <MenuItem value={Role.Engineer}>Engineer</MenuItem>
+                    <MenuItem value={Role.Supervisor}>Supervisor</MenuItem>
                     <MenuItem value={Role.Fitter}>Fitter</MenuItem>
                     <MenuItem value={Role.Guest}>Guest</MenuItem>
                   </Field>
@@ -164,6 +165,7 @@ const EditUser: React.FunctionComponent<Props> = (props) => {
                       ProductionController
                     </MenuItem>
                     <MenuItem value={Role.Fitter}>Fitter</MenuItem>
+                    <MenuItem value={Role.Supervisor}>Supervisor</MenuItem>
                     <MenuItem value={Role.Engineer}>Engineer</MenuItem>
                     <MenuItem value={Role.Guest}>Guest</MenuItem>
                   </Field>

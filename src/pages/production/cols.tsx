@@ -20,23 +20,21 @@ const columns: GridColumns<any> = [
     filterOperators: getIdFIlters(),
   },
   {
-    field: "from",
-    headerName: "From",
+    field: "date",
+    headerName: "date",
     flex: 1,
     type: "date",
-    filterOperators: getGridDateOperators(true),
+    filterOperators: getGridDateOperators(false),
     valueFormatter(params) {
-      return new Date(params.value).toLocaleString();
+      return new Date(params.value).toLocaleDateString("en-GB");
     },
   },
   {
-    field: "to",
-    headerName: "To",
+    field: "shift",
+    headerName: "Shift",
     flex: 1,
-    type: "date",
-    filterOperators: getGridDateOperators(true),
     valueFormatter(params) {
-      return new Date(params.value).toLocaleString();
+      return `SHIFT ${params.value}`;
     },
   },
   {

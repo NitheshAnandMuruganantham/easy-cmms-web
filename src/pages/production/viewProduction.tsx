@@ -45,43 +45,34 @@ const ViewProduction: React.FunctionComponent<Props> = ({
           >
             <Table
               style={{
-                marginRight: "50px",
                 textAlign: "center",
               }}
             >
-              <TableHead>
-                <TableRow>
-                  <TableCell>Production ID</TableCell>
-                  <TableCell>Production From</TableCell>
-                  <TableCell>Production To</TableCell>
-                  <TableCell>Running Minutes</TableCell>
-                  <TableCell>Downtime Minutes</TableCell>
-                  <TableCell>Actual Production</TableCell>
-                  <TableCell>Target Production</TableCell>
-                </TableRow>
-              </TableHead>
+              <TableHead></TableHead>
               <TableBody>
                 <TableRow>
-                  <TableCell>{data.production.id}</TableCell>
+                  <TableCell>date</TableCell>
                   <TableCell>
-                    {new Date(data.production.from).toLocaleString()}
-                  </TableCell>
-                  <TableCell>
-                    {new Date(data.production.to).toLocaleString()}
-                  </TableCell>
-                  <TableCell>
-                    {humanize(data.production.total_run_time * 60 * 1000)}
-                  </TableCell>
-                  <TableCell>
-                    {humanize(data.production.total_down_time * 60 * 1000)}
-                  </TableCell>
-                  <TableCell>
-                    {data.production.actual_production / 1000}
-                  </TableCell>
-                  <TableCell>
-                    {data.production.target_production / 1000}
+                    {new Date(data?.production?.date).toLocaleDateString()}
                   </TableCell>
                 </TableRow>
+                <TableRow>
+                  <TableCell>shift</TableCell>
+                  <TableCell>{data?.production?.shift}</TableCell>
+                </TableRow>
+                {data?.production?.production?.data &&
+                  Object.keys(data?.production?.production?.data).map(
+                    (key, index) => {
+                      return (
+                        <TableRow key={index}>
+                          <TableCell>{key}</TableCell>
+                          <TableCell>
+                            {data?.production?.production?.data[key]}
+                          </TableCell>
+                        </TableRow>
+                      );
+                    }
+                  )}
               </TableBody>
             </Table>
           </Box>

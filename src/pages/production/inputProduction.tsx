@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
@@ -6,154 +6,171 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import DialogTitle from "@mui/material/DialogTitle";
-import {
-  useGetAllMachinesDropdownQuery,
-  useCreateMaintananceMutation,
-  useGetTicketLazyQuery,
-  useUsersDropDownQuery,
-  Role,
-} from "../../generated";
-import * as yup from "yup";
+import { buildYup } from "schema-to-yup";
 import { Field, Form, Formik } from "formik";
 import { Select, TextField } from "formik-mui";
-import { DateTimePicker } from "formik-mui-x-date-pickers";
+import { DatePicker } from "formik-mui-x-date-pickers";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import MenuItem from "@mui/material/MenuItem";
-import { toast } from "react-toastify";
 import { CircularProgress } from "@mui/material";
-import axios from "../../utils/axios";
-
+import TimeDurationInput from "../../components/duration";
+import { PlantSettingsContext } from "../../context/PlantSettings";
 interface Props {
   open: boolean;
   close: (refresh: boolean) => void;
 }
 
 const NewProductionData: React.FunctionComponent<Props> = (props) => {
-  const [createMaintanance, { data, error, loading }] =
-    useCreateMaintananceMutation();
-  const { data: UsersDropdown } = useUsersDropDownQuery({
-    variables: {
-      where: {
-        role: {
-          equals: Role.Fitter,
-        },
-      },
-    },
-  });
+  const [platSettings] = useContext(PlantSettingsContext);
+  const [schema, setSchema] = React.useState<any>(null);
+
+  useEffect(() => {
+    if (typeof platSettings === "object") {
+      console.log("settings", platSettings);
+      setSchema(platSettings?.PRODUCTION_INPUT_FORM);
+    }
+  }, [platSettings]);
+
+  const formikRef = React.useRef<any>(null);
+
   return (
     <Dialog fullWidth open={props.open} onClose={close}>
       <DialogTitle>New Production Data</DialogTitle>
-      <Formik
-        initialValues={{
-          total_run_time: 0,
-          total_down_time: 0,
-          target_production: 0,
-          actual_production: 0,
-          from: new Date(),
-          to: new Date().setHours(new Date().getHours() + 1),
-        }}
-        validationSchema={yup.object().shape({
-          total_run_time: yup.number().required(),
-          total_down_time: yup.number().required(),
-          target_production: yup.number().required(),
-          actual_production: yup.number().required(),
-          from: yup.date().required(),
-          to: yup.date().required(),
-        })}
-        onSubmit={async (values) => {
-          await axios
-            .post("inputProduction", {
-              data: {
-                total_run_time: values.total_run_time,
-                total_down_time: values.total_down_time,
-                target_production: values.target_production,
-                actual_production: values.actual_production,
-                from: values.from,
-                to: values.to,
-              },
-            })
-            .then((res) => {
-              if (res.data?.createMaintanance) {
-                toast.success("production entry successfully");
-                props.close(true);
-              }
-            })
-            .catch(() => {
-              toast.error("something went wrong");
-            });
-        }}
-      >
-        {({ submitForm, isSubmitting, values }) => {
-          return (
-            <>
-              <DialogContent>
-                <Form
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    rowGap: "20px",
-                    marginTop: "20px",
-                  }}
-                >
-                  <Field
-                    fullWidth
-                    type="number"
-                    component={TextField}
-                    label="total run time (in minutes)"
-                    name="total_run_time"
-                  />
-                  <Field
-                    fullWidth
-                    type="number"
-                    component={TextField}
-                    label="total down time (in minutes)"
-                    name="total_down_time"
-                  />
-                  <Field
-                    fullWidth
-                    type="number"
-                    component={TextField}
-                    label="target production"
-                    name="target_production"
-                  />
-                  <Field
-                    fullWidth
-                    type="number"
-                    component={TextField}
-                    label="actual production"
-                    name="actual_production"
-                  />
+      {schema && (
+        <Box>
+          <DialogContent>
+            <Formik
+              innerRef={formikRef}
+              initialValues={schema?.initial_value || {}}
+              validationSchema={buildYup(
+                schema?.validation_schema?.schema || {}
+              )}
+              onSubmit={async (values) => {
+                console.log(values);
+              }}
+            >
+              {({
+                submitForm,
+                isSubmitting,
+                values,
+                setFieldValue,
+                errors,
+              }) => {
+                return (
                   <LocalizationProvider dateAdapter={AdapterDateFns}>
-                    <Field
-                      fullWidth
-                      component={DateTimePicker}
-                      label="from"
-                      minDate={new Date()}
-                      name="from"
-                    />
-                    <Field
-                      fullWidth
-                      component={DateTimePicker}
-                      label="to"
-                      minDate={values.from}
-                      name="to"
-                    />
+                    <Form
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        rowGap: "20px",
+                      }}
+                    >
+                      {schema.form.map((item: any, index: number) => {
+                        switch (item.type) {
+                          case "select":
+                            return (
+                              <Field
+                                key={item.field}
+                                fullWidth
+                                style={{
+                                  marginBottom: 10,
+                                }}
+                                component={Select}
+                                name={item.field}
+                                label={item.label}
+                              >
+                                {item.options?.map((option: any) => (
+                                  <MenuItem
+                                    key={option.value}
+                                    value={option.value}
+                                  >
+                                    {option.label}
+                                  </MenuItem>
+                                ))}
+                              </Field>
+                            );
+                          case "text":
+                            return (
+                              <Field
+                                key={item.field}
+                                fullWidth
+                                component={TextField}
+                                name={item.field}
+                                style={{
+                                  marginBottom: 10,
+                                }}
+                                label={item.label}
+                                type={item.type}
+                              />
+                            );
+                          case "number":
+                            return (
+                              <Field
+                                key={item.field}
+                                component={TextField}
+                                name={item.field}
+                                fullWidth
+                                style={{
+                                  marginBottom: 10,
+                                }}
+                                label={item.label}
+                                type={item.type}
+                              />
+                            );
+                          case "duration":
+                            return (
+                              <TimeDurationInput
+                                label={item.label}
+                                // @ts-ignore
+                                error={errors[item.field] ? true : false}
+                                key={item.field}
+                                onChange={(value: number) => {
+                                  setFieldValue(item.field, value);
+                                }}
+                                // @ts-ignore
+                                value={
+                                  typeof values[item.field] === "number"
+                                    ? values[item.field] * 1000
+                                    : values[item.field]
+                                }
+                              />
+                            );
+                          case "date":
+                            return (
+                              <Field
+                                inputFormat="dd/MM/yyyy"
+                                key={item.field}
+                                component={DatePicker}
+                                name={item.field}
+                                fullWidth
+                                style={{
+                                  marginBottom: 10,
+                                }}
+                                label={item.label}
+                              />
+                            );
+                        }
+                      })}
+                    </Form>
                   </LocalizationProvider>
-                </Form>
-              </DialogContent>
-              <DialogActions>
-                <Button color="success" onClick={() => submitForm()}>
-                  {isSubmitting && (
-                    <CircularProgress size={17} style={{ marginRight: 10 }} />
-                  )}
-                  save
-                </Button>
-                <Button onClick={() => props.close(false)}>Cancel</Button>
-              </DialogActions>
-            </>
-          );
-        }}
-      </Formik>
+                );
+              }}
+            </Formik>
+          </DialogContent>
+          <DialogActions>
+            <Button
+              color="success"
+              onClick={() => formikRef.current?.submitForm()}
+            >
+              {formikRef.current?.isSubmitting && (
+                <CircularProgress size={17} style={{ marginRight: 10 }} />
+              )}
+              save
+            </Button>
+            <Button onClick={() => props.close(false)}>Cancel</Button>
+          </DialogActions>
+        </Box>
+      )}
     </Dialog>
   );
 };
