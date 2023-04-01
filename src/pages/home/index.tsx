@@ -44,6 +44,7 @@ function Home() {
     axios
       .get("/dashboard/getProductionDashboard")
       .then((res) => {
+        console.log(res.data);
         setCardData(res.data);
         setCardDataLoading(false);
       })

@@ -575,17 +575,6 @@ export type IntFilter = {
   notIn?: InputMaybe<Array<Scalars['Int']>>;
 };
 
-export type IntNullableFilter = {
-  equals?: InputMaybe<Scalars['Int']>;
-  gt?: InputMaybe<Scalars['Int']>;
-  gte?: InputMaybe<Scalars['Int']>;
-  in?: InputMaybe<Array<Scalars['Int']>>;
-  lt?: InputMaybe<Scalars['Int']>;
-  lte?: InputMaybe<Scalars['Int']>;
-  not?: InputMaybe<NestedIntNullableFilter>;
-  notIn?: InputMaybe<Array<Scalars['Int']>>;
-};
-
 export type ItemCatagory = {
   __typename?: 'ItemCatagory';
   _count: ItemCatagoryCount;
@@ -2636,17 +2625,6 @@ export type NestedIntFilter = {
   notIn?: InputMaybe<Array<Scalars['Int']>>;
 };
 
-export type NestedIntNullableFilter = {
-  equals?: InputMaybe<Scalars['Int']>;
-  gt?: InputMaybe<Scalars['Int']>;
-  gte?: InputMaybe<Scalars['Int']>;
-  in?: InputMaybe<Array<Scalars['Int']>>;
-  lt?: InputMaybe<Scalars['Int']>;
-  lte?: InputMaybe<Scalars['Int']>;
-  not?: InputMaybe<NestedIntNullableFilter>;
-  notIn?: InputMaybe<Array<Scalars['Int']>>;
-};
-
 export type NestedStringFilter = {
   contains?: InputMaybe<Scalars['String']>;
   endsWith?: InputMaybe<Scalars['String']>;
@@ -2681,41 +2659,26 @@ export type NullableDateTimeFieldUpdateOperationsInput = {
   set?: InputMaybe<Scalars['DateTime']>;
 };
 
-export type NullableIntFieldUpdateOperationsInput = {
-  decrement?: InputMaybe<Scalars['Int']>;
-  divide?: InputMaybe<Scalars['Int']>;
-  increment?: InputMaybe<Scalars['Int']>;
-  multiply?: InputMaybe<Scalars['Int']>;
-  set?: InputMaybe<Scalars['Int']>;
-};
-
 export type NullableStringFieldUpdateOperationsInput = {
   set?: InputMaybe<Scalars['String']>;
 };
 
 export type Production_DataAvgAggregate = {
   __typename?: 'Production_dataAvgAggregate';
-  actual_production?: Maybe<Scalars['Float']>;
   blockId?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['Float']>;
-  target_production?: Maybe<Scalars['Float']>;
-  total_down_time?: Maybe<Scalars['Float']>;
-  total_run_time?: Maybe<Scalars['Float']>;
   updated_by?: Maybe<Scalars['Float']>;
 };
 
 export type Production_DataCountAggregate = {
   __typename?: 'Production_dataCountAggregate';
   _all: Scalars['Int'];
-  actual_production: Scalars['Int'];
   blockId: Scalars['Int'];
   created_at: Scalars['Int'];
-  from: Scalars['Int'];
+  date: Scalars['Int'];
   id: Scalars['Int'];
-  target_production: Scalars['Int'];
-  to: Scalars['Int'];
-  total_down_time: Scalars['Int'];
-  total_run_time: Scalars['Int'];
+  production: Scalars['Int'];
+  shift: Scalars['Int'];
   updated_at: Scalars['Int'];
   updated_by: Scalars['Int'];
 };
@@ -2728,42 +2691,30 @@ export type Production_DataListRelationFilter = {
 
 export type Production_DataMaxAggregate = {
   __typename?: 'Production_dataMaxAggregate';
-  actual_production?: Maybe<Scalars['Int']>;
   blockId?: Maybe<Scalars['BigInt']>;
   created_at?: Maybe<Scalars['DateTime']>;
-  from?: Maybe<Scalars['DateTime']>;
+  date?: Maybe<Scalars['DateTime']>;
   id?: Maybe<Scalars['BigInt']>;
-  target_production?: Maybe<Scalars['Int']>;
-  to?: Maybe<Scalars['DateTime']>;
-  total_down_time?: Maybe<Scalars['Int']>;
-  total_run_time?: Maybe<Scalars['Int']>;
+  shift?: Maybe<Scalars['String']>;
   updated_at?: Maybe<Scalars['DateTime']>;
   updated_by?: Maybe<Scalars['BigInt']>;
 };
 
 export type Production_DataMinAggregate = {
   __typename?: 'Production_dataMinAggregate';
-  actual_production?: Maybe<Scalars['Int']>;
   blockId?: Maybe<Scalars['BigInt']>;
   created_at?: Maybe<Scalars['DateTime']>;
-  from?: Maybe<Scalars['DateTime']>;
+  date?: Maybe<Scalars['DateTime']>;
   id?: Maybe<Scalars['BigInt']>;
-  target_production?: Maybe<Scalars['Int']>;
-  to?: Maybe<Scalars['DateTime']>;
-  total_down_time?: Maybe<Scalars['Int']>;
-  total_run_time?: Maybe<Scalars['Int']>;
+  shift?: Maybe<Scalars['String']>;
   updated_at?: Maybe<Scalars['DateTime']>;
   updated_by?: Maybe<Scalars['BigInt']>;
 };
 
 export type Production_DataSumAggregate = {
   __typename?: 'Production_dataSumAggregate';
-  actual_production?: Maybe<Scalars['Int']>;
   blockId?: Maybe<Scalars['BigInt']>;
   id?: Maybe<Scalars['BigInt']>;
-  target_production?: Maybe<Scalars['Int']>;
-  total_down_time?: Maybe<Scalars['Int']>;
-  total_run_time?: Maybe<Scalars['Int']>;
   updated_by?: Maybe<Scalars['BigInt']>;
 };
 
@@ -5092,67 +5043,51 @@ export type Machine_CatagoryWhereUniqueInput = {
 export type Production_Data = {
   __typename?: 'production_data';
   Block?: Maybe<Block>;
-  actual_production?: Maybe<Scalars['Int']>;
   blockId?: Maybe<Scalars['BigInt']>;
   created_at: Scalars['DateTime'];
-  from: Scalars['DateTime'];
+  date: Scalars['DateTime'];
   id: Scalars['BigInt'];
-  target_production?: Maybe<Scalars['Int']>;
-  to: Scalars['DateTime'];
-  total_down_time?: Maybe<Scalars['Int']>;
-  total_run_time?: Maybe<Scalars['Int']>;
+  production: Scalars['JSON'];
+  shift: Scalars['String'];
   updatedBy: Users;
   updated_at: Scalars['DateTime'];
   updated_by: Scalars['BigInt'];
 };
 
 export type Production_DataAvgOrderByAggregateInput = {
-  actual_production?: InputMaybe<SortOrder>;
   blockId?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
-  target_production?: InputMaybe<SortOrder>;
-  total_down_time?: InputMaybe<SortOrder>;
-  total_run_time?: InputMaybe<SortOrder>;
   updated_by?: InputMaybe<SortOrder>;
 };
 
 export type Production_DataCountOrderByAggregateInput = {
-  actual_production?: InputMaybe<SortOrder>;
   blockId?: InputMaybe<SortOrder>;
   created_at?: InputMaybe<SortOrder>;
-  from?: InputMaybe<SortOrder>;
+  date?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
-  target_production?: InputMaybe<SortOrder>;
-  to?: InputMaybe<SortOrder>;
-  total_down_time?: InputMaybe<SortOrder>;
-  total_run_time?: InputMaybe<SortOrder>;
+  production?: InputMaybe<SortOrder>;
+  shift?: InputMaybe<SortOrder>;
   updated_at?: InputMaybe<SortOrder>;
   updated_by?: InputMaybe<SortOrder>;
 };
 
 export type Production_DataCreateInput = {
   Block?: InputMaybe<BlockCreateNestedOneWithoutProduction_DataInput>;
-  actual_production?: InputMaybe<Scalars['Int']>;
   created_at?: InputMaybe<Scalars['DateTime']>;
-  from: Scalars['DateTime'];
+  date: Scalars['DateTime'];
   id?: InputMaybe<Scalars['BigInt']>;
-  target_production?: InputMaybe<Scalars['Int']>;
-  to: Scalars['DateTime'];
-  total_down_time?: InputMaybe<Scalars['Int']>;
-  total_run_time?: InputMaybe<Scalars['Int']>;
+  production?: InputMaybe<Scalars['JSON']>;
+  shift: Scalars['String'];
   updatedBy: UsersCreateNestedOneWithoutProduction_DataInput;
   updated_at?: InputMaybe<Scalars['DateTime']>;
 };
 
 export type Production_DataCreateManyBlockInput = {
-  actual_production?: InputMaybe<Scalars['Int']>;
   created_at?: InputMaybe<Scalars['DateTime']>;
-  from: Scalars['DateTime'];
+  date: Scalars['DateTime'];
   id?: InputMaybe<Scalars['BigInt']>;
-  target_production?: InputMaybe<Scalars['Int']>;
-  to: Scalars['DateTime'];
-  total_down_time?: InputMaybe<Scalars['Int']>;
-  total_run_time?: InputMaybe<Scalars['Int']>;
+  production?: InputMaybe<Scalars['JSON']>;
+  shift: Scalars['String'];
   updated_at?: InputMaybe<Scalars['DateTime']>;
   updated_by: Scalars['BigInt'];
 };
@@ -5163,15 +5098,12 @@ export type Production_DataCreateManyBlockInputEnvelope = {
 };
 
 export type Production_DataCreateManyUpdatedByInput = {
-  actual_production?: InputMaybe<Scalars['Int']>;
   blockId?: InputMaybe<Scalars['BigInt']>;
   created_at?: InputMaybe<Scalars['DateTime']>;
-  from: Scalars['DateTime'];
+  date: Scalars['DateTime'];
   id?: InputMaybe<Scalars['BigInt']>;
-  target_production?: InputMaybe<Scalars['Int']>;
-  to: Scalars['DateTime'];
-  total_down_time?: InputMaybe<Scalars['Int']>;
-  total_run_time?: InputMaybe<Scalars['Int']>;
+  production?: InputMaybe<Scalars['JSON']>;
+  shift: Scalars['String'];
   updated_at?: InputMaybe<Scalars['DateTime']>;
 };
 
@@ -5205,55 +5137,41 @@ export type Production_DataCreateOrConnectWithoutUpdatedByInput = {
 };
 
 export type Production_DataCreateWithoutBlockInput = {
-  actual_production?: InputMaybe<Scalars['Int']>;
   created_at?: InputMaybe<Scalars['DateTime']>;
-  from: Scalars['DateTime'];
+  date: Scalars['DateTime'];
   id?: InputMaybe<Scalars['BigInt']>;
-  target_production?: InputMaybe<Scalars['Int']>;
-  to: Scalars['DateTime'];
-  total_down_time?: InputMaybe<Scalars['Int']>;
-  total_run_time?: InputMaybe<Scalars['Int']>;
+  production?: InputMaybe<Scalars['JSON']>;
+  shift: Scalars['String'];
   updatedBy: UsersCreateNestedOneWithoutProduction_DataInput;
   updated_at?: InputMaybe<Scalars['DateTime']>;
 };
 
 export type Production_DataCreateWithoutUpdatedByInput = {
   Block?: InputMaybe<BlockCreateNestedOneWithoutProduction_DataInput>;
-  actual_production?: InputMaybe<Scalars['Int']>;
   created_at?: InputMaybe<Scalars['DateTime']>;
-  from: Scalars['DateTime'];
+  date: Scalars['DateTime'];
   id?: InputMaybe<Scalars['BigInt']>;
-  target_production?: InputMaybe<Scalars['Int']>;
-  to: Scalars['DateTime'];
-  total_down_time?: InputMaybe<Scalars['Int']>;
-  total_run_time?: InputMaybe<Scalars['Int']>;
+  production?: InputMaybe<Scalars['JSON']>;
+  shift: Scalars['String'];
   updated_at?: InputMaybe<Scalars['DateTime']>;
 };
 
 export type Production_DataMaxOrderByAggregateInput = {
-  actual_production?: InputMaybe<SortOrder>;
   blockId?: InputMaybe<SortOrder>;
   created_at?: InputMaybe<SortOrder>;
-  from?: InputMaybe<SortOrder>;
+  date?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
-  target_production?: InputMaybe<SortOrder>;
-  to?: InputMaybe<SortOrder>;
-  total_down_time?: InputMaybe<SortOrder>;
-  total_run_time?: InputMaybe<SortOrder>;
+  shift?: InputMaybe<SortOrder>;
   updated_at?: InputMaybe<SortOrder>;
   updated_by?: InputMaybe<SortOrder>;
 };
 
 export type Production_DataMinOrderByAggregateInput = {
-  actual_production?: InputMaybe<SortOrder>;
   blockId?: InputMaybe<SortOrder>;
   created_at?: InputMaybe<SortOrder>;
-  from?: InputMaybe<SortOrder>;
+  date?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
-  target_production?: InputMaybe<SortOrder>;
-  to?: InputMaybe<SortOrder>;
-  total_down_time?: InputMaybe<SortOrder>;
-  total_run_time?: InputMaybe<SortOrder>;
+  shift?: InputMaybe<SortOrder>;
   updated_at?: InputMaybe<SortOrder>;
   updated_by?: InputMaybe<SortOrder>;
 };
@@ -5264,15 +5182,12 @@ export type Production_DataOrderByWithAggregationInput = {
   _max?: InputMaybe<Production_DataMaxOrderByAggregateInput>;
   _min?: InputMaybe<Production_DataMinOrderByAggregateInput>;
   _sum?: InputMaybe<Production_DataSumOrderByAggregateInput>;
-  actual_production?: InputMaybe<SortOrder>;
   blockId?: InputMaybe<SortOrder>;
   created_at?: InputMaybe<SortOrder>;
-  from?: InputMaybe<SortOrder>;
+  date?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
-  target_production?: InputMaybe<SortOrder>;
-  to?: InputMaybe<SortOrder>;
-  total_down_time?: InputMaybe<SortOrder>;
-  total_run_time?: InputMaybe<SortOrder>;
+  production?: InputMaybe<SortOrder>;
+  shift?: InputMaybe<SortOrder>;
   updated_at?: InputMaybe<SortOrder>;
   updated_by?: InputMaybe<SortOrder>;
 };
@@ -5281,52 +5196,39 @@ export type Production_DataScalarWhereInput = {
   AND?: InputMaybe<Array<Production_DataScalarWhereInput>>;
   NOT?: InputMaybe<Array<Production_DataScalarWhereInput>>;
   OR?: InputMaybe<Array<Production_DataScalarWhereInput>>;
-  actual_production?: InputMaybe<IntNullableFilter>;
   blockId?: InputMaybe<BigIntNullableFilter>;
   created_at?: InputMaybe<DateTimeFilter>;
-  from?: InputMaybe<DateTimeFilter>;
+  date?: InputMaybe<DateTimeFilter>;
   id?: InputMaybe<BigIntFilter>;
-  target_production?: InputMaybe<IntNullableFilter>;
-  to?: InputMaybe<DateTimeFilter>;
-  total_down_time?: InputMaybe<IntNullableFilter>;
-  total_run_time?: InputMaybe<IntNullableFilter>;
+  production?: InputMaybe<JsonFilter>;
+  shift?: InputMaybe<StringFilter>;
   updated_at?: InputMaybe<DateTimeFilter>;
   updated_by?: InputMaybe<BigIntFilter>;
 };
 
 export type Production_DataSumOrderByAggregateInput = {
-  actual_production?: InputMaybe<SortOrder>;
   blockId?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
-  target_production?: InputMaybe<SortOrder>;
-  total_down_time?: InputMaybe<SortOrder>;
-  total_run_time?: InputMaybe<SortOrder>;
   updated_by?: InputMaybe<SortOrder>;
 };
 
 export type Production_DataUpdateInput = {
   Block?: InputMaybe<BlockUpdateOneWithoutProduction_DataNestedInput>;
-  actual_production?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
   created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  from?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  date?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
-  target_production?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
-  to?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  total_down_time?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
-  total_run_time?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
+  production?: InputMaybe<Scalars['JSON']>;
+  shift?: InputMaybe<StringFieldUpdateOperationsInput>;
   updatedBy?: InputMaybe<UsersUpdateOneRequiredWithoutProduction_DataNestedInput>;
   updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
 export type Production_DataUpdateManyMutationInput = {
-  actual_production?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
   created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  from?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  date?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
-  target_production?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
-  to?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  total_down_time?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
-  total_run_time?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
+  production?: InputMaybe<Scalars['JSON']>;
+  shift?: InputMaybe<StringFieldUpdateOperationsInput>;
   updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
@@ -5379,28 +5281,22 @@ export type Production_DataUpdateWithWhereUniqueWithoutUpdatedByInput = {
 };
 
 export type Production_DataUpdateWithoutBlockInput = {
-  actual_production?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
   created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  from?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  date?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
-  target_production?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
-  to?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  total_down_time?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
-  total_run_time?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
+  production?: InputMaybe<Scalars['JSON']>;
+  shift?: InputMaybe<StringFieldUpdateOperationsInput>;
   updatedBy?: InputMaybe<UsersUpdateOneRequiredWithoutProduction_DataNestedInput>;
   updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
 export type Production_DataUpdateWithoutUpdatedByInput = {
   Block?: InputMaybe<BlockUpdateOneWithoutProduction_DataNestedInput>;
-  actual_production?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
   created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  from?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  date?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
-  target_production?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
-  to?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  total_down_time?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
-  total_run_time?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
+  production?: InputMaybe<Scalars['JSON']>;
+  shift?: InputMaybe<StringFieldUpdateOperationsInput>;
   updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
@@ -5421,15 +5317,12 @@ export type Production_DataWhereInput = {
   Block?: InputMaybe<BlockRelationFilter>;
   NOT?: InputMaybe<Array<Production_DataWhereInput>>;
   OR?: InputMaybe<Array<Production_DataWhereInput>>;
-  actual_production?: InputMaybe<IntNullableFilter>;
   blockId?: InputMaybe<BigIntNullableFilter>;
   created_at?: InputMaybe<DateTimeFilter>;
-  from?: InputMaybe<DateTimeFilter>;
+  date?: InputMaybe<DateTimeFilter>;
   id?: InputMaybe<BigIntFilter>;
-  target_production?: InputMaybe<IntNullableFilter>;
-  to?: InputMaybe<DateTimeFilter>;
-  total_down_time?: InputMaybe<IntNullableFilter>;
-  total_run_time?: InputMaybe<IntNullableFilter>;
+  production?: InputMaybe<JsonFilter>;
+  shift?: InputMaybe<StringFilter>;
   updatedBy?: InputMaybe<UsersRelationFilter>;
   updated_at?: InputMaybe<DateTimeFilter>;
   updated_by?: InputMaybe<BigIntFilter>;
@@ -5918,7 +5811,7 @@ export type ProductionDataQueryVariables = Exact<{
 }>;
 
 
-export type ProductionDataQuery = { __typename?: 'Query', productionData: Array<{ __typename?: 'production_data', id: any, total_run_time?: number | null, total_down_time?: number | null, target_production?: number | null, actual_production?: number | null, created_at: any, from: any, to: any, updatedBy: { __typename?: 'Users', id: any, name: string } }> };
+export type ProductionDataQuery = { __typename?: 'Query', productionData: Array<{ __typename?: 'production_data', id: any, shift: string, date: any, production: any, created_at: any, updatedBy: { __typename?: 'Users', id: any, name: string }, Block?: { __typename?: 'Block', id: any, name: string } | null }> };
 
 export type ProductionDataCountQueryVariables = Exact<{
   limit?: InputMaybe<Scalars['Int']>;
@@ -5935,7 +5828,7 @@ export type ProductionQueryVariables = Exact<{
 }>;
 
 
-export type ProductionQuery = { __typename?: 'Query', production: { __typename?: 'production_data', id: any, total_run_time?: number | null, total_down_time?: number | null, target_production?: number | null, actual_production?: number | null, created_at: any, from: any, to: any, updatedBy: { __typename?: 'Users', id: any, name: string } } };
+export type ProductionQuery = { __typename?: 'Query', production: { __typename?: 'production_data', id: any, shift: string, date: any, production: any, created_at: any, updatedBy: { __typename?: 'Users', id: any, name: string }, Block?: { __typename?: 'Block', id: any, name: string } | null } };
 
 export type RemoveProductionDataMutationVariables = Exact<{
   removeProductionDataId: Scalars['Int'];
@@ -7138,13 +7031,14 @@ export const ProductionDataDocument = gql`
       id
       name
     }
-    total_run_time
-    total_down_time
-    target_production
-    actual_production
+    shift
+    date
+    Block {
+      id
+      name
+    }
+    production
     created_at
-    from
-    to
   }
 }
     `;
@@ -7228,13 +7122,14 @@ export const ProductionDocument = gql`
       id
       name
     }
-    total_run_time
-    total_down_time
-    target_production
-    actual_production
+    shift
+    date
+    Block {
+      id
+      name
+    }
+    production
     created_at
-    from
-    to
   }
 }
     `;

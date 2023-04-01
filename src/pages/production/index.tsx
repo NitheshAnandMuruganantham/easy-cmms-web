@@ -18,13 +18,12 @@ import {
 } from "../../generated";
 import { filterTransform } from "../../utils/filterTransform";
 import columns from "./cols";
-import NewProductionData from "./inputProduction";
+// import NewProductionData from "./inputProduction";
 import { toast } from "react-toastify";
 import { client } from "../../utils/apollo";
-import { PlantSettingsContext } from "../../context/PlantSettings";
 import ViewProduction from "./viewProduction";
 import { flatten } from "flat";
-import EditProductionData from "./editProduction";
+// import EditProductionData from "./editProduction";
 
 function Production() {
   const [page, setPage] = useState(1);
@@ -43,7 +42,6 @@ function Production() {
   const [formattedSort, setFormattedSort] = useState<any>({
     id: SortOrder.Desc,
   });
-  const [settings] = useContext(PlantSettingsContext);
   const [showUpdate, SetShowUpdate] = useState<{
     open: boolean;
     data: any;
@@ -102,7 +100,7 @@ function Production() {
 
   return (
     <div>
-      <NewProductionData
+      {/* <NewProductionData
         open={newData}
         close={(refetch: boolean) => {
           setShowNewData(false);
@@ -125,7 +123,7 @@ function Production() {
         }}
         open={showUpdate.open}
         data={showUpdate.data}
-      />
+      /> */}
       <ViewProduction
         open={showData.open}
         id={showData.data}
@@ -136,7 +134,7 @@ function Production() {
           });
         }}
       />
-      <Box flex={1}>
+      {/* <Box flex={1}>
         <Button
           onClick={() => {
             setShowNewData(true);
@@ -152,7 +150,7 @@ function Production() {
         >
           Input production data
         </Button>
-      </Box>
+      </Box> */}
 
       <DataGrid
         filterMode="server"
@@ -212,26 +210,26 @@ function Production() {
               </Button>
             ),
           },
-          {
-            field: "update",
-            headerName: "",
-            flex: 0.75,
-            sortable: false,
-            renderCell: (params) => (
-              <Button
-                onClick={() => {
-                  SetShowUpdate({
-                    open: true,
-                    data: params.row,
-                  });
-                }}
-                variant="contained"
-                size="small"
-              >
-                Update
-              </Button>
-            ),
-          },
+          // {
+          //   field: "update",
+          //   headerName: "",
+          //   flex: 0.75,
+          //   sortable: false,
+          //   renderCell: (params) => (
+          //     <Button
+          //       onClick={() => {
+          //         SetShowUpdate({
+          //           open: true,
+          //           data: params.row,
+          //         });
+          //       }}
+          //       variant="contained"
+          //       size="small"
+          //     >
+          //       Update
+          //     </Button>
+          //   ),
+          // },
           {
             field: "delete",
             flex: 0.75,
