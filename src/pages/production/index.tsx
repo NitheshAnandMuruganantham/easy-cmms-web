@@ -100,30 +100,6 @@ function Production() {
 
   return (
     <div>
-      {/* <NewProductionData
-        open={newData}
-        close={(refetch: boolean) => {
-          setShowNewData(false);
-          if (refetch) {
-            RefetchProductionDataCount();
-            RefetchProduction();
-          }
-        }}
-      />
-      <EditProductionData
-        close={(refetch: boolean) => {
-          SetShowUpdate({
-            open: false,
-            data: null,
-          });
-          if (refetch) {
-            RefetchProductionDataCount();
-            RefetchProduction();
-          }
-        }}
-        open={showUpdate.open}
-        data={showUpdate.data}
-      /> */}
       <ViewProduction
         open={showData.open}
         id={showData.data}
@@ -134,24 +110,6 @@ function Production() {
           });
         }}
       />
-      {/* <Box flex={1}>
-        <Button
-          onClick={() => {
-            setShowNewData(true);
-          }}
-          color="info"
-          endIcon={<GridAddIcon />}
-          style={{
-            marginBottom: 10,
-            marginRight: 10,
-          }}
-          size="small"
-          variant="contained"
-        >
-          Input production data
-        </Button>
-      </Box> */}
-
       <DataGrid
         filterMode="server"
         sortingMode="server"
@@ -210,26 +168,6 @@ function Production() {
               </Button>
             ),
           },
-          // {
-          //   field: "update",
-          //   headerName: "",
-          //   flex: 0.75,
-          //   sortable: false,
-          //   renderCell: (params) => (
-          //     <Button
-          //       onClick={() => {
-          //         SetShowUpdate({
-          //           open: true,
-          //           data: params.row,
-          //         });
-          //       }}
-          //       variant="contained"
-          //       size="small"
-          //     >
-          //       Update
-          //     </Button>
-          //   ),
-          // },
           {
             field: "delete",
             flex: 0.75,
