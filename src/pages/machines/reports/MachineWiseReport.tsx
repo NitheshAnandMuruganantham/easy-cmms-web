@@ -18,28 +18,16 @@ function MachineWiseReport() {
     <Formik
       initialValues={{
         machine: "",
-        to: new Date(),
-        from: new Date(new Date().setHours(0)),
       }}
       onSubmit={async (values) => {
-        let filters: any = {};
-        filters["fromDate"] = values.from;
-        filters["toDate"] = values.to;
-        filters["maintenanceFilter"] = [];
-        filters["ticketFilter"] = [];
-        filters["routineMaintenancesFilter"] = [];
-        filters["productionFilter"] = [];
-        const filters_64 = btoa(JSON.stringify(filters));
         window.open(
           `${
             import.meta.env["VITE_ENDPOINT"]
-          }/generate-report/report/${filters_64}`,
+          }/generate-report/getMachineMaintenancesReport/${values.machine}`,
           "_blank"
         );
       }}
       validationSchema={yup.object().shape({
-        from: yup.date().required(),
-        to: yup.date().required(),
         machine: yup.string().required(),
       })}
     >
@@ -73,35 +61,7 @@ function MachineWiseReport() {
                     );
                   })}
                 </Field>
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <Box
-                    style={{
-                      marginTop: 10,
 
-                      display: "flex",
-                      flexDirection: "column",
-                      rowGap: "10px",
-                    }}
-                  >
-                    <Field
-                      fullWidth
-                      style={{
-                        marginRight: "10px",
-                      }}
-                      component={DateTimePicker}
-                      label="from"
-                      maxDateTime={new Date()}
-                      name="from"
-                    />
-                    <Field
-                      fullWidth
-                      component={DateTimePicker}
-                      label="to"
-                      minDateTime={values.from}
-                      name="to"
-                    />
-                  </Box>
-                </LocalizationProvider>
                 <Button type="submit">download</Button>
               </Box>
             </Form>
