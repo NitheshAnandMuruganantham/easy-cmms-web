@@ -45,3 +45,9 @@ mutation createMachine($createMachineInput: MachinesCreateInput!) {
     id
   }
 }
+
+mutation updateMachine($updateMachineId: Int!, $updateMachineInput: MachinesUpdateInput!) {
+  updateMachine(id: $updateMachineId, updateMachineInput: $updateMachineInput) {
+     id
+  }
+}
