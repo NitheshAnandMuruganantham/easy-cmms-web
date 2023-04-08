@@ -5754,6 +5754,14 @@ export type CreateMachineMutationVariables = Exact<{
 
 export type CreateMachineMutation = { __typename?: 'Mutation', createMachine: { __typename?: 'Machines', id: any } };
 
+export type UpdateMachineMutationVariables = Exact<{
+  updateMachineId: Scalars['Int'];
+  updateMachineInput: MachinesUpdateInput;
+}>;
+
+
+export type UpdateMachineMutation = { __typename?: 'Mutation', updateMachine: { __typename?: 'Machines', id: any } };
+
 export type MaintenanceQueryVariables = Exact<{
   where?: InputMaybe<MaintenanceWhereInput>;
   orderBy?: InputMaybe<MaintenanceOrderByWithRelationInput>;
@@ -6757,6 +6765,40 @@ export function useCreateMachineMutation(baseOptions?: Apollo.MutationHookOption
 export type CreateMachineMutationHookResult = ReturnType<typeof useCreateMachineMutation>;
 export type CreateMachineMutationResult = Apollo.MutationResult<CreateMachineMutation>;
 export type CreateMachineMutationOptions = Apollo.BaseMutationOptions<CreateMachineMutation, CreateMachineMutationVariables>;
+export const UpdateMachineDocument = gql`
+    mutation updateMachine($updateMachineId: Int!, $updateMachineInput: MachinesUpdateInput!) {
+  updateMachine(id: $updateMachineId, updateMachineInput: $updateMachineInput) {
+    id
+  }
+}
+    `;
+export type UpdateMachineMutationFn = Apollo.MutationFunction<UpdateMachineMutation, UpdateMachineMutationVariables>;
+
+/**
+ * __useUpdateMachineMutation__
+ *
+ * To run a mutation, you first call `useUpdateMachineMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateMachineMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateMachineMutation, { data, loading, error }] = useUpdateMachineMutation({
+ *   variables: {
+ *      updateMachineId: // value for 'updateMachineId'
+ *      updateMachineInput: // value for 'updateMachineInput'
+ *   },
+ * });
+ */
+export function useUpdateMachineMutation(baseOptions?: Apollo.MutationHookOptions<UpdateMachineMutation, UpdateMachineMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateMachineMutation, UpdateMachineMutationVariables>(UpdateMachineDocument, options);
+      }
+export type UpdateMachineMutationHookResult = ReturnType<typeof useUpdateMachineMutation>;
+export type UpdateMachineMutationResult = Apollo.MutationResult<UpdateMachineMutation>;
+export type UpdateMachineMutationOptions = Apollo.BaseMutationOptions<UpdateMachineMutation, UpdateMachineMutationVariables>;
 export const MaintenanceDocument = gql`
     query Maintenance($where: MaintenanceWhereInput, $orderBy: MaintenanceOrderByWithRelationInput, $offset: Int, $limit: Int) {
   maintenances(where: $where, orderBy: $orderBy, offset: $offset, limit: $limit) {

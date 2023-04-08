@@ -25,6 +25,7 @@ import { toast } from "react-toastify";
 import { client } from "../../utils/apollo";
 import axios from "../../utils/axios";
 import { useInterval } from "../../utils/reFetchQueries";
+import EditMachine from "./editMeachine";
 
 function Maintenance() {
   const [page, setPage] = useState(1);
@@ -49,6 +50,14 @@ function Maintenance() {
   ]);
 
   const [newMaintance, setNewMaintance] = useState<boolean>(false);
+  const [showEditMaintenance, setShowEditMaintenance] = useState<{
+    open: boolean;
+    data: any;
+  }>({
+    open: false,
+    data: null,
+  });
+
   const [GetMachineLoading, setGetMachineLoading] = useState<boolean>(false);
 
   const {
@@ -122,6 +131,20 @@ function Maintenance() {
           }
         }}
       />
+      <EditMachine
+        open={showEditMaintenance.open}
+        close={(refetch: boolean) => {
+          setShowEditMaintenance({
+            open: false,
+            data: null,
+          });
+          if (refetch) {
+            RefetchMaintenanceCount();
+            RefetchMaintenances();
+          }
+        }}
+        data={showEditMaintenance.data}
+      />
       <Box flex={1}>
         <Button
           onClick={() => {
@@ -193,6 +216,27 @@ function Maintenance() {
         rowCount={MachinesCount?.machinesCount || 0}
         columns={[
           ...columns,
+          {
+            field: "edit",
+            headerName: "",
+            flex: 0.75,
+            sortable: false,
+            filterable: false,
+            renderCell: (params) => (
+              <Button
+                onClick={() => {
+                  setShowEditMaintenance({
+                    open: true,
+                    data: params.row,
+                  });
+                }}
+                variant="contained"
+                size="small"
+              >
+                Edit
+              </Button>
+            ),
+          },
           {
             field: "delete",
             flex: 0.75,
