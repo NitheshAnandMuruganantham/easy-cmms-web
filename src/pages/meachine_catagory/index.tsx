@@ -51,8 +51,9 @@ function Machine_category() {
   } = useMachineCatagoriesQuery({
     variables: {
       skip: (page - 1) * pageSize,
-      take: pageSize,
+      orderBy: formattedSort,
       where: formattedFilter,
+      take: pageSize,
     },
   });
   const {
@@ -65,8 +66,6 @@ function Machine_category() {
   } = useMachineCatagoriesCountQuery({
     variables: {
       orderBy: formattedSort,
-      skip: (page - 1) * pageSize,
-      take: pageSize,
       where: formattedFilter,
     },
   });

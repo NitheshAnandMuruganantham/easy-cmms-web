@@ -44,12 +44,10 @@ const NewMaintenance: React.FunctionComponent<Props> = (props) => {
           name: "",
           category: "",
           code: "",
-          block: "",
           section: "",
         }}
         validationSchema={yup.object().shape({
           name: yup.string().required(),
-          block: yup.string().required(),
           section: yup.string().required(),
           category: yup.string().required(),
           code: yup.string().required(),
@@ -59,13 +57,8 @@ const NewMaintenance: React.FunctionComponent<Props> = (props) => {
             variables: {
               createMachineInput: {
                 name: values.name,
-                block: {
-                  connect: {
-                    id: values.block,
-                  },
-                },
-                profile:{
-                  "asset_code":values.code
+                profile: {
+                  asset_code: values.code,
                 },
                 section: {
                   connect: {
@@ -120,21 +113,6 @@ const NewMaintenance: React.FunctionComponent<Props> = (props) => {
                     label="asset code"
                     name="code"
                   />
-
-                  <Field
-                    fullWidth
-                    component={Select}
-                    label="block"
-                    name="block"
-                  >
-                    {BlockDropdown?.blocks.map((data) => {
-                      return (
-                        <MenuItem key={data.value} value={data.value}>
-                          {data.name}
-                        </MenuItem>
-                      );
-                    })}
-                  </Field>
                   <Field
                     fullWidth
                     component={Select}

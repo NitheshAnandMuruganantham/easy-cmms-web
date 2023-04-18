@@ -45,11 +45,11 @@ function Maintenance() {
   const [sort, setSort] = useState<any>([
     {
       field: "id",
-      sort: "desc",
+      sort: "asc",
     },
   ]);
 
-  const [newMaintance, setNewMaintance] = useState<boolean>(false);
+  const [showNewMachine, setShowNewMachine] = useState<boolean>(false);
   const [showEditMaintenance, setShowEditMaintenance] = useState<{
     open: boolean;
     data: any;
@@ -119,9 +119,9 @@ function Maintenance() {
         }}
       />
       <NewMaintance
-        open={newMaintance}
+        open={showNewMachine}
         close={(refetch: boolean) => {
-          setNewMaintance(false);
+          setShowNewMachine(false);
           if (refetch) {
             RefetchMaintenanceCount();
             RefetchMaintenances();
@@ -148,7 +148,7 @@ function Maintenance() {
       <Box flex={1}>
         <Button
           onClick={() => {
-            setNewMaintance(true);
+            setShowNewMachine(true);
           }}
           color="info"
           endIcon={<GridAddIcon />}
