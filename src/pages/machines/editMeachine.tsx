@@ -4,15 +4,8 @@ import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import DialogTitle from "@mui/material/DialogTitle";
 import {
-  useGetAllMachinesDropdownQuery,
-  useCreateMaintananceMutation,
-  useGetTicketLazyQuery,
-  useUsersDropDownQuery,
-  useCreateMachineMutation,
-  useBlockDropdownQuery,
   useSectionsDropdownQuery,
   useMeachineCatagoryDropdownQuery,
   useUpdateMachineMutation,
@@ -32,42 +25,33 @@ interface Props {
 }
 
 const EditMachine: React.FunctionComponent<Props> = (props) => {
-  const [createMaintanance, { data, error, loading }] =
-    useUpdateMachineMutation();
-  const { data: BlockDropdown } = useBlockDropdownQuery();
+  const [updateMachine, { data, error, loading }] = useUpdateMachineMutation();
   const { data: SectionDropdown } = useSectionsDropdownQuery();
   const { data: MeachineCatagoriesDropdown } =
     useMeachineCatagoryDropdownQuery();
   return (
     <Dialog fullWidth open={props.open} onClose={close}>
-      <DialogTitle>New Machine </DialogTitle>
+      <DialogTitle>Update Machine </DialogTitle>
       <Formik
         initialValues={{
           ...props.data,
           code: props.data?.profile?.asset_code,
-          block: props.data?.block?.id,
           section: props.data?.section?.id,
           category: props.data?.machine_catagory?.id,
         }}
         validationSchema={yup.object().shape({
           name: yup.string().required(),
-          block: yup.string().required(),
           section: yup.string().required(),
           category: yup.string().required(),
           code: yup.string().required(),
         })}
         onSubmit={async (values) => {
-          await createMaintanance({
+          await updateMachine({
             variables: {
               updateMachineId: props.data.id,
               updateMachineInput: {
                 name: {
                   set: values.name,
-                },
-                block: {
-                  connect: {
-                    id: values.block,
-                  },
                 },
                 profile: {
                   asset_code: values.code,
@@ -130,20 +114,6 @@ const EditMachine: React.FunctionComponent<Props> = (props) => {
                     name="code"
                   />
 
-                  <Field
-                    fullWidth
-                    component={Select}
-                    label="block"
-                    name="block"
-                  >
-                    {BlockDropdown?.blocks.map((data) => {
-                      return (
-                        <MenuItem key={data.value} value={data.value}>
-                          {data.name}
-                        </MenuItem>
-                      );
-                    })}
-                  </Field>
                   <Field
                     fullWidth
                     component={Select}

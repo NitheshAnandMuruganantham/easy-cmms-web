@@ -50,16 +50,26 @@ export type BigIntNullableFilter = {
 
 export type Block = {
   __typename?: 'Block';
+  Items?: Maybe<Array<Items>>;
   Mailings?: Maybe<Array<Scalars['String']>>;
+  Maintenance?: Maybe<Array<Maintenance>>;
+  Replacements?: Maybe<Array<Replacements>>;
+  Reports?: Maybe<Array<Reports>>;
+  Sections?: Maybe<Array<Sections>>;
+  Ticket?: Maybe<Array<Ticket>>;
   Users?: Maybe<Array<Users>>;
   _count: BlockCount;
   block_settings?: Maybe<Array<Block_Settings>>;
+  catagory?: Maybe<Array<Catagory>>;
   created_at: Scalars['DateTime'];
   id: Scalars['BigInt'];
   location: Scalars['String'];
+  machine_catagory?: Maybe<Array<Machine_Catagory>>;
   machines?: Maybe<Array<Machines>>;
+  machines_items?: Maybe<Array<Machines_Items>>;
   name: Scalars['String'];
   production_data?: Maybe<Array<Production_Data>>;
+  routine_maintanances?: Maybe<Array<Routine_Maintanances>>;
   updated_at: Scalars['DateTime'];
 };
 
@@ -82,10 +92,20 @@ export type BlockAvgOrderByAggregateInput = {
 
 export type BlockCount = {
   __typename?: 'BlockCount';
+  Items: Scalars['Int'];
+  Maintenance: Scalars['Int'];
+  Replacements: Scalars['Int'];
+  Reports: Scalars['Int'];
+  Sections: Scalars['Int'];
+  Ticket: Scalars['Int'];
   Users: Scalars['Int'];
   block_settings: Scalars['Int'];
+  catagory: Scalars['Int'];
+  machine_catagory: Scalars['Int'];
   machines: Scalars['Int'];
+  machines_items: Scalars['Int'];
   production_data: Scalars['Int'];
+  routine_maintanances: Scalars['Int'];
 };
 
 export type BlockCountAggregate = {
@@ -109,89 +129,30 @@ export type BlockCountOrderByAggregateInput = {
 };
 
 export type BlockCreateInput = {
+  Items?: InputMaybe<ItemsCreateNestedManyWithoutBlockInput>;
   Mailings?: InputMaybe<BlockCreateMailingsInput>;
+  Maintenance?: InputMaybe<MaintenanceCreateNestedManyWithoutBlockInput>;
+  Replacements?: InputMaybe<ReplacementsCreateNestedManyWithoutBlockInput>;
+  Reports?: InputMaybe<ReportsCreateNestedManyWithoutBlockInput>;
+  Sections?: InputMaybe<SectionsCreateNestedManyWithoutBlockInput>;
+  Ticket?: InputMaybe<TicketCreateNestedManyWithoutBlockInput>;
   Users?: InputMaybe<UsersCreateNestedManyWithoutBlockInput>;
   block_settings?: InputMaybe<Block_SettingsCreateNestedManyWithoutBlockInput>;
+  catagory?: InputMaybe<CatagoryCreateNestedManyWithoutBlockInput>;
   created_at?: InputMaybe<Scalars['DateTime']>;
   id?: InputMaybe<Scalars['BigInt']>;
   location: Scalars['String'];
+  machine_catagory?: InputMaybe<Machine_CatagoryCreateNestedManyWithoutBlockInput>;
   machines?: InputMaybe<MachinesCreateNestedManyWithoutBlockInput>;
+  machines_items?: InputMaybe<Machines_ItemsCreateNestedManyWithoutBlockInput>;
   name: Scalars['String'];
   production_data?: InputMaybe<Production_DataCreateNestedManyWithoutBlockInput>;
+  routine_maintanances?: InputMaybe<Routine_MaintanancesCreateNestedManyWithoutBlockInput>;
   updated_at?: InputMaybe<Scalars['DateTime']>;
 };
 
 export type BlockCreateMailingsInput = {
   set: Array<Scalars['String']>;
-};
-
-export type BlockCreateNestedOneWithoutMachinesInput = {
-  connect?: InputMaybe<BlockWhereUniqueInput>;
-  connectOrCreate?: InputMaybe<BlockCreateOrConnectWithoutMachinesInput>;
-  create?: InputMaybe<BlockCreateWithoutMachinesInput>;
-};
-
-export type BlockCreateNestedOneWithoutProduction_DataInput = {
-  connect?: InputMaybe<BlockWhereUniqueInput>;
-  connectOrCreate?: InputMaybe<BlockCreateOrConnectWithoutProduction_DataInput>;
-  create?: InputMaybe<BlockCreateWithoutProduction_DataInput>;
-};
-
-export type BlockCreateNestedOneWithoutUsersInput = {
-  connect?: InputMaybe<BlockWhereUniqueInput>;
-  connectOrCreate?: InputMaybe<BlockCreateOrConnectWithoutUsersInput>;
-  create?: InputMaybe<BlockCreateWithoutUsersInput>;
-};
-
-export type BlockCreateOrConnectWithoutMachinesInput = {
-  create: BlockCreateWithoutMachinesInput;
-  where: BlockWhereUniqueInput;
-};
-
-export type BlockCreateOrConnectWithoutProduction_DataInput = {
-  create: BlockCreateWithoutProduction_DataInput;
-  where: BlockWhereUniqueInput;
-};
-
-export type BlockCreateOrConnectWithoutUsersInput = {
-  create: BlockCreateWithoutUsersInput;
-  where: BlockWhereUniqueInput;
-};
-
-export type BlockCreateWithoutMachinesInput = {
-  Mailings?: InputMaybe<BlockCreateMailingsInput>;
-  Users?: InputMaybe<UsersCreateNestedManyWithoutBlockInput>;
-  block_settings?: InputMaybe<Block_SettingsCreateNestedManyWithoutBlockInput>;
-  created_at?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['BigInt']>;
-  location: Scalars['String'];
-  name: Scalars['String'];
-  production_data?: InputMaybe<Production_DataCreateNestedManyWithoutBlockInput>;
-  updated_at?: InputMaybe<Scalars['DateTime']>;
-};
-
-export type BlockCreateWithoutProduction_DataInput = {
-  Mailings?: InputMaybe<BlockCreateMailingsInput>;
-  Users?: InputMaybe<UsersCreateNestedManyWithoutBlockInput>;
-  block_settings?: InputMaybe<Block_SettingsCreateNestedManyWithoutBlockInput>;
-  created_at?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['BigInt']>;
-  location: Scalars['String'];
-  machines?: InputMaybe<MachinesCreateNestedManyWithoutBlockInput>;
-  name: Scalars['String'];
-  updated_at?: InputMaybe<Scalars['DateTime']>;
-};
-
-export type BlockCreateWithoutUsersInput = {
-  Mailings?: InputMaybe<BlockCreateMailingsInput>;
-  block_settings?: InputMaybe<Block_SettingsCreateNestedManyWithoutBlockInput>;
-  created_at?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['BigInt']>;
-  location: Scalars['String'];
-  machines?: InputMaybe<MachinesCreateNestedManyWithoutBlockInput>;
-  name: Scalars['String'];
-  production_data?: InputMaybe<Production_DataCreateNestedManyWithoutBlockInput>;
-  updated_at?: InputMaybe<Scalars['DateTime']>;
 };
 
 export type BlockMaxAggregate = {
@@ -266,15 +227,25 @@ export type BlockSumOrderByAggregateInput = {
 };
 
 export type BlockUpdateInput = {
+  Items?: InputMaybe<ItemsUpdateManyWithoutBlockNestedInput>;
   Mailings?: InputMaybe<BlockUpdateMailingsInput>;
+  Maintenance?: InputMaybe<MaintenanceUpdateManyWithoutBlockNestedInput>;
+  Replacements?: InputMaybe<ReplacementsUpdateManyWithoutBlockNestedInput>;
+  Reports?: InputMaybe<ReportsUpdateManyWithoutBlockNestedInput>;
+  Sections?: InputMaybe<SectionsUpdateManyWithoutBlockNestedInput>;
+  Ticket?: InputMaybe<TicketUpdateManyWithoutBlockNestedInput>;
   Users?: InputMaybe<UsersUpdateManyWithoutBlockNestedInput>;
   block_settings?: InputMaybe<Block_SettingsUpdateManyWithoutBlockNestedInput>;
+  catagory?: InputMaybe<CatagoryUpdateManyWithoutBlockNestedInput>;
   created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
   location?: InputMaybe<StringFieldUpdateOperationsInput>;
+  machine_catagory?: InputMaybe<Machine_CatagoryUpdateManyWithoutBlockNestedInput>;
   machines?: InputMaybe<MachinesUpdateManyWithoutBlockNestedInput>;
+  machines_items?: InputMaybe<Machines_ItemsUpdateManyWithoutBlockNestedInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   production_data?: InputMaybe<Production_DataUpdateManyWithoutBlockNestedInput>;
+  routine_maintanances?: InputMaybe<Routine_MaintanancesUpdateManyWithoutBlockNestedInput>;
   updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
@@ -283,101 +254,30 @@ export type BlockUpdateMailingsInput = {
   set?: InputMaybe<Array<Scalars['String']>>;
 };
 
-export type BlockUpdateOneRequiredWithoutMachinesNestedInput = {
-  connect?: InputMaybe<BlockWhereUniqueInput>;
-  connectOrCreate?: InputMaybe<BlockCreateOrConnectWithoutMachinesInput>;
-  create?: InputMaybe<BlockCreateWithoutMachinesInput>;
-  update?: InputMaybe<BlockUpdateWithoutMachinesInput>;
-  upsert?: InputMaybe<BlockUpsertWithoutMachinesInput>;
-};
-
-export type BlockUpdateOneRequiredWithoutUsersNestedInput = {
-  connect?: InputMaybe<BlockWhereUniqueInput>;
-  connectOrCreate?: InputMaybe<BlockCreateOrConnectWithoutUsersInput>;
-  create?: InputMaybe<BlockCreateWithoutUsersInput>;
-  update?: InputMaybe<BlockUpdateWithoutUsersInput>;
-  upsert?: InputMaybe<BlockUpsertWithoutUsersInput>;
-};
-
-export type BlockUpdateOneWithoutProduction_DataNestedInput = {
-  connect?: InputMaybe<BlockWhereUniqueInput>;
-  connectOrCreate?: InputMaybe<BlockCreateOrConnectWithoutProduction_DataInput>;
-  create?: InputMaybe<BlockCreateWithoutProduction_DataInput>;
-  delete?: InputMaybe<Scalars['Boolean']>;
-  disconnect?: InputMaybe<Scalars['Boolean']>;
-  update?: InputMaybe<BlockUpdateWithoutProduction_DataInput>;
-  upsert?: InputMaybe<BlockUpsertWithoutProduction_DataInput>;
-};
-
-export type BlockUpdateWithoutMachinesInput = {
-  Mailings?: InputMaybe<BlockUpdateMailingsInput>;
-  Users?: InputMaybe<UsersUpdateManyWithoutBlockNestedInput>;
-  block_settings?: InputMaybe<Block_SettingsUpdateManyWithoutBlockNestedInput>;
-  created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
-  location?: InputMaybe<StringFieldUpdateOperationsInput>;
-  name?: InputMaybe<StringFieldUpdateOperationsInput>;
-  production_data?: InputMaybe<Production_DataUpdateManyWithoutBlockNestedInput>;
-  updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-};
-
-export type BlockUpdateWithoutProduction_DataInput = {
-  Mailings?: InputMaybe<BlockUpdateMailingsInput>;
-  Users?: InputMaybe<UsersUpdateManyWithoutBlockNestedInput>;
-  block_settings?: InputMaybe<Block_SettingsUpdateManyWithoutBlockNestedInput>;
-  created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
-  location?: InputMaybe<StringFieldUpdateOperationsInput>;
-  machines?: InputMaybe<MachinesUpdateManyWithoutBlockNestedInput>;
-  name?: InputMaybe<StringFieldUpdateOperationsInput>;
-  updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-};
-
-export type BlockUpdateWithoutUsersInput = {
-  Mailings?: InputMaybe<BlockUpdateMailingsInput>;
-  block_settings?: InputMaybe<Block_SettingsUpdateManyWithoutBlockNestedInput>;
-  created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
-  location?: InputMaybe<StringFieldUpdateOperationsInput>;
-  machines?: InputMaybe<MachinesUpdateManyWithoutBlockNestedInput>;
-  name?: InputMaybe<StringFieldUpdateOperationsInput>;
-  production_data?: InputMaybe<Production_DataUpdateManyWithoutBlockNestedInput>;
-  updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-};
-
-export type BlockUpsertWithoutMachinesInput = {
-  create: BlockCreateWithoutMachinesInput;
-  update: BlockUpdateWithoutMachinesInput;
-};
-
-export type BlockUpsertWithoutProduction_DataInput = {
-  create: BlockCreateWithoutProduction_DataInput;
-  update: BlockUpdateWithoutProduction_DataInput;
-};
-
-export type BlockUpsertWithoutUsersInput = {
-  create: BlockCreateWithoutUsersInput;
-  update: BlockUpdateWithoutUsersInput;
-};
-
 export type BlockWhereInput = {
   AND?: InputMaybe<Array<BlockWhereInput>>;
+  Items?: InputMaybe<ItemsListRelationFilter>;
   Mailings?: InputMaybe<StringNullableListFilter>;
+  Maintenance?: InputMaybe<MaintenanceListRelationFilter>;
   NOT?: InputMaybe<Array<BlockWhereInput>>;
   OR?: InputMaybe<Array<BlockWhereInput>>;
+  Replacements?: InputMaybe<ReplacementsListRelationFilter>;
+  Reports?: InputMaybe<ReportsListRelationFilter>;
+  Sections?: InputMaybe<SectionsListRelationFilter>;
+  Ticket?: InputMaybe<TicketListRelationFilter>;
   Users?: InputMaybe<UsersListRelationFilter>;
   block_settings?: InputMaybe<Block_SettingsListRelationFilter>;
+  catagory?: InputMaybe<CatagoryListRelationFilter>;
   created_at?: InputMaybe<DateTimeFilter>;
   id?: InputMaybe<BigIntFilter>;
   location?: InputMaybe<StringFilter>;
+  machine_catagory?: InputMaybe<Machine_CatagoryListRelationFilter>;
   machines?: InputMaybe<MachinesListRelationFilter>;
+  machines_items?: InputMaybe<Machines_ItemsListRelationFilter>;
   name?: InputMaybe<StringFilter>;
   production_data?: InputMaybe<Production_DataListRelationFilter>;
+  routine_maintanances?: InputMaybe<Routine_MaintanancesListRelationFilter>;
   updated_at?: InputMaybe<DateTimeFilter>;
-};
-
-export type BlockWhereUniqueInput = {
-  id?: InputMaybe<Scalars['BigInt']>;
 };
 
 export type Block_SettingsAvgAggregate = {
@@ -438,6 +338,7 @@ export type BoolFilter = {
 
 export type CatagoryAvgAggregate = {
   __typename?: 'CatagoryAvgAggregate';
+  block_id?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['Float']>;
 };
 
@@ -449,14 +350,22 @@ export type CatagoryCount = {
 export type CatagoryCountAggregate = {
   __typename?: 'CatagoryCountAggregate';
   _all: Scalars['Int'];
+  block_id: Scalars['Int'];
   created_at: Scalars['Int'];
   id: Scalars['Int'];
   name: Scalars['Int'];
   updated_at: Scalars['Int'];
 };
 
+export type CatagoryListRelationFilter = {
+  every?: InputMaybe<CatagoryWhereInput>;
+  none?: InputMaybe<CatagoryWhereInput>;
+  some?: InputMaybe<CatagoryWhereInput>;
+};
+
 export type CatagoryMaxAggregate = {
   __typename?: 'CatagoryMaxAggregate';
+  block_id?: Maybe<Scalars['BigInt']>;
   created_at?: Maybe<Scalars['DateTime']>;
   id?: Maybe<Scalars['BigInt']>;
   name?: Maybe<Scalars['String']>;
@@ -465,6 +374,7 @@ export type CatagoryMaxAggregate = {
 
 export type CatagoryMinAggregate = {
   __typename?: 'CatagoryMinAggregate';
+  block_id?: Maybe<Scalars['BigInt']>;
   created_at?: Maybe<Scalars['DateTime']>;
   id?: Maybe<Scalars['BigInt']>;
   name?: Maybe<Scalars['String']>;
@@ -478,6 +388,7 @@ export type CatagoryRelationFilter = {
 
 export type CatagorySumAggregate = {
   __typename?: 'CatagorySumAggregate';
+  block_id?: Maybe<Scalars['BigInt']>;
   id?: Maybe<Scalars['BigInt']>;
 };
 
@@ -705,11 +616,14 @@ export type ItemCatagoryWhereInput = {
 export type Items = {
   __typename?: 'Items';
   _count: ItemsCount;
+  block: Block;
+  block_id: Scalars['BigInt'];
   catagory: Catagory;
   catagory_id: Scalars['BigInt'];
   code: Scalars['String'];
   created_at: Scalars['DateTime'];
   id: Scalars['BigInt'];
+  machines_items?: Maybe<Array<Machines_Items>>;
   name: Scalars['String'];
   quantity: Scalars['Int'];
   replacements?: Maybe<Array<Replacements>>;
@@ -727,6 +641,7 @@ export type ItemsReplacementsArgs = {
 
 export type ItemsAvgAggregate = {
   __typename?: 'ItemsAvgAggregate';
+  block_id?: Maybe<Scalars['Float']>;
   catagory_id?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['Float']>;
   quantity?: Maybe<Scalars['Float']>;
@@ -742,12 +657,14 @@ export type ItemsAvgOrderByAggregateInput = {
 
 export type ItemsCount = {
   __typename?: 'ItemsCount';
+  machines_items: Scalars['Int'];
   replacements: Scalars['Int'];
 };
 
 export type ItemsCountAggregate = {
   __typename?: 'ItemsCountAggregate';
   _all: Scalars['Int'];
+  block_id: Scalars['Int'];
   catagory_id: Scalars['Int'];
   code: Scalars['Int'];
   created_at: Scalars['Int'];
@@ -774,11 +691,43 @@ export type ItemsCreateInput = {
   code: Scalars['String'];
   created_at?: InputMaybe<Scalars['DateTime']>;
   id?: InputMaybe<Scalars['BigInt']>;
+  machines_items?: InputMaybe<Machines_ItemsCreateNestedManyWithoutItemsInput>;
   name: Scalars['String'];
   quantity: Scalars['Int'];
   replacements?: InputMaybe<ReplacementsCreateNestedManyWithoutItemsInput>;
   unit_price: Scalars['Float'];
   updated_at?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type ItemsCreateManyBlockInput = {
+  catagory_id: Scalars['BigInt'];
+  code: Scalars['String'];
+  created_at?: InputMaybe<Scalars['DateTime']>;
+  id?: InputMaybe<Scalars['BigInt']>;
+  name: Scalars['String'];
+  quantity: Scalars['Int'];
+  unit_price: Scalars['Float'];
+  updated_at?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type ItemsCreateManyBlockInputEnvelope = {
+  data: Array<ItemsCreateManyBlockInput>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+};
+
+export type ItemsCreateManyCatagoryInput = {
+  code: Scalars['String'];
+  created_at?: InputMaybe<Scalars['DateTime']>;
+  id?: InputMaybe<Scalars['BigInt']>;
+  name: Scalars['String'];
+  quantity: Scalars['Int'];
+  unit_price: Scalars['Float'];
+  updated_at?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type ItemsCreateManyCatagoryInputEnvelope = {
+  data: Array<ItemsCreateManyCatagoryInput>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
 };
 
 export type ItemsCreateManyItemCatagoryInput = {
@@ -796,11 +745,31 @@ export type ItemsCreateManyItemCatagoryInputEnvelope = {
   skipDuplicates?: InputMaybe<Scalars['Boolean']>;
 };
 
+export type ItemsCreateNestedManyWithoutBlockInput = {
+  connect?: InputMaybe<Array<ItemsWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<ItemsCreateOrConnectWithoutBlockInput>>;
+  create?: InputMaybe<Array<ItemsCreateWithoutBlockInput>>;
+  createMany?: InputMaybe<ItemsCreateManyBlockInputEnvelope>;
+};
+
+export type ItemsCreateNestedManyWithoutCatagoryInput = {
+  connect?: InputMaybe<Array<ItemsWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<ItemsCreateOrConnectWithoutCatagoryInput>>;
+  create?: InputMaybe<Array<ItemsCreateWithoutCatagoryInput>>;
+  createMany?: InputMaybe<ItemsCreateManyCatagoryInputEnvelope>;
+};
+
 export type ItemsCreateNestedManyWithoutItemCatagoryInput = {
   connect?: InputMaybe<Array<ItemsWhereUniqueInput>>;
   connectOrCreate?: InputMaybe<Array<ItemsCreateOrConnectWithoutItemCatagoryInput>>;
   create?: InputMaybe<Array<ItemsCreateWithoutItemCatagoryInput>>;
   createMany?: InputMaybe<ItemsCreateManyItemCatagoryInputEnvelope>;
+};
+
+export type ItemsCreateNestedOneWithoutMachines_ItemsInput = {
+  connect?: InputMaybe<ItemsWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<ItemsCreateOrConnectWithoutMachines_ItemsInput>;
+  create?: InputMaybe<ItemsCreateWithoutMachines_ItemsInput>;
 };
 
 export type ItemsCreateNestedOneWithoutReplacementsInput = {
@@ -809,14 +778,54 @@ export type ItemsCreateNestedOneWithoutReplacementsInput = {
   create?: InputMaybe<ItemsCreateWithoutReplacementsInput>;
 };
 
+export type ItemsCreateOrConnectWithoutBlockInput = {
+  create: ItemsCreateWithoutBlockInput;
+  where: ItemsWhereUniqueInput;
+};
+
+export type ItemsCreateOrConnectWithoutCatagoryInput = {
+  create: ItemsCreateWithoutCatagoryInput;
+  where: ItemsWhereUniqueInput;
+};
+
 export type ItemsCreateOrConnectWithoutItemCatagoryInput = {
   create: ItemsCreateWithoutItemCatagoryInput;
+  where: ItemsWhereUniqueInput;
+};
+
+export type ItemsCreateOrConnectWithoutMachines_ItemsInput = {
+  create: ItemsCreateWithoutMachines_ItemsInput;
   where: ItemsWhereUniqueInput;
 };
 
 export type ItemsCreateOrConnectWithoutReplacementsInput = {
   create: ItemsCreateWithoutReplacementsInput;
   where: ItemsWhereUniqueInput;
+};
+
+export type ItemsCreateWithoutBlockInput = {
+  catagory: CatagoryCreateNestedOneWithoutItemsInput;
+  code: Scalars['String'];
+  created_at?: InputMaybe<Scalars['DateTime']>;
+  id?: InputMaybe<Scalars['BigInt']>;
+  machines_items?: InputMaybe<Machines_ItemsCreateNestedManyWithoutItemsInput>;
+  name: Scalars['String'];
+  quantity: Scalars['Int'];
+  replacements?: InputMaybe<ReplacementsCreateNestedManyWithoutItemsInput>;
+  unit_price: Scalars['Float'];
+  updated_at?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type ItemsCreateWithoutCatagoryInput = {
+  code: Scalars['String'];
+  created_at?: InputMaybe<Scalars['DateTime']>;
+  id?: InputMaybe<Scalars['BigInt']>;
+  machines_items?: InputMaybe<Machines_ItemsCreateNestedManyWithoutItemsInput>;
+  name: Scalars['String'];
+  quantity: Scalars['Int'];
+  replacements?: InputMaybe<ReplacementsCreateNestedManyWithoutItemsInput>;
+  unit_price: Scalars['Float'];
+  updated_at?: InputMaybe<Scalars['DateTime']>;
 };
 
 export type ItemsCreateWithoutItemCatagoryInput = {
@@ -830,11 +839,24 @@ export type ItemsCreateWithoutItemCatagoryInput = {
   updated_at?: InputMaybe<Scalars['DateTime']>;
 };
 
+export type ItemsCreateWithoutMachines_ItemsInput = {
+  catagory: CatagoryCreateNestedOneWithoutItemsInput;
+  code: Scalars['String'];
+  created_at?: InputMaybe<Scalars['DateTime']>;
+  id?: InputMaybe<Scalars['BigInt']>;
+  name: Scalars['String'];
+  quantity: Scalars['Int'];
+  replacements?: InputMaybe<ReplacementsCreateNestedManyWithoutItemsInput>;
+  unit_price: Scalars['Float'];
+  updated_at?: InputMaybe<Scalars['DateTime']>;
+};
+
 export type ItemsCreateWithoutReplacementsInput = {
   catagory: CatagoryCreateNestedOneWithoutItemsInput;
   code: Scalars['String'];
   created_at?: InputMaybe<Scalars['DateTime']>;
   id?: InputMaybe<Scalars['BigInt']>;
+  machines_items?: InputMaybe<Machines_ItemsCreateNestedManyWithoutItemsInput>;
   name: Scalars['String'];
   quantity: Scalars['Int'];
   unit_price: Scalars['Float'];
@@ -849,6 +871,7 @@ export type ItemsListRelationFilter = {
 
 export type ItemsMaxAggregate = {
   __typename?: 'ItemsMaxAggregate';
+  block_id?: Maybe<Scalars['BigInt']>;
   catagory_id?: Maybe<Scalars['BigInt']>;
   code?: Maybe<Scalars['String']>;
   created_at?: Maybe<Scalars['DateTime']>;
@@ -872,6 +895,7 @@ export type ItemsMaxOrderByAggregateInput = {
 
 export type ItemsMinAggregate = {
   __typename?: 'ItemsMinAggregate';
+  block_id?: Maybe<Scalars['BigInt']>;
   catagory_id?: Maybe<Scalars['BigInt']>;
   code?: Maybe<Scalars['String']>;
   created_at?: Maybe<Scalars['DateTime']>;
@@ -947,6 +971,7 @@ export type ItemsScalarWhereInput = {
 
 export type ItemsSumAggregate = {
   __typename?: 'ItemsSumAggregate';
+  block_id?: Maybe<Scalars['BigInt']>;
   catagory_id?: Maybe<Scalars['BigInt']>;
   id?: Maybe<Scalars['BigInt']>;
   quantity?: Maybe<Scalars['Int']>;
@@ -965,6 +990,7 @@ export type ItemsUpdateInput = {
   code?: InputMaybe<StringFieldUpdateOperationsInput>;
   created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
+  machines_items?: InputMaybe<Machines_ItemsUpdateManyWithoutItemsNestedInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   quantity?: InputMaybe<IntFieldUpdateOperationsInput>;
   replacements?: InputMaybe<ReplacementsUpdateManyWithoutItemsNestedInput>;
@@ -982,9 +1008,47 @@ export type ItemsUpdateManyMutationInput = {
   updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
+export type ItemsUpdateManyWithWhereWithoutBlockInput = {
+  data: ItemsUpdateManyMutationInput;
+  where: ItemsScalarWhereInput;
+};
+
+export type ItemsUpdateManyWithWhereWithoutCatagoryInput = {
+  data: ItemsUpdateManyMutationInput;
+  where: ItemsScalarWhereInput;
+};
+
 export type ItemsUpdateManyWithWhereWithoutItemCatagoryInput = {
   data: ItemsUpdateManyMutationInput;
   where: ItemsScalarWhereInput;
+};
+
+export type ItemsUpdateManyWithoutBlockNestedInput = {
+  connect?: InputMaybe<Array<ItemsWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<ItemsCreateOrConnectWithoutBlockInput>>;
+  create?: InputMaybe<Array<ItemsCreateWithoutBlockInput>>;
+  createMany?: InputMaybe<ItemsCreateManyBlockInputEnvelope>;
+  delete?: InputMaybe<Array<ItemsWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<ItemsScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<ItemsWhereUniqueInput>>;
+  set?: InputMaybe<Array<ItemsWhereUniqueInput>>;
+  update?: InputMaybe<Array<ItemsUpdateWithWhereUniqueWithoutBlockInput>>;
+  updateMany?: InputMaybe<Array<ItemsUpdateManyWithWhereWithoutBlockInput>>;
+  upsert?: InputMaybe<Array<ItemsUpsertWithWhereUniqueWithoutBlockInput>>;
+};
+
+export type ItemsUpdateManyWithoutCatagoryNestedInput = {
+  connect?: InputMaybe<Array<ItemsWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<ItemsCreateOrConnectWithoutCatagoryInput>>;
+  create?: InputMaybe<Array<ItemsCreateWithoutCatagoryInput>>;
+  createMany?: InputMaybe<ItemsCreateManyCatagoryInputEnvelope>;
+  delete?: InputMaybe<Array<ItemsWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<ItemsScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<ItemsWhereUniqueInput>>;
+  set?: InputMaybe<Array<ItemsWhereUniqueInput>>;
+  update?: InputMaybe<Array<ItemsUpdateWithWhereUniqueWithoutCatagoryInput>>;
+  updateMany?: InputMaybe<Array<ItemsUpdateManyWithWhereWithoutCatagoryInput>>;
+  upsert?: InputMaybe<Array<ItemsUpsertWithWhereUniqueWithoutCatagoryInput>>;
 };
 
 export type ItemsUpdateManyWithoutItemCatagoryNestedInput = {
@@ -1001,6 +1065,14 @@ export type ItemsUpdateManyWithoutItemCatagoryNestedInput = {
   upsert?: InputMaybe<Array<ItemsUpsertWithWhereUniqueWithoutItemCatagoryInput>>;
 };
 
+export type ItemsUpdateOneRequiredWithoutMachines_ItemsNestedInput = {
+  connect?: InputMaybe<ItemsWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<ItemsCreateOrConnectWithoutMachines_ItemsInput>;
+  create?: InputMaybe<ItemsCreateWithoutMachines_ItemsInput>;
+  update?: InputMaybe<ItemsUpdateWithoutMachines_ItemsInput>;
+  upsert?: InputMaybe<ItemsUpsertWithoutMachines_ItemsInput>;
+};
+
 export type ItemsUpdateOneRequiredWithoutReplacementsNestedInput = {
   connect?: InputMaybe<ItemsWhereUniqueInput>;
   connectOrCreate?: InputMaybe<ItemsCreateOrConnectWithoutReplacementsInput>;
@@ -1009,9 +1081,44 @@ export type ItemsUpdateOneRequiredWithoutReplacementsNestedInput = {
   upsert?: InputMaybe<ItemsUpsertWithoutReplacementsInput>;
 };
 
+export type ItemsUpdateWithWhereUniqueWithoutBlockInput = {
+  data: ItemsUpdateWithoutBlockInput;
+  where: ItemsWhereUniqueInput;
+};
+
+export type ItemsUpdateWithWhereUniqueWithoutCatagoryInput = {
+  data: ItemsUpdateWithoutCatagoryInput;
+  where: ItemsWhereUniqueInput;
+};
+
 export type ItemsUpdateWithWhereUniqueWithoutItemCatagoryInput = {
   data: ItemsUpdateWithoutItemCatagoryInput;
   where: ItemsWhereUniqueInput;
+};
+
+export type ItemsUpdateWithoutBlockInput = {
+  catagory?: InputMaybe<CatagoryUpdateOneRequiredWithoutItemsNestedInput>;
+  code?: InputMaybe<StringFieldUpdateOperationsInput>;
+  created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
+  machines_items?: InputMaybe<Machines_ItemsUpdateManyWithoutItemsNestedInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  quantity?: InputMaybe<IntFieldUpdateOperationsInput>;
+  replacements?: InputMaybe<ReplacementsUpdateManyWithoutItemsNestedInput>;
+  unit_price?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type ItemsUpdateWithoutCatagoryInput = {
+  code?: InputMaybe<StringFieldUpdateOperationsInput>;
+  created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
+  machines_items?: InputMaybe<Machines_ItemsUpdateManyWithoutItemsNestedInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  quantity?: InputMaybe<IntFieldUpdateOperationsInput>;
+  replacements?: InputMaybe<ReplacementsUpdateManyWithoutItemsNestedInput>;
+  unit_price?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
 export type ItemsUpdateWithoutItemCatagoryInput = {
@@ -1025,21 +1132,51 @@ export type ItemsUpdateWithoutItemCatagoryInput = {
   updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
-export type ItemsUpdateWithoutReplacementsInput = {
+export type ItemsUpdateWithoutMachines_ItemsInput = {
   catagory?: InputMaybe<CatagoryUpdateOneRequiredWithoutItemsNestedInput>;
   code?: InputMaybe<StringFieldUpdateOperationsInput>;
   created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   quantity?: InputMaybe<IntFieldUpdateOperationsInput>;
+  replacements?: InputMaybe<ReplacementsUpdateManyWithoutItemsNestedInput>;
   unit_price?: InputMaybe<FloatFieldUpdateOperationsInput>;
   updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type ItemsUpdateWithoutReplacementsInput = {
+  catagory?: InputMaybe<CatagoryUpdateOneRequiredWithoutItemsNestedInput>;
+  code?: InputMaybe<StringFieldUpdateOperationsInput>;
+  created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
+  machines_items?: InputMaybe<Machines_ItemsUpdateManyWithoutItemsNestedInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  quantity?: InputMaybe<IntFieldUpdateOperationsInput>;
+  unit_price?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type ItemsUpsertWithWhereUniqueWithoutBlockInput = {
+  create: ItemsCreateWithoutBlockInput;
+  update: ItemsUpdateWithoutBlockInput;
+  where: ItemsWhereUniqueInput;
+};
+
+export type ItemsUpsertWithWhereUniqueWithoutCatagoryInput = {
+  create: ItemsCreateWithoutCatagoryInput;
+  update: ItemsUpdateWithoutCatagoryInput;
+  where: ItemsWhereUniqueInput;
 };
 
 export type ItemsUpsertWithWhereUniqueWithoutItemCatagoryInput = {
   create: ItemsCreateWithoutItemCatagoryInput;
   update: ItemsUpdateWithoutItemCatagoryInput;
   where: ItemsWhereUniqueInput;
+};
+
+export type ItemsUpsertWithoutMachines_ItemsInput = {
+  create: ItemsCreateWithoutMachines_ItemsInput;
+  update: ItemsUpdateWithoutMachines_ItemsInput;
 };
 
 export type ItemsUpsertWithoutReplacementsInput = {
@@ -1056,6 +1193,7 @@ export type ItemsWhereInput = {
   code?: InputMaybe<StringFilter>;
   created_at?: InputMaybe<DateTimeFilter>;
   id?: InputMaybe<BigIntFilter>;
+  machines_items?: InputMaybe<Machines_ItemsListRelationFilter>;
   name?: InputMaybe<StringFilter>;
   quantity?: InputMaybe<IntFilter>;
   replacements?: InputMaybe<ReplacementsListRelationFilter>;
@@ -1085,6 +1223,7 @@ export type JsonFilter = {
 
 export type Machine_CatagoryAvgAggregate = {
   __typename?: 'Machine_catagoryAvgAggregate';
+  block_id?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['Float']>;
 };
 
@@ -1096,14 +1235,22 @@ export type Machine_CatagoryCount = {
 export type Machine_CatagoryCountAggregate = {
   __typename?: 'Machine_catagoryCountAggregate';
   _all: Scalars['Int'];
+  block_id: Scalars['Int'];
   created_at: Scalars['Int'];
   id: Scalars['Int'];
   name: Scalars['Int'];
   updated_at: Scalars['Int'];
 };
 
+export type Machine_CatagoryListRelationFilter = {
+  every?: InputMaybe<Machine_CatagoryWhereInput>;
+  none?: InputMaybe<Machine_CatagoryWhereInput>;
+  some?: InputMaybe<Machine_CatagoryWhereInput>;
+};
+
 export type Machine_CatagoryMaxAggregate = {
   __typename?: 'Machine_catagoryMaxAggregate';
+  block_id?: Maybe<Scalars['BigInt']>;
   created_at?: Maybe<Scalars['DateTime']>;
   id?: Maybe<Scalars['BigInt']>;
   name?: Maybe<Scalars['String']>;
@@ -1112,6 +1259,7 @@ export type Machine_CatagoryMaxAggregate = {
 
 export type Machine_CatagoryMinAggregate = {
   __typename?: 'Machine_catagoryMinAggregate';
+  block_id?: Maybe<Scalars['BigInt']>;
   created_at?: Maybe<Scalars['DateTime']>;
   id?: Maybe<Scalars['BigInt']>;
   name?: Maybe<Scalars['String']>;
@@ -1125,6 +1273,7 @@ export type Machine_CatagoryRelationFilter = {
 
 export type Machine_CatagorySumAggregate = {
   __typename?: 'Machine_catagorySumAggregate';
+  block_id?: Maybe<Scalars['BigInt']>;
   id?: Maybe<Scalars['BigInt']>;
 };
 
@@ -1139,6 +1288,7 @@ export type Machines = {
   label: Scalars['String'];
   machine_catagory: Machine_Catagory;
   machine_catagory_id: Scalars['BigInt'];
+  machines_items?: Maybe<Array<Machines_Items>>;
   maintenance?: Maybe<Array<Maintenance>>;
   name: Scalars['String'];
   priority: Scalars['Int'];
@@ -1167,7 +1317,6 @@ export type MachinesAvgAggregate = {
 };
 
 export type MachinesAvgOrderByAggregateInput = {
-  block_id?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
   machine_catagory_id?: InputMaybe<SortOrder>;
   priority?: InputMaybe<SortOrder>;
@@ -1177,6 +1326,7 @@ export type MachinesAvgOrderByAggregateInput = {
 export type MachinesCount = {
   __typename?: 'MachinesCount';
   Ticket: Scalars['Int'];
+  machines_items: Scalars['Int'];
   maintenance: Scalars['Int'];
   routine_maintanances: Scalars['Int'];
 };
@@ -1197,7 +1347,6 @@ export type MachinesCountAggregate = {
 };
 
 export type MachinesCountOrderByAggregateInput = {
-  block_id?: InputMaybe<SortOrder>;
   created_at?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
   label?: InputMaybe<SortOrder>;
@@ -1211,11 +1360,11 @@ export type MachinesCountOrderByAggregateInput = {
 
 export type MachinesCreateInput = {
   Ticket?: InputMaybe<TicketCreateNestedManyWithoutMachinesInput>;
-  block: BlockCreateNestedOneWithoutMachinesInput;
   created_at?: InputMaybe<Scalars['DateTime']>;
   id?: InputMaybe<Scalars['BigInt']>;
   label: Scalars['String'];
   machine_catagory: Machine_CatagoryCreateNestedOneWithoutMachinesInput;
+  machines_items?: InputMaybe<Machines_ItemsCreateNestedManyWithoutMachineInput>;
   maintenance?: InputMaybe<MaintenanceCreateNestedManyWithoutMachinesInput>;
   name: Scalars['String'];
   priority: Scalars['Int'];
@@ -1242,11 +1391,63 @@ export type MachinesCreateManyBlockInputEnvelope = {
   skipDuplicates?: InputMaybe<Scalars['Boolean']>;
 };
 
+export type MachinesCreateManyMachine_CatagoryInput = {
+  created_at?: InputMaybe<Scalars['DateTime']>;
+  id?: InputMaybe<Scalars['BigInt']>;
+  label: Scalars['String'];
+  name: Scalars['String'];
+  priority: Scalars['Int'];
+  profile?: InputMaybe<Scalars['JSON']>;
+  section_id: Scalars['BigInt'];
+  updated_at?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type MachinesCreateManyMachine_CatagoryInputEnvelope = {
+  data: Array<MachinesCreateManyMachine_CatagoryInput>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+};
+
+export type MachinesCreateManySectionInput = {
+  created_at?: InputMaybe<Scalars['DateTime']>;
+  id?: InputMaybe<Scalars['BigInt']>;
+  label: Scalars['String'];
+  machine_catagory_id: Scalars['BigInt'];
+  name: Scalars['String'];
+  priority: Scalars['Int'];
+  profile?: InputMaybe<Scalars['JSON']>;
+  updated_at?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type MachinesCreateManySectionInputEnvelope = {
+  data: Array<MachinesCreateManySectionInput>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+};
+
 export type MachinesCreateNestedManyWithoutBlockInput = {
   connect?: InputMaybe<Array<MachinesWhereUniqueInput>>;
   connectOrCreate?: InputMaybe<Array<MachinesCreateOrConnectWithoutBlockInput>>;
   create?: InputMaybe<Array<MachinesCreateWithoutBlockInput>>;
   createMany?: InputMaybe<MachinesCreateManyBlockInputEnvelope>;
+};
+
+export type MachinesCreateNestedManyWithoutMachine_CatagoryInput = {
+  connect?: InputMaybe<Array<MachinesWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<MachinesCreateOrConnectWithoutMachine_CatagoryInput>>;
+  create?: InputMaybe<Array<MachinesCreateWithoutMachine_CatagoryInput>>;
+  createMany?: InputMaybe<MachinesCreateManyMachine_CatagoryInputEnvelope>;
+};
+
+export type MachinesCreateNestedManyWithoutSectionInput = {
+  connect?: InputMaybe<Array<MachinesWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<MachinesCreateOrConnectWithoutSectionInput>>;
+  create?: InputMaybe<Array<MachinesCreateWithoutSectionInput>>;
+  createMany?: InputMaybe<MachinesCreateManySectionInputEnvelope>;
+};
+
+export type MachinesCreateNestedOneWithoutMachines_ItemsInput = {
+  connect?: InputMaybe<MachinesWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<MachinesCreateOrConnectWithoutMachines_ItemsInput>;
+  create?: InputMaybe<MachinesCreateWithoutMachines_ItemsInput>;
 };
 
 export type MachinesCreateNestedOneWithoutMaintenanceInput = {
@@ -1272,6 +1473,16 @@ export type MachinesCreateOrConnectWithoutBlockInput = {
   where: MachinesWhereUniqueInput;
 };
 
+export type MachinesCreateOrConnectWithoutMachine_CatagoryInput = {
+  create: MachinesCreateWithoutMachine_CatagoryInput;
+  where: MachinesWhereUniqueInput;
+};
+
+export type MachinesCreateOrConnectWithoutMachines_ItemsInput = {
+  create: MachinesCreateWithoutMachines_ItemsInput;
+  where: MachinesWhereUniqueInput;
+};
+
 export type MachinesCreateOrConnectWithoutMaintenanceInput = {
   create: MachinesCreateWithoutMaintenanceInput;
   where: MachinesWhereUniqueInput;
@@ -1282,12 +1493,48 @@ export type MachinesCreateOrConnectWithoutRoutine_MaintanancesInput = {
   where: MachinesWhereUniqueInput;
 };
 
+export type MachinesCreateOrConnectWithoutSectionInput = {
+  create: MachinesCreateWithoutSectionInput;
+  where: MachinesWhereUniqueInput;
+};
+
 export type MachinesCreateOrConnectWithoutTicketInput = {
   create: MachinesCreateWithoutTicketInput;
   where: MachinesWhereUniqueInput;
 };
 
 export type MachinesCreateWithoutBlockInput = {
+  Ticket?: InputMaybe<TicketCreateNestedManyWithoutMachinesInput>;
+  created_at?: InputMaybe<Scalars['DateTime']>;
+  id?: InputMaybe<Scalars['BigInt']>;
+  label: Scalars['String'];
+  machine_catagory: Machine_CatagoryCreateNestedOneWithoutMachinesInput;
+  machines_items?: InputMaybe<Machines_ItemsCreateNestedManyWithoutMachineInput>;
+  maintenance?: InputMaybe<MaintenanceCreateNestedManyWithoutMachinesInput>;
+  name: Scalars['String'];
+  priority: Scalars['Int'];
+  profile?: InputMaybe<Scalars['JSON']>;
+  routine_maintanances?: InputMaybe<Routine_MaintanancesCreateNestedManyWithoutMeachineInput>;
+  section: SectionsCreateNestedOneWithoutMachinesInput;
+  updated_at?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type MachinesCreateWithoutMachine_CatagoryInput = {
+  Ticket?: InputMaybe<TicketCreateNestedManyWithoutMachinesInput>;
+  created_at?: InputMaybe<Scalars['DateTime']>;
+  id?: InputMaybe<Scalars['BigInt']>;
+  label: Scalars['String'];
+  machines_items?: InputMaybe<Machines_ItemsCreateNestedManyWithoutMachineInput>;
+  maintenance?: InputMaybe<MaintenanceCreateNestedManyWithoutMachinesInput>;
+  name: Scalars['String'];
+  priority: Scalars['Int'];
+  profile?: InputMaybe<Scalars['JSON']>;
+  routine_maintanances?: InputMaybe<Routine_MaintanancesCreateNestedManyWithoutMeachineInput>;
+  section: SectionsCreateNestedOneWithoutMachinesInput;
+  updated_at?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type MachinesCreateWithoutMachines_ItemsInput = {
   Ticket?: InputMaybe<TicketCreateNestedManyWithoutMachinesInput>;
   created_at?: InputMaybe<Scalars['DateTime']>;
   id?: InputMaybe<Scalars['BigInt']>;
@@ -1304,11 +1551,11 @@ export type MachinesCreateWithoutBlockInput = {
 
 export type MachinesCreateWithoutMaintenanceInput = {
   Ticket?: InputMaybe<TicketCreateNestedManyWithoutMachinesInput>;
-  block: BlockCreateNestedOneWithoutMachinesInput;
   created_at?: InputMaybe<Scalars['DateTime']>;
   id?: InputMaybe<Scalars['BigInt']>;
   label: Scalars['String'];
   machine_catagory: Machine_CatagoryCreateNestedOneWithoutMachinesInput;
+  machines_items?: InputMaybe<Machines_ItemsCreateNestedManyWithoutMachineInput>;
   name: Scalars['String'];
   priority: Scalars['Int'];
   profile?: InputMaybe<Scalars['JSON']>;
@@ -1319,11 +1566,11 @@ export type MachinesCreateWithoutMaintenanceInput = {
 
 export type MachinesCreateWithoutRoutine_MaintanancesInput = {
   Ticket?: InputMaybe<TicketCreateNestedManyWithoutMachinesInput>;
-  block: BlockCreateNestedOneWithoutMachinesInput;
   created_at?: InputMaybe<Scalars['DateTime']>;
   id?: InputMaybe<Scalars['BigInt']>;
   label: Scalars['String'];
   machine_catagory: Machine_CatagoryCreateNestedOneWithoutMachinesInput;
+  machines_items?: InputMaybe<Machines_ItemsCreateNestedManyWithoutMachineInput>;
   maintenance?: InputMaybe<MaintenanceCreateNestedManyWithoutMachinesInput>;
   name: Scalars['String'];
   priority: Scalars['Int'];
@@ -1332,12 +1579,27 @@ export type MachinesCreateWithoutRoutine_MaintanancesInput = {
   updated_at?: InputMaybe<Scalars['DateTime']>;
 };
 
-export type MachinesCreateWithoutTicketInput = {
-  block: BlockCreateNestedOneWithoutMachinesInput;
+export type MachinesCreateWithoutSectionInput = {
+  Ticket?: InputMaybe<TicketCreateNestedManyWithoutMachinesInput>;
   created_at?: InputMaybe<Scalars['DateTime']>;
   id?: InputMaybe<Scalars['BigInt']>;
   label: Scalars['String'];
   machine_catagory: Machine_CatagoryCreateNestedOneWithoutMachinesInput;
+  machines_items?: InputMaybe<Machines_ItemsCreateNestedManyWithoutMachineInput>;
+  maintenance?: InputMaybe<MaintenanceCreateNestedManyWithoutMachinesInput>;
+  name: Scalars['String'];
+  priority: Scalars['Int'];
+  profile?: InputMaybe<Scalars['JSON']>;
+  routine_maintanances?: InputMaybe<Routine_MaintanancesCreateNestedManyWithoutMeachineInput>;
+  updated_at?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type MachinesCreateWithoutTicketInput = {
+  created_at?: InputMaybe<Scalars['DateTime']>;
+  id?: InputMaybe<Scalars['BigInt']>;
+  label: Scalars['String'];
+  machine_catagory: Machine_CatagoryCreateNestedOneWithoutMachinesInput;
+  machines_items?: InputMaybe<Machines_ItemsCreateNestedManyWithoutMachineInput>;
   maintenance?: InputMaybe<MaintenanceCreateNestedManyWithoutMachinesInput>;
   name: Scalars['String'];
   priority: Scalars['Int'];
@@ -1367,7 +1629,6 @@ export type MachinesMaxAggregate = {
 };
 
 export type MachinesMaxOrderByAggregateInput = {
-  block_id?: InputMaybe<SortOrder>;
   created_at?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
   label?: InputMaybe<SortOrder>;
@@ -1392,7 +1653,6 @@ export type MachinesMinAggregate = {
 };
 
 export type MachinesMinOrderByAggregateInput = {
-  block_id?: InputMaybe<SortOrder>;
   created_at?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
   label?: InputMaybe<SortOrder>;
@@ -1413,7 +1673,6 @@ export type MachinesOrderByWithAggregationInput = {
   _max?: InputMaybe<MachinesMaxOrderByAggregateInput>;
   _min?: InputMaybe<MachinesMinOrderByAggregateInput>;
   _sum?: InputMaybe<MachinesSumOrderByAggregateInput>;
-  block_id?: InputMaybe<SortOrder>;
   created_at?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
   label?: InputMaybe<SortOrder>;
@@ -1450,7 +1709,6 @@ export type MachinesScalarWhereInput = {
   AND?: InputMaybe<Array<MachinesScalarWhereInput>>;
   NOT?: InputMaybe<Array<MachinesScalarWhereInput>>;
   OR?: InputMaybe<Array<MachinesScalarWhereInput>>;
-  block_id?: InputMaybe<BigIntFilter>;
   created_at?: InputMaybe<DateTimeFilter>;
   id?: InputMaybe<BigIntFilter>;
   label?: InputMaybe<StringFilter>;
@@ -1472,7 +1730,6 @@ export type MachinesSumAggregate = {
 };
 
 export type MachinesSumOrderByAggregateInput = {
-  block_id?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
   machine_catagory_id?: InputMaybe<SortOrder>;
   priority?: InputMaybe<SortOrder>;
@@ -1481,11 +1738,11 @@ export type MachinesSumOrderByAggregateInput = {
 
 export type MachinesUpdateInput = {
   Ticket?: InputMaybe<TicketUpdateManyWithoutMachinesNestedInput>;
-  block?: InputMaybe<BlockUpdateOneRequiredWithoutMachinesNestedInput>;
   created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
   label?: InputMaybe<StringFieldUpdateOperationsInput>;
   machine_catagory?: InputMaybe<Machine_CatagoryUpdateOneRequiredWithoutMachinesNestedInput>;
+  machines_items?: InputMaybe<Machines_ItemsUpdateManyWithoutMachineNestedInput>;
   maintenance?: InputMaybe<MaintenanceUpdateManyWithoutMachinesNestedInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   priority?: InputMaybe<IntFieldUpdateOperationsInput>;
@@ -1510,6 +1767,16 @@ export type MachinesUpdateManyWithWhereWithoutBlockInput = {
   where: MachinesScalarWhereInput;
 };
 
+export type MachinesUpdateManyWithWhereWithoutMachine_CatagoryInput = {
+  data: MachinesUpdateManyMutationInput;
+  where: MachinesScalarWhereInput;
+};
+
+export type MachinesUpdateManyWithWhereWithoutSectionInput = {
+  data: MachinesUpdateManyMutationInput;
+  where: MachinesScalarWhereInput;
+};
+
 export type MachinesUpdateManyWithoutBlockNestedInput = {
   connect?: InputMaybe<Array<MachinesWhereUniqueInput>>;
   connectOrCreate?: InputMaybe<Array<MachinesCreateOrConnectWithoutBlockInput>>;
@@ -1522,6 +1789,42 @@ export type MachinesUpdateManyWithoutBlockNestedInput = {
   update?: InputMaybe<Array<MachinesUpdateWithWhereUniqueWithoutBlockInput>>;
   updateMany?: InputMaybe<Array<MachinesUpdateManyWithWhereWithoutBlockInput>>;
   upsert?: InputMaybe<Array<MachinesUpsertWithWhereUniqueWithoutBlockInput>>;
+};
+
+export type MachinesUpdateManyWithoutMachine_CatagoryNestedInput = {
+  connect?: InputMaybe<Array<MachinesWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<MachinesCreateOrConnectWithoutMachine_CatagoryInput>>;
+  create?: InputMaybe<Array<MachinesCreateWithoutMachine_CatagoryInput>>;
+  createMany?: InputMaybe<MachinesCreateManyMachine_CatagoryInputEnvelope>;
+  delete?: InputMaybe<Array<MachinesWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<MachinesScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<MachinesWhereUniqueInput>>;
+  set?: InputMaybe<Array<MachinesWhereUniqueInput>>;
+  update?: InputMaybe<Array<MachinesUpdateWithWhereUniqueWithoutMachine_CatagoryInput>>;
+  updateMany?: InputMaybe<Array<MachinesUpdateManyWithWhereWithoutMachine_CatagoryInput>>;
+  upsert?: InputMaybe<Array<MachinesUpsertWithWhereUniqueWithoutMachine_CatagoryInput>>;
+};
+
+export type MachinesUpdateManyWithoutSectionNestedInput = {
+  connect?: InputMaybe<Array<MachinesWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<MachinesCreateOrConnectWithoutSectionInput>>;
+  create?: InputMaybe<Array<MachinesCreateWithoutSectionInput>>;
+  createMany?: InputMaybe<MachinesCreateManySectionInputEnvelope>;
+  delete?: InputMaybe<Array<MachinesWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<MachinesScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<MachinesWhereUniqueInput>>;
+  set?: InputMaybe<Array<MachinesWhereUniqueInput>>;
+  update?: InputMaybe<Array<MachinesUpdateWithWhereUniqueWithoutSectionInput>>;
+  updateMany?: InputMaybe<Array<MachinesUpdateManyWithWhereWithoutSectionInput>>;
+  upsert?: InputMaybe<Array<MachinesUpsertWithWhereUniqueWithoutSectionInput>>;
+};
+
+export type MachinesUpdateOneRequiredWithoutMachines_ItemsNestedInput = {
+  connect?: InputMaybe<MachinesWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<MachinesCreateOrConnectWithoutMachines_ItemsInput>;
+  create?: InputMaybe<MachinesCreateWithoutMachines_ItemsInput>;
+  update?: InputMaybe<MachinesUpdateWithoutMachines_ItemsInput>;
+  upsert?: InputMaybe<MachinesUpsertWithoutMachines_ItemsInput>;
 };
 
 export type MachinesUpdateOneRequiredWithoutMaintenanceNestedInput = {
@@ -1553,7 +1856,48 @@ export type MachinesUpdateWithWhereUniqueWithoutBlockInput = {
   where: MachinesWhereUniqueInput;
 };
 
+export type MachinesUpdateWithWhereUniqueWithoutMachine_CatagoryInput = {
+  data: MachinesUpdateWithoutMachine_CatagoryInput;
+  where: MachinesWhereUniqueInput;
+};
+
+export type MachinesUpdateWithWhereUniqueWithoutSectionInput = {
+  data: MachinesUpdateWithoutSectionInput;
+  where: MachinesWhereUniqueInput;
+};
+
 export type MachinesUpdateWithoutBlockInput = {
+  Ticket?: InputMaybe<TicketUpdateManyWithoutMachinesNestedInput>;
+  created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
+  label?: InputMaybe<StringFieldUpdateOperationsInput>;
+  machine_catagory?: InputMaybe<Machine_CatagoryUpdateOneRequiredWithoutMachinesNestedInput>;
+  machines_items?: InputMaybe<Machines_ItemsUpdateManyWithoutMachineNestedInput>;
+  maintenance?: InputMaybe<MaintenanceUpdateManyWithoutMachinesNestedInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  priority?: InputMaybe<IntFieldUpdateOperationsInput>;
+  profile?: InputMaybe<Scalars['JSON']>;
+  routine_maintanances?: InputMaybe<Routine_MaintanancesUpdateManyWithoutMeachineNestedInput>;
+  section?: InputMaybe<SectionsUpdateOneRequiredWithoutMachinesNestedInput>;
+  updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type MachinesUpdateWithoutMachine_CatagoryInput = {
+  Ticket?: InputMaybe<TicketUpdateManyWithoutMachinesNestedInput>;
+  created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
+  label?: InputMaybe<StringFieldUpdateOperationsInput>;
+  machines_items?: InputMaybe<Machines_ItemsUpdateManyWithoutMachineNestedInput>;
+  maintenance?: InputMaybe<MaintenanceUpdateManyWithoutMachinesNestedInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  priority?: InputMaybe<IntFieldUpdateOperationsInput>;
+  profile?: InputMaybe<Scalars['JSON']>;
+  routine_maintanances?: InputMaybe<Routine_MaintanancesUpdateManyWithoutMeachineNestedInput>;
+  section?: InputMaybe<SectionsUpdateOneRequiredWithoutMachinesNestedInput>;
+  updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type MachinesUpdateWithoutMachines_ItemsInput = {
   Ticket?: InputMaybe<TicketUpdateManyWithoutMachinesNestedInput>;
   created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
@@ -1570,11 +1914,11 @@ export type MachinesUpdateWithoutBlockInput = {
 
 export type MachinesUpdateWithoutMaintenanceInput = {
   Ticket?: InputMaybe<TicketUpdateManyWithoutMachinesNestedInput>;
-  block?: InputMaybe<BlockUpdateOneRequiredWithoutMachinesNestedInput>;
   created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
   label?: InputMaybe<StringFieldUpdateOperationsInput>;
   machine_catagory?: InputMaybe<Machine_CatagoryUpdateOneRequiredWithoutMachinesNestedInput>;
+  machines_items?: InputMaybe<Machines_ItemsUpdateManyWithoutMachineNestedInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   priority?: InputMaybe<IntFieldUpdateOperationsInput>;
   profile?: InputMaybe<Scalars['JSON']>;
@@ -1585,11 +1929,11 @@ export type MachinesUpdateWithoutMaintenanceInput = {
 
 export type MachinesUpdateWithoutRoutine_MaintanancesInput = {
   Ticket?: InputMaybe<TicketUpdateManyWithoutMachinesNestedInput>;
-  block?: InputMaybe<BlockUpdateOneRequiredWithoutMachinesNestedInput>;
   created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
   label?: InputMaybe<StringFieldUpdateOperationsInput>;
   machine_catagory?: InputMaybe<Machine_CatagoryUpdateOneRequiredWithoutMachinesNestedInput>;
+  machines_items?: InputMaybe<Machines_ItemsUpdateManyWithoutMachineNestedInput>;
   maintenance?: InputMaybe<MaintenanceUpdateManyWithoutMachinesNestedInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   priority?: InputMaybe<IntFieldUpdateOperationsInput>;
@@ -1598,12 +1942,27 @@ export type MachinesUpdateWithoutRoutine_MaintanancesInput = {
   updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
-export type MachinesUpdateWithoutTicketInput = {
-  block?: InputMaybe<BlockUpdateOneRequiredWithoutMachinesNestedInput>;
+export type MachinesUpdateWithoutSectionInput = {
+  Ticket?: InputMaybe<TicketUpdateManyWithoutMachinesNestedInput>;
   created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
   label?: InputMaybe<StringFieldUpdateOperationsInput>;
   machine_catagory?: InputMaybe<Machine_CatagoryUpdateOneRequiredWithoutMachinesNestedInput>;
+  machines_items?: InputMaybe<Machines_ItemsUpdateManyWithoutMachineNestedInput>;
+  maintenance?: InputMaybe<MaintenanceUpdateManyWithoutMachinesNestedInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  priority?: InputMaybe<IntFieldUpdateOperationsInput>;
+  profile?: InputMaybe<Scalars['JSON']>;
+  routine_maintanances?: InputMaybe<Routine_MaintanancesUpdateManyWithoutMeachineNestedInput>;
+  updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type MachinesUpdateWithoutTicketInput = {
+  created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
+  label?: InputMaybe<StringFieldUpdateOperationsInput>;
+  machine_catagory?: InputMaybe<Machine_CatagoryUpdateOneRequiredWithoutMachinesNestedInput>;
+  machines_items?: InputMaybe<Machines_ItemsUpdateManyWithoutMachineNestedInput>;
   maintenance?: InputMaybe<MaintenanceUpdateManyWithoutMachinesNestedInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   priority?: InputMaybe<IntFieldUpdateOperationsInput>;
@@ -1617,6 +1976,23 @@ export type MachinesUpsertWithWhereUniqueWithoutBlockInput = {
   create: MachinesCreateWithoutBlockInput;
   update: MachinesUpdateWithoutBlockInput;
   where: MachinesWhereUniqueInput;
+};
+
+export type MachinesUpsertWithWhereUniqueWithoutMachine_CatagoryInput = {
+  create: MachinesCreateWithoutMachine_CatagoryInput;
+  update: MachinesUpdateWithoutMachine_CatagoryInput;
+  where: MachinesWhereUniqueInput;
+};
+
+export type MachinesUpsertWithWhereUniqueWithoutSectionInput = {
+  create: MachinesCreateWithoutSectionInput;
+  update: MachinesUpdateWithoutSectionInput;
+  where: MachinesWhereUniqueInput;
+};
+
+export type MachinesUpsertWithoutMachines_ItemsInput = {
+  create: MachinesCreateWithoutMachines_ItemsInput;
+  update: MachinesUpdateWithoutMachines_ItemsInput;
 };
 
 export type MachinesUpsertWithoutMaintenanceInput = {
@@ -1639,13 +2015,12 @@ export type MachinesWhereInput = {
   NOT?: InputMaybe<Array<MachinesWhereInput>>;
   OR?: InputMaybe<Array<MachinesWhereInput>>;
   Ticket?: InputMaybe<TicketListRelationFilter>;
-  block?: InputMaybe<BlockRelationFilter>;
-  block_id?: InputMaybe<BigIntFilter>;
   created_at?: InputMaybe<DateTimeFilter>;
   id?: InputMaybe<BigIntFilter>;
   label?: InputMaybe<StringFilter>;
   machine_catagory?: InputMaybe<Machine_CatagoryRelationFilter>;
   machine_catagory_id?: InputMaybe<BigIntFilter>;
+  machines_items?: InputMaybe<Machines_ItemsListRelationFilter>;
   maintenance?: InputMaybe<MaintenanceListRelationFilter>;
   name?: InputMaybe<StringFilter>;
   priority?: InputMaybe<IntFilter>;
@@ -1660,12 +2035,61 @@ export type MachinesWhereUniqueInput = {
   id?: InputMaybe<Scalars['BigInt']>;
 };
 
+export type Machines_ItemsAvgAggregate = {
+  __typename?: 'Machines_itemsAvgAggregate';
+  block_id?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['Float']>;
+  item_id?: Maybe<Scalars['Float']>;
+  machine_id?: Maybe<Scalars['Float']>;
+};
+
+export type Machines_ItemsCountAggregate = {
+  __typename?: 'Machines_itemsCountAggregate';
+  _all: Scalars['Int'];
+  block_id: Scalars['Int'];
+  id: Scalars['Int'];
+  item_id: Scalars['Int'];
+  machine_id: Scalars['Int'];
+};
+
+export type Machines_ItemsListRelationFilter = {
+  every?: InputMaybe<Machines_ItemsWhereInput>;
+  none?: InputMaybe<Machines_ItemsWhereInput>;
+  some?: InputMaybe<Machines_ItemsWhereInput>;
+};
+
+export type Machines_ItemsMaxAggregate = {
+  __typename?: 'Machines_itemsMaxAggregate';
+  block_id?: Maybe<Scalars['BigInt']>;
+  id?: Maybe<Scalars['BigInt']>;
+  item_id?: Maybe<Scalars['BigInt']>;
+  machine_id?: Maybe<Scalars['BigInt']>;
+};
+
+export type Machines_ItemsMinAggregate = {
+  __typename?: 'Machines_itemsMinAggregate';
+  block_id?: Maybe<Scalars['BigInt']>;
+  id?: Maybe<Scalars['BigInt']>;
+  item_id?: Maybe<Scalars['BigInt']>;
+  machine_id?: Maybe<Scalars['BigInt']>;
+};
+
+export type Machines_ItemsSumAggregate = {
+  __typename?: 'Machines_itemsSumAggregate';
+  block_id?: Maybe<Scalars['BigInt']>;
+  id?: Maybe<Scalars['BigInt']>;
+  item_id?: Maybe<Scalars['BigInt']>;
+  machine_id?: Maybe<Scalars['BigInt']>;
+};
+
 export type Maintenance = {
   __typename?: 'Maintenance';
   _count: MaintenanceCount;
   assigned?: Maybe<Scalars['Boolean']>;
   assignee: Users;
   assignee_id: Scalars['BigInt'];
+  block: Block;
+  block_id: Scalars['BigInt'];
   created_at: Scalars['DateTime'];
   description: Scalars['String'];
   elapsed?: Maybe<Scalars['DateTime']>;
@@ -1689,6 +2113,7 @@ export type Maintenance = {
 export type MaintenanceAvgAggregate = {
   __typename?: 'MaintenanceAvgAggregate';
   assignee_id?: Maybe<Scalars['Float']>;
+  block_id?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['Float']>;
   machine_id?: Maybe<Scalars['Float']>;
 };
@@ -1703,6 +2128,7 @@ export type MaintenanceCountAggregate = {
   __typename?: 'MaintenanceCountAggregate';
   _all: Scalars['Int'];
   assignee_id: Scalars['Int'];
+  block_id: Scalars['Int'];
   created_at: Scalars['Int'];
   description: Scalars['Int'];
   elapsed: Scalars['Int'];
@@ -1759,6 +2185,28 @@ export type MaintenanceCreateManyAssigneeInputEnvelope = {
   skipDuplicates?: InputMaybe<Scalars['Boolean']>;
 };
 
+export type MaintenanceCreateManyBlockInput = {
+  assignee_id: Scalars['BigInt'];
+  created_at?: InputMaybe<Scalars['DateTime']>;
+  description: Scalars['String'];
+  elapsed?: InputMaybe<Scalars['DateTime']>;
+  from: Scalars['DateTime'];
+  id?: InputMaybe<Scalars['BigInt']>;
+  machine_id: Scalars['BigInt'];
+  metadata?: InputMaybe<Scalars['JSON']>;
+  name: Scalars['String'];
+  photo?: InputMaybe<Scalars['String']>;
+  resolved: Scalars['Boolean'];
+  to: Scalars['DateTime'];
+  un_planned: Scalars['Boolean'];
+  updated_at?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type MaintenanceCreateManyBlockInputEnvelope = {
+  data: Array<MaintenanceCreateManyBlockInput>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+};
+
 export type MaintenanceCreateManyMachinesInput = {
   assignee_id: Scalars['BigInt'];
   created_at?: InputMaybe<Scalars['DateTime']>;
@@ -1785,6 +2233,13 @@ export type MaintenanceCreateNestedManyWithoutAssigneeInput = {
   connectOrCreate?: InputMaybe<Array<MaintenanceCreateOrConnectWithoutAssigneeInput>>;
   create?: InputMaybe<Array<MaintenanceCreateWithoutAssigneeInput>>;
   createMany?: InputMaybe<MaintenanceCreateManyAssigneeInputEnvelope>;
+};
+
+export type MaintenanceCreateNestedManyWithoutBlockInput = {
+  connect?: InputMaybe<Array<MaintenanceWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<MaintenanceCreateOrConnectWithoutBlockInput>>;
+  create?: InputMaybe<Array<MaintenanceCreateWithoutBlockInput>>;
+  createMany?: InputMaybe<MaintenanceCreateManyBlockInputEnvelope>;
 };
 
 export type MaintenanceCreateNestedManyWithoutMachinesInput = {
@@ -1817,6 +2272,11 @@ export type MaintenanceCreateOrConnectWithoutAssigneeInput = {
   where: MaintenanceWhereUniqueInput;
 };
 
+export type MaintenanceCreateOrConnectWithoutBlockInput = {
+  create: MaintenanceCreateWithoutBlockInput;
+  where: MaintenanceWhereUniqueInput;
+};
+
 export type MaintenanceCreateOrConnectWithoutMachinesInput = {
   create: MaintenanceCreateWithoutMachinesInput;
   where: MaintenanceWhereUniqueInput;
@@ -1838,6 +2298,26 @@ export type MaintenanceCreateOrConnectWithoutTicketInput = {
 };
 
 export type MaintenanceCreateWithoutAssigneeInput = {
+  created_at?: InputMaybe<Scalars['DateTime']>;
+  description: Scalars['String'];
+  elapsed?: InputMaybe<Scalars['DateTime']>;
+  from: Scalars['DateTime'];
+  id?: InputMaybe<Scalars['BigInt']>;
+  machines: MachinesCreateNestedOneWithoutMaintenanceInput;
+  metadata?: InputMaybe<Scalars['JSON']>;
+  name: Scalars['String'];
+  photo?: InputMaybe<Scalars['String']>;
+  replacements?: InputMaybe<ReplacementsCreateNestedManyWithoutMaintenanceInput>;
+  reports?: InputMaybe<ReportsCreateNestedManyWithoutMaintenanceInput>;
+  resolved: Scalars['Boolean'];
+  ticket?: InputMaybe<TicketCreateNestedOneWithoutMaintenanceInput>;
+  to: Scalars['DateTime'];
+  un_planned: Scalars['Boolean'];
+  updated_at?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type MaintenanceCreateWithoutBlockInput = {
+  assignee: UsersCreateNestedOneWithoutMaintenanceInput;
   created_at?: InputMaybe<Scalars['DateTime']>;
   description: Scalars['String'];
   elapsed?: InputMaybe<Scalars['DateTime']>;
@@ -1941,6 +2421,7 @@ export type MaintenanceListRelationFilter = {
 export type MaintenanceMaxAggregate = {
   __typename?: 'MaintenanceMaxAggregate';
   assignee_id?: Maybe<Scalars['BigInt']>;
+  block_id?: Maybe<Scalars['BigInt']>;
   created_at?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
   elapsed?: Maybe<Scalars['DateTime']>;
@@ -1958,6 +2439,7 @@ export type MaintenanceMaxAggregate = {
 export type MaintenanceMinAggregate = {
   __typename?: 'MaintenanceMinAggregate';
   assignee_id?: Maybe<Scalars['BigInt']>;
+  block_id?: Maybe<Scalars['BigInt']>;
   created_at?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
   elapsed?: Maybe<Scalars['DateTime']>;
@@ -2025,6 +2507,7 @@ export type MaintenanceScalarWhereInput = {
 export type MaintenanceSumAggregate = {
   __typename?: 'MaintenanceSumAggregate';
   assignee_id?: Maybe<Scalars['BigInt']>;
+  block_id?: Maybe<Scalars['BigInt']>;
   id?: Maybe<Scalars['BigInt']>;
   machine_id?: Maybe<Scalars['BigInt']>;
 };
@@ -2069,6 +2552,11 @@ export type MaintenanceUpdateManyWithWhereWithoutAssigneeInput = {
   where: MaintenanceScalarWhereInput;
 };
 
+export type MaintenanceUpdateManyWithWhereWithoutBlockInput = {
+  data: MaintenanceUpdateManyMutationInput;
+  where: MaintenanceScalarWhereInput;
+};
+
 export type MaintenanceUpdateManyWithWhereWithoutMachinesInput = {
   data: MaintenanceUpdateManyMutationInput;
   where: MaintenanceScalarWhereInput;
@@ -2086,6 +2574,20 @@ export type MaintenanceUpdateManyWithoutAssigneeNestedInput = {
   update?: InputMaybe<Array<MaintenanceUpdateWithWhereUniqueWithoutAssigneeInput>>;
   updateMany?: InputMaybe<Array<MaintenanceUpdateManyWithWhereWithoutAssigneeInput>>;
   upsert?: InputMaybe<Array<MaintenanceUpsertWithWhereUniqueWithoutAssigneeInput>>;
+};
+
+export type MaintenanceUpdateManyWithoutBlockNestedInput = {
+  connect?: InputMaybe<Array<MaintenanceWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<MaintenanceCreateOrConnectWithoutBlockInput>>;
+  create?: InputMaybe<Array<MaintenanceCreateWithoutBlockInput>>;
+  createMany?: InputMaybe<MaintenanceCreateManyBlockInputEnvelope>;
+  delete?: InputMaybe<Array<MaintenanceWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<MaintenanceScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<MaintenanceWhereUniqueInput>>;
+  set?: InputMaybe<Array<MaintenanceWhereUniqueInput>>;
+  update?: InputMaybe<Array<MaintenanceUpdateWithWhereUniqueWithoutBlockInput>>;
+  updateMany?: InputMaybe<Array<MaintenanceUpdateManyWithWhereWithoutBlockInput>>;
+  upsert?: InputMaybe<Array<MaintenanceUpsertWithWhereUniqueWithoutBlockInput>>;
 };
 
 export type MaintenanceUpdateManyWithoutMachinesNestedInput = {
@@ -2133,12 +2635,37 @@ export type MaintenanceUpdateWithWhereUniqueWithoutAssigneeInput = {
   where: MaintenanceWhereUniqueInput;
 };
 
+export type MaintenanceUpdateWithWhereUniqueWithoutBlockInput = {
+  data: MaintenanceUpdateWithoutBlockInput;
+  where: MaintenanceWhereUniqueInput;
+};
+
 export type MaintenanceUpdateWithWhereUniqueWithoutMachinesInput = {
   data: MaintenanceUpdateWithoutMachinesInput;
   where: MaintenanceWhereUniqueInput;
 };
 
 export type MaintenanceUpdateWithoutAssigneeInput = {
+  created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  description?: InputMaybe<StringFieldUpdateOperationsInput>;
+  elapsed?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
+  from?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
+  machines?: InputMaybe<MachinesUpdateOneRequiredWithoutMaintenanceNestedInput>;
+  metadata?: InputMaybe<Scalars['JSON']>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  photo?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
+  replacements?: InputMaybe<ReplacementsUpdateManyWithoutMaintenanceNestedInput>;
+  reports?: InputMaybe<ReportsUpdateManyWithoutMaintenanceNestedInput>;
+  resolved?: InputMaybe<BoolFieldUpdateOperationsInput>;
+  ticket?: InputMaybe<TicketUpdateOneWithoutMaintenanceNestedInput>;
+  to?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  un_planned?: InputMaybe<BoolFieldUpdateOperationsInput>;
+  updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type MaintenanceUpdateWithoutBlockInput = {
+  assignee?: InputMaybe<UsersUpdateOneRequiredWithoutMaintenanceNestedInput>;
   created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   description?: InputMaybe<StringFieldUpdateOperationsInput>;
   elapsed?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
@@ -2236,6 +2763,12 @@ export type MaintenanceUpdateWithoutTicketInput = {
 export type MaintenanceUpsertWithWhereUniqueWithoutAssigneeInput = {
   create: MaintenanceCreateWithoutAssigneeInput;
   update: MaintenanceUpdateWithoutAssigneeInput;
+  where: MaintenanceWhereUniqueInput;
+};
+
+export type MaintenanceUpsertWithWhereUniqueWithoutBlockInput = {
+  create: MaintenanceCreateWithoutBlockInput;
+  update: MaintenanceUpdateWithoutBlockInput;
   where: MaintenanceWhereUniqueInput;
 };
 
@@ -2997,6 +3530,8 @@ export enum QueryMode {
 export type Replacements = {
   __typename?: 'Replacements';
   approved: Scalars['Boolean'];
+  block: Block;
+  block_id: Scalars['BigInt'];
   created_at: Scalars['DateTime'];
   description: Scalars['String'];
   id: Scalars['BigInt'];
@@ -3013,6 +3548,7 @@ export type Replacements = {
 
 export type ReplacementsAvgAggregate = {
   __typename?: 'ReplacementsAvgAggregate';
+  block_id?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['Float']>;
   item_id?: Maybe<Scalars['Float']>;
   maintanance_id?: Maybe<Scalars['Float']>;
@@ -3023,6 +3559,7 @@ export type ReplacementsCountAggregate = {
   __typename?: 'ReplacementsCountAggregate';
   _all: Scalars['Int'];
   approved: Scalars['Int'];
+  block_id: Scalars['Int'];
   created_at: Scalars['Int'];
   description: Scalars['Int'];
   id: Scalars['Int'];
@@ -3045,6 +3582,24 @@ export type ReplacementsCreateInput = {
   name: Scalars['String'];
   quantity: Scalars['Int'];
   updated_at?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type ReplacementsCreateManyBlockInput = {
+  approved?: InputMaybe<Scalars['Boolean']>;
+  created_at?: InputMaybe<Scalars['DateTime']>;
+  description: Scalars['String'];
+  id?: InputMaybe<Scalars['BigInt']>;
+  item_id: Scalars['BigInt'];
+  maintanance_id: Scalars['BigInt'];
+  metadata?: InputMaybe<Scalars['JSON']>;
+  name: Scalars['String'];
+  quantity: Scalars['Int'];
+  updated_at?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type ReplacementsCreateManyBlockInputEnvelope = {
+  data: Array<ReplacementsCreateManyBlockInput>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
 };
 
 export type ReplacementsCreateManyItemsInput = {
@@ -3081,6 +3636,13 @@ export type ReplacementsCreateManyMaintenanceInputEnvelope = {
   skipDuplicates?: InputMaybe<Scalars['Boolean']>;
 };
 
+export type ReplacementsCreateNestedManyWithoutBlockInput = {
+  connect?: InputMaybe<Array<ReplacementsWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<ReplacementsCreateOrConnectWithoutBlockInput>>;
+  create?: InputMaybe<Array<ReplacementsCreateWithoutBlockInput>>;
+  createMany?: InputMaybe<ReplacementsCreateManyBlockInputEnvelope>;
+};
+
 export type ReplacementsCreateNestedManyWithoutItemsInput = {
   connect?: InputMaybe<Array<ReplacementsWhereUniqueInput>>;
   connectOrCreate?: InputMaybe<Array<ReplacementsCreateOrConnectWithoutItemsInput>>;
@@ -3095,6 +3657,11 @@ export type ReplacementsCreateNestedManyWithoutMaintenanceInput = {
   createMany?: InputMaybe<ReplacementsCreateManyMaintenanceInputEnvelope>;
 };
 
+export type ReplacementsCreateOrConnectWithoutBlockInput = {
+  create: ReplacementsCreateWithoutBlockInput;
+  where: ReplacementsWhereUniqueInput;
+};
+
 export type ReplacementsCreateOrConnectWithoutItemsInput = {
   create: ReplacementsCreateWithoutItemsInput;
   where: ReplacementsWhereUniqueInput;
@@ -3103,6 +3670,19 @@ export type ReplacementsCreateOrConnectWithoutItemsInput = {
 export type ReplacementsCreateOrConnectWithoutMaintenanceInput = {
   create: ReplacementsCreateWithoutMaintenanceInput;
   where: ReplacementsWhereUniqueInput;
+};
+
+export type ReplacementsCreateWithoutBlockInput = {
+  approved?: InputMaybe<Scalars['Boolean']>;
+  created_at?: InputMaybe<Scalars['DateTime']>;
+  description: Scalars['String'];
+  id?: InputMaybe<Scalars['BigInt']>;
+  items: ItemsCreateNestedOneWithoutReplacementsInput;
+  maintenance: MaintenanceCreateNestedOneWithoutReplacementsInput;
+  metadata?: InputMaybe<Scalars['JSON']>;
+  name: Scalars['String'];
+  quantity: Scalars['Int'];
+  updated_at?: InputMaybe<Scalars['DateTime']>;
 };
 
 export type ReplacementsCreateWithoutItemsInput = {
@@ -3138,6 +3718,7 @@ export type ReplacementsListRelationFilter = {
 export type ReplacementsMaxAggregate = {
   __typename?: 'ReplacementsMaxAggregate';
   approved?: Maybe<Scalars['Boolean']>;
+  block_id?: Maybe<Scalars['BigInt']>;
   created_at?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['BigInt']>;
@@ -3151,6 +3732,7 @@ export type ReplacementsMaxAggregate = {
 export type ReplacementsMinAggregate = {
   __typename?: 'ReplacementsMinAggregate';
   approved?: Maybe<Scalars['Boolean']>;
+  block_id?: Maybe<Scalars['BigInt']>;
   created_at?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['BigInt']>;
@@ -3198,6 +3780,7 @@ export type ReplacementsScalarWhereInput = {
 
 export type ReplacementsSumAggregate = {
   __typename?: 'ReplacementsSumAggregate';
+  block_id?: Maybe<Scalars['BigInt']>;
   id?: Maybe<Scalars['BigInt']>;
   item_id?: Maybe<Scalars['BigInt']>;
   maintanance_id?: Maybe<Scalars['BigInt']>;
@@ -3228,6 +3811,11 @@ export type ReplacementsUpdateManyMutationInput = {
   updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
+export type ReplacementsUpdateManyWithWhereWithoutBlockInput = {
+  data: ReplacementsUpdateManyMutationInput;
+  where: ReplacementsScalarWhereInput;
+};
+
 export type ReplacementsUpdateManyWithWhereWithoutItemsInput = {
   data: ReplacementsUpdateManyMutationInput;
   where: ReplacementsScalarWhereInput;
@@ -3236,6 +3824,20 @@ export type ReplacementsUpdateManyWithWhereWithoutItemsInput = {
 export type ReplacementsUpdateManyWithWhereWithoutMaintenanceInput = {
   data: ReplacementsUpdateManyMutationInput;
   where: ReplacementsScalarWhereInput;
+};
+
+export type ReplacementsUpdateManyWithoutBlockNestedInput = {
+  connect?: InputMaybe<Array<ReplacementsWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<ReplacementsCreateOrConnectWithoutBlockInput>>;
+  create?: InputMaybe<Array<ReplacementsCreateWithoutBlockInput>>;
+  createMany?: InputMaybe<ReplacementsCreateManyBlockInputEnvelope>;
+  delete?: InputMaybe<Array<ReplacementsWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<ReplacementsScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<ReplacementsWhereUniqueInput>>;
+  set?: InputMaybe<Array<ReplacementsWhereUniqueInput>>;
+  update?: InputMaybe<Array<ReplacementsUpdateWithWhereUniqueWithoutBlockInput>>;
+  updateMany?: InputMaybe<Array<ReplacementsUpdateManyWithWhereWithoutBlockInput>>;
+  upsert?: InputMaybe<Array<ReplacementsUpsertWithWhereUniqueWithoutBlockInput>>;
 };
 
 export type ReplacementsUpdateManyWithoutItemsNestedInput = {
@@ -3266,6 +3868,11 @@ export type ReplacementsUpdateManyWithoutMaintenanceNestedInput = {
   upsert?: InputMaybe<Array<ReplacementsUpsertWithWhereUniqueWithoutMaintenanceInput>>;
 };
 
+export type ReplacementsUpdateWithWhereUniqueWithoutBlockInput = {
+  data: ReplacementsUpdateWithoutBlockInput;
+  where: ReplacementsWhereUniqueInput;
+};
+
 export type ReplacementsUpdateWithWhereUniqueWithoutItemsInput = {
   data: ReplacementsUpdateWithoutItemsInput;
   where: ReplacementsWhereUniqueInput;
@@ -3274,6 +3881,19 @@ export type ReplacementsUpdateWithWhereUniqueWithoutItemsInput = {
 export type ReplacementsUpdateWithWhereUniqueWithoutMaintenanceInput = {
   data: ReplacementsUpdateWithoutMaintenanceInput;
   where: ReplacementsWhereUniqueInput;
+};
+
+export type ReplacementsUpdateWithoutBlockInput = {
+  approved?: InputMaybe<BoolFieldUpdateOperationsInput>;
+  created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  description?: InputMaybe<StringFieldUpdateOperationsInput>;
+  id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
+  items?: InputMaybe<ItemsUpdateOneRequiredWithoutReplacementsNestedInput>;
+  maintenance?: InputMaybe<MaintenanceUpdateOneRequiredWithoutReplacementsNestedInput>;
+  metadata?: InputMaybe<Scalars['JSON']>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  quantity?: InputMaybe<IntFieldUpdateOperationsInput>;
+  updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
 export type ReplacementsUpdateWithoutItemsInput = {
@@ -3298,6 +3918,12 @@ export type ReplacementsUpdateWithoutMaintenanceInput = {
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   quantity?: InputMaybe<IntFieldUpdateOperationsInput>;
   updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type ReplacementsUpsertWithWhereUniqueWithoutBlockInput = {
+  create: ReplacementsCreateWithoutBlockInput;
+  update: ReplacementsUpdateWithoutBlockInput;
+  where: ReplacementsWhereUniqueInput;
 };
 
 export type ReplacementsUpsertWithWhereUniqueWithoutItemsInput = {
@@ -3336,6 +3962,8 @@ export type ReplacementsWhereUniqueInput = {
 
 export type Reports = {
   __typename?: 'Reports';
+  block: Block;
+  block_id: Scalars['BigInt'];
   created_at: Scalars['DateTime'];
   id: Scalars['BigInt'];
   maintance_id: Scalars['BigInt'];
@@ -3350,6 +3978,7 @@ export type Reports = {
 
 export type ReportsAvgAggregate = {
   __typename?: 'ReportsAvgAggregate';
+  block_id?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['Float']>;
   maintance_id?: Maybe<Scalars['Float']>;
   validated?: Maybe<Scalars['Float']>;
@@ -3359,6 +3988,7 @@ export type ReportsAvgAggregate = {
 export type ReportsCountAggregate = {
   __typename?: 'ReportsCountAggregate';
   _all: Scalars['Int'];
+  block_id: Scalars['Int'];
   created_at: Scalars['Int'];
   id: Scalars['Int'];
   maintance_id: Scalars['Int'];
@@ -3382,6 +4012,23 @@ export type ReportsCreateInput = {
   validated_sign: Scalars['BigInt'];
 };
 
+export type ReportsCreateManyBlockInput = {
+  created_at?: InputMaybe<Scalars['DateTime']>;
+  id?: InputMaybe<Scalars['BigInt']>;
+  maintance_id: Scalars['BigInt'];
+  report: Scalars['String'];
+  sign: Scalars['String'];
+  tag: Scalars['JSON'];
+  updated_at?: InputMaybe<Scalars['DateTime']>;
+  validated: Scalars['BigInt'];
+  validated_sign: Scalars['BigInt'];
+};
+
+export type ReportsCreateManyBlockInputEnvelope = {
+  data: Array<ReportsCreateManyBlockInput>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+};
+
 export type ReportsCreateManyMaintenanceInput = {
   created_at?: InputMaybe<Scalars['DateTime']>;
   id?: InputMaybe<Scalars['BigInt']>;
@@ -3398,6 +4045,13 @@ export type ReportsCreateManyMaintenanceInputEnvelope = {
   skipDuplicates?: InputMaybe<Scalars['Boolean']>;
 };
 
+export type ReportsCreateNestedManyWithoutBlockInput = {
+  connect?: InputMaybe<Array<ReportsWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<ReportsCreateOrConnectWithoutBlockInput>>;
+  create?: InputMaybe<Array<ReportsCreateWithoutBlockInput>>;
+  createMany?: InputMaybe<ReportsCreateManyBlockInputEnvelope>;
+};
+
 export type ReportsCreateNestedManyWithoutMaintenanceInput = {
   connect?: InputMaybe<Array<ReportsWhereUniqueInput>>;
   connectOrCreate?: InputMaybe<Array<ReportsCreateOrConnectWithoutMaintenanceInput>>;
@@ -3405,9 +4059,26 @@ export type ReportsCreateNestedManyWithoutMaintenanceInput = {
   createMany?: InputMaybe<ReportsCreateManyMaintenanceInputEnvelope>;
 };
 
+export type ReportsCreateOrConnectWithoutBlockInput = {
+  create: ReportsCreateWithoutBlockInput;
+  where: ReportsWhereUniqueInput;
+};
+
 export type ReportsCreateOrConnectWithoutMaintenanceInput = {
   create: ReportsCreateWithoutMaintenanceInput;
   where: ReportsWhereUniqueInput;
+};
+
+export type ReportsCreateWithoutBlockInput = {
+  created_at?: InputMaybe<Scalars['DateTime']>;
+  id?: InputMaybe<Scalars['BigInt']>;
+  maintenance: MaintenanceCreateNestedOneWithoutReportsInput;
+  report: Scalars['String'];
+  sign: Scalars['String'];
+  tag: Scalars['JSON'];
+  updated_at?: InputMaybe<Scalars['DateTime']>;
+  validated: Scalars['BigInt'];
+  validated_sign: Scalars['BigInt'];
 };
 
 export type ReportsCreateWithoutMaintenanceInput = {
@@ -3429,6 +4100,7 @@ export type ReportsListRelationFilter = {
 
 export type ReportsMaxAggregate = {
   __typename?: 'ReportsMaxAggregate';
+  block_id?: Maybe<Scalars['BigInt']>;
   created_at?: Maybe<Scalars['DateTime']>;
   id?: Maybe<Scalars['BigInt']>;
   maintance_id?: Maybe<Scalars['BigInt']>;
@@ -3441,6 +4113,7 @@ export type ReportsMaxAggregate = {
 
 export type ReportsMinAggregate = {
   __typename?: 'ReportsMinAggregate';
+  block_id?: Maybe<Scalars['BigInt']>;
   created_at?: Maybe<Scalars['DateTime']>;
   id?: Maybe<Scalars['BigInt']>;
   maintance_id?: Maybe<Scalars['BigInt']>;
@@ -3472,6 +4145,7 @@ export type ReportsScalarWhereInput = {
 
 export type ReportsSumAggregate = {
   __typename?: 'ReportsSumAggregate';
+  block_id?: Maybe<Scalars['BigInt']>;
   id?: Maybe<Scalars['BigInt']>;
   maintance_id?: Maybe<Scalars['BigInt']>;
   validated?: Maybe<Scalars['BigInt']>;
@@ -3501,9 +4175,28 @@ export type ReportsUpdateManyMutationInput = {
   validated_sign?: InputMaybe<BigIntFieldUpdateOperationsInput>;
 };
 
+export type ReportsUpdateManyWithWhereWithoutBlockInput = {
+  data: ReportsUpdateManyMutationInput;
+  where: ReportsScalarWhereInput;
+};
+
 export type ReportsUpdateManyWithWhereWithoutMaintenanceInput = {
   data: ReportsUpdateManyMutationInput;
   where: ReportsScalarWhereInput;
+};
+
+export type ReportsUpdateManyWithoutBlockNestedInput = {
+  connect?: InputMaybe<Array<ReportsWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<ReportsCreateOrConnectWithoutBlockInput>>;
+  create?: InputMaybe<Array<ReportsCreateWithoutBlockInput>>;
+  createMany?: InputMaybe<ReportsCreateManyBlockInputEnvelope>;
+  delete?: InputMaybe<Array<ReportsWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<ReportsScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<ReportsWhereUniqueInput>>;
+  set?: InputMaybe<Array<ReportsWhereUniqueInput>>;
+  update?: InputMaybe<Array<ReportsUpdateWithWhereUniqueWithoutBlockInput>>;
+  updateMany?: InputMaybe<Array<ReportsUpdateManyWithWhereWithoutBlockInput>>;
+  upsert?: InputMaybe<Array<ReportsUpsertWithWhereUniqueWithoutBlockInput>>;
 };
 
 export type ReportsUpdateManyWithoutMaintenanceNestedInput = {
@@ -3520,9 +4213,26 @@ export type ReportsUpdateManyWithoutMaintenanceNestedInput = {
   upsert?: InputMaybe<Array<ReportsUpsertWithWhereUniqueWithoutMaintenanceInput>>;
 };
 
+export type ReportsUpdateWithWhereUniqueWithoutBlockInput = {
+  data: ReportsUpdateWithoutBlockInput;
+  where: ReportsWhereUniqueInput;
+};
+
 export type ReportsUpdateWithWhereUniqueWithoutMaintenanceInput = {
   data: ReportsUpdateWithoutMaintenanceInput;
   where: ReportsWhereUniqueInput;
+};
+
+export type ReportsUpdateWithoutBlockInput = {
+  created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
+  maintenance?: InputMaybe<MaintenanceUpdateOneRequiredWithoutReportsNestedInput>;
+  report?: InputMaybe<StringFieldUpdateOperationsInput>;
+  sign?: InputMaybe<StringFieldUpdateOperationsInput>;
+  tag?: InputMaybe<Scalars['JSON']>;
+  updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  validated?: InputMaybe<BigIntFieldUpdateOperationsInput>;
+  validated_sign?: InputMaybe<BigIntFieldUpdateOperationsInput>;
 };
 
 export type ReportsUpdateWithoutMaintenanceInput = {
@@ -3534,6 +4244,12 @@ export type ReportsUpdateWithoutMaintenanceInput = {
   updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   validated?: InputMaybe<BigIntFieldUpdateOperationsInput>;
   validated_sign?: InputMaybe<BigIntFieldUpdateOperationsInput>;
+};
+
+export type ReportsUpsertWithWhereUniqueWithoutBlockInput = {
+  create: ReportsCreateWithoutBlockInput;
+  update: ReportsUpdateWithoutBlockInput;
+  where: ReportsWhereUniqueInput;
 };
 
 export type ReportsUpsertWithWhereUniqueWithoutMaintenanceInput = {
@@ -3576,6 +4292,7 @@ export enum Role {
 export type Routine_MaintanancesAvgAggregate = {
   __typename?: 'Routine_maintanancesAvgAggregate';
   assignee_id?: Maybe<Scalars['Float']>;
+  block_id?: Maybe<Scalars['Float']>;
   duration?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['Float']>;
   meachine_id?: Maybe<Scalars['Float']>;
@@ -3585,6 +4302,7 @@ export type Routine_MaintanancesCountAggregate = {
   __typename?: 'Routine_maintanancesCountAggregate';
   _all: Scalars['Int'];
   assignee_id: Scalars['Int'];
+  block_id: Scalars['Int'];
   created_at: Scalars['Int'];
   cron: Scalars['Int'];
   description: Scalars['Int'];
@@ -3604,6 +4322,7 @@ export type Routine_MaintanancesListRelationFilter = {
 export type Routine_MaintanancesMaxAggregate = {
   __typename?: 'Routine_maintanancesMaxAggregate';
   assignee_id?: Maybe<Scalars['BigInt']>;
+  block_id?: Maybe<Scalars['BigInt']>;
   created_at?: Maybe<Scalars['DateTime']>;
   cron?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
@@ -3617,6 +4336,7 @@ export type Routine_MaintanancesMaxAggregate = {
 export type Routine_MaintanancesMinAggregate = {
   __typename?: 'Routine_maintanancesMinAggregate';
   assignee_id?: Maybe<Scalars['BigInt']>;
+  block_id?: Maybe<Scalars['BigInt']>;
   created_at?: Maybe<Scalars['DateTime']>;
   cron?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
@@ -3630,6 +4350,7 @@ export type Routine_MaintanancesMinAggregate = {
 export type Routine_MaintanancesSumAggregate = {
   __typename?: 'Routine_maintanancesSumAggregate';
   assignee_id?: Maybe<Scalars['BigInt']>;
+  block_id?: Maybe<Scalars['BigInt']>;
   duration?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['BigInt']>;
   meachine_id?: Maybe<Scalars['BigInt']>;
@@ -3729,6 +4450,8 @@ export type SectionWhereInput = {
 export type Sections = {
   __typename?: 'Sections';
   _count: SectionsCount;
+  block: Block;
+  block_id: Scalars['BigInt'];
   created_at: Scalars['DateTime'];
   id: Scalars['BigInt'];
   machines?: Maybe<Array<Machines>>;
@@ -3741,10 +4464,34 @@ export type SectionsCount = {
   machines: Scalars['Int'];
 };
 
+export type SectionsCreateManyBlockInput = {
+  created_at?: InputMaybe<Scalars['DateTime']>;
+  id?: InputMaybe<Scalars['BigInt']>;
+  name: Scalars['String'];
+  updated_at?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type SectionsCreateManyBlockInputEnvelope = {
+  data: Array<SectionsCreateManyBlockInput>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+};
+
+export type SectionsCreateNestedManyWithoutBlockInput = {
+  connect?: InputMaybe<Array<SectionsWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<SectionsCreateOrConnectWithoutBlockInput>>;
+  create?: InputMaybe<Array<SectionsCreateWithoutBlockInput>>;
+  createMany?: InputMaybe<SectionsCreateManyBlockInputEnvelope>;
+};
+
 export type SectionsCreateNestedOneWithoutMachinesInput = {
   connect?: InputMaybe<SectionsWhereUniqueInput>;
   connectOrCreate?: InputMaybe<SectionsCreateOrConnectWithoutMachinesInput>;
   create?: InputMaybe<SectionsCreateWithoutMachinesInput>;
+};
+
+export type SectionsCreateOrConnectWithoutBlockInput = {
+  create: SectionsCreateWithoutBlockInput;
+  where: SectionsWhereUniqueInput;
 };
 
 export type SectionsCreateOrConnectWithoutMachinesInput = {
@@ -3752,11 +4499,25 @@ export type SectionsCreateOrConnectWithoutMachinesInput = {
   where: SectionsWhereUniqueInput;
 };
 
+export type SectionsCreateWithoutBlockInput = {
+  created_at?: InputMaybe<Scalars['DateTime']>;
+  id?: InputMaybe<Scalars['BigInt']>;
+  machines?: InputMaybe<MachinesCreateNestedManyWithoutSectionInput>;
+  name: Scalars['String'];
+  updated_at?: InputMaybe<Scalars['DateTime']>;
+};
+
 export type SectionsCreateWithoutMachinesInput = {
   created_at?: InputMaybe<Scalars['DateTime']>;
   id?: InputMaybe<Scalars['BigInt']>;
   name: Scalars['String'];
   updated_at?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type SectionsListRelationFilter = {
+  every?: InputMaybe<SectionsWhereInput>;
+  none?: InputMaybe<SectionsWhereInput>;
+  some?: InputMaybe<SectionsWhereInput>;
 };
 
 export type SectionsOrderByWithRelationInput = {
@@ -3772,6 +4533,42 @@ export type SectionsRelationFilter = {
   isNot?: InputMaybe<SectionsWhereInput>;
 };
 
+export type SectionsScalarWhereInput = {
+  AND?: InputMaybe<Array<SectionsScalarWhereInput>>;
+  NOT?: InputMaybe<Array<SectionsScalarWhereInput>>;
+  OR?: InputMaybe<Array<SectionsScalarWhereInput>>;
+  created_at?: InputMaybe<DateTimeFilter>;
+  id?: InputMaybe<BigIntFilter>;
+  name?: InputMaybe<StringFilter>;
+  updated_at?: InputMaybe<DateTimeFilter>;
+};
+
+export type SectionsUpdateManyMutationInput = {
+  created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type SectionsUpdateManyWithWhereWithoutBlockInput = {
+  data: SectionsUpdateManyMutationInput;
+  where: SectionsScalarWhereInput;
+};
+
+export type SectionsUpdateManyWithoutBlockNestedInput = {
+  connect?: InputMaybe<Array<SectionsWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<SectionsCreateOrConnectWithoutBlockInput>>;
+  create?: InputMaybe<Array<SectionsCreateWithoutBlockInput>>;
+  createMany?: InputMaybe<SectionsCreateManyBlockInputEnvelope>;
+  delete?: InputMaybe<Array<SectionsWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<SectionsScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<SectionsWhereUniqueInput>>;
+  set?: InputMaybe<Array<SectionsWhereUniqueInput>>;
+  update?: InputMaybe<Array<SectionsUpdateWithWhereUniqueWithoutBlockInput>>;
+  updateMany?: InputMaybe<Array<SectionsUpdateManyWithWhereWithoutBlockInput>>;
+  upsert?: InputMaybe<Array<SectionsUpsertWithWhereUniqueWithoutBlockInput>>;
+};
+
 export type SectionsUpdateOneRequiredWithoutMachinesNestedInput = {
   connect?: InputMaybe<SectionsWhereUniqueInput>;
   connectOrCreate?: InputMaybe<SectionsCreateOrConnectWithoutMachinesInput>;
@@ -3780,11 +4577,30 @@ export type SectionsUpdateOneRequiredWithoutMachinesNestedInput = {
   upsert?: InputMaybe<SectionsUpsertWithoutMachinesInput>;
 };
 
+export type SectionsUpdateWithWhereUniqueWithoutBlockInput = {
+  data: SectionsUpdateWithoutBlockInput;
+  where: SectionsWhereUniqueInput;
+};
+
+export type SectionsUpdateWithoutBlockInput = {
+  created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
+  machines?: InputMaybe<MachinesUpdateManyWithoutSectionNestedInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
 export type SectionsUpdateWithoutMachinesInput = {
   created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type SectionsUpsertWithWhereUniqueWithoutBlockInput = {
+  create: SectionsCreateWithoutBlockInput;
+  update: SectionsUpdateWithoutBlockInput;
+  where: SectionsWhereUniqueInput;
 };
 
 export type SectionsUpsertWithoutMachinesInput = {
@@ -3858,6 +4674,8 @@ export type StringNullableListFilter = {
 
 export type Ticket = {
   __typename?: 'Ticket';
+  block: Block;
+  block_id: Scalars['BigInt'];
   created_at: Scalars['DateTime'];
   description: Scalars['String'];
   id: Scalars['BigInt'];
@@ -3877,6 +4695,7 @@ export type Ticket = {
 
 export type TicketAvgAggregate = {
   __typename?: 'TicketAvgAggregate';
+  block_id?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['Float']>;
   machine_id?: Maybe<Scalars['Float']>;
   maintenance_id?: Maybe<Scalars['Float']>;
@@ -3886,6 +4705,7 @@ export type TicketAvgAggregate = {
 export type TicketCountAggregate = {
   __typename?: 'TicketCountAggregate';
   _all: Scalars['Int'];
+  block_id: Scalars['Int'];
   created_at: Scalars['Int'];
   description: Scalars['Int'];
   id: Scalars['Int'];
@@ -3908,6 +4728,23 @@ export type TicketCreateInput = {
   photos: Scalars['String'];
   status: Ticket_Status;
   updated_at?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type TicketCreateManyBlockInput = {
+  created_at?: InputMaybe<Scalars['DateTime']>;
+  description: Scalars['String'];
+  id?: InputMaybe<Scalars['BigInt']>;
+  machine_id: Scalars['BigInt'];
+  maintenance_id?: InputMaybe<Scalars['BigInt']>;
+  name: Scalars['String'];
+  photos: Scalars['String'];
+  status: Ticket_Status;
+  updated_at?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type TicketCreateManyBlockInputEnvelope = {
+  data: Array<TicketCreateManyBlockInput>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
 };
 
 export type TicketCreateManyMachinesInput = {
@@ -3943,6 +4780,13 @@ export type TicketCreateManyUserInputEnvelope = {
   skipDuplicates?: InputMaybe<Scalars['Boolean']>;
 };
 
+export type TicketCreateNestedManyWithoutBlockInput = {
+  connect?: InputMaybe<Array<TicketWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<TicketCreateOrConnectWithoutBlockInput>>;
+  create?: InputMaybe<Array<TicketCreateWithoutBlockInput>>;
+  createMany?: InputMaybe<TicketCreateManyBlockInputEnvelope>;
+};
+
 export type TicketCreateNestedManyWithoutMachinesInput = {
   connect?: InputMaybe<Array<TicketWhereUniqueInput>>;
   connectOrCreate?: InputMaybe<Array<TicketCreateOrConnectWithoutMachinesInput>>;
@@ -3963,6 +4807,11 @@ export type TicketCreateNestedOneWithoutMaintenanceInput = {
   create?: InputMaybe<TicketCreateWithoutMaintenanceInput>;
 };
 
+export type TicketCreateOrConnectWithoutBlockInput = {
+  create: TicketCreateWithoutBlockInput;
+  where: TicketWhereUniqueInput;
+};
+
 export type TicketCreateOrConnectWithoutMachinesInput = {
   create: TicketCreateWithoutMachinesInput;
   where: TicketWhereUniqueInput;
@@ -3976,6 +4825,18 @@ export type TicketCreateOrConnectWithoutMaintenanceInput = {
 export type TicketCreateOrConnectWithoutUserInput = {
   create: TicketCreateWithoutUserInput;
   where: TicketWhereUniqueInput;
+};
+
+export type TicketCreateWithoutBlockInput = {
+  created_at?: InputMaybe<Scalars['DateTime']>;
+  description: Scalars['String'];
+  id?: InputMaybe<Scalars['BigInt']>;
+  machines: MachinesCreateNestedOneWithoutTicketInput;
+  maintenance?: InputMaybe<MaintenanceCreateNestedOneWithoutTicketInput>;
+  name: Scalars['String'];
+  photos: Scalars['String'];
+  status: Ticket_Status;
+  updated_at?: InputMaybe<Scalars['DateTime']>;
 };
 
 export type TicketCreateWithoutMachinesInput = {
@@ -4020,6 +4881,7 @@ export type TicketListRelationFilter = {
 
 export type TicketMaxAggregate = {
   __typename?: 'TicketMaxAggregate';
+  block_id?: Maybe<Scalars['BigInt']>;
   created_at?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['BigInt']>;
@@ -4034,6 +4896,7 @@ export type TicketMaxAggregate = {
 
 export type TicketMinAggregate = {
   __typename?: 'TicketMinAggregate';
+  block_id?: Maybe<Scalars['BigInt']>;
   created_at?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['BigInt']>;
@@ -4086,6 +4949,7 @@ export type TicketScalarWhereInput = {
 
 export type TicketSumAggregate = {
   __typename?: 'TicketSumAggregate';
+  block_id?: Maybe<Scalars['BigInt']>;
   id?: Maybe<Scalars['BigInt']>;
   machine_id?: Maybe<Scalars['BigInt']>;
   maintenance_id?: Maybe<Scalars['BigInt']>;
@@ -4114,6 +4978,11 @@ export type TicketUpdateManyMutationInput = {
   updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
+export type TicketUpdateManyWithWhereWithoutBlockInput = {
+  data: TicketUpdateManyMutationInput;
+  where: TicketScalarWhereInput;
+};
+
 export type TicketUpdateManyWithWhereWithoutMachinesInput = {
   data: TicketUpdateManyMutationInput;
   where: TicketScalarWhereInput;
@@ -4122,6 +4991,20 @@ export type TicketUpdateManyWithWhereWithoutMachinesInput = {
 export type TicketUpdateManyWithWhereWithoutUserInput = {
   data: TicketUpdateManyMutationInput;
   where: TicketScalarWhereInput;
+};
+
+export type TicketUpdateManyWithoutBlockNestedInput = {
+  connect?: InputMaybe<Array<TicketWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<TicketCreateOrConnectWithoutBlockInput>>;
+  create?: InputMaybe<Array<TicketCreateWithoutBlockInput>>;
+  createMany?: InputMaybe<TicketCreateManyBlockInputEnvelope>;
+  delete?: InputMaybe<Array<TicketWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<TicketScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<TicketWhereUniqueInput>>;
+  set?: InputMaybe<Array<TicketWhereUniqueInput>>;
+  update?: InputMaybe<Array<TicketUpdateWithWhereUniqueWithoutBlockInput>>;
+  updateMany?: InputMaybe<Array<TicketUpdateManyWithWhereWithoutBlockInput>>;
+  upsert?: InputMaybe<Array<TicketUpsertWithWhereUniqueWithoutBlockInput>>;
 };
 
 export type TicketUpdateManyWithoutMachinesNestedInput = {
@@ -4162,6 +5045,11 @@ export type TicketUpdateOneWithoutMaintenanceNestedInput = {
   upsert?: InputMaybe<TicketUpsertWithoutMaintenanceInput>;
 };
 
+export type TicketUpdateWithWhereUniqueWithoutBlockInput = {
+  data: TicketUpdateWithoutBlockInput;
+  where: TicketWhereUniqueInput;
+};
+
 export type TicketUpdateWithWhereUniqueWithoutMachinesInput = {
   data: TicketUpdateWithoutMachinesInput;
   where: TicketWhereUniqueInput;
@@ -4170,6 +5058,18 @@ export type TicketUpdateWithWhereUniqueWithoutMachinesInput = {
 export type TicketUpdateWithWhereUniqueWithoutUserInput = {
   data: TicketUpdateWithoutUserInput;
   where: TicketWhereUniqueInput;
+};
+
+export type TicketUpdateWithoutBlockInput = {
+  created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  description?: InputMaybe<StringFieldUpdateOperationsInput>;
+  id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
+  machines?: InputMaybe<MachinesUpdateOneRequiredWithoutTicketNestedInput>;
+  maintenance?: InputMaybe<MaintenanceUpdateOneWithoutTicketNestedInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  photos?: InputMaybe<StringFieldUpdateOperationsInput>;
+  status?: InputMaybe<Enumticket_StatusFieldUpdateOperationsInput>;
+  updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
 export type TicketUpdateWithoutMachinesInput = {
@@ -4204,6 +5104,12 @@ export type TicketUpdateWithoutUserInput = {
   photos?: InputMaybe<StringFieldUpdateOperationsInput>;
   status?: InputMaybe<Enumticket_StatusFieldUpdateOperationsInput>;
   updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type TicketUpsertWithWhereUniqueWithoutBlockInput = {
+  create: TicketCreateWithoutBlockInput;
+  update: TicketUpdateWithoutBlockInput;
+  where: TicketWhereUniqueInput;
 };
 
 export type TicketUpsertWithWhereUniqueWithoutMachinesInput = {
@@ -4263,11 +5169,6 @@ export type Users = {
   routine_maintanances?: Maybe<Array<Routine_Maintanances>>;
   ticket?: Maybe<Array<Ticket>>;
   updated_at: Scalars['DateTime'];
-  /**
-   * @DtoCreateHidden
-   * @DtoUpdateHidden
-   */
-  user_auth_id?: Maybe<Scalars['String']>;
 };
 
 
@@ -4313,11 +5214,9 @@ export type UsersCountAggregate = {
   role: Scalars['Int'];
   role_alias: Scalars['Int'];
   updated_at: Scalars['Int'];
-  user_auth_id: Scalars['Int'];
 };
 
 export type UsersCreateInput = {
-  block: BlockCreateNestedOneWithoutUsersInput;
   created_at?: InputMaybe<Scalars['DateTime']>;
   extra_roles?: InputMaybe<UsersCreateextra_RolesInput>;
   id?: InputMaybe<Scalars['BigInt']>;
@@ -4331,7 +5230,6 @@ export type UsersCreateInput = {
   routine_maintanances?: InputMaybe<Routine_MaintanancesCreateNestedManyWithoutAssigneeInput>;
   ticket?: InputMaybe<TicketCreateNestedManyWithoutUserInput>;
   updated_at?: InputMaybe<Scalars['DateTime']>;
-  user_auth_id?: InputMaybe<Scalars['String']>;
 };
 
 export type UsersCreateManyBlockInput = {
@@ -4344,7 +5242,6 @@ export type UsersCreateManyBlockInput = {
   role: Role;
   role_alias?: InputMaybe<Scalars['String']>;
   updated_at?: InputMaybe<Scalars['DateTime']>;
-  user_auth_id?: InputMaybe<Scalars['String']>;
 };
 
 export type UsersCreateManyBlockInputEnvelope = {
@@ -4411,11 +5308,9 @@ export type UsersCreateWithoutBlockInput = {
   routine_maintanances?: InputMaybe<Routine_MaintanancesCreateNestedManyWithoutAssigneeInput>;
   ticket?: InputMaybe<TicketCreateNestedManyWithoutUserInput>;
   updated_at?: InputMaybe<Scalars['DateTime']>;
-  user_auth_id?: InputMaybe<Scalars['String']>;
 };
 
 export type UsersCreateWithoutMaintenanceInput = {
-  block: BlockCreateNestedOneWithoutUsersInput;
   created_at?: InputMaybe<Scalars['DateTime']>;
   extra_roles?: InputMaybe<UsersCreateextra_RolesInput>;
   id?: InputMaybe<Scalars['BigInt']>;
@@ -4428,11 +5323,9 @@ export type UsersCreateWithoutMaintenanceInput = {
   routine_maintanances?: InputMaybe<Routine_MaintanancesCreateNestedManyWithoutAssigneeInput>;
   ticket?: InputMaybe<TicketCreateNestedManyWithoutUserInput>;
   updated_at?: InputMaybe<Scalars['DateTime']>;
-  user_auth_id?: InputMaybe<Scalars['String']>;
 };
 
 export type UsersCreateWithoutProduction_DataInput = {
-  block: BlockCreateNestedOneWithoutUsersInput;
   created_at?: InputMaybe<Scalars['DateTime']>;
   extra_roles?: InputMaybe<UsersCreateextra_RolesInput>;
   id?: InputMaybe<Scalars['BigInt']>;
@@ -4445,11 +5338,9 @@ export type UsersCreateWithoutProduction_DataInput = {
   routine_maintanances?: InputMaybe<Routine_MaintanancesCreateNestedManyWithoutAssigneeInput>;
   ticket?: InputMaybe<TicketCreateNestedManyWithoutUserInput>;
   updated_at?: InputMaybe<Scalars['DateTime']>;
-  user_auth_id?: InputMaybe<Scalars['String']>;
 };
 
 export type UsersCreateWithoutRoutine_MaintanancesInput = {
-  block: BlockCreateNestedOneWithoutUsersInput;
   created_at?: InputMaybe<Scalars['DateTime']>;
   extra_roles?: InputMaybe<UsersCreateextra_RolesInput>;
   id?: InputMaybe<Scalars['BigInt']>;
@@ -4462,7 +5353,6 @@ export type UsersCreateWithoutRoutine_MaintanancesInput = {
   role_alias?: InputMaybe<Scalars['String']>;
   ticket?: InputMaybe<TicketCreateNestedManyWithoutUserInput>;
   updated_at?: InputMaybe<Scalars['DateTime']>;
-  user_auth_id?: InputMaybe<Scalars['String']>;
 };
 
 export type UsersCreateextra_RolesInput = {
@@ -4485,7 +5375,6 @@ export type UsersMaxAggregate = {
   role?: Maybe<Role>;
   role_alias?: Maybe<Scalars['String']>;
   updated_at?: Maybe<Scalars['DateTime']>;
-  user_auth_id?: Maybe<Scalars['String']>;
 };
 
 export type UsersMinAggregate = {
@@ -4498,7 +5387,6 @@ export type UsersMinAggregate = {
   role?: Maybe<Role>;
   role_alias?: Maybe<Scalars['String']>;
   updated_at?: Maybe<Scalars['DateTime']>;
-  user_auth_id?: Maybe<Scalars['String']>;
 };
 
 export type UsersOrderByWithRelationInput = {
@@ -4524,7 +5412,6 @@ export type UsersScalarWhereInput = {
   AND?: InputMaybe<Array<UsersScalarWhereInput>>;
   NOT?: InputMaybe<Array<UsersScalarWhereInput>>;
   OR?: InputMaybe<Array<UsersScalarWhereInput>>;
-  blockId?: InputMaybe<BigIntFilter>;
   created_at?: InputMaybe<DateTimeFilter>;
   extra_roles?: InputMaybe<EnumRoleNullableListFilter>;
   id?: InputMaybe<BigIntFilter>;
@@ -4534,7 +5421,6 @@ export type UsersScalarWhereInput = {
   role?: InputMaybe<EnumRoleFilter>;
   role_alias?: InputMaybe<StringFilter>;
   updated_at?: InputMaybe<DateTimeFilter>;
-  user_auth_id?: InputMaybe<StringNullableFilter>;
 };
 
 export type UsersSumAggregate = {
@@ -4544,7 +5430,6 @@ export type UsersSumAggregate = {
 };
 
 export type UsersUpdateInput = {
-  block?: InputMaybe<BlockUpdateOneRequiredWithoutUsersNestedInput>;
   created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   extra_roles?: InputMaybe<UsersUpdateextra_RolesInput>;
   id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
@@ -4558,7 +5443,6 @@ export type UsersUpdateInput = {
   routine_maintanances?: InputMaybe<Routine_MaintanancesUpdateManyWithoutAssigneeNestedInput>;
   ticket?: InputMaybe<TicketUpdateManyWithoutUserNestedInput>;
   updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  user_auth_id?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
 };
 
 export type UsersUpdateManyMutationInput = {
@@ -4571,7 +5455,6 @@ export type UsersUpdateManyMutationInput = {
   role?: InputMaybe<EnumRoleFieldUpdateOperationsInput>;
   role_alias?: InputMaybe<StringFieldUpdateOperationsInput>;
   updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  user_auth_id?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
 };
 
 export type UsersUpdateManyWithWhereWithoutBlockInput = {
@@ -4636,11 +5519,9 @@ export type UsersUpdateWithoutBlockInput = {
   routine_maintanances?: InputMaybe<Routine_MaintanancesUpdateManyWithoutAssigneeNestedInput>;
   ticket?: InputMaybe<TicketUpdateManyWithoutUserNestedInput>;
   updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  user_auth_id?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
 };
 
 export type UsersUpdateWithoutMaintenanceInput = {
-  block?: InputMaybe<BlockUpdateOneRequiredWithoutUsersNestedInput>;
   created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   extra_roles?: InputMaybe<UsersUpdateextra_RolesInput>;
   id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
@@ -4653,11 +5534,9 @@ export type UsersUpdateWithoutMaintenanceInput = {
   routine_maintanances?: InputMaybe<Routine_MaintanancesUpdateManyWithoutAssigneeNestedInput>;
   ticket?: InputMaybe<TicketUpdateManyWithoutUserNestedInput>;
   updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  user_auth_id?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
 };
 
 export type UsersUpdateWithoutProduction_DataInput = {
-  block?: InputMaybe<BlockUpdateOneRequiredWithoutUsersNestedInput>;
   created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   extra_roles?: InputMaybe<UsersUpdateextra_RolesInput>;
   id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
@@ -4670,11 +5549,9 @@ export type UsersUpdateWithoutProduction_DataInput = {
   routine_maintanances?: InputMaybe<Routine_MaintanancesUpdateManyWithoutAssigneeNestedInput>;
   ticket?: InputMaybe<TicketUpdateManyWithoutUserNestedInput>;
   updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  user_auth_id?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
 };
 
 export type UsersUpdateWithoutRoutine_MaintanancesInput = {
-  block?: InputMaybe<BlockUpdateOneRequiredWithoutUsersNestedInput>;
   created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   extra_roles?: InputMaybe<UsersUpdateextra_RolesInput>;
   id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
@@ -4687,7 +5564,6 @@ export type UsersUpdateWithoutRoutine_MaintanancesInput = {
   role_alias?: InputMaybe<StringFieldUpdateOperationsInput>;
   ticket?: InputMaybe<TicketUpdateManyWithoutUserNestedInput>;
   updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  user_auth_id?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
 };
 
 export type UsersUpdateextra_RolesInput = {
@@ -4720,8 +5596,6 @@ export type UsersWhereInput = {
   AND?: InputMaybe<Array<UsersWhereInput>>;
   NOT?: InputMaybe<Array<UsersWhereInput>>;
   OR?: InputMaybe<Array<UsersWhereInput>>;
-  block?: InputMaybe<BlockRelationFilter>;
-  blockId?: InputMaybe<BigIntFilter>;
   created_at?: InputMaybe<DateTimeFilter>;
   extra_roles?: InputMaybe<EnumRoleNullableListFilter>;
   id?: InputMaybe<BigIntFilter>;
@@ -4735,13 +5609,11 @@ export type UsersWhereInput = {
   routine_maintanances?: InputMaybe<Routine_MaintanancesListRelationFilter>;
   ticket?: InputMaybe<TicketListRelationFilter>;
   updated_at?: InputMaybe<DateTimeFilter>;
-  user_auth_id?: InputMaybe<StringNullableFilter>;
 };
 
 export type UsersWhereUniqueInput = {
   id?: InputMaybe<Scalars['BigInt']>;
   phone?: InputMaybe<Scalars['String']>;
-  user_auth_id?: InputMaybe<Scalars['String']>;
 };
 
 export type Block_Settings = {
@@ -4872,11 +5744,32 @@ export type Block_SettingsWhereUniqueInput = {
 export type Catagory = {
   __typename?: 'catagory';
   _count: CatagoryCount;
+  block: Block;
+  block_id: Scalars['BigInt'];
   created_at: Scalars['DateTime'];
   id: Scalars['BigInt'];
   items?: Maybe<Array<Items>>;
   name: Scalars['String'];
   updated_at: Scalars['DateTime'];
+};
+
+export type CatagoryCreateManyBlockInput = {
+  created_at?: InputMaybe<Scalars['DateTime']>;
+  id?: InputMaybe<Scalars['BigInt']>;
+  name: Scalars['String'];
+  updated_at?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type CatagoryCreateManyBlockInputEnvelope = {
+  data: Array<CatagoryCreateManyBlockInput>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+};
+
+export type CatagoryCreateNestedManyWithoutBlockInput = {
+  connect?: InputMaybe<Array<CatagoryWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<CatagoryCreateOrConnectWithoutBlockInput>>;
+  create?: InputMaybe<Array<CatagoryCreateWithoutBlockInput>>;
+  createMany?: InputMaybe<CatagoryCreateManyBlockInputEnvelope>;
 };
 
 export type CatagoryCreateNestedOneWithoutItemsInput = {
@@ -4885,9 +5778,22 @@ export type CatagoryCreateNestedOneWithoutItemsInput = {
   create?: InputMaybe<CatagoryCreateWithoutItemsInput>;
 };
 
+export type CatagoryCreateOrConnectWithoutBlockInput = {
+  create: CatagoryCreateWithoutBlockInput;
+  where: CatagoryWhereUniqueInput;
+};
+
 export type CatagoryCreateOrConnectWithoutItemsInput = {
   create: CatagoryCreateWithoutItemsInput;
   where: CatagoryWhereUniqueInput;
+};
+
+export type CatagoryCreateWithoutBlockInput = {
+  created_at?: InputMaybe<Scalars['DateTime']>;
+  id?: InputMaybe<Scalars['BigInt']>;
+  items?: InputMaybe<ItemsCreateNestedManyWithoutCatagoryInput>;
+  name: Scalars['String'];
+  updated_at?: InputMaybe<Scalars['DateTime']>;
 };
 
 export type CatagoryCreateWithoutItemsInput = {
@@ -4905,6 +5811,42 @@ export type CatagoryOrderByWithRelationInput = {
   updated_at?: InputMaybe<SortOrder>;
 };
 
+export type CatagoryScalarWhereInput = {
+  AND?: InputMaybe<Array<CatagoryScalarWhereInput>>;
+  NOT?: InputMaybe<Array<CatagoryScalarWhereInput>>;
+  OR?: InputMaybe<Array<CatagoryScalarWhereInput>>;
+  created_at?: InputMaybe<DateTimeFilter>;
+  id?: InputMaybe<BigIntFilter>;
+  name?: InputMaybe<StringFilter>;
+  updated_at?: InputMaybe<DateTimeFilter>;
+};
+
+export type CatagoryUpdateManyMutationInput = {
+  created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type CatagoryUpdateManyWithWhereWithoutBlockInput = {
+  data: CatagoryUpdateManyMutationInput;
+  where: CatagoryScalarWhereInput;
+};
+
+export type CatagoryUpdateManyWithoutBlockNestedInput = {
+  connect?: InputMaybe<Array<CatagoryWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<CatagoryCreateOrConnectWithoutBlockInput>>;
+  create?: InputMaybe<Array<CatagoryCreateWithoutBlockInput>>;
+  createMany?: InputMaybe<CatagoryCreateManyBlockInputEnvelope>;
+  delete?: InputMaybe<Array<CatagoryWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<CatagoryScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<CatagoryWhereUniqueInput>>;
+  set?: InputMaybe<Array<CatagoryWhereUniqueInput>>;
+  update?: InputMaybe<Array<CatagoryUpdateWithWhereUniqueWithoutBlockInput>>;
+  updateMany?: InputMaybe<Array<CatagoryUpdateManyWithWhereWithoutBlockInput>>;
+  upsert?: InputMaybe<Array<CatagoryUpsertWithWhereUniqueWithoutBlockInput>>;
+};
+
 export type CatagoryUpdateOneRequiredWithoutItemsNestedInput = {
   connect?: InputMaybe<CatagoryWhereUniqueInput>;
   connectOrCreate?: InputMaybe<CatagoryCreateOrConnectWithoutItemsInput>;
@@ -4913,11 +5855,30 @@ export type CatagoryUpdateOneRequiredWithoutItemsNestedInput = {
   upsert?: InputMaybe<CatagoryUpsertWithoutItemsInput>;
 };
 
+export type CatagoryUpdateWithWhereUniqueWithoutBlockInput = {
+  data: CatagoryUpdateWithoutBlockInput;
+  where: CatagoryWhereUniqueInput;
+};
+
+export type CatagoryUpdateWithoutBlockInput = {
+  created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
+  items?: InputMaybe<ItemsUpdateManyWithoutCatagoryNestedInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
 export type CatagoryUpdateWithoutItemsInput = {
   created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type CatagoryUpsertWithWhereUniqueWithoutBlockInput = {
+  create: CatagoryCreateWithoutBlockInput;
+  update: CatagoryUpdateWithoutBlockInput;
+  where: CatagoryWhereUniqueInput;
 };
 
 export type CatagoryUpsertWithoutItemsInput = {
@@ -4943,6 +5904,8 @@ export type CatagoryWhereUniqueInput = {
 export type Machine_Catagory = {
   __typename?: 'machine_catagory';
   _count: Machine_CatagoryCount;
+  block: Block;
+  block_id: Scalars['BigInt'];
   created_at: Scalars['DateTime'];
   id: Scalars['BigInt'];
   machines?: Maybe<Array<Machines>>;
@@ -4958,15 +5921,47 @@ export type Machine_CatagoryMachinesArgs = {
   where?: InputMaybe<MachinesWhereInput>;
 };
 
+export type Machine_CatagoryCreateManyBlockInput = {
+  created_at?: InputMaybe<Scalars['DateTime']>;
+  id?: InputMaybe<Scalars['BigInt']>;
+  name: Scalars['String'];
+  updated_at?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type Machine_CatagoryCreateManyBlockInputEnvelope = {
+  data: Array<Machine_CatagoryCreateManyBlockInput>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+};
+
+export type Machine_CatagoryCreateNestedManyWithoutBlockInput = {
+  connect?: InputMaybe<Array<Machine_CatagoryWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<Machine_CatagoryCreateOrConnectWithoutBlockInput>>;
+  create?: InputMaybe<Array<Machine_CatagoryCreateWithoutBlockInput>>;
+  createMany?: InputMaybe<Machine_CatagoryCreateManyBlockInputEnvelope>;
+};
+
 export type Machine_CatagoryCreateNestedOneWithoutMachinesInput = {
   connect?: InputMaybe<Machine_CatagoryWhereUniqueInput>;
   connectOrCreate?: InputMaybe<Machine_CatagoryCreateOrConnectWithoutMachinesInput>;
   create?: InputMaybe<Machine_CatagoryCreateWithoutMachinesInput>;
 };
 
+export type Machine_CatagoryCreateOrConnectWithoutBlockInput = {
+  create: Machine_CatagoryCreateWithoutBlockInput;
+  where: Machine_CatagoryWhereUniqueInput;
+};
+
 export type Machine_CatagoryCreateOrConnectWithoutMachinesInput = {
   create: Machine_CatagoryCreateWithoutMachinesInput;
   where: Machine_CatagoryWhereUniqueInput;
+};
+
+export type Machine_CatagoryCreateWithoutBlockInput = {
+  created_at?: InputMaybe<Scalars['DateTime']>;
+  id?: InputMaybe<Scalars['BigInt']>;
+  machines?: InputMaybe<MachinesCreateNestedManyWithoutMachine_CatagoryInput>;
+  name: Scalars['String'];
+  updated_at?: InputMaybe<Scalars['DateTime']>;
 };
 
 export type Machine_CatagoryCreateWithoutMachinesInput = {
@@ -4995,6 +5990,42 @@ export type Machine_CatagoryOrderByWithRelationAndSearchRelevanceInput = {
   updated_at?: InputMaybe<SortOrder>;
 };
 
+export type Machine_CatagoryScalarWhereInput = {
+  AND?: InputMaybe<Array<Machine_CatagoryScalarWhereInput>>;
+  NOT?: InputMaybe<Array<Machine_CatagoryScalarWhereInput>>;
+  OR?: InputMaybe<Array<Machine_CatagoryScalarWhereInput>>;
+  created_at?: InputMaybe<DateTimeFilter>;
+  id?: InputMaybe<BigIntFilter>;
+  name?: InputMaybe<StringFilter>;
+  updated_at?: InputMaybe<DateTimeFilter>;
+};
+
+export type Machine_CatagoryUpdateManyMutationInput = {
+  created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type Machine_CatagoryUpdateManyWithWhereWithoutBlockInput = {
+  data: Machine_CatagoryUpdateManyMutationInput;
+  where: Machine_CatagoryScalarWhereInput;
+};
+
+export type Machine_CatagoryUpdateManyWithoutBlockNestedInput = {
+  connect?: InputMaybe<Array<Machine_CatagoryWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<Machine_CatagoryCreateOrConnectWithoutBlockInput>>;
+  create?: InputMaybe<Array<Machine_CatagoryCreateWithoutBlockInput>>;
+  createMany?: InputMaybe<Machine_CatagoryCreateManyBlockInputEnvelope>;
+  delete?: InputMaybe<Array<Machine_CatagoryWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<Machine_CatagoryScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<Machine_CatagoryWhereUniqueInput>>;
+  set?: InputMaybe<Array<Machine_CatagoryWhereUniqueInput>>;
+  update?: InputMaybe<Array<Machine_CatagoryUpdateWithWhereUniqueWithoutBlockInput>>;
+  updateMany?: InputMaybe<Array<Machine_CatagoryUpdateManyWithWhereWithoutBlockInput>>;
+  upsert?: InputMaybe<Array<Machine_CatagoryUpsertWithWhereUniqueWithoutBlockInput>>;
+};
+
 export type Machine_CatagoryUpdateOneRequiredWithoutMachinesNestedInput = {
   connect?: InputMaybe<Machine_CatagoryWhereUniqueInput>;
   connectOrCreate?: InputMaybe<Machine_CatagoryCreateOrConnectWithoutMachinesInput>;
@@ -5013,11 +6044,30 @@ export type Machine_CatagoryUpdateOneWithoutMachinesNestedInput = {
   upsert?: InputMaybe<Machine_CatagoryUpsertWithoutMachinesInput>;
 };
 
+export type Machine_CatagoryUpdateWithWhereUniqueWithoutBlockInput = {
+  data: Machine_CatagoryUpdateWithoutBlockInput;
+  where: Machine_CatagoryWhereUniqueInput;
+};
+
+export type Machine_CatagoryUpdateWithoutBlockInput = {
+  created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
+  machines?: InputMaybe<MachinesUpdateManyWithoutMachine_CatagoryNestedInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
 export type Machine_CatagoryUpdateWithoutMachinesInput = {
   created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type Machine_CatagoryUpsertWithWhereUniqueWithoutBlockInput = {
+  create: Machine_CatagoryCreateWithoutBlockInput;
+  update: Machine_CatagoryUpdateWithoutBlockInput;
+  where: Machine_CatagoryWhereUniqueInput;
 };
 
 export type Machine_CatagoryUpsertWithoutMachinesInput = {
@@ -5040,10 +6090,244 @@ export type Machine_CatagoryWhereUniqueInput = {
   id?: InputMaybe<Scalars['BigInt']>;
 };
 
+export type Machines_Items = {
+  __typename?: 'machines_items';
+  block: Block;
+  block_id: Scalars['BigInt'];
+  id: Scalars['BigInt'];
+  item_id: Scalars['BigInt'];
+  items: Items;
+  machine: Machines;
+  machine_id: Scalars['BigInt'];
+};
+
+export type Machines_ItemsCreateManyBlockInput = {
+  id?: InputMaybe<Scalars['BigInt']>;
+  item_id: Scalars['BigInt'];
+  machine_id: Scalars['BigInt'];
+};
+
+export type Machines_ItemsCreateManyBlockInputEnvelope = {
+  data: Array<Machines_ItemsCreateManyBlockInput>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+};
+
+export type Machines_ItemsCreateManyItemsInput = {
+  id?: InputMaybe<Scalars['BigInt']>;
+  machine_id: Scalars['BigInt'];
+};
+
+export type Machines_ItemsCreateManyItemsInputEnvelope = {
+  data: Array<Machines_ItemsCreateManyItemsInput>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+};
+
+export type Machines_ItemsCreateManyMachineInput = {
+  id?: InputMaybe<Scalars['BigInt']>;
+  item_id: Scalars['BigInt'];
+};
+
+export type Machines_ItemsCreateManyMachineInputEnvelope = {
+  data: Array<Machines_ItemsCreateManyMachineInput>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+};
+
+export type Machines_ItemsCreateNestedManyWithoutBlockInput = {
+  connect?: InputMaybe<Array<Machines_ItemsWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<Machines_ItemsCreateOrConnectWithoutBlockInput>>;
+  create?: InputMaybe<Array<Machines_ItemsCreateWithoutBlockInput>>;
+  createMany?: InputMaybe<Machines_ItemsCreateManyBlockInputEnvelope>;
+};
+
+export type Machines_ItemsCreateNestedManyWithoutItemsInput = {
+  connect?: InputMaybe<Array<Machines_ItemsWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<Machines_ItemsCreateOrConnectWithoutItemsInput>>;
+  create?: InputMaybe<Array<Machines_ItemsCreateWithoutItemsInput>>;
+  createMany?: InputMaybe<Machines_ItemsCreateManyItemsInputEnvelope>;
+};
+
+export type Machines_ItemsCreateNestedManyWithoutMachineInput = {
+  connect?: InputMaybe<Array<Machines_ItemsWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<Machines_ItemsCreateOrConnectWithoutMachineInput>>;
+  create?: InputMaybe<Array<Machines_ItemsCreateWithoutMachineInput>>;
+  createMany?: InputMaybe<Machines_ItemsCreateManyMachineInputEnvelope>;
+};
+
+export type Machines_ItemsCreateOrConnectWithoutBlockInput = {
+  create: Machines_ItemsCreateWithoutBlockInput;
+  where: Machines_ItemsWhereUniqueInput;
+};
+
+export type Machines_ItemsCreateOrConnectWithoutItemsInput = {
+  create: Machines_ItemsCreateWithoutItemsInput;
+  where: Machines_ItemsWhereUniqueInput;
+};
+
+export type Machines_ItemsCreateOrConnectWithoutMachineInput = {
+  create: Machines_ItemsCreateWithoutMachineInput;
+  where: Machines_ItemsWhereUniqueInput;
+};
+
+export type Machines_ItemsCreateWithoutBlockInput = {
+  id?: InputMaybe<Scalars['BigInt']>;
+  items: ItemsCreateNestedOneWithoutMachines_ItemsInput;
+  machine: MachinesCreateNestedOneWithoutMachines_ItemsInput;
+};
+
+export type Machines_ItemsCreateWithoutItemsInput = {
+  id?: InputMaybe<Scalars['BigInt']>;
+  machine: MachinesCreateNestedOneWithoutMachines_ItemsInput;
+};
+
+export type Machines_ItemsCreateWithoutMachineInput = {
+  id?: InputMaybe<Scalars['BigInt']>;
+  items: ItemsCreateNestedOneWithoutMachines_ItemsInput;
+};
+
+export type Machines_ItemsMachine_IdItem_IdCompoundUniqueInput = {
+  item_id: Scalars['BigInt'];
+  machine_id: Scalars['BigInt'];
+};
+
+export type Machines_ItemsScalarWhereInput = {
+  AND?: InputMaybe<Array<Machines_ItemsScalarWhereInput>>;
+  NOT?: InputMaybe<Array<Machines_ItemsScalarWhereInput>>;
+  OR?: InputMaybe<Array<Machines_ItemsScalarWhereInput>>;
+  id?: InputMaybe<BigIntFilter>;
+  item_id?: InputMaybe<BigIntFilter>;
+  machine_id?: InputMaybe<BigIntFilter>;
+};
+
+export type Machines_ItemsUpdateManyMutationInput = {
+  id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
+};
+
+export type Machines_ItemsUpdateManyWithWhereWithoutBlockInput = {
+  data: Machines_ItemsUpdateManyMutationInput;
+  where: Machines_ItemsScalarWhereInput;
+};
+
+export type Machines_ItemsUpdateManyWithWhereWithoutItemsInput = {
+  data: Machines_ItemsUpdateManyMutationInput;
+  where: Machines_ItemsScalarWhereInput;
+};
+
+export type Machines_ItemsUpdateManyWithWhereWithoutMachineInput = {
+  data: Machines_ItemsUpdateManyMutationInput;
+  where: Machines_ItemsScalarWhereInput;
+};
+
+export type Machines_ItemsUpdateManyWithoutBlockNestedInput = {
+  connect?: InputMaybe<Array<Machines_ItemsWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<Machines_ItemsCreateOrConnectWithoutBlockInput>>;
+  create?: InputMaybe<Array<Machines_ItemsCreateWithoutBlockInput>>;
+  createMany?: InputMaybe<Machines_ItemsCreateManyBlockInputEnvelope>;
+  delete?: InputMaybe<Array<Machines_ItemsWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<Machines_ItemsScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<Machines_ItemsWhereUniqueInput>>;
+  set?: InputMaybe<Array<Machines_ItemsWhereUniqueInput>>;
+  update?: InputMaybe<Array<Machines_ItemsUpdateWithWhereUniqueWithoutBlockInput>>;
+  updateMany?: InputMaybe<Array<Machines_ItemsUpdateManyWithWhereWithoutBlockInput>>;
+  upsert?: InputMaybe<Array<Machines_ItemsUpsertWithWhereUniqueWithoutBlockInput>>;
+};
+
+export type Machines_ItemsUpdateManyWithoutItemsNestedInput = {
+  connect?: InputMaybe<Array<Machines_ItemsWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<Machines_ItemsCreateOrConnectWithoutItemsInput>>;
+  create?: InputMaybe<Array<Machines_ItemsCreateWithoutItemsInput>>;
+  createMany?: InputMaybe<Machines_ItemsCreateManyItemsInputEnvelope>;
+  delete?: InputMaybe<Array<Machines_ItemsWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<Machines_ItemsScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<Machines_ItemsWhereUniqueInput>>;
+  set?: InputMaybe<Array<Machines_ItemsWhereUniqueInput>>;
+  update?: InputMaybe<Array<Machines_ItemsUpdateWithWhereUniqueWithoutItemsInput>>;
+  updateMany?: InputMaybe<Array<Machines_ItemsUpdateManyWithWhereWithoutItemsInput>>;
+  upsert?: InputMaybe<Array<Machines_ItemsUpsertWithWhereUniqueWithoutItemsInput>>;
+};
+
+export type Machines_ItemsUpdateManyWithoutMachineNestedInput = {
+  connect?: InputMaybe<Array<Machines_ItemsWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<Machines_ItemsCreateOrConnectWithoutMachineInput>>;
+  create?: InputMaybe<Array<Machines_ItemsCreateWithoutMachineInput>>;
+  createMany?: InputMaybe<Machines_ItemsCreateManyMachineInputEnvelope>;
+  delete?: InputMaybe<Array<Machines_ItemsWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<Machines_ItemsScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<Machines_ItemsWhereUniqueInput>>;
+  set?: InputMaybe<Array<Machines_ItemsWhereUniqueInput>>;
+  update?: InputMaybe<Array<Machines_ItemsUpdateWithWhereUniqueWithoutMachineInput>>;
+  updateMany?: InputMaybe<Array<Machines_ItemsUpdateManyWithWhereWithoutMachineInput>>;
+  upsert?: InputMaybe<Array<Machines_ItemsUpsertWithWhereUniqueWithoutMachineInput>>;
+};
+
+export type Machines_ItemsUpdateWithWhereUniqueWithoutBlockInput = {
+  data: Machines_ItemsUpdateWithoutBlockInput;
+  where: Machines_ItemsWhereUniqueInput;
+};
+
+export type Machines_ItemsUpdateWithWhereUniqueWithoutItemsInput = {
+  data: Machines_ItemsUpdateWithoutItemsInput;
+  where: Machines_ItemsWhereUniqueInput;
+};
+
+export type Machines_ItemsUpdateWithWhereUniqueWithoutMachineInput = {
+  data: Machines_ItemsUpdateWithoutMachineInput;
+  where: Machines_ItemsWhereUniqueInput;
+};
+
+export type Machines_ItemsUpdateWithoutBlockInput = {
+  id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
+  items?: InputMaybe<ItemsUpdateOneRequiredWithoutMachines_ItemsNestedInput>;
+  machine?: InputMaybe<MachinesUpdateOneRequiredWithoutMachines_ItemsNestedInput>;
+};
+
+export type Machines_ItemsUpdateWithoutItemsInput = {
+  id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
+  machine?: InputMaybe<MachinesUpdateOneRequiredWithoutMachines_ItemsNestedInput>;
+};
+
+export type Machines_ItemsUpdateWithoutMachineInput = {
+  id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
+  items?: InputMaybe<ItemsUpdateOneRequiredWithoutMachines_ItemsNestedInput>;
+};
+
+export type Machines_ItemsUpsertWithWhereUniqueWithoutBlockInput = {
+  create: Machines_ItemsCreateWithoutBlockInput;
+  update: Machines_ItemsUpdateWithoutBlockInput;
+  where: Machines_ItemsWhereUniqueInput;
+};
+
+export type Machines_ItemsUpsertWithWhereUniqueWithoutItemsInput = {
+  create: Machines_ItemsCreateWithoutItemsInput;
+  update: Machines_ItemsUpdateWithoutItemsInput;
+  where: Machines_ItemsWhereUniqueInput;
+};
+
+export type Machines_ItemsUpsertWithWhereUniqueWithoutMachineInput = {
+  create: Machines_ItemsCreateWithoutMachineInput;
+  update: Machines_ItemsUpdateWithoutMachineInput;
+  where: Machines_ItemsWhereUniqueInput;
+};
+
+export type Machines_ItemsWhereInput = {
+  AND?: InputMaybe<Array<Machines_ItemsWhereInput>>;
+  NOT?: InputMaybe<Array<Machines_ItemsWhereInput>>;
+  OR?: InputMaybe<Array<Machines_ItemsWhereInput>>;
+  id?: InputMaybe<BigIntFilter>;
+  item_id?: InputMaybe<BigIntFilter>;
+  items?: InputMaybe<ItemsRelationFilter>;
+  machine?: InputMaybe<MachinesRelationFilter>;
+  machine_id?: InputMaybe<BigIntFilter>;
+};
+
+export type Machines_ItemsWhereUniqueInput = {
+  id?: InputMaybe<Scalars['BigInt']>;
+  machine_id_item_id?: InputMaybe<Machines_ItemsMachine_IdItem_IdCompoundUniqueInput>;
+};
+
 export type Production_Data = {
   __typename?: 'production_data';
-  Block?: Maybe<Block>;
-  blockId?: Maybe<Scalars['BigInt']>;
+  Block: Block;
+  blockId: Scalars['BigInt'];
   created_at: Scalars['DateTime'];
   date: Scalars['DateTime'];
   id: Scalars['BigInt'];
@@ -5055,13 +6339,11 @@ export type Production_Data = {
 };
 
 export type Production_DataAvgOrderByAggregateInput = {
-  blockId?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
   updated_by?: InputMaybe<SortOrder>;
 };
 
 export type Production_DataCountOrderByAggregateInput = {
-  blockId?: InputMaybe<SortOrder>;
   created_at?: InputMaybe<SortOrder>;
   date?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
@@ -5072,7 +6354,6 @@ export type Production_DataCountOrderByAggregateInput = {
 };
 
 export type Production_DataCreateInput = {
-  Block?: InputMaybe<BlockCreateNestedOneWithoutProduction_DataInput>;
   created_at?: InputMaybe<Scalars['DateTime']>;
   date: Scalars['DateTime'];
   id?: InputMaybe<Scalars['BigInt']>;
@@ -5098,7 +6379,6 @@ export type Production_DataCreateManyBlockInputEnvelope = {
 };
 
 export type Production_DataCreateManyUpdatedByInput = {
-  blockId?: InputMaybe<Scalars['BigInt']>;
   created_at?: InputMaybe<Scalars['DateTime']>;
   date: Scalars['DateTime'];
   id?: InputMaybe<Scalars['BigInt']>;
@@ -5147,7 +6427,6 @@ export type Production_DataCreateWithoutBlockInput = {
 };
 
 export type Production_DataCreateWithoutUpdatedByInput = {
-  Block?: InputMaybe<BlockCreateNestedOneWithoutProduction_DataInput>;
   created_at?: InputMaybe<Scalars['DateTime']>;
   date: Scalars['DateTime'];
   id?: InputMaybe<Scalars['BigInt']>;
@@ -5157,7 +6436,6 @@ export type Production_DataCreateWithoutUpdatedByInput = {
 };
 
 export type Production_DataMaxOrderByAggregateInput = {
-  blockId?: InputMaybe<SortOrder>;
   created_at?: InputMaybe<SortOrder>;
   date?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
@@ -5167,7 +6445,6 @@ export type Production_DataMaxOrderByAggregateInput = {
 };
 
 export type Production_DataMinOrderByAggregateInput = {
-  blockId?: InputMaybe<SortOrder>;
   created_at?: InputMaybe<SortOrder>;
   date?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
@@ -5182,7 +6459,6 @@ export type Production_DataOrderByWithAggregationInput = {
   _max?: InputMaybe<Production_DataMaxOrderByAggregateInput>;
   _min?: InputMaybe<Production_DataMinOrderByAggregateInput>;
   _sum?: InputMaybe<Production_DataSumOrderByAggregateInput>;
-  blockId?: InputMaybe<SortOrder>;
   created_at?: InputMaybe<SortOrder>;
   date?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
@@ -5196,7 +6472,6 @@ export type Production_DataScalarWhereInput = {
   AND?: InputMaybe<Array<Production_DataScalarWhereInput>>;
   NOT?: InputMaybe<Array<Production_DataScalarWhereInput>>;
   OR?: InputMaybe<Array<Production_DataScalarWhereInput>>;
-  blockId?: InputMaybe<BigIntNullableFilter>;
   created_at?: InputMaybe<DateTimeFilter>;
   date?: InputMaybe<DateTimeFilter>;
   id?: InputMaybe<BigIntFilter>;
@@ -5207,13 +6482,11 @@ export type Production_DataScalarWhereInput = {
 };
 
 export type Production_DataSumOrderByAggregateInput = {
-  blockId?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
   updated_by?: InputMaybe<SortOrder>;
 };
 
 export type Production_DataUpdateInput = {
-  Block?: InputMaybe<BlockUpdateOneWithoutProduction_DataNestedInput>;
   created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   date?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
@@ -5291,7 +6564,6 @@ export type Production_DataUpdateWithoutBlockInput = {
 };
 
 export type Production_DataUpdateWithoutUpdatedByInput = {
-  Block?: InputMaybe<BlockUpdateOneWithoutProduction_DataNestedInput>;
   created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   date?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
@@ -5314,10 +6586,8 @@ export type Production_DataUpsertWithWhereUniqueWithoutUpdatedByInput = {
 
 export type Production_DataWhereInput = {
   AND?: InputMaybe<Array<Production_DataWhereInput>>;
-  Block?: InputMaybe<BlockRelationFilter>;
   NOT?: InputMaybe<Array<Production_DataWhereInput>>;
   OR?: InputMaybe<Array<Production_DataWhereInput>>;
-  blockId?: InputMaybe<BigIntNullableFilter>;
   created_at?: InputMaybe<DateTimeFilter>;
   date?: InputMaybe<DateTimeFilter>;
   id?: InputMaybe<BigIntFilter>;
@@ -5336,6 +6606,8 @@ export type Routine_Maintanances = {
   __typename?: 'routine_maintanances';
   assignee: Users;
   assignee_id: Scalars['BigInt'];
+  block: Block;
+  block_id: Scalars['BigInt'];
   created_at: Scalars['DateTime'];
   cron: Scalars['String'];
   description: Scalars['String'];
@@ -5375,6 +6647,23 @@ export type Routine_MaintanancesCreateManyAssigneeInputEnvelope = {
   skipDuplicates?: InputMaybe<Scalars['Boolean']>;
 };
 
+export type Routine_MaintanancesCreateManyBlockInput = {
+  assignee_id: Scalars['BigInt'];
+  created_at?: InputMaybe<Scalars['DateTime']>;
+  cron: Scalars['String'];
+  description: Scalars['String'];
+  duration: Scalars['Int'];
+  id?: InputMaybe<Scalars['BigInt']>;
+  meachine_id: Scalars['BigInt'];
+  name: Scalars['String'];
+  updated_at?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type Routine_MaintanancesCreateManyBlockInputEnvelope = {
+  data: Array<Routine_MaintanancesCreateManyBlockInput>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+};
+
 export type Routine_MaintanancesCreateManyMeachineInput = {
   assignee_id: Scalars['BigInt'];
   created_at?: InputMaybe<Scalars['DateTime']>;
@@ -5398,6 +6687,13 @@ export type Routine_MaintanancesCreateNestedManyWithoutAssigneeInput = {
   createMany?: InputMaybe<Routine_MaintanancesCreateManyAssigneeInputEnvelope>;
 };
 
+export type Routine_MaintanancesCreateNestedManyWithoutBlockInput = {
+  connect?: InputMaybe<Array<Routine_MaintanancesWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<Routine_MaintanancesCreateOrConnectWithoutBlockInput>>;
+  create?: InputMaybe<Array<Routine_MaintanancesCreateWithoutBlockInput>>;
+  createMany?: InputMaybe<Routine_MaintanancesCreateManyBlockInputEnvelope>;
+};
+
 export type Routine_MaintanancesCreateNestedManyWithoutMeachineInput = {
   connect?: InputMaybe<Array<Routine_MaintanancesWhereUniqueInput>>;
   connectOrCreate?: InputMaybe<Array<Routine_MaintanancesCreateOrConnectWithoutMeachineInput>>;
@@ -5410,12 +6706,29 @@ export type Routine_MaintanancesCreateOrConnectWithoutAssigneeInput = {
   where: Routine_MaintanancesWhereUniqueInput;
 };
 
+export type Routine_MaintanancesCreateOrConnectWithoutBlockInput = {
+  create: Routine_MaintanancesCreateWithoutBlockInput;
+  where: Routine_MaintanancesWhereUniqueInput;
+};
+
 export type Routine_MaintanancesCreateOrConnectWithoutMeachineInput = {
   create: Routine_MaintanancesCreateWithoutMeachineInput;
   where: Routine_MaintanancesWhereUniqueInput;
 };
 
 export type Routine_MaintanancesCreateWithoutAssigneeInput = {
+  created_at?: InputMaybe<Scalars['DateTime']>;
+  cron: Scalars['String'];
+  description: Scalars['String'];
+  duration: Scalars['Int'];
+  id?: InputMaybe<Scalars['BigInt']>;
+  meachine: MachinesCreateNestedOneWithoutRoutine_MaintanancesInput;
+  name: Scalars['String'];
+  updated_at?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type Routine_MaintanancesCreateWithoutBlockInput = {
+  assignee: UsersCreateNestedOneWithoutRoutine_MaintanancesInput;
   created_at?: InputMaybe<Scalars['DateTime']>;
   cron: Scalars['String'];
   description: Scalars['String'];
@@ -5486,6 +6799,11 @@ export type Routine_MaintanancesUpdateManyWithWhereWithoutAssigneeInput = {
   where: Routine_MaintanancesScalarWhereInput;
 };
 
+export type Routine_MaintanancesUpdateManyWithWhereWithoutBlockInput = {
+  data: Routine_MaintanancesUpdateManyMutationInput;
+  where: Routine_MaintanancesScalarWhereInput;
+};
+
 export type Routine_MaintanancesUpdateManyWithWhereWithoutMeachineInput = {
   data: Routine_MaintanancesUpdateManyMutationInput;
   where: Routine_MaintanancesScalarWhereInput;
@@ -5503,6 +6821,20 @@ export type Routine_MaintanancesUpdateManyWithoutAssigneeNestedInput = {
   update?: InputMaybe<Array<Routine_MaintanancesUpdateWithWhereUniqueWithoutAssigneeInput>>;
   updateMany?: InputMaybe<Array<Routine_MaintanancesUpdateManyWithWhereWithoutAssigneeInput>>;
   upsert?: InputMaybe<Array<Routine_MaintanancesUpsertWithWhereUniqueWithoutAssigneeInput>>;
+};
+
+export type Routine_MaintanancesUpdateManyWithoutBlockNestedInput = {
+  connect?: InputMaybe<Array<Routine_MaintanancesWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<Routine_MaintanancesCreateOrConnectWithoutBlockInput>>;
+  create?: InputMaybe<Array<Routine_MaintanancesCreateWithoutBlockInput>>;
+  createMany?: InputMaybe<Routine_MaintanancesCreateManyBlockInputEnvelope>;
+  delete?: InputMaybe<Array<Routine_MaintanancesWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<Routine_MaintanancesScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<Routine_MaintanancesWhereUniqueInput>>;
+  set?: InputMaybe<Array<Routine_MaintanancesWhereUniqueInput>>;
+  update?: InputMaybe<Array<Routine_MaintanancesUpdateWithWhereUniqueWithoutBlockInput>>;
+  updateMany?: InputMaybe<Array<Routine_MaintanancesUpdateManyWithWhereWithoutBlockInput>>;
+  upsert?: InputMaybe<Array<Routine_MaintanancesUpsertWithWhereUniqueWithoutBlockInput>>;
 };
 
 export type Routine_MaintanancesUpdateManyWithoutMeachineNestedInput = {
@@ -5524,12 +6856,29 @@ export type Routine_MaintanancesUpdateWithWhereUniqueWithoutAssigneeInput = {
   where: Routine_MaintanancesWhereUniqueInput;
 };
 
+export type Routine_MaintanancesUpdateWithWhereUniqueWithoutBlockInput = {
+  data: Routine_MaintanancesUpdateWithoutBlockInput;
+  where: Routine_MaintanancesWhereUniqueInput;
+};
+
 export type Routine_MaintanancesUpdateWithWhereUniqueWithoutMeachineInput = {
   data: Routine_MaintanancesUpdateWithoutMeachineInput;
   where: Routine_MaintanancesWhereUniqueInput;
 };
 
 export type Routine_MaintanancesUpdateWithoutAssigneeInput = {
+  created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  cron?: InputMaybe<StringFieldUpdateOperationsInput>;
+  description?: InputMaybe<StringFieldUpdateOperationsInput>;
+  duration?: InputMaybe<IntFieldUpdateOperationsInput>;
+  id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
+  meachine?: InputMaybe<MachinesUpdateOneRequiredWithoutRoutine_MaintanancesNestedInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type Routine_MaintanancesUpdateWithoutBlockInput = {
+  assignee?: InputMaybe<UsersUpdateOneRequiredWithoutRoutine_MaintanancesNestedInput>;
   created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   cron?: InputMaybe<StringFieldUpdateOperationsInput>;
   description?: InputMaybe<StringFieldUpdateOperationsInput>;
@@ -5554,6 +6903,12 @@ export type Routine_MaintanancesUpdateWithoutMeachineInput = {
 export type Routine_MaintanancesUpsertWithWhereUniqueWithoutAssigneeInput = {
   create: Routine_MaintanancesCreateWithoutAssigneeInput;
   update: Routine_MaintanancesUpdateWithoutAssigneeInput;
+  where: Routine_MaintanancesWhereUniqueInput;
+};
+
+export type Routine_MaintanancesUpsertWithWhereUniqueWithoutBlockInput = {
+  create: Routine_MaintanancesCreateWithoutBlockInput;
+  update: Routine_MaintanancesUpdateWithoutBlockInput;
   where: Routine_MaintanancesWhereUniqueInput;
 };
 
@@ -5819,7 +7174,7 @@ export type ProductionDataQueryVariables = Exact<{
 }>;
 
 
-export type ProductionDataQuery = { __typename?: 'Query', productionData: Array<{ __typename?: 'production_data', id: any, shift: string, date: any, production: any, created_at: any, updatedBy: { __typename?: 'Users', id: any, name: string }, Block?: { __typename?: 'Block', id: any, name: string } | null }> };
+export type ProductionDataQuery = { __typename?: 'Query', productionData: Array<{ __typename?: 'production_data', id: any, shift: string, date: any, production: any, created_at: any, updatedBy: { __typename?: 'Users', id: any, name: string } }> };
 
 export type ProductionDataCountQueryVariables = Exact<{
   limit?: InputMaybe<Scalars['Int']>;
@@ -5836,7 +7191,7 @@ export type ProductionQueryVariables = Exact<{
 }>;
 
 
-export type ProductionQuery = { __typename?: 'Query', production: { __typename?: 'production_data', id: any, shift: string, date: any, production: any, created_at: any, updatedBy: { __typename?: 'Users', id: any, name: string }, Block?: { __typename?: 'Block', id: any, name: string } | null } };
+export type ProductionQuery = { __typename?: 'Query', production: { __typename?: 'production_data', id: any, shift: string, date: any, production: any, created_at: any, updatedBy: { __typename?: 'Users', id: any, name: string } } };
 
 export type RemoveProductionDataMutationVariables = Exact<{
   removeProductionDataId: Scalars['Int'];
@@ -7075,10 +8430,6 @@ export const ProductionDataDocument = gql`
     }
     shift
     date
-    Block {
-      id
-      name
-    }
     production
     created_at
   }
@@ -7166,10 +8517,6 @@ export const ProductionDocument = gql`
     }
     shift
     date
-    Block {
-      id
-      name
-    }
     production
     created_at
   }

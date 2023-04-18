@@ -17,10 +17,6 @@ query productionData(
     }
   shift
   date
-  Block {
-    id
-    name
-  }
   production
     created_at
   }
@@ -38,10 +34,6 @@ query production($productionId: Int!) {
     }
   shift
   date
-  Block {
-    id
-    name
-  }
   production
     created_at
   }

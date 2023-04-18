@@ -5,11 +5,7 @@ import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
-import {
-  useCreateUserMutation,
-  Role,
-  useBlockDropdownQuery,
-} from "../../generated";
+import { useCreateUserMutation, Role } from "../../generated";
 import * as yup from "yup";
 import { Field, Form, Formik } from "formik";
 import { Select, TextField } from "formik-mui";
@@ -27,7 +23,6 @@ interface Props {
 
 const NewUser: React.FunctionComponent<Props> = (props) => {
   const [createUser, { data, error, loading }] = useCreateUserMutation();
-  const { data: BlockDropdown } = useBlockDropdownQuery();
   return (
     <Dialog fullWidth open={props.open} onClose={close}>
       <DialogTitle>New User</DialogTitle>
@@ -36,7 +31,6 @@ const NewUser: React.FunctionComponent<Props> = (props) => {
           phone: "+91",
           first_name: "",
           last_name: "",
-          block: 1,
           role: Role.Fitter,
           role_alias: "",
           add_role_1: "",
@@ -49,7 +43,6 @@ const NewUser: React.FunctionComponent<Props> = (props) => {
           add_role_2: yup.string(),
           add_role_1: yup.string(),
           role_alias: yup.string().required(),
-          block: yup.string().required(),
           phone: yup
             .string()
             .matches(phoneRegExp, "invalid phone number")
@@ -59,11 +52,6 @@ const NewUser: React.FunctionComponent<Props> = (props) => {
           await createUser({
             variables: {
               createUserInput: {
-                block: {
-                  connect: {
-                    id: 1,
-                  },
-                },
                 name: values.first_name + " " + values.last_name,
                 phone: values.phone,
                 role: values.role,
@@ -127,20 +115,7 @@ const NewUser: React.FunctionComponent<Props> = (props) => {
                     value={values.phone}
                     name="phone"
                   />
-                  <Field
-                    fullWidth
-                    component={Select}
-                    label="block"
-                    name="block"
-                  >
-                    {BlockDropdown?.blocks.map((data) => {
-                      return (
-                        <MenuItem key={data.value} value={data.value}>
-                          {data.name}
-                        </MenuItem>
-                      );
-                    })}
-                  </Field>
+
                   <Field
                     fullWidth
                     component={Select}
