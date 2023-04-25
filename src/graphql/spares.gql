@@ -1,0 +1,37 @@
+query getAllSpares($where: ItemsWhereInput, $orderBy: ItemsOrderByWithRelationInput, $limit: Int, $offset: Int) {
+  items(where: $where,orderBy: $orderBy,limit: $limit,offset: $offset) {
+    id
+    catagory {
+      id
+      name
+    }
+    code
+    name
+    quantity
+    unit_price
+  }
+}
+
+query sparesCount($where: ItemsWhereInput, $orderBy: ItemsOrderByWithRelationInput, $limit: Int, $offset: Int) {
+  itemsCount(where: $where,orderBy: $orderBy,limit: $limit,offset: $offset)
+}
+
+mutation createSpare($createItemInput: ItemsCreateInput!) {
+  createItem(createItemInput: $createItemInput) {
+    id
+  }
+}
+
+mutation removeSpare($removeItemId: Int!) {
+  removeItem(id: $removeItemId) {
+    id
+  }
+}
+
+query spareDropdown{
+  items {
+    value:id
+    label:name
+  }
+}
+
