@@ -1,0 +1,67 @@
+query getAllReplacements($where: ReplacementsWhereInput, $limit: Int, $offset: Int, $orderBy: ReplacementsOrderByWithRelationInput) {
+  replacements(where: $where,limit: $limit,offset: $offset,orderBy: $orderBy) {
+    id
+    name
+    created_at
+    approved
+    description
+    quantity
+    maintenance {
+      id
+      name
+      from
+      to
+      assignee {
+        id
+        name
+      }
+      elapsed
+      resolved
+      photo
+      un_planned
+      machine {
+        id
+        name
+        section {
+          id
+          name
+        }
+        machine_catagory {
+          id
+          name
+        }
+        label
+        profile
+      }
+    }
+    item {
+      id
+      name
+      quantity
+      unit_price
+      catagory {
+        id
+        name
+      }
+    }
+
+  }
+}
+
+
+query getAllReplacementsCount($limit: Int, $offset: Int, $orderBy: ReplacementsOrderByWithRelationInput, $where: ReplacementsWhereInput) {
+  replacementsCount(limit: $limit,offset: $offset,orderBy: $orderBy,where: $where)
+}
+
+mutation removeReplacement($removeReplacementId: Int!) {
+  removeReplacement(id: $removeReplacementId) {
+    id
+  }
+}
+
+mutation updateReplacement($updateReplacementId: Int!, $updateReplacementInput: ReplacementsUpdateInput!) {
+  updateReplacement(id: $updateReplacementId, updateReplacementInput: $updateReplacementInput) {
+    id
+  }
+}
+

@@ -17,6 +17,9 @@ import Block from "./pages/block";
 import Production from "./pages/production";
 import { PlantSettingsContext } from "./context/PlantSettings";
 import axios from "./utils/axios";
+import ItemCategory from "./pages/Iitem-catagory";
+import Spares from "./pages/spares";
+import Replacements from "./pages/replacements";
 function App() {
   const [plantSettings, setPlantSettings] = React.useState<any>(null);
   React.useEffect(() => {
@@ -115,6 +118,30 @@ function App() {
             element={
               <SessionAuth>
                 <Production />
+              </SessionAuth>
+            }
+          />
+          <reactRouterDom.Route
+            path="/item-category"
+            element={
+              <SessionAuth>
+                <ItemCategory />
+              </SessionAuth>
+            }
+          />
+          <reactRouterDom.Route
+            path="/spares"
+            element={
+              <SessionAuth>
+                <Spares />
+              </SessionAuth>
+            }
+          />
+          <reactRouterDom.Route
+            path="/replacements"
+            element={
+              <SessionAuth>
+                <Replacements />
               </SessionAuth>
             }
           />

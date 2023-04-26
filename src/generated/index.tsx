@@ -66,7 +66,6 @@ export type Block = {
   location: Scalars['String'];
   machine_catagory?: Maybe<Array<Machine_Catagory>>;
   machines?: Maybe<Array<Machines>>;
-  machines_items?: Maybe<Array<Machines_Items>>;
   name: Scalars['String'];
   production_data?: Maybe<Array<Production_Data>>;
   routine_maintanances?: Maybe<Array<Routine_Maintanances>>;
@@ -103,7 +102,6 @@ export type BlockCount = {
   catagory: Scalars['Int'];
   machine_catagory: Scalars['Int'];
   machines: Scalars['Int'];
-  machines_items: Scalars['Int'];
   production_data: Scalars['Int'];
   routine_maintanances: Scalars['Int'];
 };
@@ -144,7 +142,6 @@ export type BlockCreateInput = {
   location: Scalars['String'];
   machine_catagory?: InputMaybe<Machine_CatagoryCreateNestedManyWithoutBlockInput>;
   machines?: InputMaybe<MachinesCreateNestedManyWithoutBlockInput>;
-  machines_items?: InputMaybe<Machines_ItemsCreateNestedManyWithoutBlockInput>;
   name: Scalars['String'];
   production_data?: InputMaybe<Production_DataCreateNestedManyWithoutBlockInput>;
   routine_maintanances?: InputMaybe<Routine_MaintanancesCreateNestedManyWithoutBlockInput>;
@@ -242,7 +239,6 @@ export type BlockUpdateInput = {
   location?: InputMaybe<StringFieldUpdateOperationsInput>;
   machine_catagory?: InputMaybe<Machine_CatagoryUpdateManyWithoutBlockNestedInput>;
   machines?: InputMaybe<MachinesUpdateManyWithoutBlockNestedInput>;
-  machines_items?: InputMaybe<Machines_ItemsUpdateManyWithoutBlockNestedInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   production_data?: InputMaybe<Production_DataUpdateManyWithoutBlockNestedInput>;
   routine_maintanances?: InputMaybe<Routine_MaintanancesUpdateManyWithoutBlockNestedInput>;
@@ -273,7 +269,6 @@ export type BlockWhereInput = {
   location?: InputMaybe<StringFilter>;
   machine_catagory?: InputMaybe<Machine_CatagoryListRelationFilter>;
   machines?: InputMaybe<MachinesListRelationFilter>;
-  machines_items?: InputMaybe<Machines_ItemsListRelationFilter>;
   name?: InputMaybe<StringFilter>;
   production_data?: InputMaybe<Production_DataListRelationFilter>;
   routine_maintanances?: InputMaybe<Routine_MaintanancesListRelationFilter>;
@@ -488,8 +483,7 @@ export type IntFilter = {
 
 export type ItemCatagory = {
   __typename?: 'ItemCatagory';
-  _count: ItemCatagoryCount;
-  countItems: CatagoryCount;
+  _count: CatagoryCount;
   created_at: Scalars['DateTime'];
   id: Scalars['ID'];
   items?: Maybe<Array<Items>>;
@@ -623,7 +617,6 @@ export type Items = {
   code: Scalars['String'];
   created_at: Scalars['DateTime'];
   id: Scalars['BigInt'];
-  machines_items?: Maybe<Array<Machines_Items>>;
   name: Scalars['String'];
   quantity: Scalars['Int'];
   replacements?: Maybe<Array<Replacements>>;
@@ -657,7 +650,6 @@ export type ItemsAvgOrderByAggregateInput = {
 
 export type ItemsCount = {
   __typename?: 'ItemsCount';
-  machines_items: Scalars['Int'];
   replacements: Scalars['Int'];
 };
 
@@ -691,7 +683,6 @@ export type ItemsCreateInput = {
   code: Scalars['String'];
   created_at?: InputMaybe<Scalars['DateTime']>;
   id?: InputMaybe<Scalars['BigInt']>;
-  machines_items?: InputMaybe<Machines_ItemsCreateNestedManyWithoutItemsInput>;
   name: Scalars['String'];
   quantity: Scalars['Int'];
   replacements?: InputMaybe<ReplacementsCreateNestedManyWithoutItemsInput>;
@@ -766,12 +757,6 @@ export type ItemsCreateNestedManyWithoutItemCatagoryInput = {
   createMany?: InputMaybe<ItemsCreateManyItemCatagoryInputEnvelope>;
 };
 
-export type ItemsCreateNestedOneWithoutMachines_ItemsInput = {
-  connect?: InputMaybe<ItemsWhereUniqueInput>;
-  connectOrCreate?: InputMaybe<ItemsCreateOrConnectWithoutMachines_ItemsInput>;
-  create?: InputMaybe<ItemsCreateWithoutMachines_ItemsInput>;
-};
-
 export type ItemsCreateNestedOneWithoutReplacementsInput = {
   connect?: InputMaybe<ItemsWhereUniqueInput>;
   connectOrCreate?: InputMaybe<ItemsCreateOrConnectWithoutReplacementsInput>;
@@ -793,11 +778,6 @@ export type ItemsCreateOrConnectWithoutItemCatagoryInput = {
   where: ItemsWhereUniqueInput;
 };
 
-export type ItemsCreateOrConnectWithoutMachines_ItemsInput = {
-  create: ItemsCreateWithoutMachines_ItemsInput;
-  where: ItemsWhereUniqueInput;
-};
-
 export type ItemsCreateOrConnectWithoutReplacementsInput = {
   create: ItemsCreateWithoutReplacementsInput;
   where: ItemsWhereUniqueInput;
@@ -808,7 +788,6 @@ export type ItemsCreateWithoutBlockInput = {
   code: Scalars['String'];
   created_at?: InputMaybe<Scalars['DateTime']>;
   id?: InputMaybe<Scalars['BigInt']>;
-  machines_items?: InputMaybe<Machines_ItemsCreateNestedManyWithoutItemsInput>;
   name: Scalars['String'];
   quantity: Scalars['Int'];
   replacements?: InputMaybe<ReplacementsCreateNestedManyWithoutItemsInput>;
@@ -820,7 +799,6 @@ export type ItemsCreateWithoutCatagoryInput = {
   code: Scalars['String'];
   created_at?: InputMaybe<Scalars['DateTime']>;
   id?: InputMaybe<Scalars['BigInt']>;
-  machines_items?: InputMaybe<Machines_ItemsCreateNestedManyWithoutItemsInput>;
   name: Scalars['String'];
   quantity: Scalars['Int'];
   replacements?: InputMaybe<ReplacementsCreateNestedManyWithoutItemsInput>;
@@ -839,24 +817,11 @@ export type ItemsCreateWithoutItemCatagoryInput = {
   updated_at?: InputMaybe<Scalars['DateTime']>;
 };
 
-export type ItemsCreateWithoutMachines_ItemsInput = {
-  catagory: CatagoryCreateNestedOneWithoutItemsInput;
-  code: Scalars['String'];
-  created_at?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['BigInt']>;
-  name: Scalars['String'];
-  quantity: Scalars['Int'];
-  replacements?: InputMaybe<ReplacementsCreateNestedManyWithoutItemsInput>;
-  unit_price: Scalars['Float'];
-  updated_at?: InputMaybe<Scalars['DateTime']>;
-};
-
 export type ItemsCreateWithoutReplacementsInput = {
   catagory: CatagoryCreateNestedOneWithoutItemsInput;
   code: Scalars['String'];
   created_at?: InputMaybe<Scalars['DateTime']>;
   id?: InputMaybe<Scalars['BigInt']>;
-  machines_items?: InputMaybe<Machines_ItemsCreateNestedManyWithoutItemsInput>;
   name: Scalars['String'];
   quantity: Scalars['Int'];
   unit_price: Scalars['Float'];
@@ -990,7 +955,6 @@ export type ItemsUpdateInput = {
   code?: InputMaybe<StringFieldUpdateOperationsInput>;
   created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
-  machines_items?: InputMaybe<Machines_ItemsUpdateManyWithoutItemsNestedInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   quantity?: InputMaybe<IntFieldUpdateOperationsInput>;
   replacements?: InputMaybe<ReplacementsUpdateManyWithoutItemsNestedInput>;
@@ -1065,14 +1029,6 @@ export type ItemsUpdateManyWithoutItemCatagoryNestedInput = {
   upsert?: InputMaybe<Array<ItemsUpsertWithWhereUniqueWithoutItemCatagoryInput>>;
 };
 
-export type ItemsUpdateOneRequiredWithoutMachines_ItemsNestedInput = {
-  connect?: InputMaybe<ItemsWhereUniqueInput>;
-  connectOrCreate?: InputMaybe<ItemsCreateOrConnectWithoutMachines_ItemsInput>;
-  create?: InputMaybe<ItemsCreateWithoutMachines_ItemsInput>;
-  update?: InputMaybe<ItemsUpdateWithoutMachines_ItemsInput>;
-  upsert?: InputMaybe<ItemsUpsertWithoutMachines_ItemsInput>;
-};
-
 export type ItemsUpdateOneRequiredWithoutReplacementsNestedInput = {
   connect?: InputMaybe<ItemsWhereUniqueInput>;
   connectOrCreate?: InputMaybe<ItemsCreateOrConnectWithoutReplacementsInput>;
@@ -1101,7 +1057,6 @@ export type ItemsUpdateWithoutBlockInput = {
   code?: InputMaybe<StringFieldUpdateOperationsInput>;
   created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
-  machines_items?: InputMaybe<Machines_ItemsUpdateManyWithoutItemsNestedInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   quantity?: InputMaybe<IntFieldUpdateOperationsInput>;
   replacements?: InputMaybe<ReplacementsUpdateManyWithoutItemsNestedInput>;
@@ -1113,7 +1068,6 @@ export type ItemsUpdateWithoutCatagoryInput = {
   code?: InputMaybe<StringFieldUpdateOperationsInput>;
   created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
-  machines_items?: InputMaybe<Machines_ItemsUpdateManyWithoutItemsNestedInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   quantity?: InputMaybe<IntFieldUpdateOperationsInput>;
   replacements?: InputMaybe<ReplacementsUpdateManyWithoutItemsNestedInput>;
@@ -1132,24 +1086,11 @@ export type ItemsUpdateWithoutItemCatagoryInput = {
   updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
-export type ItemsUpdateWithoutMachines_ItemsInput = {
-  catagory?: InputMaybe<CatagoryUpdateOneRequiredWithoutItemsNestedInput>;
-  code?: InputMaybe<StringFieldUpdateOperationsInput>;
-  created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
-  name?: InputMaybe<StringFieldUpdateOperationsInput>;
-  quantity?: InputMaybe<IntFieldUpdateOperationsInput>;
-  replacements?: InputMaybe<ReplacementsUpdateManyWithoutItemsNestedInput>;
-  unit_price?: InputMaybe<FloatFieldUpdateOperationsInput>;
-  updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-};
-
 export type ItemsUpdateWithoutReplacementsInput = {
   catagory?: InputMaybe<CatagoryUpdateOneRequiredWithoutItemsNestedInput>;
   code?: InputMaybe<StringFieldUpdateOperationsInput>;
   created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
-  machines_items?: InputMaybe<Machines_ItemsUpdateManyWithoutItemsNestedInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   quantity?: InputMaybe<IntFieldUpdateOperationsInput>;
   unit_price?: InputMaybe<FloatFieldUpdateOperationsInput>;
@@ -1174,11 +1115,6 @@ export type ItemsUpsertWithWhereUniqueWithoutItemCatagoryInput = {
   where: ItemsWhereUniqueInput;
 };
 
-export type ItemsUpsertWithoutMachines_ItemsInput = {
-  create: ItemsCreateWithoutMachines_ItemsInput;
-  update: ItemsUpdateWithoutMachines_ItemsInput;
-};
-
 export type ItemsUpsertWithoutReplacementsInput = {
   create: ItemsCreateWithoutReplacementsInput;
   update: ItemsUpdateWithoutReplacementsInput;
@@ -1193,7 +1129,6 @@ export type ItemsWhereInput = {
   code?: InputMaybe<StringFilter>;
   created_at?: InputMaybe<DateTimeFilter>;
   id?: InputMaybe<BigIntFilter>;
-  machines_items?: InputMaybe<Machines_ItemsListRelationFilter>;
   name?: InputMaybe<StringFilter>;
   quantity?: InputMaybe<IntFilter>;
   replacements?: InputMaybe<ReplacementsListRelationFilter>;
@@ -1288,7 +1223,6 @@ export type Machines = {
   label: Scalars['String'];
   machine_catagory: Machine_Catagory;
   machine_catagory_id: Scalars['BigInt'];
-  machines_items?: Maybe<Array<Machines_Items>>;
   maintenance?: Maybe<Array<Maintenance>>;
   name: Scalars['String'];
   priority: Scalars['Int'];
@@ -1326,7 +1260,6 @@ export type MachinesAvgOrderByAggregateInput = {
 export type MachinesCount = {
   __typename?: 'MachinesCount';
   Ticket: Scalars['Int'];
-  machines_items: Scalars['Int'];
   maintenance: Scalars['Int'];
   routine_maintanances: Scalars['Int'];
 };
@@ -1364,7 +1297,6 @@ export type MachinesCreateInput = {
   id?: InputMaybe<Scalars['BigInt']>;
   label: Scalars['String'];
   machine_catagory: Machine_CatagoryCreateNestedOneWithoutMachinesInput;
-  machines_items?: InputMaybe<Machines_ItemsCreateNestedManyWithoutMachineInput>;
   maintenance?: InputMaybe<MaintenanceCreateNestedManyWithoutMachinesInput>;
   name: Scalars['String'];
   priority: Scalars['Int'];
@@ -1444,12 +1376,6 @@ export type MachinesCreateNestedManyWithoutSectionInput = {
   createMany?: InputMaybe<MachinesCreateManySectionInputEnvelope>;
 };
 
-export type MachinesCreateNestedOneWithoutMachines_ItemsInput = {
-  connect?: InputMaybe<MachinesWhereUniqueInput>;
-  connectOrCreate?: InputMaybe<MachinesCreateOrConnectWithoutMachines_ItemsInput>;
-  create?: InputMaybe<MachinesCreateWithoutMachines_ItemsInput>;
-};
-
 export type MachinesCreateNestedOneWithoutMaintenanceInput = {
   connect?: InputMaybe<MachinesWhereUniqueInput>;
   connectOrCreate?: InputMaybe<MachinesCreateOrConnectWithoutMaintenanceInput>;
@@ -1475,11 +1401,6 @@ export type MachinesCreateOrConnectWithoutBlockInput = {
 
 export type MachinesCreateOrConnectWithoutMachine_CatagoryInput = {
   create: MachinesCreateWithoutMachine_CatagoryInput;
-  where: MachinesWhereUniqueInput;
-};
-
-export type MachinesCreateOrConnectWithoutMachines_ItemsInput = {
-  create: MachinesCreateWithoutMachines_ItemsInput;
   where: MachinesWhereUniqueInput;
 };
 
@@ -1509,7 +1430,6 @@ export type MachinesCreateWithoutBlockInput = {
   id?: InputMaybe<Scalars['BigInt']>;
   label: Scalars['String'];
   machine_catagory: Machine_CatagoryCreateNestedOneWithoutMachinesInput;
-  machines_items?: InputMaybe<Machines_ItemsCreateNestedManyWithoutMachineInput>;
   maintenance?: InputMaybe<MaintenanceCreateNestedManyWithoutMachinesInput>;
   name: Scalars['String'];
   priority: Scalars['Int'];
@@ -1524,22 +1444,6 @@ export type MachinesCreateWithoutMachine_CatagoryInput = {
   created_at?: InputMaybe<Scalars['DateTime']>;
   id?: InputMaybe<Scalars['BigInt']>;
   label: Scalars['String'];
-  machines_items?: InputMaybe<Machines_ItemsCreateNestedManyWithoutMachineInput>;
-  maintenance?: InputMaybe<MaintenanceCreateNestedManyWithoutMachinesInput>;
-  name: Scalars['String'];
-  priority: Scalars['Int'];
-  profile?: InputMaybe<Scalars['JSON']>;
-  routine_maintanances?: InputMaybe<Routine_MaintanancesCreateNestedManyWithoutMeachineInput>;
-  section: SectionsCreateNestedOneWithoutMachinesInput;
-  updated_at?: InputMaybe<Scalars['DateTime']>;
-};
-
-export type MachinesCreateWithoutMachines_ItemsInput = {
-  Ticket?: InputMaybe<TicketCreateNestedManyWithoutMachinesInput>;
-  created_at?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['BigInt']>;
-  label: Scalars['String'];
-  machine_catagory: Machine_CatagoryCreateNestedOneWithoutMachinesInput;
   maintenance?: InputMaybe<MaintenanceCreateNestedManyWithoutMachinesInput>;
   name: Scalars['String'];
   priority: Scalars['Int'];
@@ -1555,7 +1459,6 @@ export type MachinesCreateWithoutMaintenanceInput = {
   id?: InputMaybe<Scalars['BigInt']>;
   label: Scalars['String'];
   machine_catagory: Machine_CatagoryCreateNestedOneWithoutMachinesInput;
-  machines_items?: InputMaybe<Machines_ItemsCreateNestedManyWithoutMachineInput>;
   name: Scalars['String'];
   priority: Scalars['Int'];
   profile?: InputMaybe<Scalars['JSON']>;
@@ -1570,7 +1473,6 @@ export type MachinesCreateWithoutRoutine_MaintanancesInput = {
   id?: InputMaybe<Scalars['BigInt']>;
   label: Scalars['String'];
   machine_catagory: Machine_CatagoryCreateNestedOneWithoutMachinesInput;
-  machines_items?: InputMaybe<Machines_ItemsCreateNestedManyWithoutMachineInput>;
   maintenance?: InputMaybe<MaintenanceCreateNestedManyWithoutMachinesInput>;
   name: Scalars['String'];
   priority: Scalars['Int'];
@@ -1585,7 +1487,6 @@ export type MachinesCreateWithoutSectionInput = {
   id?: InputMaybe<Scalars['BigInt']>;
   label: Scalars['String'];
   machine_catagory: Machine_CatagoryCreateNestedOneWithoutMachinesInput;
-  machines_items?: InputMaybe<Machines_ItemsCreateNestedManyWithoutMachineInput>;
   maintenance?: InputMaybe<MaintenanceCreateNestedManyWithoutMachinesInput>;
   name: Scalars['String'];
   priority: Scalars['Int'];
@@ -1599,7 +1500,6 @@ export type MachinesCreateWithoutTicketInput = {
   id?: InputMaybe<Scalars['BigInt']>;
   label: Scalars['String'];
   machine_catagory: Machine_CatagoryCreateNestedOneWithoutMachinesInput;
-  machines_items?: InputMaybe<Machines_ItemsCreateNestedManyWithoutMachineInput>;
   maintenance?: InputMaybe<MaintenanceCreateNestedManyWithoutMachinesInput>;
   name: Scalars['String'];
   priority: Scalars['Int'];
@@ -1742,7 +1642,6 @@ export type MachinesUpdateInput = {
   id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
   label?: InputMaybe<StringFieldUpdateOperationsInput>;
   machine_catagory?: InputMaybe<Machine_CatagoryUpdateOneRequiredWithoutMachinesNestedInput>;
-  machines_items?: InputMaybe<Machines_ItemsUpdateManyWithoutMachineNestedInput>;
   maintenance?: InputMaybe<MaintenanceUpdateManyWithoutMachinesNestedInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   priority?: InputMaybe<IntFieldUpdateOperationsInput>;
@@ -1819,14 +1718,6 @@ export type MachinesUpdateManyWithoutSectionNestedInput = {
   upsert?: InputMaybe<Array<MachinesUpsertWithWhereUniqueWithoutSectionInput>>;
 };
 
-export type MachinesUpdateOneRequiredWithoutMachines_ItemsNestedInput = {
-  connect?: InputMaybe<MachinesWhereUniqueInput>;
-  connectOrCreate?: InputMaybe<MachinesCreateOrConnectWithoutMachines_ItemsInput>;
-  create?: InputMaybe<MachinesCreateWithoutMachines_ItemsInput>;
-  update?: InputMaybe<MachinesUpdateWithoutMachines_ItemsInput>;
-  upsert?: InputMaybe<MachinesUpsertWithoutMachines_ItemsInput>;
-};
-
 export type MachinesUpdateOneRequiredWithoutMaintenanceNestedInput = {
   connect?: InputMaybe<MachinesWhereUniqueInput>;
   connectOrCreate?: InputMaybe<MachinesCreateOrConnectWithoutMaintenanceInput>;
@@ -1872,7 +1763,6 @@ export type MachinesUpdateWithoutBlockInput = {
   id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
   label?: InputMaybe<StringFieldUpdateOperationsInput>;
   machine_catagory?: InputMaybe<Machine_CatagoryUpdateOneRequiredWithoutMachinesNestedInput>;
-  machines_items?: InputMaybe<Machines_ItemsUpdateManyWithoutMachineNestedInput>;
   maintenance?: InputMaybe<MaintenanceUpdateManyWithoutMachinesNestedInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   priority?: InputMaybe<IntFieldUpdateOperationsInput>;
@@ -1887,22 +1777,6 @@ export type MachinesUpdateWithoutMachine_CatagoryInput = {
   created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
   label?: InputMaybe<StringFieldUpdateOperationsInput>;
-  machines_items?: InputMaybe<Machines_ItemsUpdateManyWithoutMachineNestedInput>;
-  maintenance?: InputMaybe<MaintenanceUpdateManyWithoutMachinesNestedInput>;
-  name?: InputMaybe<StringFieldUpdateOperationsInput>;
-  priority?: InputMaybe<IntFieldUpdateOperationsInput>;
-  profile?: InputMaybe<Scalars['JSON']>;
-  routine_maintanances?: InputMaybe<Routine_MaintanancesUpdateManyWithoutMeachineNestedInput>;
-  section?: InputMaybe<SectionsUpdateOneRequiredWithoutMachinesNestedInput>;
-  updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-};
-
-export type MachinesUpdateWithoutMachines_ItemsInput = {
-  Ticket?: InputMaybe<TicketUpdateManyWithoutMachinesNestedInput>;
-  created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
-  label?: InputMaybe<StringFieldUpdateOperationsInput>;
-  machine_catagory?: InputMaybe<Machine_CatagoryUpdateOneRequiredWithoutMachinesNestedInput>;
   maintenance?: InputMaybe<MaintenanceUpdateManyWithoutMachinesNestedInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   priority?: InputMaybe<IntFieldUpdateOperationsInput>;
@@ -1918,7 +1792,6 @@ export type MachinesUpdateWithoutMaintenanceInput = {
   id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
   label?: InputMaybe<StringFieldUpdateOperationsInput>;
   machine_catagory?: InputMaybe<Machine_CatagoryUpdateOneRequiredWithoutMachinesNestedInput>;
-  machines_items?: InputMaybe<Machines_ItemsUpdateManyWithoutMachineNestedInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   priority?: InputMaybe<IntFieldUpdateOperationsInput>;
   profile?: InputMaybe<Scalars['JSON']>;
@@ -1933,7 +1806,6 @@ export type MachinesUpdateWithoutRoutine_MaintanancesInput = {
   id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
   label?: InputMaybe<StringFieldUpdateOperationsInput>;
   machine_catagory?: InputMaybe<Machine_CatagoryUpdateOneRequiredWithoutMachinesNestedInput>;
-  machines_items?: InputMaybe<Machines_ItemsUpdateManyWithoutMachineNestedInput>;
   maintenance?: InputMaybe<MaintenanceUpdateManyWithoutMachinesNestedInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   priority?: InputMaybe<IntFieldUpdateOperationsInput>;
@@ -1948,7 +1820,6 @@ export type MachinesUpdateWithoutSectionInput = {
   id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
   label?: InputMaybe<StringFieldUpdateOperationsInput>;
   machine_catagory?: InputMaybe<Machine_CatagoryUpdateOneRequiredWithoutMachinesNestedInput>;
-  machines_items?: InputMaybe<Machines_ItemsUpdateManyWithoutMachineNestedInput>;
   maintenance?: InputMaybe<MaintenanceUpdateManyWithoutMachinesNestedInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   priority?: InputMaybe<IntFieldUpdateOperationsInput>;
@@ -1962,7 +1833,6 @@ export type MachinesUpdateWithoutTicketInput = {
   id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
   label?: InputMaybe<StringFieldUpdateOperationsInput>;
   machine_catagory?: InputMaybe<Machine_CatagoryUpdateOneRequiredWithoutMachinesNestedInput>;
-  machines_items?: InputMaybe<Machines_ItemsUpdateManyWithoutMachineNestedInput>;
   maintenance?: InputMaybe<MaintenanceUpdateManyWithoutMachinesNestedInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   priority?: InputMaybe<IntFieldUpdateOperationsInput>;
@@ -1990,11 +1860,6 @@ export type MachinesUpsertWithWhereUniqueWithoutSectionInput = {
   where: MachinesWhereUniqueInput;
 };
 
-export type MachinesUpsertWithoutMachines_ItemsInput = {
-  create: MachinesCreateWithoutMachines_ItemsInput;
-  update: MachinesUpdateWithoutMachines_ItemsInput;
-};
-
 export type MachinesUpsertWithoutMaintenanceInput = {
   create: MachinesCreateWithoutMaintenanceInput;
   update: MachinesUpdateWithoutMaintenanceInput;
@@ -2020,7 +1885,6 @@ export type MachinesWhereInput = {
   label?: InputMaybe<StringFilter>;
   machine_catagory?: InputMaybe<Machine_CatagoryRelationFilter>;
   machine_catagory_id?: InputMaybe<BigIntFilter>;
-  machines_items?: InputMaybe<Machines_ItemsListRelationFilter>;
   maintenance?: InputMaybe<MaintenanceListRelationFilter>;
   name?: InputMaybe<StringFilter>;
   priority?: InputMaybe<IntFilter>;
@@ -2050,12 +1914,6 @@ export type Machines_ItemsCountAggregate = {
   id: Scalars['Int'];
   item_id: Scalars['Int'];
   machine_id: Scalars['Int'];
-};
-
-export type Machines_ItemsListRelationFilter = {
-  every?: InputMaybe<Machines_ItemsWhereInput>;
-  none?: InputMaybe<Machines_ItemsWhereInput>;
-  some?: InputMaybe<Machines_ItemsWhereInput>;
 };
 
 export type Machines_ItemsMaxAggregate = {
@@ -3258,8 +3116,10 @@ export type Query = {
   blocksCount: Scalars['Int'];
   item: Items;
   itemCatagories: Array<ItemCatagory>;
+  itemCatagoriesCount: Scalars['Int'];
   itemCatagory: ItemCatagory;
   items: Array<Items>;
+  itemsCount: Scalars['Int'];
   machine: Machines;
   machineCatagories: Array<Machine_Catagory>;
   machineCatagoriesCount: Scalars['Int'];
@@ -3274,6 +3134,7 @@ export type Query = {
   productionDataCount: Scalars['Int'];
   replacement: Replacements;
   replacements: Array<Replacements>;
+  replacementsCount: Scalars['Int'];
   report: Reports;
   routineMaintanance: Routine_Maintanances;
   routineMaintanances: Array<Routine_Maintanances>;
@@ -3324,12 +3185,28 @@ export type QueryItemCatagoriesArgs = {
 };
 
 
+export type QueryItemCatagoriesCountArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  orderBy?: InputMaybe<ItemCatagoryOrderByWithAggregationInput>;
+  where?: InputMaybe<ItemCatagoryWhereInput>;
+};
+
+
 export type QueryItemCatagoryArgs = {
   id: Scalars['Int'];
 };
 
 
 export type QueryItemsArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  orderBy?: InputMaybe<ItemsOrderByWithRelationInput>;
+  where?: InputMaybe<ItemsWhereInput>;
+};
+
+
+export type QueryItemsCountArgs = {
   limit?: InputMaybe<Scalars['Int']>;
   offset?: InputMaybe<Scalars['Int']>;
   orderBy?: InputMaybe<ItemsOrderByWithRelationInput>;
@@ -3427,6 +3304,14 @@ export type QueryReplacementArgs = {
 
 
 export type QueryReplacementsArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  orderBy?: InputMaybe<ReplacementsOrderByWithRelationInput>;
+  where?: InputMaybe<ReplacementsWhereInput>;
+};
+
+
+export type QueryReplacementsCountArgs = {
   limit?: InputMaybe<Scalars['Int']>;
   offset?: InputMaybe<Scalars['Int']>;
   orderBy?: InputMaybe<ReplacementsOrderByWithRelationInput>;
@@ -6090,240 +5975,6 @@ export type Machine_CatagoryWhereUniqueInput = {
   id?: InputMaybe<Scalars['BigInt']>;
 };
 
-export type Machines_Items = {
-  __typename?: 'machines_items';
-  block: Block;
-  block_id: Scalars['BigInt'];
-  id: Scalars['BigInt'];
-  item_id: Scalars['BigInt'];
-  items: Items;
-  machine: Machines;
-  machine_id: Scalars['BigInt'];
-};
-
-export type Machines_ItemsCreateManyBlockInput = {
-  id?: InputMaybe<Scalars['BigInt']>;
-  item_id: Scalars['BigInt'];
-  machine_id: Scalars['BigInt'];
-};
-
-export type Machines_ItemsCreateManyBlockInputEnvelope = {
-  data: Array<Machines_ItemsCreateManyBlockInput>;
-  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
-};
-
-export type Machines_ItemsCreateManyItemsInput = {
-  id?: InputMaybe<Scalars['BigInt']>;
-  machine_id: Scalars['BigInt'];
-};
-
-export type Machines_ItemsCreateManyItemsInputEnvelope = {
-  data: Array<Machines_ItemsCreateManyItemsInput>;
-  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
-};
-
-export type Machines_ItemsCreateManyMachineInput = {
-  id?: InputMaybe<Scalars['BigInt']>;
-  item_id: Scalars['BigInt'];
-};
-
-export type Machines_ItemsCreateManyMachineInputEnvelope = {
-  data: Array<Machines_ItemsCreateManyMachineInput>;
-  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
-};
-
-export type Machines_ItemsCreateNestedManyWithoutBlockInput = {
-  connect?: InputMaybe<Array<Machines_ItemsWhereUniqueInput>>;
-  connectOrCreate?: InputMaybe<Array<Machines_ItemsCreateOrConnectWithoutBlockInput>>;
-  create?: InputMaybe<Array<Machines_ItemsCreateWithoutBlockInput>>;
-  createMany?: InputMaybe<Machines_ItemsCreateManyBlockInputEnvelope>;
-};
-
-export type Machines_ItemsCreateNestedManyWithoutItemsInput = {
-  connect?: InputMaybe<Array<Machines_ItemsWhereUniqueInput>>;
-  connectOrCreate?: InputMaybe<Array<Machines_ItemsCreateOrConnectWithoutItemsInput>>;
-  create?: InputMaybe<Array<Machines_ItemsCreateWithoutItemsInput>>;
-  createMany?: InputMaybe<Machines_ItemsCreateManyItemsInputEnvelope>;
-};
-
-export type Machines_ItemsCreateNestedManyWithoutMachineInput = {
-  connect?: InputMaybe<Array<Machines_ItemsWhereUniqueInput>>;
-  connectOrCreate?: InputMaybe<Array<Machines_ItemsCreateOrConnectWithoutMachineInput>>;
-  create?: InputMaybe<Array<Machines_ItemsCreateWithoutMachineInput>>;
-  createMany?: InputMaybe<Machines_ItemsCreateManyMachineInputEnvelope>;
-};
-
-export type Machines_ItemsCreateOrConnectWithoutBlockInput = {
-  create: Machines_ItemsCreateWithoutBlockInput;
-  where: Machines_ItemsWhereUniqueInput;
-};
-
-export type Machines_ItemsCreateOrConnectWithoutItemsInput = {
-  create: Machines_ItemsCreateWithoutItemsInput;
-  where: Machines_ItemsWhereUniqueInput;
-};
-
-export type Machines_ItemsCreateOrConnectWithoutMachineInput = {
-  create: Machines_ItemsCreateWithoutMachineInput;
-  where: Machines_ItemsWhereUniqueInput;
-};
-
-export type Machines_ItemsCreateWithoutBlockInput = {
-  id?: InputMaybe<Scalars['BigInt']>;
-  items: ItemsCreateNestedOneWithoutMachines_ItemsInput;
-  machine: MachinesCreateNestedOneWithoutMachines_ItemsInput;
-};
-
-export type Machines_ItemsCreateWithoutItemsInput = {
-  id?: InputMaybe<Scalars['BigInt']>;
-  machine: MachinesCreateNestedOneWithoutMachines_ItemsInput;
-};
-
-export type Machines_ItemsCreateWithoutMachineInput = {
-  id?: InputMaybe<Scalars['BigInt']>;
-  items: ItemsCreateNestedOneWithoutMachines_ItemsInput;
-};
-
-export type Machines_ItemsMachine_IdItem_IdCompoundUniqueInput = {
-  item_id: Scalars['BigInt'];
-  machine_id: Scalars['BigInt'];
-};
-
-export type Machines_ItemsScalarWhereInput = {
-  AND?: InputMaybe<Array<Machines_ItemsScalarWhereInput>>;
-  NOT?: InputMaybe<Array<Machines_ItemsScalarWhereInput>>;
-  OR?: InputMaybe<Array<Machines_ItemsScalarWhereInput>>;
-  id?: InputMaybe<BigIntFilter>;
-  item_id?: InputMaybe<BigIntFilter>;
-  machine_id?: InputMaybe<BigIntFilter>;
-};
-
-export type Machines_ItemsUpdateManyMutationInput = {
-  id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
-};
-
-export type Machines_ItemsUpdateManyWithWhereWithoutBlockInput = {
-  data: Machines_ItemsUpdateManyMutationInput;
-  where: Machines_ItemsScalarWhereInput;
-};
-
-export type Machines_ItemsUpdateManyWithWhereWithoutItemsInput = {
-  data: Machines_ItemsUpdateManyMutationInput;
-  where: Machines_ItemsScalarWhereInput;
-};
-
-export type Machines_ItemsUpdateManyWithWhereWithoutMachineInput = {
-  data: Machines_ItemsUpdateManyMutationInput;
-  where: Machines_ItemsScalarWhereInput;
-};
-
-export type Machines_ItemsUpdateManyWithoutBlockNestedInput = {
-  connect?: InputMaybe<Array<Machines_ItemsWhereUniqueInput>>;
-  connectOrCreate?: InputMaybe<Array<Machines_ItemsCreateOrConnectWithoutBlockInput>>;
-  create?: InputMaybe<Array<Machines_ItemsCreateWithoutBlockInput>>;
-  createMany?: InputMaybe<Machines_ItemsCreateManyBlockInputEnvelope>;
-  delete?: InputMaybe<Array<Machines_ItemsWhereUniqueInput>>;
-  deleteMany?: InputMaybe<Array<Machines_ItemsScalarWhereInput>>;
-  disconnect?: InputMaybe<Array<Machines_ItemsWhereUniqueInput>>;
-  set?: InputMaybe<Array<Machines_ItemsWhereUniqueInput>>;
-  update?: InputMaybe<Array<Machines_ItemsUpdateWithWhereUniqueWithoutBlockInput>>;
-  updateMany?: InputMaybe<Array<Machines_ItemsUpdateManyWithWhereWithoutBlockInput>>;
-  upsert?: InputMaybe<Array<Machines_ItemsUpsertWithWhereUniqueWithoutBlockInput>>;
-};
-
-export type Machines_ItemsUpdateManyWithoutItemsNestedInput = {
-  connect?: InputMaybe<Array<Machines_ItemsWhereUniqueInput>>;
-  connectOrCreate?: InputMaybe<Array<Machines_ItemsCreateOrConnectWithoutItemsInput>>;
-  create?: InputMaybe<Array<Machines_ItemsCreateWithoutItemsInput>>;
-  createMany?: InputMaybe<Machines_ItemsCreateManyItemsInputEnvelope>;
-  delete?: InputMaybe<Array<Machines_ItemsWhereUniqueInput>>;
-  deleteMany?: InputMaybe<Array<Machines_ItemsScalarWhereInput>>;
-  disconnect?: InputMaybe<Array<Machines_ItemsWhereUniqueInput>>;
-  set?: InputMaybe<Array<Machines_ItemsWhereUniqueInput>>;
-  update?: InputMaybe<Array<Machines_ItemsUpdateWithWhereUniqueWithoutItemsInput>>;
-  updateMany?: InputMaybe<Array<Machines_ItemsUpdateManyWithWhereWithoutItemsInput>>;
-  upsert?: InputMaybe<Array<Machines_ItemsUpsertWithWhereUniqueWithoutItemsInput>>;
-};
-
-export type Machines_ItemsUpdateManyWithoutMachineNestedInput = {
-  connect?: InputMaybe<Array<Machines_ItemsWhereUniqueInput>>;
-  connectOrCreate?: InputMaybe<Array<Machines_ItemsCreateOrConnectWithoutMachineInput>>;
-  create?: InputMaybe<Array<Machines_ItemsCreateWithoutMachineInput>>;
-  createMany?: InputMaybe<Machines_ItemsCreateManyMachineInputEnvelope>;
-  delete?: InputMaybe<Array<Machines_ItemsWhereUniqueInput>>;
-  deleteMany?: InputMaybe<Array<Machines_ItemsScalarWhereInput>>;
-  disconnect?: InputMaybe<Array<Machines_ItemsWhereUniqueInput>>;
-  set?: InputMaybe<Array<Machines_ItemsWhereUniqueInput>>;
-  update?: InputMaybe<Array<Machines_ItemsUpdateWithWhereUniqueWithoutMachineInput>>;
-  updateMany?: InputMaybe<Array<Machines_ItemsUpdateManyWithWhereWithoutMachineInput>>;
-  upsert?: InputMaybe<Array<Machines_ItemsUpsertWithWhereUniqueWithoutMachineInput>>;
-};
-
-export type Machines_ItemsUpdateWithWhereUniqueWithoutBlockInput = {
-  data: Machines_ItemsUpdateWithoutBlockInput;
-  where: Machines_ItemsWhereUniqueInput;
-};
-
-export type Machines_ItemsUpdateWithWhereUniqueWithoutItemsInput = {
-  data: Machines_ItemsUpdateWithoutItemsInput;
-  where: Machines_ItemsWhereUniqueInput;
-};
-
-export type Machines_ItemsUpdateWithWhereUniqueWithoutMachineInput = {
-  data: Machines_ItemsUpdateWithoutMachineInput;
-  where: Machines_ItemsWhereUniqueInput;
-};
-
-export type Machines_ItemsUpdateWithoutBlockInput = {
-  id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
-  items?: InputMaybe<ItemsUpdateOneRequiredWithoutMachines_ItemsNestedInput>;
-  machine?: InputMaybe<MachinesUpdateOneRequiredWithoutMachines_ItemsNestedInput>;
-};
-
-export type Machines_ItemsUpdateWithoutItemsInput = {
-  id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
-  machine?: InputMaybe<MachinesUpdateOneRequiredWithoutMachines_ItemsNestedInput>;
-};
-
-export type Machines_ItemsUpdateWithoutMachineInput = {
-  id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
-  items?: InputMaybe<ItemsUpdateOneRequiredWithoutMachines_ItemsNestedInput>;
-};
-
-export type Machines_ItemsUpsertWithWhereUniqueWithoutBlockInput = {
-  create: Machines_ItemsCreateWithoutBlockInput;
-  update: Machines_ItemsUpdateWithoutBlockInput;
-  where: Machines_ItemsWhereUniqueInput;
-};
-
-export type Machines_ItemsUpsertWithWhereUniqueWithoutItemsInput = {
-  create: Machines_ItemsCreateWithoutItemsInput;
-  update: Machines_ItemsUpdateWithoutItemsInput;
-  where: Machines_ItemsWhereUniqueInput;
-};
-
-export type Machines_ItemsUpsertWithWhereUniqueWithoutMachineInput = {
-  create: Machines_ItemsCreateWithoutMachineInput;
-  update: Machines_ItemsUpdateWithoutMachineInput;
-  where: Machines_ItemsWhereUniqueInput;
-};
-
-export type Machines_ItemsWhereInput = {
-  AND?: InputMaybe<Array<Machines_ItemsWhereInput>>;
-  NOT?: InputMaybe<Array<Machines_ItemsWhereInput>>;
-  OR?: InputMaybe<Array<Machines_ItemsWhereInput>>;
-  id?: InputMaybe<BigIntFilter>;
-  item_id?: InputMaybe<BigIntFilter>;
-  items?: InputMaybe<ItemsRelationFilter>;
-  machine?: InputMaybe<MachinesRelationFilter>;
-  machine_id?: InputMaybe<BigIntFilter>;
-};
-
-export type Machines_ItemsWhereUniqueInput = {
-  id?: InputMaybe<Scalars['BigInt']>;
-  machine_id_item_id?: InputMaybe<Machines_ItemsMachine_IdItem_IdCompoundUniqueInput>;
-};
-
 export type Production_Data = {
   __typename?: 'production_data';
   Block: Block;
@@ -7070,6 +6721,45 @@ export type UpdateBlockMutationVariables = Exact<{
 
 export type UpdateBlockMutation = { __typename?: 'Mutation', updateBlock: { __typename?: 'Block', id: any } };
 
+export type ItemCataogiriesQueryVariables = Exact<{
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  orderBy?: InputMaybe<ItemCatagoryOrderByWithAggregationInput>;
+  where?: InputMaybe<ItemCatagoryWhereInput>;
+}>;
+
+
+export type ItemCataogiriesQuery = { __typename?: 'Query', itemCatagories: Array<{ __typename?: 'ItemCatagory', id: string, name: string, created_at: any, _count: { __typename?: 'CatagoryCount', items: number } }> };
+
+export type ItemCatagoriesCountQueryVariables = Exact<{
+  where?: InputMaybe<ItemCatagoryWhereInput>;
+  orderBy?: InputMaybe<ItemCatagoryOrderByWithAggregationInput>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+}>;
+
+
+export type ItemCatagoriesCountQuery = { __typename?: 'Query', itemCatagoriesCount: number };
+
+export type CreateItemCatagoryMutationVariables = Exact<{
+  createItemCatagoryInput: ItemCatagoryCreateInput;
+}>;
+
+
+export type CreateItemCatagoryMutation = { __typename?: 'Mutation', createItemCatagory: { __typename?: 'ItemCatagory', id: string } };
+
+export type RemoveItemCatagoryMutationVariables = Exact<{
+  removeItemCatagoryId: Scalars['Int'];
+}>;
+
+
+export type RemoveItemCatagoryMutation = { __typename?: 'Mutation', removeItemCatagory: { __typename?: 'ItemCatagory', id: string } };
+
+export type GetSpareCatagoryDropdownQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetSpareCatagoryDropdownQuery = { __typename?: 'Query', itemCatagories: Array<{ __typename?: 'ItemCatagory', value: string, label: string }> };
+
 export type GetAllMachinesDropdownQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -7208,6 +6898,41 @@ export type UpdateProductionMutationVariables = Exact<{
 
 export type UpdateProductionMutation = { __typename?: 'Mutation', updateProduction: { __typename?: 'production_data', id: any } };
 
+export type GetAllReplacementsQueryVariables = Exact<{
+  where?: InputMaybe<ReplacementsWhereInput>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  orderBy?: InputMaybe<ReplacementsOrderByWithRelationInput>;
+}>;
+
+
+export type GetAllReplacementsQuery = { __typename?: 'Query', replacements: Array<{ __typename?: 'Replacements', id: any, name: string, created_at: any, approved: boolean, description: string, quantity: number, maintenance: { __typename?: 'Maintenance', id: any, name: string, from: any, to: any, elapsed?: any | null, resolved: boolean, photo?: string | null, un_planned: boolean, assignee: { __typename?: 'Users', id: any, name: string }, machine: { __typename?: 'Machines', id: any, name: string, label: string, profile: any, section: { __typename?: 'Sections', id: any, name: string }, machine_catagory: { __typename?: 'machine_catagory', id: any, name: string } } }, item: { __typename?: 'Items', id: any, name: string, quantity: number, unit_price: number, catagory: { __typename?: 'catagory', id: any, name: string } } }> };
+
+export type GetAllReplacementsCountQueryVariables = Exact<{
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  orderBy?: InputMaybe<ReplacementsOrderByWithRelationInput>;
+  where?: InputMaybe<ReplacementsWhereInput>;
+}>;
+
+
+export type GetAllReplacementsCountQuery = { __typename?: 'Query', replacementsCount: number };
+
+export type RemoveReplacementMutationVariables = Exact<{
+  removeReplacementId: Scalars['Int'];
+}>;
+
+
+export type RemoveReplacementMutation = { __typename?: 'Mutation', removeReplacement: { __typename?: 'Replacements', id: any } };
+
+export type UpdateReplacementMutationVariables = Exact<{
+  updateReplacementId: Scalars['Int'];
+  updateReplacementInput: ReplacementsUpdateInput;
+}>;
+
+
+export type UpdateReplacementMutation = { __typename?: 'Mutation', updateReplacement: { __typename?: 'Replacements', id: any } };
+
 export type RoutineMaintanancesQueryVariables = Exact<{
   where?: InputMaybe<Routine_MaintanancesWhereInput>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -7256,6 +6981,45 @@ export type RemoveRoutineMaintananceMutationVariables = Exact<{
 
 
 export type RemoveRoutineMaintananceMutation = { __typename?: 'Mutation', removeRoutineMaintanance: { __typename?: 'routine_maintanances', id: any } };
+
+export type GetAllSparesQueryVariables = Exact<{
+  where?: InputMaybe<ItemsWhereInput>;
+  orderBy?: InputMaybe<ItemsOrderByWithRelationInput>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+}>;
+
+
+export type GetAllSparesQuery = { __typename?: 'Query', items: Array<{ __typename?: 'Items', id: any, code: string, name: string, quantity: number, unit_price: number, catagory: { __typename?: 'catagory', id: any, name: string } }> };
+
+export type SparesCountQueryVariables = Exact<{
+  where?: InputMaybe<ItemsWhereInput>;
+  orderBy?: InputMaybe<ItemsOrderByWithRelationInput>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+}>;
+
+
+export type SparesCountQuery = { __typename?: 'Query', itemsCount: number };
+
+export type CreateSpareMutationVariables = Exact<{
+  createItemInput: ItemsCreateInput;
+}>;
+
+
+export type CreateSpareMutation = { __typename?: 'Mutation', createItem: { __typename?: 'Items', id: any } };
+
+export type RemoveSpareMutationVariables = Exact<{
+  removeItemId: Scalars['Int'];
+}>;
+
+
+export type RemoveSpareMutation = { __typename?: 'Mutation', removeItem: { __typename?: 'Items', id: any } };
+
+export type SpareDropdownQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type SpareDropdownQuery = { __typename?: 'Query', items: Array<{ __typename?: 'Items', value: any, label: string }> };
 
 export type TicketsQueryVariables = Exact<{
   where?: InputMaybe<TicketWhereInput>;
@@ -7929,6 +7693,191 @@ export function useUpdateBlockMutation(baseOptions?: Apollo.MutationHookOptions<
 export type UpdateBlockMutationHookResult = ReturnType<typeof useUpdateBlockMutation>;
 export type UpdateBlockMutationResult = Apollo.MutationResult<UpdateBlockMutation>;
 export type UpdateBlockMutationOptions = Apollo.BaseMutationOptions<UpdateBlockMutation, UpdateBlockMutationVariables>;
+export const ItemCataogiriesDocument = gql`
+    query itemCataogiries($limit: Int, $offset: Int, $orderBy: ItemCatagoryOrderByWithAggregationInput, $where: ItemCatagoryWhereInput) {
+  itemCatagories(limit: $limit, offset: $offset, orderBy: $orderBy, where: $where) {
+    id
+    name
+    created_at
+    _count {
+      items
+    }
+  }
+}
+    `;
+
+/**
+ * __useItemCataogiriesQuery__
+ *
+ * To run a query within a React component, call `useItemCataogiriesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useItemCataogiriesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useItemCataogiriesQuery({
+ *   variables: {
+ *      limit: // value for 'limit'
+ *      offset: // value for 'offset'
+ *      orderBy: // value for 'orderBy'
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useItemCataogiriesQuery(baseOptions?: Apollo.QueryHookOptions<ItemCataogiriesQuery, ItemCataogiriesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<ItemCataogiriesQuery, ItemCataogiriesQueryVariables>(ItemCataogiriesDocument, options);
+      }
+export function useItemCataogiriesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ItemCataogiriesQuery, ItemCataogiriesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<ItemCataogiriesQuery, ItemCataogiriesQueryVariables>(ItemCataogiriesDocument, options);
+        }
+export type ItemCataogiriesQueryHookResult = ReturnType<typeof useItemCataogiriesQuery>;
+export type ItemCataogiriesLazyQueryHookResult = ReturnType<typeof useItemCataogiriesLazyQuery>;
+export type ItemCataogiriesQueryResult = Apollo.QueryResult<ItemCataogiriesQuery, ItemCataogiriesQueryVariables>;
+export const ItemCatagoriesCountDocument = gql`
+    query itemCatagoriesCount($where: ItemCatagoryWhereInput, $orderBy: ItemCatagoryOrderByWithAggregationInput, $limit: Int, $offset: Int) {
+  itemCatagoriesCount(
+    where: $where
+    orderBy: $orderBy
+    limit: $limit
+    offset: $offset
+  )
+}
+    `;
+
+/**
+ * __useItemCatagoriesCountQuery__
+ *
+ * To run a query within a React component, call `useItemCatagoriesCountQuery` and pass it any options that fit your needs.
+ * When your component renders, `useItemCatagoriesCountQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useItemCatagoriesCountQuery({
+ *   variables: {
+ *      where: // value for 'where'
+ *      orderBy: // value for 'orderBy'
+ *      limit: // value for 'limit'
+ *      offset: // value for 'offset'
+ *   },
+ * });
+ */
+export function useItemCatagoriesCountQuery(baseOptions?: Apollo.QueryHookOptions<ItemCatagoriesCountQuery, ItemCatagoriesCountQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<ItemCatagoriesCountQuery, ItemCatagoriesCountQueryVariables>(ItemCatagoriesCountDocument, options);
+      }
+export function useItemCatagoriesCountLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ItemCatagoriesCountQuery, ItemCatagoriesCountQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<ItemCatagoriesCountQuery, ItemCatagoriesCountQueryVariables>(ItemCatagoriesCountDocument, options);
+        }
+export type ItemCatagoriesCountQueryHookResult = ReturnType<typeof useItemCatagoriesCountQuery>;
+export type ItemCatagoriesCountLazyQueryHookResult = ReturnType<typeof useItemCatagoriesCountLazyQuery>;
+export type ItemCatagoriesCountQueryResult = Apollo.QueryResult<ItemCatagoriesCountQuery, ItemCatagoriesCountQueryVariables>;
+export const CreateItemCatagoryDocument = gql`
+    mutation createItemCatagory($createItemCatagoryInput: ItemCatagoryCreateInput!) {
+  createItemCatagory(createItemCatagoryInput: $createItemCatagoryInput) {
+    id
+  }
+}
+    `;
+export type CreateItemCatagoryMutationFn = Apollo.MutationFunction<CreateItemCatagoryMutation, CreateItemCatagoryMutationVariables>;
+
+/**
+ * __useCreateItemCatagoryMutation__
+ *
+ * To run a mutation, you first call `useCreateItemCatagoryMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateItemCatagoryMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createItemCatagoryMutation, { data, loading, error }] = useCreateItemCatagoryMutation({
+ *   variables: {
+ *      createItemCatagoryInput: // value for 'createItemCatagoryInput'
+ *   },
+ * });
+ */
+export function useCreateItemCatagoryMutation(baseOptions?: Apollo.MutationHookOptions<CreateItemCatagoryMutation, CreateItemCatagoryMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateItemCatagoryMutation, CreateItemCatagoryMutationVariables>(CreateItemCatagoryDocument, options);
+      }
+export type CreateItemCatagoryMutationHookResult = ReturnType<typeof useCreateItemCatagoryMutation>;
+export type CreateItemCatagoryMutationResult = Apollo.MutationResult<CreateItemCatagoryMutation>;
+export type CreateItemCatagoryMutationOptions = Apollo.BaseMutationOptions<CreateItemCatagoryMutation, CreateItemCatagoryMutationVariables>;
+export const RemoveItemCatagoryDocument = gql`
+    mutation removeItemCatagory($removeItemCatagoryId: Int!) {
+  removeItemCatagory(id: $removeItemCatagoryId) {
+    id
+  }
+}
+    `;
+export type RemoveItemCatagoryMutationFn = Apollo.MutationFunction<RemoveItemCatagoryMutation, RemoveItemCatagoryMutationVariables>;
+
+/**
+ * __useRemoveItemCatagoryMutation__
+ *
+ * To run a mutation, you first call `useRemoveItemCatagoryMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useRemoveItemCatagoryMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [removeItemCatagoryMutation, { data, loading, error }] = useRemoveItemCatagoryMutation({
+ *   variables: {
+ *      removeItemCatagoryId: // value for 'removeItemCatagoryId'
+ *   },
+ * });
+ */
+export function useRemoveItemCatagoryMutation(baseOptions?: Apollo.MutationHookOptions<RemoveItemCatagoryMutation, RemoveItemCatagoryMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<RemoveItemCatagoryMutation, RemoveItemCatagoryMutationVariables>(RemoveItemCatagoryDocument, options);
+      }
+export type RemoveItemCatagoryMutationHookResult = ReturnType<typeof useRemoveItemCatagoryMutation>;
+export type RemoveItemCatagoryMutationResult = Apollo.MutationResult<RemoveItemCatagoryMutation>;
+export type RemoveItemCatagoryMutationOptions = Apollo.BaseMutationOptions<RemoveItemCatagoryMutation, RemoveItemCatagoryMutationVariables>;
+export const GetSpareCatagoryDropdownDocument = gql`
+    query getSpareCatagoryDropdown {
+  itemCatagories {
+    value: id
+    label: name
+  }
+}
+    `;
+
+/**
+ * __useGetSpareCatagoryDropdownQuery__
+ *
+ * To run a query within a React component, call `useGetSpareCatagoryDropdownQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetSpareCatagoryDropdownQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetSpareCatagoryDropdownQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetSpareCatagoryDropdownQuery(baseOptions?: Apollo.QueryHookOptions<GetSpareCatagoryDropdownQuery, GetSpareCatagoryDropdownQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetSpareCatagoryDropdownQuery, GetSpareCatagoryDropdownQueryVariables>(GetSpareCatagoryDropdownDocument, options);
+      }
+export function useGetSpareCatagoryDropdownLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetSpareCatagoryDropdownQuery, GetSpareCatagoryDropdownQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetSpareCatagoryDropdownQuery, GetSpareCatagoryDropdownQueryVariables>(GetSpareCatagoryDropdownDocument, options);
+        }
+export type GetSpareCatagoryDropdownQueryHookResult = ReturnType<typeof useGetSpareCatagoryDropdownQuery>;
+export type GetSpareCatagoryDropdownLazyQueryHookResult = ReturnType<typeof useGetSpareCatagoryDropdownLazyQuery>;
+export type GetSpareCatagoryDropdownQueryResult = Apollo.QueryResult<GetSpareCatagoryDropdownQuery, GetSpareCatagoryDropdownQueryVariables>;
 export const GetAllMachinesDropdownDocument = gql`
     query getAllMachinesDropdown {
   machines {
@@ -8620,6 +8569,198 @@ export function useUpdateProductionMutation(baseOptions?: Apollo.MutationHookOpt
 export type UpdateProductionMutationHookResult = ReturnType<typeof useUpdateProductionMutation>;
 export type UpdateProductionMutationResult = Apollo.MutationResult<UpdateProductionMutation>;
 export type UpdateProductionMutationOptions = Apollo.BaseMutationOptions<UpdateProductionMutation, UpdateProductionMutationVariables>;
+export const GetAllReplacementsDocument = gql`
+    query getAllReplacements($where: ReplacementsWhereInput, $limit: Int, $offset: Int, $orderBy: ReplacementsOrderByWithRelationInput) {
+  replacements(where: $where, limit: $limit, offset: $offset, orderBy: $orderBy) {
+    id
+    name
+    created_at
+    approved
+    description
+    quantity
+    maintenance {
+      id
+      name
+      from
+      to
+      assignee {
+        id
+        name
+      }
+      elapsed
+      resolved
+      photo
+      un_planned
+      machine {
+        id
+        name
+        section {
+          id
+          name
+        }
+        machine_catagory {
+          id
+          name
+        }
+        label
+        profile
+      }
+    }
+    item {
+      id
+      name
+      quantity
+      unit_price
+      catagory {
+        id
+        name
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetAllReplacementsQuery__
+ *
+ * To run a query within a React component, call `useGetAllReplacementsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAllReplacementsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAllReplacementsQuery({
+ *   variables: {
+ *      where: // value for 'where'
+ *      limit: // value for 'limit'
+ *      offset: // value for 'offset'
+ *      orderBy: // value for 'orderBy'
+ *   },
+ * });
+ */
+export function useGetAllReplacementsQuery(baseOptions?: Apollo.QueryHookOptions<GetAllReplacementsQuery, GetAllReplacementsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetAllReplacementsQuery, GetAllReplacementsQueryVariables>(GetAllReplacementsDocument, options);
+      }
+export function useGetAllReplacementsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetAllReplacementsQuery, GetAllReplacementsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetAllReplacementsQuery, GetAllReplacementsQueryVariables>(GetAllReplacementsDocument, options);
+        }
+export type GetAllReplacementsQueryHookResult = ReturnType<typeof useGetAllReplacementsQuery>;
+export type GetAllReplacementsLazyQueryHookResult = ReturnType<typeof useGetAllReplacementsLazyQuery>;
+export type GetAllReplacementsQueryResult = Apollo.QueryResult<GetAllReplacementsQuery, GetAllReplacementsQueryVariables>;
+export const GetAllReplacementsCountDocument = gql`
+    query getAllReplacementsCount($limit: Int, $offset: Int, $orderBy: ReplacementsOrderByWithRelationInput, $where: ReplacementsWhereInput) {
+  replacementsCount(
+    limit: $limit
+    offset: $offset
+    orderBy: $orderBy
+    where: $where
+  )
+}
+    `;
+
+/**
+ * __useGetAllReplacementsCountQuery__
+ *
+ * To run a query within a React component, call `useGetAllReplacementsCountQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAllReplacementsCountQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAllReplacementsCountQuery({
+ *   variables: {
+ *      limit: // value for 'limit'
+ *      offset: // value for 'offset'
+ *      orderBy: // value for 'orderBy'
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useGetAllReplacementsCountQuery(baseOptions?: Apollo.QueryHookOptions<GetAllReplacementsCountQuery, GetAllReplacementsCountQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetAllReplacementsCountQuery, GetAllReplacementsCountQueryVariables>(GetAllReplacementsCountDocument, options);
+      }
+export function useGetAllReplacementsCountLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetAllReplacementsCountQuery, GetAllReplacementsCountQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetAllReplacementsCountQuery, GetAllReplacementsCountQueryVariables>(GetAllReplacementsCountDocument, options);
+        }
+export type GetAllReplacementsCountQueryHookResult = ReturnType<typeof useGetAllReplacementsCountQuery>;
+export type GetAllReplacementsCountLazyQueryHookResult = ReturnType<typeof useGetAllReplacementsCountLazyQuery>;
+export type GetAllReplacementsCountQueryResult = Apollo.QueryResult<GetAllReplacementsCountQuery, GetAllReplacementsCountQueryVariables>;
+export const RemoveReplacementDocument = gql`
+    mutation removeReplacement($removeReplacementId: Int!) {
+  removeReplacement(id: $removeReplacementId) {
+    id
+  }
+}
+    `;
+export type RemoveReplacementMutationFn = Apollo.MutationFunction<RemoveReplacementMutation, RemoveReplacementMutationVariables>;
+
+/**
+ * __useRemoveReplacementMutation__
+ *
+ * To run a mutation, you first call `useRemoveReplacementMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useRemoveReplacementMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [removeReplacementMutation, { data, loading, error }] = useRemoveReplacementMutation({
+ *   variables: {
+ *      removeReplacementId: // value for 'removeReplacementId'
+ *   },
+ * });
+ */
+export function useRemoveReplacementMutation(baseOptions?: Apollo.MutationHookOptions<RemoveReplacementMutation, RemoveReplacementMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<RemoveReplacementMutation, RemoveReplacementMutationVariables>(RemoveReplacementDocument, options);
+      }
+export type RemoveReplacementMutationHookResult = ReturnType<typeof useRemoveReplacementMutation>;
+export type RemoveReplacementMutationResult = Apollo.MutationResult<RemoveReplacementMutation>;
+export type RemoveReplacementMutationOptions = Apollo.BaseMutationOptions<RemoveReplacementMutation, RemoveReplacementMutationVariables>;
+export const UpdateReplacementDocument = gql`
+    mutation updateReplacement($updateReplacementId: Int!, $updateReplacementInput: ReplacementsUpdateInput!) {
+  updateReplacement(
+    id: $updateReplacementId
+    updateReplacementInput: $updateReplacementInput
+  ) {
+    id
+  }
+}
+    `;
+export type UpdateReplacementMutationFn = Apollo.MutationFunction<UpdateReplacementMutation, UpdateReplacementMutationVariables>;
+
+/**
+ * __useUpdateReplacementMutation__
+ *
+ * To run a mutation, you first call `useUpdateReplacementMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateReplacementMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateReplacementMutation, { data, loading, error }] = useUpdateReplacementMutation({
+ *   variables: {
+ *      updateReplacementId: // value for 'updateReplacementId'
+ *      updateReplacementInput: // value for 'updateReplacementInput'
+ *   },
+ * });
+ */
+export function useUpdateReplacementMutation(baseOptions?: Apollo.MutationHookOptions<UpdateReplacementMutation, UpdateReplacementMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateReplacementMutation, UpdateReplacementMutationVariables>(UpdateReplacementDocument, options);
+      }
+export type UpdateReplacementMutationHookResult = ReturnType<typeof useUpdateReplacementMutation>;
+export type UpdateReplacementMutationResult = Apollo.MutationResult<UpdateReplacementMutation>;
+export type UpdateReplacementMutationOptions = Apollo.BaseMutationOptions<UpdateReplacementMutation, UpdateReplacementMutationVariables>;
 export const RoutineMaintanancesDocument = gql`
     query routineMaintanances($where: routine_maintanancesWhereInput, $limit: Int, $orderBy: routine_maintanancesSumOrderByAggregateInput, $offset: Int) {
   routineMaintanances(
@@ -8878,6 +9019,189 @@ export function useRemoveRoutineMaintananceMutation(baseOptions?: Apollo.Mutatio
 export type RemoveRoutineMaintananceMutationHookResult = ReturnType<typeof useRemoveRoutineMaintananceMutation>;
 export type RemoveRoutineMaintananceMutationResult = Apollo.MutationResult<RemoveRoutineMaintananceMutation>;
 export type RemoveRoutineMaintananceMutationOptions = Apollo.BaseMutationOptions<RemoveRoutineMaintananceMutation, RemoveRoutineMaintananceMutationVariables>;
+export const GetAllSparesDocument = gql`
+    query getAllSpares($where: ItemsWhereInput, $orderBy: ItemsOrderByWithRelationInput, $limit: Int, $offset: Int) {
+  items(where: $where, orderBy: $orderBy, limit: $limit, offset: $offset) {
+    id
+    catagory {
+      id
+      name
+    }
+    code
+    name
+    quantity
+    unit_price
+  }
+}
+    `;
+
+/**
+ * __useGetAllSparesQuery__
+ *
+ * To run a query within a React component, call `useGetAllSparesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAllSparesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAllSparesQuery({
+ *   variables: {
+ *      where: // value for 'where'
+ *      orderBy: // value for 'orderBy'
+ *      limit: // value for 'limit'
+ *      offset: // value for 'offset'
+ *   },
+ * });
+ */
+export function useGetAllSparesQuery(baseOptions?: Apollo.QueryHookOptions<GetAllSparesQuery, GetAllSparesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetAllSparesQuery, GetAllSparesQueryVariables>(GetAllSparesDocument, options);
+      }
+export function useGetAllSparesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetAllSparesQuery, GetAllSparesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetAllSparesQuery, GetAllSparesQueryVariables>(GetAllSparesDocument, options);
+        }
+export type GetAllSparesQueryHookResult = ReturnType<typeof useGetAllSparesQuery>;
+export type GetAllSparesLazyQueryHookResult = ReturnType<typeof useGetAllSparesLazyQuery>;
+export type GetAllSparesQueryResult = Apollo.QueryResult<GetAllSparesQuery, GetAllSparesQueryVariables>;
+export const SparesCountDocument = gql`
+    query sparesCount($where: ItemsWhereInput, $orderBy: ItemsOrderByWithRelationInput, $limit: Int, $offset: Int) {
+  itemsCount(where: $where, orderBy: $orderBy, limit: $limit, offset: $offset)
+}
+    `;
+
+/**
+ * __useSparesCountQuery__
+ *
+ * To run a query within a React component, call `useSparesCountQuery` and pass it any options that fit your needs.
+ * When your component renders, `useSparesCountQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useSparesCountQuery({
+ *   variables: {
+ *      where: // value for 'where'
+ *      orderBy: // value for 'orderBy'
+ *      limit: // value for 'limit'
+ *      offset: // value for 'offset'
+ *   },
+ * });
+ */
+export function useSparesCountQuery(baseOptions?: Apollo.QueryHookOptions<SparesCountQuery, SparesCountQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<SparesCountQuery, SparesCountQueryVariables>(SparesCountDocument, options);
+      }
+export function useSparesCountLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<SparesCountQuery, SparesCountQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<SparesCountQuery, SparesCountQueryVariables>(SparesCountDocument, options);
+        }
+export type SparesCountQueryHookResult = ReturnType<typeof useSparesCountQuery>;
+export type SparesCountLazyQueryHookResult = ReturnType<typeof useSparesCountLazyQuery>;
+export type SparesCountQueryResult = Apollo.QueryResult<SparesCountQuery, SparesCountQueryVariables>;
+export const CreateSpareDocument = gql`
+    mutation createSpare($createItemInput: ItemsCreateInput!) {
+  createItem(createItemInput: $createItemInput) {
+    id
+  }
+}
+    `;
+export type CreateSpareMutationFn = Apollo.MutationFunction<CreateSpareMutation, CreateSpareMutationVariables>;
+
+/**
+ * __useCreateSpareMutation__
+ *
+ * To run a mutation, you first call `useCreateSpareMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateSpareMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createSpareMutation, { data, loading, error }] = useCreateSpareMutation({
+ *   variables: {
+ *      createItemInput: // value for 'createItemInput'
+ *   },
+ * });
+ */
+export function useCreateSpareMutation(baseOptions?: Apollo.MutationHookOptions<CreateSpareMutation, CreateSpareMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateSpareMutation, CreateSpareMutationVariables>(CreateSpareDocument, options);
+      }
+export type CreateSpareMutationHookResult = ReturnType<typeof useCreateSpareMutation>;
+export type CreateSpareMutationResult = Apollo.MutationResult<CreateSpareMutation>;
+export type CreateSpareMutationOptions = Apollo.BaseMutationOptions<CreateSpareMutation, CreateSpareMutationVariables>;
+export const RemoveSpareDocument = gql`
+    mutation removeSpare($removeItemId: Int!) {
+  removeItem(id: $removeItemId) {
+    id
+  }
+}
+    `;
+export type RemoveSpareMutationFn = Apollo.MutationFunction<RemoveSpareMutation, RemoveSpareMutationVariables>;
+
+/**
+ * __useRemoveSpareMutation__
+ *
+ * To run a mutation, you first call `useRemoveSpareMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useRemoveSpareMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [removeSpareMutation, { data, loading, error }] = useRemoveSpareMutation({
+ *   variables: {
+ *      removeItemId: // value for 'removeItemId'
+ *   },
+ * });
+ */
+export function useRemoveSpareMutation(baseOptions?: Apollo.MutationHookOptions<RemoveSpareMutation, RemoveSpareMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<RemoveSpareMutation, RemoveSpareMutationVariables>(RemoveSpareDocument, options);
+      }
+export type RemoveSpareMutationHookResult = ReturnType<typeof useRemoveSpareMutation>;
+export type RemoveSpareMutationResult = Apollo.MutationResult<RemoveSpareMutation>;
+export type RemoveSpareMutationOptions = Apollo.BaseMutationOptions<RemoveSpareMutation, RemoveSpareMutationVariables>;
+export const SpareDropdownDocument = gql`
+    query spareDropdown {
+  items {
+    value: id
+    label: name
+  }
+}
+    `;
+
+/**
+ * __useSpareDropdownQuery__
+ *
+ * To run a query within a React component, call `useSpareDropdownQuery` and pass it any options that fit your needs.
+ * When your component renders, `useSpareDropdownQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useSpareDropdownQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useSpareDropdownQuery(baseOptions?: Apollo.QueryHookOptions<SpareDropdownQuery, SpareDropdownQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<SpareDropdownQuery, SpareDropdownQueryVariables>(SpareDropdownDocument, options);
+      }
+export function useSpareDropdownLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<SpareDropdownQuery, SpareDropdownQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<SpareDropdownQuery, SpareDropdownQueryVariables>(SpareDropdownDocument, options);
+        }
+export type SpareDropdownQueryHookResult = ReturnType<typeof useSpareDropdownQuery>;
+export type SpareDropdownLazyQueryHookResult = ReturnType<typeof useSpareDropdownLazyQuery>;
+export type SpareDropdownQueryResult = Apollo.QueryResult<SpareDropdownQuery, SpareDropdownQueryVariables>;
 export const TicketsDocument = gql`
     query Tickets($where: TicketWhereInput, $skip: Float, $take: Float, $orderBy: TicketOrderByWithRelationInput) {
   tickets(where: $where, skip: $skip, take: $take, orderBy: $orderBy) {

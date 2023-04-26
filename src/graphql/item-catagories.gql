@@ -1,0 +1,33 @@
+query itemCataogiries($limit: Int, $offset: Int, $orderBy: ItemCatagoryOrderByWithAggregationInput, $where: ItemCatagoryWhereInput) {
+  itemCatagories(limit: $limit,offset: $offset,orderBy: $orderBy,where: $where) {
+    id
+    name
+    created_at
+    _count {
+      items
+    }
+  }
+}
+
+query itemCatagoriesCount($where: ItemCatagoryWhereInput, $orderBy: ItemCatagoryOrderByWithAggregationInput, $limit: Int, $offset: Int) {
+  itemCatagoriesCount(where: $where,orderBy: $orderBy,limit: $limit,offset: $offset) 
+}
+
+mutation createItemCatagory($createItemCatagoryInput: ItemCatagoryCreateInput!) {
+  createItemCatagory(createItemCatagoryInput: $createItemCatagoryInput) {
+    id
+  }
+}
+
+mutation removeItemCatagory($removeItemCatagoryId: Int!) {
+  removeItemCatagory(id: $removeItemCatagoryId) {
+    id
+  }
+}
+
+query getSpareCatagoryDropdown{
+  itemCatagories {    
+   value:id,
+    label:name
+  }
+}

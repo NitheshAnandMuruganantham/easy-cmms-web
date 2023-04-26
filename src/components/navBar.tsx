@@ -1,16 +1,13 @@
 import React, { FunctionComponent, useEffect, useState } from "react";
 import { useMatch, useNavigate } from "react-router-dom";
-import { useUserContext } from "supertokens-auth-react";
-import AddTaskIcon from "@mui/icons-material/AddTask";
-import ArticleIcon from "@mui/icons-material/Article";
-import Brightness4Icon from "@mui/icons-material/Brightness4";
-import Brightness7Icon from "@mui/icons-material/Brightness7";
+import HomeRepairServiceIcon from "@mui/icons-material/HomeRepairService";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import HistoryEduIcon from "@mui/icons-material/HistoryEdu";
 import EngineeringIcon from "@mui/icons-material/Engineering";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import MenuIcon from "@mui/icons-material/Menu";
-import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
+import PlumbingIcon from "@mui/icons-material/Plumbing";
 import PrecisionManufacturingIcon from "@mui/icons-material/PrecisionManufacturing";
 import SupportAgentIcon from "@mui/icons-material/SupportAgent";
 import ApartmentIcon from "@mui/icons-material/Apartment";
@@ -162,6 +159,12 @@ const NavBar: FunctionComponent<{
       active: useMatch("/maintanance"),
     },
     {
+      name: "replacement requests",
+      path: "/replacements",
+      icon: HistoryEduIcon,
+      active: useMatch("/replacements"),
+    },
+    {
       name: "routine maintenance",
       path: "/routine-maintenance",
       icon: CachedIcon,
@@ -198,10 +201,16 @@ const NavBar: FunctionComponent<{
       active: useMatch("/sections"),
     },
     {
-      name: "Units",
-      path: "/units",
-      icon: ApartmentIcon,
-      active: useMatch("/units"),
+      name: "spares",
+      path: "/spares",
+      icon: PlumbingIcon,
+      active: useMatch("/spares"),
+    },
+    {
+      name: "spare category",
+      path: "/item-category",
+      icon: HomeRepairServiceIcon,
+      active: useMatch("/item-category"),
     },
   ];
   const navigate = useNavigate();
@@ -394,10 +403,28 @@ const Currentpage = () => {
       active: useMatch("/units"),
     },
     {
+      name: "Spare Replacement requests",
+      path: "/replacements",
+      icon: ApartmentIcon,
+      active: useMatch("/replacements"),
+    },
+    {
       name: "production metrics",
       path: "/production",
       icon: DynamicFormIcon,
       active: useMatch("/production"),
+    },
+    {
+      name: "Spare category",
+      path: "/item-category",
+      icon: DynamicFormIcon,
+      active: useMatch("/item-category"),
+    },
+    {
+      name: "Spare Inventory",
+      path: "/spares",
+      icon: DynamicFormIcon,
+      active: useMatch("/spares"),
     },
   ];
   return (
