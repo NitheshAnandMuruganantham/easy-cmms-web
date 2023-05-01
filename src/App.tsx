@@ -20,6 +20,7 @@ import axios from "./utils/axios";
 import ItemCategory from "./pages/Iitem-catagory";
 import Spares from "./pages/spares";
 import Replacements from "./pages/replacements";
+import Invoices from "./pages/invoices";
 function App() {
   const [plantSettings, setPlantSettings] = React.useState<any>(null);
   React.useEffect(() => {
@@ -118,6 +119,14 @@ function App() {
             element={
               <SessionAuth>
                 <Production />
+              </SessionAuth>
+            }
+          />
+          <reactRouterDom.Route
+            path="/invoices"
+            element={
+              <SessionAuth>
+                <Invoices />
               </SessionAuth>
             }
           />

@@ -20,6 +20,7 @@ import {
   ThemeProvider,
   Tooltip,
 } from "@mui/material";
+import RequestQuoteIcon from "@mui/icons-material/RequestQuote";
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -211,6 +212,12 @@ const NavBar: FunctionComponent<{
       path: "/item-category",
       icon: HomeRepairServiceIcon,
       active: useMatch("/item-category"),
+    },
+    {
+      name: "Invoices",
+      path: "/invoices",
+      icon: RequestQuoteIcon,
+      active: useMatch("/invoices"),
     },
   ];
   const navigate = useNavigate();
@@ -425,6 +432,12 @@ const Currentpage = () => {
       path: "/spares",
       icon: DynamicFormIcon,
       active: useMatch("/spares"),
+    },
+    {
+      name: "Spare Invoices",
+      path: "/invoices",
+      icon: DynamicFormIcon,
+      active: useMatch("/invoices"),
     },
   ];
   return (

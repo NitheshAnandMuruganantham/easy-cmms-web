@@ -50,6 +50,7 @@ export type BigIntNullableFilter = {
 
 export type Block = {
   __typename?: 'Block';
+  Invoices?: Maybe<Array<Invoices>>;
   Items?: Maybe<Array<Items>>;
   Mailings?: Maybe<Array<Scalars['String']>>;
   Maintenance?: Maybe<Array<Maintenance>>;
@@ -63,6 +64,7 @@ export type Block = {
   catagory?: Maybe<Array<Catagory>>;
   created_at: Scalars['DateTime'];
   id: Scalars['BigInt'];
+  invoice_items?: Maybe<Array<Invoice_Items>>;
   location: Scalars['String'];
   machine_catagory?: Maybe<Array<Machine_Catagory>>;
   machines?: Maybe<Array<Machines>>;
@@ -91,6 +93,7 @@ export type BlockAvgOrderByAggregateInput = {
 
 export type BlockCount = {
   __typename?: 'BlockCount';
+  Invoices: Scalars['Int'];
   Items: Scalars['Int'];
   Maintenance: Scalars['Int'];
   Replacements: Scalars['Int'];
@@ -100,6 +103,7 @@ export type BlockCount = {
   Users: Scalars['Int'];
   block_settings: Scalars['Int'];
   catagory: Scalars['Int'];
+  invoice_items: Scalars['Int'];
   machine_catagory: Scalars['Int'];
   machines: Scalars['Int'];
   production_data: Scalars['Int'];
@@ -127,6 +131,7 @@ export type BlockCountOrderByAggregateInput = {
 };
 
 export type BlockCreateInput = {
+  Invoices?: InputMaybe<InvoicesCreateNestedManyWithoutBlockInput>;
   Items?: InputMaybe<ItemsCreateNestedManyWithoutBlockInput>;
   Mailings?: InputMaybe<BlockCreateMailingsInput>;
   Maintenance?: InputMaybe<MaintenanceCreateNestedManyWithoutBlockInput>;
@@ -139,6 +144,7 @@ export type BlockCreateInput = {
   catagory?: InputMaybe<CatagoryCreateNestedManyWithoutBlockInput>;
   created_at?: InputMaybe<Scalars['DateTime']>;
   id?: InputMaybe<Scalars['BigInt']>;
+  invoice_items?: InputMaybe<Invoice_ItemsCreateNestedManyWithoutBlockInput>;
   location: Scalars['String'];
   machine_catagory?: InputMaybe<Machine_CatagoryCreateNestedManyWithoutBlockInput>;
   machines?: InputMaybe<MachinesCreateNestedManyWithoutBlockInput>;
@@ -224,6 +230,7 @@ export type BlockSumOrderByAggregateInput = {
 };
 
 export type BlockUpdateInput = {
+  Invoices?: InputMaybe<InvoicesUpdateManyWithoutBlockNestedInput>;
   Items?: InputMaybe<ItemsUpdateManyWithoutBlockNestedInput>;
   Mailings?: InputMaybe<BlockUpdateMailingsInput>;
   Maintenance?: InputMaybe<MaintenanceUpdateManyWithoutBlockNestedInput>;
@@ -236,6 +243,7 @@ export type BlockUpdateInput = {
   catagory?: InputMaybe<CatagoryUpdateManyWithoutBlockNestedInput>;
   created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
+  invoice_items?: InputMaybe<Invoice_ItemsUpdateManyWithoutBlockNestedInput>;
   location?: InputMaybe<StringFieldUpdateOperationsInput>;
   machine_catagory?: InputMaybe<Machine_CatagoryUpdateManyWithoutBlockNestedInput>;
   machines?: InputMaybe<MachinesUpdateManyWithoutBlockNestedInput>;
@@ -252,6 +260,7 @@ export type BlockUpdateMailingsInput = {
 
 export type BlockWhereInput = {
   AND?: InputMaybe<Array<BlockWhereInput>>;
+  Invoices?: InputMaybe<InvoicesListRelationFilter>;
   Items?: InputMaybe<ItemsListRelationFilter>;
   Mailings?: InputMaybe<StringNullableListFilter>;
   Maintenance?: InputMaybe<MaintenanceListRelationFilter>;
@@ -266,6 +275,7 @@ export type BlockWhereInput = {
   catagory?: InputMaybe<CatagoryListRelationFilter>;
   created_at?: InputMaybe<DateTimeFilter>;
   id?: InputMaybe<BigIntFilter>;
+  invoice_items?: InputMaybe<Invoice_ItemsListRelationFilter>;
   location?: InputMaybe<StringFilter>;
   machine_catagory?: InputMaybe<Machine_CatagoryListRelationFilter>;
   machines?: InputMaybe<MachinesListRelationFilter>;
@@ -481,6 +491,357 @@ export type IntFilter = {
   notIn?: InputMaybe<Array<Scalars['Int']>>;
 };
 
+export type Invoice_ItemsAvgAggregate = {
+  __typename?: 'Invoice_itemsAvgAggregate';
+  amount?: Maybe<Scalars['Float']>;
+  block_id?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['Float']>;
+  invoice_id?: Maybe<Scalars['Float']>;
+  item_id?: Maybe<Scalars['Float']>;
+  quantity?: Maybe<Scalars['Float']>;
+  unit_price?: Maybe<Scalars['Float']>;
+};
+
+export type Invoice_ItemsCountAggregate = {
+  __typename?: 'Invoice_itemsCountAggregate';
+  _all: Scalars['Int'];
+  amount: Scalars['Int'];
+  block_id: Scalars['Int'];
+  created_at: Scalars['Int'];
+  id: Scalars['Int'];
+  invoice_id: Scalars['Int'];
+  item_id: Scalars['Int'];
+  quantity: Scalars['Int'];
+  unit_price: Scalars['Int'];
+  updated_at: Scalars['Int'];
+};
+
+export type Invoice_ItemsListRelationFilter = {
+  every?: InputMaybe<Invoice_ItemsWhereInput>;
+  none?: InputMaybe<Invoice_ItemsWhereInput>;
+  some?: InputMaybe<Invoice_ItemsWhereInput>;
+};
+
+export type Invoice_ItemsMaxAggregate = {
+  __typename?: 'Invoice_itemsMaxAggregate';
+  amount?: Maybe<Scalars['Float']>;
+  block_id?: Maybe<Scalars['BigInt']>;
+  created_at?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['BigInt']>;
+  invoice_id?: Maybe<Scalars['BigInt']>;
+  item_id?: Maybe<Scalars['BigInt']>;
+  quantity?: Maybe<Scalars['Float']>;
+  unit_price?: Maybe<Scalars['Float']>;
+  updated_at?: Maybe<Scalars['DateTime']>;
+};
+
+export type Invoice_ItemsMinAggregate = {
+  __typename?: 'Invoice_itemsMinAggregate';
+  amount?: Maybe<Scalars['Float']>;
+  block_id?: Maybe<Scalars['BigInt']>;
+  created_at?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['BigInt']>;
+  invoice_id?: Maybe<Scalars['BigInt']>;
+  item_id?: Maybe<Scalars['BigInt']>;
+  quantity?: Maybe<Scalars['Float']>;
+  unit_price?: Maybe<Scalars['Float']>;
+  updated_at?: Maybe<Scalars['DateTime']>;
+};
+
+export type Invoice_ItemsSumAggregate = {
+  __typename?: 'Invoice_itemsSumAggregate';
+  amount?: Maybe<Scalars['Float']>;
+  block_id?: Maybe<Scalars['BigInt']>;
+  id?: Maybe<Scalars['BigInt']>;
+  invoice_id?: Maybe<Scalars['BigInt']>;
+  item_id?: Maybe<Scalars['BigInt']>;
+  quantity?: Maybe<Scalars['Float']>;
+  unit_price?: Maybe<Scalars['Float']>;
+};
+
+export type Invoices = {
+  __typename?: 'Invoices';
+  _count: InvoicesCount;
+  block: Block;
+  block_id: Scalars['BigInt'];
+  created_at: Scalars['DateTime'];
+  id: Scalars['BigInt'];
+  invoice_date: Scalars['DateTime'];
+  invoice_items?: Maybe<Array<Invoice_Items>>;
+  number: Scalars['String'];
+  total: Scalars['Float'];
+  updated_at: Scalars['DateTime'];
+};
+
+
+export type InvoicesInvoice_ItemsArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  orderBy?: InputMaybe<Invoice_ItemsOrderByRelationAggregateInput>;
+  where?: InputMaybe<Invoice_ItemsWhereInput>;
+};
+
+export type InvoicesAvgAggregate = {
+  __typename?: 'InvoicesAvgAggregate';
+  block_id?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['Float']>;
+  total?: Maybe<Scalars['Float']>;
+};
+
+export type InvoicesCount = {
+  __typename?: 'InvoicesCount';
+  invoice_items: Scalars['Int'];
+};
+
+export type InvoicesCountAggregate = {
+  __typename?: 'InvoicesCountAggregate';
+  _all: Scalars['Int'];
+  block_id: Scalars['Int'];
+  created_at: Scalars['Int'];
+  id: Scalars['Int'];
+  invoice_date: Scalars['Int'];
+  number: Scalars['Int'];
+  total: Scalars['Int'];
+  updated_at: Scalars['Int'];
+};
+
+export type InvoicesCreateInput = {
+  created_at?: InputMaybe<Scalars['DateTime']>;
+  id?: InputMaybe<Scalars['BigInt']>;
+  invoice_date: Scalars['DateTime'];
+  invoice_items?: InputMaybe<Invoice_ItemsCreateNestedManyWithoutInvoiceInput>;
+  number: Scalars['String'];
+  total: Scalars['Float'];
+  updated_at?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type InvoicesCreateManyBlockInput = {
+  created_at?: InputMaybe<Scalars['DateTime']>;
+  id?: InputMaybe<Scalars['BigInt']>;
+  invoice_date: Scalars['DateTime'];
+  number: Scalars['String'];
+  total: Scalars['Float'];
+  updated_at?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type InvoicesCreateManyBlockInputEnvelope = {
+  data: Array<InvoicesCreateManyBlockInput>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+};
+
+export type InvoicesCreateNestedManyWithoutBlockInput = {
+  connect?: InputMaybe<Array<InvoicesWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<InvoicesCreateOrConnectWithoutBlockInput>>;
+  create?: InputMaybe<Array<InvoicesCreateWithoutBlockInput>>;
+  createMany?: InputMaybe<InvoicesCreateManyBlockInputEnvelope>;
+};
+
+export type InvoicesCreateNestedOneWithoutInvoice_ItemsInput = {
+  connect?: InputMaybe<InvoicesWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<InvoicesCreateOrConnectWithoutInvoice_ItemsInput>;
+  create?: InputMaybe<InvoicesCreateWithoutInvoice_ItemsInput>;
+};
+
+export type InvoicesCreateOrConnectWithoutBlockInput = {
+  create: InvoicesCreateWithoutBlockInput;
+  where: InvoicesWhereUniqueInput;
+};
+
+export type InvoicesCreateOrConnectWithoutInvoice_ItemsInput = {
+  create: InvoicesCreateWithoutInvoice_ItemsInput;
+  where: InvoicesWhereUniqueInput;
+};
+
+export type InvoicesCreateWithoutBlockInput = {
+  created_at?: InputMaybe<Scalars['DateTime']>;
+  id?: InputMaybe<Scalars['BigInt']>;
+  invoice_date: Scalars['DateTime'];
+  invoice_items?: InputMaybe<Invoice_ItemsCreateNestedManyWithoutInvoiceInput>;
+  number: Scalars['String'];
+  total: Scalars['Float'];
+  updated_at?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type InvoicesCreateWithoutInvoice_ItemsInput = {
+  created_at?: InputMaybe<Scalars['DateTime']>;
+  id?: InputMaybe<Scalars['BigInt']>;
+  invoice_date: Scalars['DateTime'];
+  number: Scalars['String'];
+  total: Scalars['Float'];
+  updated_at?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type InvoicesListRelationFilter = {
+  every?: InputMaybe<InvoicesWhereInput>;
+  none?: InputMaybe<InvoicesWhereInput>;
+  some?: InputMaybe<InvoicesWhereInput>;
+};
+
+export type InvoicesMaxAggregate = {
+  __typename?: 'InvoicesMaxAggregate';
+  block_id?: Maybe<Scalars['BigInt']>;
+  created_at?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['BigInt']>;
+  invoice_date?: Maybe<Scalars['DateTime']>;
+  number?: Maybe<Scalars['String']>;
+  total?: Maybe<Scalars['Float']>;
+  updated_at?: Maybe<Scalars['DateTime']>;
+};
+
+export type InvoicesMinAggregate = {
+  __typename?: 'InvoicesMinAggregate';
+  block_id?: Maybe<Scalars['BigInt']>;
+  created_at?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['BigInt']>;
+  invoice_date?: Maybe<Scalars['DateTime']>;
+  number?: Maybe<Scalars['String']>;
+  total?: Maybe<Scalars['Float']>;
+  updated_at?: Maybe<Scalars['DateTime']>;
+};
+
+export enum InvoicesOrderByRelevanceFieldEnum {
+  Number = 'number'
+}
+
+export type InvoicesOrderByRelevanceInput = {
+  fields: Array<InvoicesOrderByRelevanceFieldEnum>;
+  search: Scalars['String'];
+  sort: SortOrder;
+};
+
+export type InvoicesOrderByWithRelationAndSearchRelevanceInput = {
+  _relevance?: InputMaybe<InvoicesOrderByRelevanceInput>;
+  created_at?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  invoice_date?: InputMaybe<SortOrder>;
+  invoice_items?: InputMaybe<Invoice_ItemsOrderByRelationAggregateInput>;
+  number?: InputMaybe<SortOrder>;
+  total?: InputMaybe<SortOrder>;
+  updated_at?: InputMaybe<SortOrder>;
+};
+
+export type InvoicesRelationFilter = {
+  is?: InputMaybe<InvoicesWhereInput>;
+  isNot?: InputMaybe<InvoicesWhereInput>;
+};
+
+export type InvoicesScalarWhereInput = {
+  AND?: InputMaybe<Array<InvoicesScalarWhereInput>>;
+  NOT?: InputMaybe<Array<InvoicesScalarWhereInput>>;
+  OR?: InputMaybe<Array<InvoicesScalarWhereInput>>;
+  created_at?: InputMaybe<DateTimeFilter>;
+  id?: InputMaybe<BigIntFilter>;
+  invoice_date?: InputMaybe<DateTimeFilter>;
+  number?: InputMaybe<StringFilter>;
+  total?: InputMaybe<FloatFilter>;
+  updated_at?: InputMaybe<DateTimeFilter>;
+};
+
+export type InvoicesSumAggregate = {
+  __typename?: 'InvoicesSumAggregate';
+  block_id?: Maybe<Scalars['BigInt']>;
+  id?: Maybe<Scalars['BigInt']>;
+  total?: Maybe<Scalars['Float']>;
+};
+
+export type InvoicesUpdateInput = {
+  created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
+  invoice_date?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  invoice_items?: InputMaybe<Invoice_ItemsUpdateManyWithoutInvoiceNestedInput>;
+  number?: InputMaybe<StringFieldUpdateOperationsInput>;
+  total?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type InvoicesUpdateManyMutationInput = {
+  created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
+  invoice_date?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  number?: InputMaybe<StringFieldUpdateOperationsInput>;
+  total?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type InvoicesUpdateManyWithWhereWithoutBlockInput = {
+  data: InvoicesUpdateManyMutationInput;
+  where: InvoicesScalarWhereInput;
+};
+
+export type InvoicesUpdateManyWithoutBlockNestedInput = {
+  connect?: InputMaybe<Array<InvoicesWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<InvoicesCreateOrConnectWithoutBlockInput>>;
+  create?: InputMaybe<Array<InvoicesCreateWithoutBlockInput>>;
+  createMany?: InputMaybe<InvoicesCreateManyBlockInputEnvelope>;
+  delete?: InputMaybe<Array<InvoicesWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<InvoicesScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<InvoicesWhereUniqueInput>>;
+  set?: InputMaybe<Array<InvoicesWhereUniqueInput>>;
+  update?: InputMaybe<Array<InvoicesUpdateWithWhereUniqueWithoutBlockInput>>;
+  updateMany?: InputMaybe<Array<InvoicesUpdateManyWithWhereWithoutBlockInput>>;
+  upsert?: InputMaybe<Array<InvoicesUpsertWithWhereUniqueWithoutBlockInput>>;
+};
+
+export type InvoicesUpdateOneRequiredWithoutInvoice_ItemsNestedInput = {
+  connect?: InputMaybe<InvoicesWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<InvoicesCreateOrConnectWithoutInvoice_ItemsInput>;
+  create?: InputMaybe<InvoicesCreateWithoutInvoice_ItemsInput>;
+  update?: InputMaybe<InvoicesUpdateWithoutInvoice_ItemsInput>;
+  upsert?: InputMaybe<InvoicesUpsertWithoutInvoice_ItemsInput>;
+};
+
+export type InvoicesUpdateWithWhereUniqueWithoutBlockInput = {
+  data: InvoicesUpdateWithoutBlockInput;
+  where: InvoicesWhereUniqueInput;
+};
+
+export type InvoicesUpdateWithoutBlockInput = {
+  created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
+  invoice_date?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  invoice_items?: InputMaybe<Invoice_ItemsUpdateManyWithoutInvoiceNestedInput>;
+  number?: InputMaybe<StringFieldUpdateOperationsInput>;
+  total?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type InvoicesUpdateWithoutInvoice_ItemsInput = {
+  created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
+  invoice_date?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  number?: InputMaybe<StringFieldUpdateOperationsInput>;
+  total?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type InvoicesUpsertWithWhereUniqueWithoutBlockInput = {
+  create: InvoicesCreateWithoutBlockInput;
+  update: InvoicesUpdateWithoutBlockInput;
+  where: InvoicesWhereUniqueInput;
+};
+
+export type InvoicesUpsertWithoutInvoice_ItemsInput = {
+  create: InvoicesCreateWithoutInvoice_ItemsInput;
+  update: InvoicesUpdateWithoutInvoice_ItemsInput;
+};
+
+export type InvoicesWhereInput = {
+  AND?: InputMaybe<Array<InvoicesWhereInput>>;
+  NOT?: InputMaybe<Array<InvoicesWhereInput>>;
+  OR?: InputMaybe<Array<InvoicesWhereInput>>;
+  created_at?: InputMaybe<DateTimeFilter>;
+  id?: InputMaybe<BigIntFilter>;
+  invoice_date?: InputMaybe<DateTimeFilter>;
+  invoice_items?: InputMaybe<Invoice_ItemsListRelationFilter>;
+  number?: InputMaybe<StringFilter>;
+  total?: InputMaybe<FloatFilter>;
+  updated_at?: InputMaybe<DateTimeFilter>;
+};
+
+export type InvoicesWhereUniqueInput = {
+  id?: InputMaybe<Scalars['BigInt']>;
+};
+
 export type ItemCatagory = {
   __typename?: 'ItemCatagory';
   _count: CatagoryCount;
@@ -617,6 +978,7 @@ export type Items = {
   code: Scalars['String'];
   created_at: Scalars['DateTime'];
   id: Scalars['BigInt'];
+  invoice_items?: Maybe<Array<Invoice_Items>>;
   name: Scalars['String'];
   quantity: Scalars['Int'];
   replacements?: Maybe<Array<Replacements>>;
@@ -650,6 +1012,7 @@ export type ItemsAvgOrderByAggregateInput = {
 
 export type ItemsCount = {
   __typename?: 'ItemsCount';
+  invoice_items: Scalars['Int'];
   replacements: Scalars['Int'];
 };
 
@@ -683,6 +1046,7 @@ export type ItemsCreateInput = {
   code: Scalars['String'];
   created_at?: InputMaybe<Scalars['DateTime']>;
   id?: InputMaybe<Scalars['BigInt']>;
+  invoice_items?: InputMaybe<Invoice_ItemsCreateNestedManyWithoutItemInput>;
   name: Scalars['String'];
   quantity: Scalars['Int'];
   replacements?: InputMaybe<ReplacementsCreateNestedManyWithoutItemsInput>;
@@ -757,6 +1121,12 @@ export type ItemsCreateNestedManyWithoutItemCatagoryInput = {
   createMany?: InputMaybe<ItemsCreateManyItemCatagoryInputEnvelope>;
 };
 
+export type ItemsCreateNestedOneWithoutInvoice_ItemsInput = {
+  connect?: InputMaybe<ItemsWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<ItemsCreateOrConnectWithoutInvoice_ItemsInput>;
+  create?: InputMaybe<ItemsCreateWithoutInvoice_ItemsInput>;
+};
+
 export type ItemsCreateNestedOneWithoutReplacementsInput = {
   connect?: InputMaybe<ItemsWhereUniqueInput>;
   connectOrCreate?: InputMaybe<ItemsCreateOrConnectWithoutReplacementsInput>;
@@ -770,6 +1140,11 @@ export type ItemsCreateOrConnectWithoutBlockInput = {
 
 export type ItemsCreateOrConnectWithoutCatagoryInput = {
   create: ItemsCreateWithoutCatagoryInput;
+  where: ItemsWhereUniqueInput;
+};
+
+export type ItemsCreateOrConnectWithoutInvoice_ItemsInput = {
+  create: ItemsCreateWithoutInvoice_ItemsInput;
   where: ItemsWhereUniqueInput;
 };
 
@@ -788,6 +1163,7 @@ export type ItemsCreateWithoutBlockInput = {
   code: Scalars['String'];
   created_at?: InputMaybe<Scalars['DateTime']>;
   id?: InputMaybe<Scalars['BigInt']>;
+  invoice_items?: InputMaybe<Invoice_ItemsCreateNestedManyWithoutItemInput>;
   name: Scalars['String'];
   quantity: Scalars['Int'];
   replacements?: InputMaybe<ReplacementsCreateNestedManyWithoutItemsInput>;
@@ -796,6 +1172,19 @@ export type ItemsCreateWithoutBlockInput = {
 };
 
 export type ItemsCreateWithoutCatagoryInput = {
+  code: Scalars['String'];
+  created_at?: InputMaybe<Scalars['DateTime']>;
+  id?: InputMaybe<Scalars['BigInt']>;
+  invoice_items?: InputMaybe<Invoice_ItemsCreateNestedManyWithoutItemInput>;
+  name: Scalars['String'];
+  quantity: Scalars['Int'];
+  replacements?: InputMaybe<ReplacementsCreateNestedManyWithoutItemsInput>;
+  unit_price: Scalars['Float'];
+  updated_at?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type ItemsCreateWithoutInvoice_ItemsInput = {
+  catagory: CatagoryCreateNestedOneWithoutItemsInput;
   code: Scalars['String'];
   created_at?: InputMaybe<Scalars['DateTime']>;
   id?: InputMaybe<Scalars['BigInt']>;
@@ -822,6 +1211,7 @@ export type ItemsCreateWithoutReplacementsInput = {
   code: Scalars['String'];
   created_at?: InputMaybe<Scalars['DateTime']>;
   id?: InputMaybe<Scalars['BigInt']>;
+  invoice_items?: InputMaybe<Invoice_ItemsCreateNestedManyWithoutItemInput>;
   name: Scalars['String'];
   quantity: Scalars['Int'];
   unit_price: Scalars['Float'];
@@ -955,6 +1345,7 @@ export type ItemsUpdateInput = {
   code?: InputMaybe<StringFieldUpdateOperationsInput>;
   created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
+  invoice_items?: InputMaybe<Invoice_ItemsUpdateManyWithoutItemNestedInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   quantity?: InputMaybe<IntFieldUpdateOperationsInput>;
   replacements?: InputMaybe<ReplacementsUpdateManyWithoutItemsNestedInput>;
@@ -1029,6 +1420,14 @@ export type ItemsUpdateManyWithoutItemCatagoryNestedInput = {
   upsert?: InputMaybe<Array<ItemsUpsertWithWhereUniqueWithoutItemCatagoryInput>>;
 };
 
+export type ItemsUpdateOneRequiredWithoutInvoice_ItemsNestedInput = {
+  connect?: InputMaybe<ItemsWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<ItemsCreateOrConnectWithoutInvoice_ItemsInput>;
+  create?: InputMaybe<ItemsCreateWithoutInvoice_ItemsInput>;
+  update?: InputMaybe<ItemsUpdateWithoutInvoice_ItemsInput>;
+  upsert?: InputMaybe<ItemsUpsertWithoutInvoice_ItemsInput>;
+};
+
 export type ItemsUpdateOneRequiredWithoutReplacementsNestedInput = {
   connect?: InputMaybe<ItemsWhereUniqueInput>;
   connectOrCreate?: InputMaybe<ItemsCreateOrConnectWithoutReplacementsInput>;
@@ -1057,6 +1456,7 @@ export type ItemsUpdateWithoutBlockInput = {
   code?: InputMaybe<StringFieldUpdateOperationsInput>;
   created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
+  invoice_items?: InputMaybe<Invoice_ItemsUpdateManyWithoutItemNestedInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   quantity?: InputMaybe<IntFieldUpdateOperationsInput>;
   replacements?: InputMaybe<ReplacementsUpdateManyWithoutItemsNestedInput>;
@@ -1065,6 +1465,19 @@ export type ItemsUpdateWithoutBlockInput = {
 };
 
 export type ItemsUpdateWithoutCatagoryInput = {
+  code?: InputMaybe<StringFieldUpdateOperationsInput>;
+  created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
+  invoice_items?: InputMaybe<Invoice_ItemsUpdateManyWithoutItemNestedInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  quantity?: InputMaybe<IntFieldUpdateOperationsInput>;
+  replacements?: InputMaybe<ReplacementsUpdateManyWithoutItemsNestedInput>;
+  unit_price?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type ItemsUpdateWithoutInvoice_ItemsInput = {
+  catagory?: InputMaybe<CatagoryUpdateOneRequiredWithoutItemsNestedInput>;
   code?: InputMaybe<StringFieldUpdateOperationsInput>;
   created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
@@ -1091,6 +1504,7 @@ export type ItemsUpdateWithoutReplacementsInput = {
   code?: InputMaybe<StringFieldUpdateOperationsInput>;
   created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
+  invoice_items?: InputMaybe<Invoice_ItemsUpdateManyWithoutItemNestedInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   quantity?: InputMaybe<IntFieldUpdateOperationsInput>;
   unit_price?: InputMaybe<FloatFieldUpdateOperationsInput>;
@@ -1115,6 +1529,11 @@ export type ItemsUpsertWithWhereUniqueWithoutItemCatagoryInput = {
   where: ItemsWhereUniqueInput;
 };
 
+export type ItemsUpsertWithoutInvoice_ItemsInput = {
+  create: ItemsCreateWithoutInvoice_ItemsInput;
+  update: ItemsUpdateWithoutInvoice_ItemsInput;
+};
+
 export type ItemsUpsertWithoutReplacementsInput = {
   create: ItemsCreateWithoutReplacementsInput;
   update: ItemsUpdateWithoutReplacementsInput;
@@ -1129,6 +1548,7 @@ export type ItemsWhereInput = {
   code?: InputMaybe<StringFilter>;
   created_at?: InputMaybe<DateTimeFilter>;
   id?: InputMaybe<BigIntFilter>;
+  invoice_items?: InputMaybe<Invoice_ItemsListRelationFilter>;
   name?: InputMaybe<StringFilter>;
   quantity?: InputMaybe<IntFilter>;
   replacements?: InputMaybe<ReplacementsListRelationFilter>;
@@ -2683,6 +3103,7 @@ export type MaintenanceWhereUniqueInput = {
 export type Mutation = {
   __typename?: 'Mutation';
   createBlock: Block;
+  createInvoice: Invoices;
   createItem: Items;
   createItemCatagory: ItemCatagory;
   createMachine: Machines;
@@ -2696,6 +3117,7 @@ export type Mutation = {
   createTicket: Ticket;
   createUser: Users;
   removeBlock: Block;
+  removeInvoices: Invoices;
   removeItem: Items;
   removeItemCatagory: ItemCatagory;
   removeMachine: Machines;
@@ -2709,6 +3131,7 @@ export type Mutation = {
   removeTicket: Ticket;
   removeUser: Users;
   updateBlock: Block;
+  updateInvoices: Invoices;
   updateItem: Items;
   updateItemCatagory: ItemCatagory;
   updateMachine: Machines;
@@ -2726,6 +3149,11 @@ export type Mutation = {
 
 export type MutationCreateBlockArgs = {
   createBlockInput: BlockCreateInput;
+};
+
+
+export type MutationCreateInvoiceArgs = {
+  createInvoiceInput: InvoicesCreateInput;
 };
 
 
@@ -2794,6 +3222,11 @@ export type MutationRemoveBlockArgs = {
 };
 
 
+export type MutationRemoveInvoicesArgs = {
+  id: Scalars['Int'];
+};
+
+
 export type MutationRemoveItemArgs = {
   id: Scalars['Int'];
 };
@@ -2857,6 +3290,12 @@ export type MutationRemoveUserArgs = {
 export type MutationUpdateBlockArgs = {
   id: Scalars['Int'];
   updateBlockInput: BlockUpdateInput;
+};
+
+
+export type MutationUpdateInvoicesArgs = {
+  id: Scalars['Int'];
+  updateInvoiceInput: InvoicesUpdateInput;
 };
 
 
@@ -3114,6 +3553,9 @@ export type Query = {
   block: Block;
   blocks: Array<Block>;
   blocksCount: Scalars['Int'];
+  invoice: Invoices;
+  invoiceCount: Scalars['Int'];
+  invoices: Array<Invoices>;
   item: Items;
   itemCatagories: Array<ItemCatagory>;
   itemCatagoriesCount: Scalars['Int'];
@@ -3169,6 +3611,27 @@ export type QueryBlocksCountArgs = {
   offset?: InputMaybe<Scalars['Int']>;
   orderBy?: InputMaybe<BlockOrderByWithAggregationInput>;
   where?: InputMaybe<BlockWhereInput>;
+};
+
+
+export type QueryInvoiceArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type QueryInvoiceCountArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  orderBy?: InputMaybe<InvoicesOrderByWithRelationAndSearchRelevanceInput>;
+  where?: InputMaybe<InvoicesWhereInput>;
+};
+
+
+export type QueryInvoicesArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  orderBy?: InputMaybe<InvoicesOrderByWithRelationAndSearchRelevanceInput>;
+  where?: InputMaybe<InvoicesWhereInput>;
 };
 
 
@@ -5786,6 +6249,303 @@ export type CatagoryWhereUniqueInput = {
   id?: InputMaybe<Scalars['BigInt']>;
 };
 
+export type Invoice_Items = {
+  __typename?: 'invoice_items';
+  amount: Scalars['Float'];
+  block: Block;
+  block_id: Scalars['BigInt'];
+  created_at: Scalars['DateTime'];
+  id: Scalars['BigInt'];
+  invoice: Invoices;
+  invoice_id: Scalars['BigInt'];
+  item: Items;
+  item_id: Scalars['BigInt'];
+  quantity: Scalars['Float'];
+  unit_price: Scalars['Float'];
+  updated_at: Scalars['DateTime'];
+};
+
+export type Invoice_ItemsCreateManyBlockInput = {
+  amount: Scalars['Float'];
+  created_at?: InputMaybe<Scalars['DateTime']>;
+  id?: InputMaybe<Scalars['BigInt']>;
+  invoice_id: Scalars['BigInt'];
+  item_id: Scalars['BigInt'];
+  quantity: Scalars['Float'];
+  unit_price: Scalars['Float'];
+  updated_at?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type Invoice_ItemsCreateManyBlockInputEnvelope = {
+  data: Array<Invoice_ItemsCreateManyBlockInput>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+};
+
+export type Invoice_ItemsCreateManyInvoiceInput = {
+  amount: Scalars['Float'];
+  created_at?: InputMaybe<Scalars['DateTime']>;
+  id?: InputMaybe<Scalars['BigInt']>;
+  item_id: Scalars['BigInt'];
+  quantity: Scalars['Float'];
+  unit_price: Scalars['Float'];
+  updated_at?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type Invoice_ItemsCreateManyInvoiceInputEnvelope = {
+  data: Array<Invoice_ItemsCreateManyInvoiceInput>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+};
+
+export type Invoice_ItemsCreateManyItemInput = {
+  amount: Scalars['Float'];
+  created_at?: InputMaybe<Scalars['DateTime']>;
+  id?: InputMaybe<Scalars['BigInt']>;
+  invoice_id: Scalars['BigInt'];
+  quantity: Scalars['Float'];
+  unit_price: Scalars['Float'];
+  updated_at?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type Invoice_ItemsCreateManyItemInputEnvelope = {
+  data: Array<Invoice_ItemsCreateManyItemInput>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+};
+
+export type Invoice_ItemsCreateNestedManyWithoutBlockInput = {
+  connect?: InputMaybe<Array<Invoice_ItemsWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<Invoice_ItemsCreateOrConnectWithoutBlockInput>>;
+  create?: InputMaybe<Array<Invoice_ItemsCreateWithoutBlockInput>>;
+  createMany?: InputMaybe<Invoice_ItemsCreateManyBlockInputEnvelope>;
+};
+
+export type Invoice_ItemsCreateNestedManyWithoutInvoiceInput = {
+  connect?: InputMaybe<Array<Invoice_ItemsWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<Invoice_ItemsCreateOrConnectWithoutInvoiceInput>>;
+  create?: InputMaybe<Array<Invoice_ItemsCreateWithoutInvoiceInput>>;
+  createMany?: InputMaybe<Invoice_ItemsCreateManyInvoiceInputEnvelope>;
+};
+
+export type Invoice_ItemsCreateNestedManyWithoutItemInput = {
+  connect?: InputMaybe<Array<Invoice_ItemsWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<Invoice_ItemsCreateOrConnectWithoutItemInput>>;
+  create?: InputMaybe<Array<Invoice_ItemsCreateWithoutItemInput>>;
+  createMany?: InputMaybe<Invoice_ItemsCreateManyItemInputEnvelope>;
+};
+
+export type Invoice_ItemsCreateOrConnectWithoutBlockInput = {
+  create: Invoice_ItemsCreateWithoutBlockInput;
+  where: Invoice_ItemsWhereUniqueInput;
+};
+
+export type Invoice_ItemsCreateOrConnectWithoutInvoiceInput = {
+  create: Invoice_ItemsCreateWithoutInvoiceInput;
+  where: Invoice_ItemsWhereUniqueInput;
+};
+
+export type Invoice_ItemsCreateOrConnectWithoutItemInput = {
+  create: Invoice_ItemsCreateWithoutItemInput;
+  where: Invoice_ItemsWhereUniqueInput;
+};
+
+export type Invoice_ItemsCreateWithoutBlockInput = {
+  amount: Scalars['Float'];
+  created_at?: InputMaybe<Scalars['DateTime']>;
+  id?: InputMaybe<Scalars['BigInt']>;
+  invoice: InvoicesCreateNestedOneWithoutInvoice_ItemsInput;
+  item: ItemsCreateNestedOneWithoutInvoice_ItemsInput;
+  quantity: Scalars['Float'];
+  unit_price: Scalars['Float'];
+  updated_at?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type Invoice_ItemsCreateWithoutInvoiceInput = {
+  amount: Scalars['Float'];
+  created_at?: InputMaybe<Scalars['DateTime']>;
+  id?: InputMaybe<Scalars['BigInt']>;
+  item: ItemsCreateNestedOneWithoutInvoice_ItemsInput;
+  quantity: Scalars['Float'];
+  unit_price: Scalars['Float'];
+  updated_at?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type Invoice_ItemsCreateWithoutItemInput = {
+  amount: Scalars['Float'];
+  created_at?: InputMaybe<Scalars['DateTime']>;
+  id?: InputMaybe<Scalars['BigInt']>;
+  invoice: InvoicesCreateNestedOneWithoutInvoice_ItemsInput;
+  quantity: Scalars['Float'];
+  unit_price: Scalars['Float'];
+  updated_at?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type Invoice_ItemsOrderByRelationAggregateInput = {
+  _count?: InputMaybe<SortOrder>;
+};
+
+export type Invoice_ItemsScalarWhereInput = {
+  AND?: InputMaybe<Array<Invoice_ItemsScalarWhereInput>>;
+  NOT?: InputMaybe<Array<Invoice_ItemsScalarWhereInput>>;
+  OR?: InputMaybe<Array<Invoice_ItemsScalarWhereInput>>;
+  amount?: InputMaybe<FloatFilter>;
+  created_at?: InputMaybe<DateTimeFilter>;
+  id?: InputMaybe<BigIntFilter>;
+  invoice_id?: InputMaybe<BigIntFilter>;
+  item_id?: InputMaybe<BigIntFilter>;
+  quantity?: InputMaybe<FloatFilter>;
+  unit_price?: InputMaybe<FloatFilter>;
+  updated_at?: InputMaybe<DateTimeFilter>;
+};
+
+export type Invoice_ItemsUpdateManyMutationInput = {
+  amount?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
+  quantity?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  unit_price?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type Invoice_ItemsUpdateManyWithWhereWithoutBlockInput = {
+  data: Invoice_ItemsUpdateManyMutationInput;
+  where: Invoice_ItemsScalarWhereInput;
+};
+
+export type Invoice_ItemsUpdateManyWithWhereWithoutInvoiceInput = {
+  data: Invoice_ItemsUpdateManyMutationInput;
+  where: Invoice_ItemsScalarWhereInput;
+};
+
+export type Invoice_ItemsUpdateManyWithWhereWithoutItemInput = {
+  data: Invoice_ItemsUpdateManyMutationInput;
+  where: Invoice_ItemsScalarWhereInput;
+};
+
+export type Invoice_ItemsUpdateManyWithoutBlockNestedInput = {
+  connect?: InputMaybe<Array<Invoice_ItemsWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<Invoice_ItemsCreateOrConnectWithoutBlockInput>>;
+  create?: InputMaybe<Array<Invoice_ItemsCreateWithoutBlockInput>>;
+  createMany?: InputMaybe<Invoice_ItemsCreateManyBlockInputEnvelope>;
+  delete?: InputMaybe<Array<Invoice_ItemsWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<Invoice_ItemsScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<Invoice_ItemsWhereUniqueInput>>;
+  set?: InputMaybe<Array<Invoice_ItemsWhereUniqueInput>>;
+  update?: InputMaybe<Array<Invoice_ItemsUpdateWithWhereUniqueWithoutBlockInput>>;
+  updateMany?: InputMaybe<Array<Invoice_ItemsUpdateManyWithWhereWithoutBlockInput>>;
+  upsert?: InputMaybe<Array<Invoice_ItemsUpsertWithWhereUniqueWithoutBlockInput>>;
+};
+
+export type Invoice_ItemsUpdateManyWithoutInvoiceNestedInput = {
+  connect?: InputMaybe<Array<Invoice_ItemsWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<Invoice_ItemsCreateOrConnectWithoutInvoiceInput>>;
+  create?: InputMaybe<Array<Invoice_ItemsCreateWithoutInvoiceInput>>;
+  createMany?: InputMaybe<Invoice_ItemsCreateManyInvoiceInputEnvelope>;
+  delete?: InputMaybe<Array<Invoice_ItemsWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<Invoice_ItemsScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<Invoice_ItemsWhereUniqueInput>>;
+  set?: InputMaybe<Array<Invoice_ItemsWhereUniqueInput>>;
+  update?: InputMaybe<Array<Invoice_ItemsUpdateWithWhereUniqueWithoutInvoiceInput>>;
+  updateMany?: InputMaybe<Array<Invoice_ItemsUpdateManyWithWhereWithoutInvoiceInput>>;
+  upsert?: InputMaybe<Array<Invoice_ItemsUpsertWithWhereUniqueWithoutInvoiceInput>>;
+};
+
+export type Invoice_ItemsUpdateManyWithoutItemNestedInput = {
+  connect?: InputMaybe<Array<Invoice_ItemsWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<Invoice_ItemsCreateOrConnectWithoutItemInput>>;
+  create?: InputMaybe<Array<Invoice_ItemsCreateWithoutItemInput>>;
+  createMany?: InputMaybe<Invoice_ItemsCreateManyItemInputEnvelope>;
+  delete?: InputMaybe<Array<Invoice_ItemsWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<Invoice_ItemsScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<Invoice_ItemsWhereUniqueInput>>;
+  set?: InputMaybe<Array<Invoice_ItemsWhereUniqueInput>>;
+  update?: InputMaybe<Array<Invoice_ItemsUpdateWithWhereUniqueWithoutItemInput>>;
+  updateMany?: InputMaybe<Array<Invoice_ItemsUpdateManyWithWhereWithoutItemInput>>;
+  upsert?: InputMaybe<Array<Invoice_ItemsUpsertWithWhereUniqueWithoutItemInput>>;
+};
+
+export type Invoice_ItemsUpdateWithWhereUniqueWithoutBlockInput = {
+  data: Invoice_ItemsUpdateWithoutBlockInput;
+  where: Invoice_ItemsWhereUniqueInput;
+};
+
+export type Invoice_ItemsUpdateWithWhereUniqueWithoutInvoiceInput = {
+  data: Invoice_ItemsUpdateWithoutInvoiceInput;
+  where: Invoice_ItemsWhereUniqueInput;
+};
+
+export type Invoice_ItemsUpdateWithWhereUniqueWithoutItemInput = {
+  data: Invoice_ItemsUpdateWithoutItemInput;
+  where: Invoice_ItemsWhereUniqueInput;
+};
+
+export type Invoice_ItemsUpdateWithoutBlockInput = {
+  amount?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
+  invoice?: InputMaybe<InvoicesUpdateOneRequiredWithoutInvoice_ItemsNestedInput>;
+  item?: InputMaybe<ItemsUpdateOneRequiredWithoutInvoice_ItemsNestedInput>;
+  quantity?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  unit_price?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type Invoice_ItemsUpdateWithoutInvoiceInput = {
+  amount?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
+  item?: InputMaybe<ItemsUpdateOneRequiredWithoutInvoice_ItemsNestedInput>;
+  quantity?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  unit_price?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type Invoice_ItemsUpdateWithoutItemInput = {
+  amount?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  created_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  id?: InputMaybe<BigIntFieldUpdateOperationsInput>;
+  invoice?: InputMaybe<InvoicesUpdateOneRequiredWithoutInvoice_ItemsNestedInput>;
+  quantity?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  unit_price?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  updated_at?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type Invoice_ItemsUpsertWithWhereUniqueWithoutBlockInput = {
+  create: Invoice_ItemsCreateWithoutBlockInput;
+  update: Invoice_ItemsUpdateWithoutBlockInput;
+  where: Invoice_ItemsWhereUniqueInput;
+};
+
+export type Invoice_ItemsUpsertWithWhereUniqueWithoutInvoiceInput = {
+  create: Invoice_ItemsCreateWithoutInvoiceInput;
+  update: Invoice_ItemsUpdateWithoutInvoiceInput;
+  where: Invoice_ItemsWhereUniqueInput;
+};
+
+export type Invoice_ItemsUpsertWithWhereUniqueWithoutItemInput = {
+  create: Invoice_ItemsCreateWithoutItemInput;
+  update: Invoice_ItemsUpdateWithoutItemInput;
+  where: Invoice_ItemsWhereUniqueInput;
+};
+
+export type Invoice_ItemsWhereInput = {
+  AND?: InputMaybe<Array<Invoice_ItemsWhereInput>>;
+  NOT?: InputMaybe<Array<Invoice_ItemsWhereInput>>;
+  OR?: InputMaybe<Array<Invoice_ItemsWhereInput>>;
+  amount?: InputMaybe<FloatFilter>;
+  created_at?: InputMaybe<DateTimeFilter>;
+  id?: InputMaybe<BigIntFilter>;
+  invoice?: InputMaybe<InvoicesRelationFilter>;
+  invoice_id?: InputMaybe<BigIntFilter>;
+  item?: InputMaybe<ItemsRelationFilter>;
+  item_id?: InputMaybe<BigIntFilter>;
+  quantity?: InputMaybe<FloatFilter>;
+  unit_price?: InputMaybe<FloatFilter>;
+  updated_at?: InputMaybe<DateTimeFilter>;
+};
+
+export type Invoice_ItemsWhereUniqueInput = {
+  id?: InputMaybe<Scalars['BigInt']>;
+};
+
 export type Machine_Catagory = {
   __typename?: 'machine_catagory';
   _count: Machine_CatagoryCount;
@@ -6720,6 +7480,55 @@ export type UpdateBlockMutationVariables = Exact<{
 
 
 export type UpdateBlockMutation = { __typename?: 'Mutation', updateBlock: { __typename?: 'Block', id: any } };
+
+export type InvoicesQueryVariables = Exact<{
+  where?: InputMaybe<InvoicesWhereInput>;
+  orderBy?: InputMaybe<InvoicesOrderByWithRelationAndSearchRelevanceInput>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+}>;
+
+
+export type InvoicesQuery = { __typename?: 'Query', invoices: Array<{ __typename?: 'Invoices', id: any, invoice_date: any, number: string, total: number, invoice_items?: Array<{ __typename?: 'invoice_items', id: any, amount: number, quantity: number, unit_price: number, item: { __typename?: 'Items', id: any, name: string, quantity: number, code: string, unit_price: number, catagory: { __typename?: 'catagory', id: any, name: string } } }> | null }> };
+
+export type InvoiceQueryVariables = Exact<{
+  invoiceId: Scalars['Int'];
+}>;
+
+
+export type InvoiceQuery = { __typename?: 'Query', invoice: { __typename?: 'Invoices', id: any, invoice_date: any, number: string, total: number, invoice_items?: Array<{ __typename?: 'invoice_items', id: any, amount: number, quantity: number, unit_price: number, item: { __typename?: 'Items', id: any, name: string, quantity: number, code: string, unit_price: number, catagory: { __typename?: 'catagory', id: any, name: string } } }> | null } };
+
+export type InvoiceCountQueryVariables = Exact<{
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<InvoicesWhereInput>;
+  orderBy?: InputMaybe<InvoicesOrderByWithRelationAndSearchRelevanceInput>;
+}>;
+
+
+export type InvoiceCountQuery = { __typename?: 'Query', invoiceCount: number };
+
+export type RemoveInvoicesMutationVariables = Exact<{
+  removeInvoicesId: Scalars['Int'];
+}>;
+
+
+export type RemoveInvoicesMutation = { __typename?: 'Mutation', removeInvoices: { __typename?: 'Invoices', id: any } };
+
+export type UpdateInvoicesMutationVariables = Exact<{
+  updateInvoicesId: Scalars['Int'];
+  updateInvoiceInput: InvoicesUpdateInput;
+}>;
+
+
+export type UpdateInvoicesMutation = { __typename?: 'Mutation', updateInvoices: { __typename?: 'Invoices', id: any } };
+
+export type CreateInvoiceMutationVariables = Exact<{
+  createInvoiceInput: InvoicesCreateInput;
+}>;
+
+
+export type CreateInvoiceMutation = { __typename?: 'Mutation', createInvoice: { __typename?: 'Invoices', id: any } };
 
 export type ItemCataogiriesQueryVariables = Exact<{
   limit?: InputMaybe<Scalars['Int']>;
@@ -7693,6 +8502,257 @@ export function useUpdateBlockMutation(baseOptions?: Apollo.MutationHookOptions<
 export type UpdateBlockMutationHookResult = ReturnType<typeof useUpdateBlockMutation>;
 export type UpdateBlockMutationResult = Apollo.MutationResult<UpdateBlockMutation>;
 export type UpdateBlockMutationOptions = Apollo.BaseMutationOptions<UpdateBlockMutation, UpdateBlockMutationVariables>;
+export const InvoicesDocument = gql`
+    query invoices($where: InvoicesWhereInput, $orderBy: InvoicesOrderByWithRelationAndSearchRelevanceInput, $limit: Int, $offset: Int) {
+  invoices(where: $where, orderBy: $orderBy, limit: $limit, offset: $offset) {
+    id
+    invoice_date
+    number
+    total
+    invoice_items {
+      id
+      amount
+      quantity
+      unit_price
+      id
+      item {
+        id
+        name
+        quantity
+        code
+        unit_price
+        catagory {
+          id
+          name
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useInvoicesQuery__
+ *
+ * To run a query within a React component, call `useInvoicesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useInvoicesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useInvoicesQuery({
+ *   variables: {
+ *      where: // value for 'where'
+ *      orderBy: // value for 'orderBy'
+ *      limit: // value for 'limit'
+ *      offset: // value for 'offset'
+ *   },
+ * });
+ */
+export function useInvoicesQuery(baseOptions?: Apollo.QueryHookOptions<InvoicesQuery, InvoicesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<InvoicesQuery, InvoicesQueryVariables>(InvoicesDocument, options);
+      }
+export function useInvoicesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<InvoicesQuery, InvoicesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<InvoicesQuery, InvoicesQueryVariables>(InvoicesDocument, options);
+        }
+export type InvoicesQueryHookResult = ReturnType<typeof useInvoicesQuery>;
+export type InvoicesLazyQueryHookResult = ReturnType<typeof useInvoicesLazyQuery>;
+export type InvoicesQueryResult = Apollo.QueryResult<InvoicesQuery, InvoicesQueryVariables>;
+export const InvoiceDocument = gql`
+    query invoice($invoiceId: Int!) {
+  invoice(id: $invoiceId) {
+    id
+    invoice_date
+    number
+    total
+    invoice_items {
+      id
+      amount
+      quantity
+      unit_price
+      id
+      item {
+        id
+        name
+        quantity
+        code
+        unit_price
+        catagory {
+          id
+          name
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useInvoiceQuery__
+ *
+ * To run a query within a React component, call `useInvoiceQuery` and pass it any options that fit your needs.
+ * When your component renders, `useInvoiceQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useInvoiceQuery({
+ *   variables: {
+ *      invoiceId: // value for 'invoiceId'
+ *   },
+ * });
+ */
+export function useInvoiceQuery(baseOptions: Apollo.QueryHookOptions<InvoiceQuery, InvoiceQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<InvoiceQuery, InvoiceQueryVariables>(InvoiceDocument, options);
+      }
+export function useInvoiceLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<InvoiceQuery, InvoiceQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<InvoiceQuery, InvoiceQueryVariables>(InvoiceDocument, options);
+        }
+export type InvoiceQueryHookResult = ReturnType<typeof useInvoiceQuery>;
+export type InvoiceLazyQueryHookResult = ReturnType<typeof useInvoiceLazyQuery>;
+export type InvoiceQueryResult = Apollo.QueryResult<InvoiceQuery, InvoiceQueryVariables>;
+export const InvoiceCountDocument = gql`
+    query invoiceCount($limit: Int, $offset: Int, $where: InvoicesWhereInput, $orderBy: InvoicesOrderByWithRelationAndSearchRelevanceInput) {
+  invoiceCount(limit: $limit, offset: $offset, where: $where, orderBy: $orderBy)
+}
+    `;
+
+/**
+ * __useInvoiceCountQuery__
+ *
+ * To run a query within a React component, call `useInvoiceCountQuery` and pass it any options that fit your needs.
+ * When your component renders, `useInvoiceCountQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useInvoiceCountQuery({
+ *   variables: {
+ *      limit: // value for 'limit'
+ *      offset: // value for 'offset'
+ *      where: // value for 'where'
+ *      orderBy: // value for 'orderBy'
+ *   },
+ * });
+ */
+export function useInvoiceCountQuery(baseOptions?: Apollo.QueryHookOptions<InvoiceCountQuery, InvoiceCountQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<InvoiceCountQuery, InvoiceCountQueryVariables>(InvoiceCountDocument, options);
+      }
+export function useInvoiceCountLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<InvoiceCountQuery, InvoiceCountQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<InvoiceCountQuery, InvoiceCountQueryVariables>(InvoiceCountDocument, options);
+        }
+export type InvoiceCountQueryHookResult = ReturnType<typeof useInvoiceCountQuery>;
+export type InvoiceCountLazyQueryHookResult = ReturnType<typeof useInvoiceCountLazyQuery>;
+export type InvoiceCountQueryResult = Apollo.QueryResult<InvoiceCountQuery, InvoiceCountQueryVariables>;
+export const RemoveInvoicesDocument = gql`
+    mutation removeInvoices($removeInvoicesId: Int!) {
+  removeInvoices(id: $removeInvoicesId) {
+    id
+  }
+}
+    `;
+export type RemoveInvoicesMutationFn = Apollo.MutationFunction<RemoveInvoicesMutation, RemoveInvoicesMutationVariables>;
+
+/**
+ * __useRemoveInvoicesMutation__
+ *
+ * To run a mutation, you first call `useRemoveInvoicesMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useRemoveInvoicesMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [removeInvoicesMutation, { data, loading, error }] = useRemoveInvoicesMutation({
+ *   variables: {
+ *      removeInvoicesId: // value for 'removeInvoicesId'
+ *   },
+ * });
+ */
+export function useRemoveInvoicesMutation(baseOptions?: Apollo.MutationHookOptions<RemoveInvoicesMutation, RemoveInvoicesMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<RemoveInvoicesMutation, RemoveInvoicesMutationVariables>(RemoveInvoicesDocument, options);
+      }
+export type RemoveInvoicesMutationHookResult = ReturnType<typeof useRemoveInvoicesMutation>;
+export type RemoveInvoicesMutationResult = Apollo.MutationResult<RemoveInvoicesMutation>;
+export type RemoveInvoicesMutationOptions = Apollo.BaseMutationOptions<RemoveInvoicesMutation, RemoveInvoicesMutationVariables>;
+export const UpdateInvoicesDocument = gql`
+    mutation updateInvoices($updateInvoicesId: Int!, $updateInvoiceInput: InvoicesUpdateInput!) {
+  updateInvoices(id: $updateInvoicesId, updateInvoiceInput: $updateInvoiceInput) {
+    id
+  }
+}
+    `;
+export type UpdateInvoicesMutationFn = Apollo.MutationFunction<UpdateInvoicesMutation, UpdateInvoicesMutationVariables>;
+
+/**
+ * __useUpdateInvoicesMutation__
+ *
+ * To run a mutation, you first call `useUpdateInvoicesMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateInvoicesMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateInvoicesMutation, { data, loading, error }] = useUpdateInvoicesMutation({
+ *   variables: {
+ *      updateInvoicesId: // value for 'updateInvoicesId'
+ *      updateInvoiceInput: // value for 'updateInvoiceInput'
+ *   },
+ * });
+ */
+export function useUpdateInvoicesMutation(baseOptions?: Apollo.MutationHookOptions<UpdateInvoicesMutation, UpdateInvoicesMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateInvoicesMutation, UpdateInvoicesMutationVariables>(UpdateInvoicesDocument, options);
+      }
+export type UpdateInvoicesMutationHookResult = ReturnType<typeof useUpdateInvoicesMutation>;
+export type UpdateInvoicesMutationResult = Apollo.MutationResult<UpdateInvoicesMutation>;
+export type UpdateInvoicesMutationOptions = Apollo.BaseMutationOptions<UpdateInvoicesMutation, UpdateInvoicesMutationVariables>;
+export const CreateInvoiceDocument = gql`
+    mutation createInvoice($createInvoiceInput: InvoicesCreateInput!) {
+  createInvoice(createInvoiceInput: $createInvoiceInput) {
+    id
+  }
+}
+    `;
+export type CreateInvoiceMutationFn = Apollo.MutationFunction<CreateInvoiceMutation, CreateInvoiceMutationVariables>;
+
+/**
+ * __useCreateInvoiceMutation__
+ *
+ * To run a mutation, you first call `useCreateInvoiceMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateInvoiceMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createInvoiceMutation, { data, loading, error }] = useCreateInvoiceMutation({
+ *   variables: {
+ *      createInvoiceInput: // value for 'createInvoiceInput'
+ *   },
+ * });
+ */
+export function useCreateInvoiceMutation(baseOptions?: Apollo.MutationHookOptions<CreateInvoiceMutation, CreateInvoiceMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateInvoiceMutation, CreateInvoiceMutationVariables>(CreateInvoiceDocument, options);
+      }
+export type CreateInvoiceMutationHookResult = ReturnType<typeof useCreateInvoiceMutation>;
+export type CreateInvoiceMutationResult = Apollo.MutationResult<CreateInvoiceMutation>;
+export type CreateInvoiceMutationOptions = Apollo.BaseMutationOptions<CreateInvoiceMutation, CreateInvoiceMutationVariables>;
 export const ItemCataogiriesDocument = gql`
     query itemCataogiries($limit: Int, $offset: Int, $orderBy: ItemCatagoryOrderByWithAggregationInput, $where: ItemCatagoryWhereInput) {
   itemCatagories(limit: $limit, offset: $offset, orderBy: $orderBy, where: $where) {

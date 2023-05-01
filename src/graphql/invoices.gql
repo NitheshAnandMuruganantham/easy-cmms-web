@@ -1,0 +1,78 @@
+query invoices($where: InvoicesWhereInput, $orderBy: InvoicesOrderByWithRelationAndSearchRelevanceInput, $limit: Int, $offset: Int) {
+  invoices(where: $where,orderBy: $orderBy,limit: $limit,offset: $offset) {
+    id
+    invoice_date
+    number
+    total
+    invoice_items {
+      id
+      amount
+      quantity
+      unit_price
+      id
+      item {
+        id
+        name
+        quantity
+        code
+        unit_price
+        catagory {
+          id
+          name
+        }
+      }
+    }
+  }
+}
+
+
+query invoice($invoiceId: Int!) {
+  invoice(id: $invoiceId) {
+   id
+    invoice_date
+    number
+    total
+    invoice_items {
+      id
+      amount
+      quantity
+      unit_price
+      id
+      item {
+        id
+        name
+        quantity
+        code
+        unit_price
+        catagory {
+          id
+          name
+        }
+      }
+    }    
+  }
+}
+
+
+query invoiceCount($limit: Int, $offset: Int, $where: InvoicesWhereInput, $orderBy: InvoicesOrderByWithRelationAndSearchRelevanceInput) {
+  invoiceCount(limit: $limit,offset: $offset,where: $where,orderBy: $orderBy)
+}
+
+mutation removeInvoices($removeInvoicesId: Int!) {
+  removeInvoices(id: $removeInvoicesId) {
+    id
+  }
+}
+
+
+mutation updateInvoices($updateInvoicesId: Int!, $updateInvoiceInput: InvoicesUpdateInput!) {
+  updateInvoices(id: $updateInvoicesId, updateInvoiceInput: $updateInvoiceInput) {
+    id
+  }
+}
+
+mutation createInvoice($createInvoiceInput: InvoicesCreateInput!) {
+  createInvoice(createInvoiceInput: $createInvoiceInput) {
+    id
+  }
+}
