@@ -177,12 +177,7 @@ const NavBar: FunctionComponent<{
       icon: AdminPanelSettingsIcon,
       active: useMatch("/users"),
     },
-    {
-      name: "production metrics",
-      path: "/production",
-      icon: DynamicFormIcon,
-      active: useMatch("/production"),
-    },
+
     {
       name: "machines",
       path: "/machines",
@@ -414,12 +409,6 @@ const Currentpage = () => {
       path: "/replacements",
       icon: ApartmentIcon,
       active: useMatch("/replacements"),
-    },
-    {
-      name: "production metrics",
-      path: "/production",
-      icon: DynamicFormIcon,
-      active: useMatch("/production"),
     },
     {
       name: "Spare category",

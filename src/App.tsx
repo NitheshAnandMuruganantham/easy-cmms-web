@@ -14,7 +14,6 @@ import RoutineMaintenance from "./pages/routineMaintanance";
 import Machine_category from "./pages/meachine_catagory";
 import Section from "./pages/section";
 import Block from "./pages/block";
-import Production from "./pages/production";
 import { PlantSettingsContext } from "./context/PlantSettings";
 import axios from "./utils/axios";
 import ItemCategory from "./pages/Iitem-catagory";
@@ -111,14 +110,6 @@ function App() {
             element={
               <SessionAuth>
                 <RoutineMaintenance />
-              </SessionAuth>
-            }
-          />
-          <reactRouterDom.Route
-            path="/production"
-            element={
-              <SessionAuth>
-                <Production />
               </SessionAuth>
             }
           />
