@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       VITE_ENDPOINT: https://server.hrflow.work
+      VITE_APP_NAME: hrflow
       VITE_BASE_URL: https://app.hrflow.work
       VITE_ENV: production
       BUCKET: app.hrflow.work
