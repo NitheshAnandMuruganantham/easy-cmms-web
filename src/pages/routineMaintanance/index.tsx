@@ -1,24 +1,11 @@
-import { Box, Button, Switch, Typography } from "@mui/material";
-import {
-  DataGrid,
-  GridAddIcon,
-  GridPanel,
-  GridToolbar,
-} from "@mui/x-data-grid";
-import AssessmentIcon from "@mui/icons-material/Assessment";
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import { Box, Button } from "@mui/material";
+import { DataGrid, GridAddIcon, GridToolbar } from "@mui/x-data-grid";
+import { useEffect, useState } from "react";
 import { confirmAlert } from "react-confirm-alert";
 import {
   InputMaybe,
   MaintenanceWhereInput,
   SortOrder,
-  useDeleteMaintananceMutation,
   useRemoveRoutineMaintananceMutation,
   useRoutineMaintanancesCountQuery,
   useRoutineMaintanancesQuery,
@@ -27,7 +14,6 @@ import { filterTransform } from "../../utils/filterTransform";
 import columns from "./cols";
 import ViewMaintance from "./viewMaintanance";
 import NewMaintance from "./newMaintenance";
-import axios from "../../utils/axios";
 import { useInterval } from "../../utils/reFetchQueries";
 import EditMaintenance from "./editMaintenance";
 
@@ -71,7 +57,6 @@ function RoutineMaintenance() {
     },
   });
   const [DeleteRoutineMaintenance] = useRemoveRoutineMaintananceMutation();
-  const [Maintenances, setMaintenances] = useState<any>([]);
   const [showEdit, setShowEdit] = useState<{
     open: boolean;
     id: number;
@@ -81,45 +66,23 @@ function RoutineMaintenance() {
     id: 0,
     data: null,
   });
-  const [GetMaintenanceLoading, setGetMaintenanceLoading] =
-    useState<boolean>(false);
-  const RefetchMaintenances = () => {
-    RefetchMaintenanceCount();
-    setGetMaintenanceLoading(true);
-    axios
-      .post("RoutineMaintenance", {
-        take: pageSize,
-        skip: (page - 1) * pageSize,
-        where: formattedFilter,
-        orderBy: formattedSort,
-      })
-      .then((res) => {
-        setMaintenances(res.data);
-        setGetMaintenanceLoading(false);
-      });
-  };
 
+  const {
+    data: Maintenances,
+    loading: GetMaintenanceLoading,
+    refetch: RefetchMaintenances,
+  } = useRoutineMaintanancesQuery({
+    variables: {
+      where: formattedFilter,
+      orderBy: formattedSort,
+      limit: pageSize,
+      offset: (page - 1) * pageSize,
+    },
+  });
   useInterval(() => {
     RefetchMaintenanceCount();
-    axios
-      .post("RoutineMaintenance", {
-        take: pageSize,
-        skip: (page - 1) * pageSize,
-        where: formattedFilter,
-        orderBy: formattedSort,
-      })
-      .then((res) => {
-        setMaintenances(res.data);
-      });
+    RefetchMaintenances();
   }, 10000);
-
-  useEffect(() => {
-    RefetchMaintenances();
-  }, []);
-
-  useEffect(() => {
-    RefetchMaintenances();
-  }, [page, pageSize, formattedFilter, formattedSort]);
 
   useEffect(() => {
     SetFormattedFilter({
@@ -215,7 +178,7 @@ function RoutineMaintenance() {
           });
         }}
         onPageSizeChange={(s) => setPageSize(s)}
-        rows={Maintenances || []}
+        rows={Maintenances?.routineMaintanances || []}
         sortModel={sort}
         onSortModelChange={(s) => {
           setSort(s);

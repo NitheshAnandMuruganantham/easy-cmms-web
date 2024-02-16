@@ -37,7 +37,6 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import HomeIcon from "@mui/icons-material/Home";
 import CachedIcon from "@mui/icons-material/Cached";
-import { signOut } from "supertokens-auth-react/recipe/passwordless";
 import BallotIcon from "@mui/icons-material/Ballot";
 import DynamicFormIcon from "@mui/icons-material/DynamicForm";
 
@@ -177,12 +176,7 @@ const NavBar: FunctionComponent<{
       icon: AdminPanelSettingsIcon,
       active: useMatch("/users"),
     },
-    {
-      name: "production metrics",
-      path: "/production",
-      icon: DynamicFormIcon,
-      active: useMatch("/production"),
-    },
+
     {
       name: "machines",
       path: "/machines",
@@ -270,7 +264,7 @@ const NavBar: FunctionComponent<{
                   disabled={loading}
                   key={"logOut"}
                   onClick={async () => {
-                    await signOut();
+                    // await signOut();
                     window.location.href = "/";
                   }}
                 >
@@ -414,12 +408,6 @@ const Currentpage = () => {
       path: "/replacements",
       icon: ApartmentIcon,
       active: useMatch("/replacements"),
-    },
-    {
-      name: "production metrics",
-      path: "/production",
-      icon: DynamicFormIcon,
-      active: useMatch("/production"),
     },
     {
       name: "Spare category",

@@ -48,8 +48,6 @@
     "recharts": "^2.4.3",
     "schema-to-yup": "^1.12.9",
     "styled-components": "^5.3.6",
-    "supertokens-auth-react": "^0.31.1",
-    "supertokens-web-js": "^0.5.0",
     "yup": "^1.0.0"
   },
   "devDependencies": {

@@ -60,23 +60,30 @@ function Maintenance() {
   ]);
 
   const [newMaintance, setNewMaintance] = useState<boolean>(false);
-  const [maintenanceLoading, setGetMaintenanceLoading] =
-    useState<boolean>(false);
-  const [maintenances, setMaintenances] = useState<any[]>([]);
 
   const {
     data: MaintenancesCount,
     error: MaintenancesCountError,
     loading: MaintenancesCountLoading,
     refetch: RefetchMaintenanceCount,
-    startPolling: StartPollingMaintenanceCount,
-    stopPolling: StopPollingMaintenanceCount,
   } = useMaintanceCountQuery({
     variables: {
       where: formattedFilter,
     },
   });
   const [DeleteMaintenance] = useDeleteMaintananceMutation();
+  const {
+    data: maintenances,
+    loading: maintenanceLoading,
+    refetch: RefetchMaintenances,
+  } = useMaintenanceQuery({
+    variables: {
+      where: formattedFilter,
+      orderBy: formattedSort,
+      limit: pageSize,
+      offset: (page - 1) * pageSize,
+    },
+  });
   const [showEditMaintenance, setShowEditMaintenance] = useState<{
     open: boolean;
     data: any;
@@ -84,43 +91,11 @@ function Maintenance() {
     open: false,
     data: null,
   });
-  const RefetchMaintenances = () => {
-    RefetchMaintenanceCount();
-    setGetMaintenanceLoading(true);
-    axios
-      .post("maintenance", {
-        take: pageSize,
-        skip: (page - 1) * pageSize,
-        where: formattedFilter,
-        orderBy: formattedSort,
-      })
-      .then((res) => {
-        setMaintenances(res.data);
-        setGetMaintenanceLoading(false);
-      });
-  };
 
   useInterval(() => {
     RefetchMaintenanceCount();
-    axios
-      .post("maintenance", {
-        take: pageSize,
-        skip: (page - 1) * pageSize,
-        where: formattedFilter,
-        orderBy: formattedSort,
-      })
-      .then((res) => {
-        setMaintenances(res.data);
-      });
+    RefetchMaintenances();
   }, 10000);
-
-  useEffect(() => {
-    RefetchMaintenances();
-  }, []);
-
-  useEffect(() => {
-    RefetchMaintenances();
-  }, [page, pageSize, formattedFilter, formattedSort]);
 
   useEffect(() => {
     if (onlyUnResolved) {
@@ -269,7 +244,7 @@ function Maintenance() {
           });
         }}
         onPageSizeChange={(s) => setPageSize(s)}
-        rows={maintenances || []}
+        rows={maintenances?.maintenances || []}
         sortModel={sort}
         onSortModelChange={(s) => {
           setSort(s);
