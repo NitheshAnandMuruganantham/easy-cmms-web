@@ -3,20 +3,20 @@ name: Build and Deploy React App to CloudFront
 "on":
   push:
     branches:
-      - master
+      - production
 jobs:
   build:
     name: Build and Deploy
     runs-on: ubuntu-latest
     env:
-      VITE_ENDPOINT: https://server.hrflow.work
-      VITE_APP_NAME: hrflow
-      VITE_BASE_URL: https://app.hrflow.work
+      VITE_ENDPOINT: https://server.easycmms.infraweigh.co
+      VITE_APP_NAME: easy cmms
+      VITE_BASE_URL: https://app.easycmms.infraweigh.co
       VITE_ENV: production
-      BUCKET: app.hrflow.work
+      BUCKET: app.easycmms.infraweigh.co
       DIST: dist
       REGION: us-east-1
-      DIST_ID: E3UGHDPGW9R7X9
+      DIST_ID: E1SD90E24VNFIL
     steps:
       - name: Checkout
         uses: actions/checkout@v2
