@@ -1,17 +1,11 @@
-import { Box, Button, Switch, Typography } from "@mui/material";
-import {
-  DataGrid,
-  GridAddIcon,
-  GridPanel,
-  GridToolbar,
-} from "@mui/x-data-grid";
+import { Box, Button } from "@mui/material";
+import { DataGrid, GridAddIcon, GridToolbar } from "@mui/x-data-grid";
 import AssessmentIcon from "@mui/icons-material/Assessment";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { confirmAlert } from "react-confirm-alert";
 import {
   InputMaybe,
   MachinesWhereInput,
-  MaintenanceWhereInput,
   SortOrder,
   useMachinesCountQuery,
   useMachinesQuery,
@@ -23,13 +17,11 @@ import NewMaintance from "./newMeachine";
 import Reports from "./reports";
 import { toast } from "react-toastify";
 import { client } from "../../utils/apollo";
-import axios from "../../utils/axios";
 import { useInterval } from "../../utils/reFetchQueries";
 import EditMachine from "./editMeachine";
 
-function Maintenance() {
+function Machines() {
   const [page, setPage] = useState(1);
-  const [data, setData] = useState<any>([]);
   const [showReport, setShowReport] = useState<boolean>(false);
   const [pageSize, setPageSize] = useState(10);
   const [filter, SetFilter] = useState<any>({
@@ -58,8 +50,6 @@ function Maintenance() {
     data: null,
   });
 
-  const [GetMachineLoading, setGetMachineLoading] = useState<boolean>(false);
-
   const {
     data: MachinesCount,
     error: MachineCountError,
@@ -72,43 +62,23 @@ function Maintenance() {
   });
   const [DeleteMachine] = useRemoveMachineMutation();
 
-  const RefetchMaintenances = () => {
-    RefetchMaintenanceCount();
-    setGetMachineLoading(true);
-    axios
-      .post("machines", {
-        take: pageSize,
-        skip: (page - 1) * pageSize,
-        where: formattedFilter,
-        orderBy: formattedSort,
-      })
-      .then((res) => {
-        setData(res.data);
-        setGetMachineLoading(false);
-      });
-  };
+  const {
+    data,
+    refetch: RefetchMaintenances,
+    loading: GetMachineLoading,
+  } = useMachinesQuery({
+    variables: {
+      where: formattedFilter,
+      orderBy: formattedSort,
+      offset: (page - 1) * pageSize,
+      limit: pageSize,
+    },
+  });
 
   useInterval(() => {
     RefetchMaintenanceCount();
-    axios
-      .post("machines", {
-        take: pageSize,
-        skip: (page - 1) * pageSize,
-        where: formattedFilter,
-        orderBy: formattedSort,
-      })
-      .then((res) => {
-        setData(res.data);
-      });
+    RefetchMaintenances();
   }, 10000);
-
-  useEffect(() => {
-    RefetchMaintenances();
-  }, []);
-
-  useEffect(() => {
-    RefetchMaintenances();
-  }, [page, pageSize, formattedFilter, formattedSort]);
 
   return (
     <div>
@@ -202,7 +172,7 @@ function Maintenance() {
           });
         }}
         onPageSizeChange={(s) => setPageSize(s)}
-        rows={data || []}
+        rows={data?.machines || []}
         sortModel={sort}
         onSortModelChange={(s) => {
           setSort(s);
@@ -298,4 +268,4 @@ function Maintenance() {
   );
 }
 
-export default Maintenance;
+export default Machines;

@@ -1,6 +1,6 @@
 import Button from "@mui/material/Button";
 import { DataGrid, GridFilterModel, GridToolbar } from "@mui/x-data-grid";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   InputMaybe,
   SortOrder,
@@ -16,7 +16,6 @@ import ViewTicket from "./viewTicket";
 
 import columns from "./col";
 import { confirmAlert } from "react-confirm-alert";
-import axios from "../../utils/axios";
 
 function Ticket() {
   const [page, setPage] = useState(1);
@@ -31,16 +30,26 @@ function Ticket() {
   const [formattedSort, setFormattedSort] = useState<any>({
     id: SortOrder.Desc,
   });
-  const [search, setSearch] = useState<string>("");
-  const [loading, setLoading] = useState<boolean>(false);
-  const [data, setData] = useState<any[]>([]);
+
   const [sort, setSort] = useState<any>([
     {
       field: "id",
       sort: "desc",
     },
   ]);
-
+  const {
+    data,
+    loading,
+    refetch: RefetchTickets,
+  } = useTicketsQuery({
+    pollInterval: 1000,
+    variables: {
+      where: formattedFilter,
+      orderBy: formattedSort,
+      skip: (page - 1) * pageSize,
+      take: pageSize,
+    },
+  });
   const {
     data: TicketsCount,
     error: TicketsCountError,
@@ -52,30 +61,6 @@ function Ticket() {
       where: formattedFilter,
     },
   });
-
-  const RefetchTickets = () => {
-    refetchTicketCount();
-    setLoading(true);
-    axios
-      .post("tickets", {
-        take: pageSize,
-        skip: (page - 1) * pageSize,
-        where: formattedFilter,
-        orderBy: formattedSort,
-      })
-      .then((res) => {
-        setData(res.data);
-        setLoading(false);
-      });
-  };
-
-  useEffect(() => {
-    RefetchTickets();
-  }, [page, pageSize, formattedFilter, formattedSort]);
-
-  useEffect(() => {
-    RefetchTickets();
-  }, []);
 
   const [showViewTicketModal, setShowTicketModal] = useState<{
     open: boolean;
@@ -141,7 +126,7 @@ function Ticket() {
         loading={loading || TicketCountLoading}
         onPageChange={(p) => setPage(p + 1)}
         onPageSizeChange={(s) => setPageSize(s)}
-        rows={data || []}
+        rows={data?.tickets || []}
         sortModel={sort}
         filterModel={filter}
         onFilterModelChange={(f) => {

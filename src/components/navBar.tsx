@@ -37,7 +37,6 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import HomeIcon from "@mui/icons-material/Home";
 import CachedIcon from "@mui/icons-material/Cached";
-import { signOut } from "supertokens-auth-react/recipe/passwordless";
 import BallotIcon from "@mui/icons-material/Ballot";
 import DynamicFormIcon from "@mui/icons-material/DynamicForm";
 
@@ -265,7 +264,7 @@ const NavBar: FunctionComponent<{
                   disabled={loading}
                   key={"logOut"}
                   onClick={async () => {
-                    await signOut();
+                    // await signOut();
                     window.location.href = "/";
                   }}
                 >
