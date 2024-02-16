@@ -15,7 +15,7 @@ jobs:
       VITE_ENV: production
       BUCKET: app.easycmms.infraweigh.co
       DIST: dist
-      REGION: us-east-1
+      REGION: ap-south-1
       DIST_ID: E1SD90E24VNFIL
     steps:
       - name: Checkout
