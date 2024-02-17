@@ -1,0 +1,6505 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+"""
+The `BigInt` scalar type represents non-fractional signed whole numeric values.
+"""
+scalar BigInt
+
+input BigIntFieldUpdateOperationsInput {
+  decrement: BigInt
+  divide: BigInt
+  increment: BigInt
+  multiply: BigInt
+  set: BigInt
+}
+
+input BigIntFilter {
+  equals: BigInt
+  gt: BigInt
+  gte: BigInt
+  in: [BigInt!]
+  lt: BigInt
+  lte: BigInt
+  not: NestedBigIntFilter
+  notIn: [BigInt!]
+}
+
+input BigIntNullableFilter {
+  equals: BigInt
+  gt: BigInt
+  gte: BigInt
+  in: [BigInt!]
+  lt: BigInt
+  lte: BigInt
+  not: NestedBigIntNullableFilter
+  notIn: [BigInt!]
+}
+
+type Block {
+  Invoices: [Invoices!]
+  Items: [Items!]
+  Mailings: [String!]
+  Maintenance: [Maintenance!]
+  Replacements: [Replacements!]
+  Reports: [Reports!]
+  Sections: [Sections!]
+  Ticket: [Ticket!]
+  Users: [Users!]
+  _count: BlockCount!
+  block_settings: [block_settings!]
+  catagory: [catagory!]
+  created_at: DateTime!
+  id: BigInt!
+  invoice_items: [invoice_items!]
+  location: String!
+  machine_catagory: [machine_catagory!]
+  machines(
+    limit: Int
+    offset: Int
+    orderBy: MachinesOrderByWithAggregationInput
+    where: MachinesWhereInput
+  ): [Machines!]
+  name: String!
+  routine_maintanances: [routine_maintanances!]
+  updated_at: DateTime!
+}
+
+type BlockAvgAggregate {
+  id: Float
+}
+
+input BlockAvgOrderByAggregateInput {
+  id: SortOrder
+}
+
+type BlockCount {
+  Invoices: Int!
+  Items: Int!
+  Maintenance: Int!
+  Replacements: Int!
+  Reports: Int!
+  Sections: Int!
+  Ticket: Int!
+  Users: Int!
+  block_settings: Int!
+  catagory: Int!
+  invoice_items: Int!
+  machine_catagory: Int!
+  machines: Int!
+  routine_maintanances: Int!
+}
+
+type BlockCountAggregate {
+  Mailings: Int!
+  _all: Int!
+  created_at: Int!
+  id: Int!
+  location: Int!
+  name: Int!
+  updated_at: Int!
+}
+
+input BlockCountOrderByAggregateInput {
+  Mailings: SortOrder
+  created_at: SortOrder
+  id: SortOrder
+  location: SortOrder
+  name: SortOrder
+  updated_at: SortOrder
+}
+
+input BlockCreateInput {
+  Invoices: InvoicesCreateNestedManyWithoutBlockInput
+  Items: ItemsCreateNestedManyWithoutBlockInput
+  Mailings: BlockCreateMailingsInput
+  Maintenance: MaintenanceCreateNestedManyWithoutBlockInput
+  Replacements: ReplacementsCreateNestedManyWithoutBlockInput
+  Reports: ReportsCreateNestedManyWithoutBlockInput
+  Sections: SectionsCreateNestedManyWithoutBlockInput
+  Ticket: TicketCreateNestedManyWithoutBlockInput
+  Users: UsersCreateNestedManyWithoutBlockInput
+  block_settings: block_settingsCreateNestedManyWithoutBlockInput
+  catagory: catagoryCreateNestedManyWithoutBlockInput
+  created_at: DateTime
+  id: BigInt
+  invoice_items: invoice_itemsCreateNestedManyWithoutBlockInput
+  location: String!
+  machine_catagory: machine_catagoryCreateNestedManyWithoutBlockInput
+  machines: MachinesCreateNestedManyWithoutBlockInput
+  name: String!
+  routine_maintanances: routine_maintanancesCreateNestedManyWithoutBlockInput
+  updated_at: DateTime
+}
+
+input BlockCreateMailingsInput {
+  set: [String!]!
+}
+
+type BlockMaxAggregate {
+  created_at: DateTime
+  id: BigInt
+  location: String
+  name: String
+  updated_at: DateTime
+}
+
+input BlockMaxOrderByAggregateInput {
+  created_at: SortOrder
+  id: SortOrder
+  location: SortOrder
+  name: SortOrder
+  updated_at: SortOrder
+}
+
+type BlockMinAggregate {
+  created_at: DateTime
+  id: BigInt
+  location: String
+  name: String
+  updated_at: DateTime
+}
+
+input BlockMinOrderByAggregateInput {
+  created_at: SortOrder
+  id: SortOrder
+  location: SortOrder
+  name: SortOrder
+  updated_at: SortOrder
+}
+
+input BlockOrderByWithAggregationInput {
+  Mailings: SortOrder
+  _avg: BlockAvgOrderByAggregateInput
+  _count: BlockCountOrderByAggregateInput
+  _max: BlockMaxOrderByAggregateInput
+  _min: BlockMinOrderByAggregateInput
+  _sum: BlockSumOrderByAggregateInput
+  created_at: SortOrder
+  id: SortOrder
+  location: SortOrder
+  name: SortOrder
+  updated_at: SortOrder
+}
+
+input BlockOrderByWithRelationInput {
+  created_at: SortOrder
+  id: SortOrder
+  location: SortOrder
+  machines: MachinesOrderByRelationAggregateInput
+  name: SortOrder
+  updated_at: SortOrder
+}
+
+input BlockRelationFilter {
+  is: BlockWhereInput
+  isNot: BlockWhereInput
+}
+
+type BlockSumAggregate {
+  id: BigInt
+}
+
+input BlockSumOrderByAggregateInput {
+  id: SortOrder
+}
+
+input BlockUpdateInput {
+  Invoices: InvoicesUpdateManyWithoutBlockNestedInput
+  Items: ItemsUpdateManyWithoutBlockNestedInput
+  Mailings: BlockUpdateMailingsInput
+  Maintenance: MaintenanceUpdateManyWithoutBlockNestedInput
+  Replacements: ReplacementsUpdateManyWithoutBlockNestedInput
+  Reports: ReportsUpdateManyWithoutBlockNestedInput
+  Sections: SectionsUpdateManyWithoutBlockNestedInput
+  Ticket: TicketUpdateManyWithoutBlockNestedInput
+  Users: UsersUpdateManyWithoutBlockNestedInput
+  block_settings: block_settingsUpdateManyWithoutBlockNestedInput
+  catagory: catagoryUpdateManyWithoutBlockNestedInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  invoice_items: invoice_itemsUpdateManyWithoutBlockNestedInput
+  location: StringFieldUpdateOperationsInput
+  machine_catagory: machine_catagoryUpdateManyWithoutBlockNestedInput
+  machines: MachinesUpdateManyWithoutBlockNestedInput
+  name: StringFieldUpdateOperationsInput
+  routine_maintanances: routine_maintanancesUpdateManyWithoutBlockNestedInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input BlockUpdateMailingsInput {
+  push: [String!]
+  set: [String!]
+}
+
+input BlockWhereInput {
+  AND: [BlockWhereInput!]
+  Invoices: InvoicesListRelationFilter
+  Items: ItemsListRelationFilter
+  Mailings: StringNullableListFilter
+  Maintenance: MaintenanceListRelationFilter
+  NOT: [BlockWhereInput!]
+  OR: [BlockWhereInput!]
+  Replacements: ReplacementsListRelationFilter
+  Reports: ReportsListRelationFilter
+  Sections: SectionsListRelationFilter
+  Ticket: TicketListRelationFilter
+  Users: UsersListRelationFilter
+  block_settings: Block_settingsListRelationFilter
+  catagory: CatagoryListRelationFilter
+  created_at: DateTimeFilter
+  id: BigIntFilter
+  invoice_items: Invoice_itemsListRelationFilter
+  location: StringFilter
+  machine_catagory: Machine_catagoryListRelationFilter
+  machines: MachinesListRelationFilter
+  name: StringFilter
+  routine_maintanances: Routine_maintanancesListRelationFilter
+  updated_at: DateTimeFilter
+}
+
+type Block_settingsAvgAggregate {
+  block_id: Float
+  id: Float
+}
+
+type Block_settingsCountAggregate {
+  _all: Int!
+  block_id: Int!
+  created_at: Int!
+  id: Int!
+  name: Int!
+  updated_at: Int!
+  value: Int!
+}
+
+input Block_settingsListRelationFilter {
+  every: block_settingsWhereInput
+  none: block_settingsWhereInput
+  some: block_settingsWhereInput
+}
+
+type Block_settingsMaxAggregate {
+  block_id: BigInt
+  created_at: DateTime
+  id: BigInt
+  name: String
+  updated_at: DateTime
+}
+
+type Block_settingsMinAggregate {
+  block_id: BigInt
+  created_at: DateTime
+  id: BigInt
+  name: String
+  updated_at: DateTime
+}
+
+type Block_settingsSumAggregate {
+  block_id: BigInt
+  id: BigInt
+}
+
+input BoolFieldUpdateOperationsInput {
+  set: Boolean
+}
+
+input BoolFilter {
+  equals: Boolean
+  not: NestedBoolFilter
+}
+
+type CatagoryAvgAggregate {
+  block_id: Float
+  id: Float
+}
+
+type CatagoryCount {
+  items: Int!
+}
+
+type CatagoryCountAggregate {
+  _all: Int!
+  block_id: Int!
+  created_at: Int!
+  id: Int!
+  name: Int!
+  updated_at: Int!
+}
+
+input CatagoryListRelationFilter {
+  every: catagoryWhereInput
+  none: catagoryWhereInput
+  some: catagoryWhereInput
+}
+
+type CatagoryMaxAggregate {
+  block_id: BigInt
+  created_at: DateTime
+  id: BigInt
+  name: String
+  updated_at: DateTime
+}
+
+type CatagoryMinAggregate {
+  block_id: BigInt
+  created_at: DateTime
+  id: BigInt
+  name: String
+  updated_at: DateTime
+}
+
+input CatagoryRelationFilter {
+  is: catagoryWhereInput
+  isNot: catagoryWhereInput
+}
+
+type CatagorySumAggregate {
+  block_id: BigInt
+  id: BigInt
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+input DateTimeFieldUpdateOperationsInput {
+  set: DateTime
+}
+
+input DateTimeFilter {
+  equals: DateTime
+  gt: DateTime
+  gte: DateTime
+  in: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  not: NestedDateTimeFilter
+  notIn: [DateTime!]
+}
+
+input DateTimeNullableFilter {
+  equals: DateTime
+  gt: DateTime
+  gte: DateTime
+  in: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  not: NestedDateTimeNullableFilter
+  notIn: [DateTime!]
+}
+
+input EnumRoleFieldUpdateOperationsInput {
+  set: Role
+}
+
+input EnumRoleFilter {
+  equals: Role
+  in: [Role!]
+  not: NestedEnumRoleFilter
+  notIn: [Role!]
+}
+
+input EnumRoleNullableListFilter {
+  equals: [Role!]
+  has: Role
+  hasEvery: [Role!]
+  hasSome: [Role!]
+  isEmpty: Boolean
+}
+
+input Enumticket_statusFieldUpdateOperationsInput {
+  set: ticket_status
+}
+
+input Enumticket_statusFilter {
+  equals: ticket_status
+  in: [ticket_status!]
+  not: NestedEnumticket_statusFilter
+  notIn: [ticket_status!]
+}
+
+input FloatFieldUpdateOperationsInput {
+  decrement: Float
+  divide: Float
+  increment: Float
+  multiply: Float
+  set: Float
+}
+
+input FloatFilter {
+  equals: Float
+  gt: Float
+  gte: Float
+  in: [Float!]
+  lt: Float
+  lte: Float
+  not: NestedFloatFilter
+  notIn: [Float!]
+}
+
+input IntFieldUpdateOperationsInput {
+  decrement: Int
+  divide: Int
+  increment: Int
+  multiply: Int
+  set: Int
+}
+
+input IntFilter {
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  lt: Int
+  lte: Int
+  not: NestedIntFilter
+  notIn: [Int!]
+}
+
+type Invoice_itemsAvgAggregate {
+  amount: Float
+  block_id: Float
+  id: Float
+  invoice_id: Float
+  item_id: Float
+  quantity: Float
+  unit_price: Float
+}
+
+type Invoice_itemsCountAggregate {
+  _all: Int!
+  amount: Int!
+  block_id: Int!
+  created_at: Int!
+  id: Int!
+  invoice_id: Int!
+  item_id: Int!
+  quantity: Int!
+  unit_price: Int!
+  updated_at: Int!
+}
+
+input Invoice_itemsListRelationFilter {
+  every: invoice_itemsWhereInput
+  none: invoice_itemsWhereInput
+  some: invoice_itemsWhereInput
+}
+
+type Invoice_itemsMaxAggregate {
+  amount: Float
+  block_id: BigInt
+  created_at: DateTime
+  id: BigInt
+  invoice_id: BigInt
+  item_id: BigInt
+  quantity: Float
+  unit_price: Float
+  updated_at: DateTime
+}
+
+type Invoice_itemsMinAggregate {
+  amount: Float
+  block_id: BigInt
+  created_at: DateTime
+  id: BigInt
+  invoice_id: BigInt
+  item_id: BigInt
+  quantity: Float
+  unit_price: Float
+  updated_at: DateTime
+}
+
+type Invoice_itemsSumAggregate {
+  amount: Float
+  block_id: BigInt
+  id: BigInt
+  invoice_id: BigInt
+  item_id: BigInt
+  quantity: Float
+  unit_price: Float
+}
+
+type Invoices {
+  _count: InvoicesCount!
+  block: Block!
+  block_id: BigInt!
+  created_at: DateTime!
+  id: BigInt!
+  invoice_date: DateTime!
+  invoice_items(
+    limit: Int
+    offset: Int
+    orderBy: invoice_itemsOrderByRelationAggregateInput
+    where: invoice_itemsWhereInput
+  ): [invoice_items!]
+  number: String!
+  total: Float!
+  updated_at: DateTime!
+}
+
+type InvoicesAvgAggregate {
+  block_id: Float
+  id: Float
+  total: Float
+}
+
+type InvoicesCount {
+  invoice_items: Int!
+}
+
+type InvoicesCountAggregate {
+  _all: Int!
+  block_id: Int!
+  created_at: Int!
+  id: Int!
+  invoice_date: Int!
+  number: Int!
+  total: Int!
+  updated_at: Int!
+}
+
+input InvoicesCreateInput {
+  created_at: DateTime
+  id: BigInt
+  invoice_date: DateTime!
+  invoice_items: invoice_itemsCreateNestedManyWithoutInvoiceInput
+  number: String!
+  total: Float!
+  updated_at: DateTime
+}
+
+input InvoicesCreateManyBlockInput {
+  created_at: DateTime
+  id: BigInt
+  invoice_date: DateTime!
+  number: String!
+  total: Float!
+  updated_at: DateTime
+}
+
+input InvoicesCreateManyBlockInputEnvelope {
+  data: [InvoicesCreateManyBlockInput!]!
+  skipDuplicates: Boolean
+}
+
+input InvoicesCreateNestedManyWithoutBlockInput {
+  connect: [InvoicesWhereUniqueInput!]
+  connectOrCreate: [InvoicesCreateOrConnectWithoutBlockInput!]
+  create: [InvoicesCreateWithoutBlockInput!]
+  createMany: InvoicesCreateManyBlockInputEnvelope
+}
+
+input InvoicesCreateNestedOneWithoutInvoice_itemsInput {
+  connect: InvoicesWhereUniqueInput
+  connectOrCreate: InvoicesCreateOrConnectWithoutInvoice_itemsInput
+  create: InvoicesCreateWithoutInvoice_itemsInput
+}
+
+input InvoicesCreateOrConnectWithoutBlockInput {
+  create: InvoicesCreateWithoutBlockInput!
+  where: InvoicesWhereUniqueInput!
+}
+
+input InvoicesCreateOrConnectWithoutInvoice_itemsInput {
+  create: InvoicesCreateWithoutInvoice_itemsInput!
+  where: InvoicesWhereUniqueInput!
+}
+
+input InvoicesCreateWithoutBlockInput {
+  created_at: DateTime
+  id: BigInt
+  invoice_date: DateTime!
+  invoice_items: invoice_itemsCreateNestedManyWithoutInvoiceInput
+  number: String!
+  total: Float!
+  updated_at: DateTime
+}
+
+input InvoicesCreateWithoutInvoice_itemsInput {
+  created_at: DateTime
+  id: BigInt
+  invoice_date: DateTime!
+  number: String!
+  total: Float!
+  updated_at: DateTime
+}
+
+input InvoicesListRelationFilter {
+  every: InvoicesWhereInput
+  none: InvoicesWhereInput
+  some: InvoicesWhereInput
+}
+
+type InvoicesMaxAggregate {
+  block_id: BigInt
+  created_at: DateTime
+  id: BigInt
+  invoice_date: DateTime
+  number: String
+  total: Float
+  updated_at: DateTime
+}
+
+type InvoicesMinAggregate {
+  block_id: BigInt
+  created_at: DateTime
+  id: BigInt
+  invoice_date: DateTime
+  number: String
+  total: Float
+  updated_at: DateTime
+}
+
+enum InvoicesOrderByRelevanceFieldEnum {
+  number
+}
+
+input InvoicesOrderByRelevanceInput {
+  fields: [InvoicesOrderByRelevanceFieldEnum!]!
+  search: String!
+  sort: SortOrder!
+}
+
+input InvoicesOrderByWithRelationAndSearchRelevanceInput {
+  _relevance: InvoicesOrderByRelevanceInput
+  created_at: SortOrder
+  id: SortOrder
+  invoice_date: SortOrder
+  invoice_items: invoice_itemsOrderByRelationAggregateInput
+  number: SortOrder
+  total: SortOrder
+  updated_at: SortOrder
+}
+
+input InvoicesRelationFilter {
+  is: InvoicesWhereInput
+  isNot: InvoicesWhereInput
+}
+
+input InvoicesScalarWhereInput {
+  AND: [InvoicesScalarWhereInput!]
+  NOT: [InvoicesScalarWhereInput!]
+  OR: [InvoicesScalarWhereInput!]
+  created_at: DateTimeFilter
+  id: BigIntFilter
+  invoice_date: DateTimeFilter
+  number: StringFilter
+  total: FloatFilter
+  updated_at: DateTimeFilter
+}
+
+type InvoicesSumAggregate {
+  block_id: BigInt
+  id: BigInt
+  total: Float
+}
+
+input InvoicesUpdateInput {
+  created_at: DateTimeFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  invoice_date: DateTimeFieldUpdateOperationsInput
+  invoice_items: invoice_itemsUpdateManyWithoutInvoiceNestedInput
+  number: StringFieldUpdateOperationsInput
+  total: FloatFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input InvoicesUpdateManyMutationInput {
+  created_at: DateTimeFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  invoice_date: DateTimeFieldUpdateOperationsInput
+  number: StringFieldUpdateOperationsInput
+  total: FloatFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input InvoicesUpdateManyWithWhereWithoutBlockInput {
+  data: InvoicesUpdateManyMutationInput!
+  where: InvoicesScalarWhereInput!
+}
+
+input InvoicesUpdateManyWithoutBlockNestedInput {
+  connect: [InvoicesWhereUniqueInput!]
+  connectOrCreate: [InvoicesCreateOrConnectWithoutBlockInput!]
+  create: [InvoicesCreateWithoutBlockInput!]
+  createMany: InvoicesCreateManyBlockInputEnvelope
+  delete: [InvoicesWhereUniqueInput!]
+  deleteMany: [InvoicesScalarWhereInput!]
+  disconnect: [InvoicesWhereUniqueInput!]
+  set: [InvoicesWhereUniqueInput!]
+  update: [InvoicesUpdateWithWhereUniqueWithoutBlockInput!]
+  updateMany: [InvoicesUpdateManyWithWhereWithoutBlockInput!]
+  upsert: [InvoicesUpsertWithWhereUniqueWithoutBlockInput!]
+}
+
+input InvoicesUpdateOneRequiredWithoutInvoice_itemsNestedInput {
+  connect: InvoicesWhereUniqueInput
+  connectOrCreate: InvoicesCreateOrConnectWithoutInvoice_itemsInput
+  create: InvoicesCreateWithoutInvoice_itemsInput
+  update: InvoicesUpdateWithoutInvoice_itemsInput
+  upsert: InvoicesUpsertWithoutInvoice_itemsInput
+}
+
+input InvoicesUpdateWithWhereUniqueWithoutBlockInput {
+  data: InvoicesUpdateWithoutBlockInput!
+  where: InvoicesWhereUniqueInput!
+}
+
+input InvoicesUpdateWithoutBlockInput {
+  created_at: DateTimeFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  invoice_date: DateTimeFieldUpdateOperationsInput
+  invoice_items: invoice_itemsUpdateManyWithoutInvoiceNestedInput
+  number: StringFieldUpdateOperationsInput
+  total: FloatFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input InvoicesUpdateWithoutInvoice_itemsInput {
+  created_at: DateTimeFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  invoice_date: DateTimeFieldUpdateOperationsInput
+  number: StringFieldUpdateOperationsInput
+  total: FloatFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input InvoicesUpsertWithWhereUniqueWithoutBlockInput {
+  create: InvoicesCreateWithoutBlockInput!
+  update: InvoicesUpdateWithoutBlockInput!
+  where: InvoicesWhereUniqueInput!
+}
+
+input InvoicesUpsertWithoutInvoice_itemsInput {
+  create: InvoicesCreateWithoutInvoice_itemsInput!
+  update: InvoicesUpdateWithoutInvoice_itemsInput!
+}
+
+input InvoicesWhereInput {
+  AND: [InvoicesWhereInput!]
+  NOT: [InvoicesWhereInput!]
+  OR: [InvoicesWhereInput!]
+  created_at: DateTimeFilter
+  id: BigIntFilter
+  invoice_date: DateTimeFilter
+  invoice_items: Invoice_itemsListRelationFilter
+  number: StringFilter
+  total: FloatFilter
+  updated_at: DateTimeFilter
+}
+
+input InvoicesWhereUniqueInput {
+  id: BigInt
+}
+
+type ItemCatagory {
+  _count: CatagoryCount!
+  created_at: DateTime!
+  id: ID!
+  items(
+    limit: Int
+    offset: Int
+    orderBy: ItemsOrderByWithAggregationInput
+    where: ItemsWhereInput
+  ): [Items!]
+  name: String!
+  updated_at: DateTime!
+}
+
+type ItemCatagoryAvgAggregate {
+  id: Float
+}
+
+input ItemCatagoryAvgOrderByAggregateInput {
+  id: SortOrder
+}
+
+type ItemCatagoryCount {
+  items: Int!
+}
+
+type ItemCatagoryCountAggregate {
+  _all: Int!
+  created_at: Int!
+  id: Int!
+  name: Int!
+  updated_at: Int!
+}
+
+input ItemCatagoryCountOrderByAggregateInput {
+  created_at: SortOrder
+  id: SortOrder
+  name: SortOrder
+  updated_at: SortOrder
+}
+
+input ItemCatagoryCreateInput {
+  created_at: DateTime
+  id: String
+  items: ItemsCreateNestedManyWithoutItemCatagoryInput
+  name: String!
+  updated_at: DateTime
+}
+
+type ItemCatagoryMaxAggregate {
+  created_at: DateTime
+  id: String
+  name: String
+  updated_at: DateTime
+}
+
+input ItemCatagoryMaxOrderByAggregateInput {
+  created_at: SortOrder
+  id: SortOrder
+  name: SortOrder
+  updated_at: SortOrder
+}
+
+type ItemCatagoryMinAggregate {
+  created_at: DateTime
+  id: String
+  name: String
+  updated_at: DateTime
+}
+
+input ItemCatagoryMinOrderByAggregateInput {
+  created_at: SortOrder
+  id: SortOrder
+  name: SortOrder
+  updated_at: SortOrder
+}
+
+input ItemCatagoryOrderByWithAggregationInput {
+  _avg: ItemCatagoryAvgOrderByAggregateInput
+  _count: ItemCatagoryCountOrderByAggregateInput
+  _max: ItemCatagoryMaxOrderByAggregateInput
+  _min: ItemCatagoryMinOrderByAggregateInput
+  _sum: ItemCatagorySumOrderByAggregateInput
+  created_at: SortOrder
+  id: SortOrder
+  name: SortOrder
+  updated_at: SortOrder
+}
+
+type ItemCatagorySumAggregate {
+  id: String
+}
+
+input ItemCatagorySumOrderByAggregateInput {
+  id: SortOrder
+}
+
+input ItemCatagoryUpdateInput {
+  created_at: DateTimeFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  items: ItemsUpdateManyWithoutItemCatagoryNestedInput
+  name: StringFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input ItemCatagoryWhereInput {
+  AND: [ItemCatagoryWhereInput!]
+  NOT: [ItemCatagoryWhereInput!]
+  OR: [ItemCatagoryWhereInput!]
+  created_at: DateTimeFilter
+  id: BigIntFilter
+  items: ItemsListRelationFilter
+  name: StringFilter
+  updated_at: DateTimeFilter
+}
+
+type Items {
+  _count: ItemsCount!
+  block: Block!
+  block_id: BigInt!
+  catagory: catagory!
+  catagory_id: BigInt!
+  code: String!
+  created_at: DateTime!
+  id: BigInt!
+  invoice_items: [invoice_items!]
+  name: String!
+  quantity: Float!
+  replacements(
+    limit: Int
+    offset: Int
+    orderBy: ReplacementsOrderByWithRelationInput
+    where: ReplacementsWhereInput
+  ): [Replacements!]
+  unit_price: Float!
+  updated_at: DateTime!
+}
+
+type ItemsAvgAggregate {
+  block_id: Float
+  catagory_id: Float
+  id: Float
+  quantity: Float
+  unit_price: Float
+}
+
+input ItemsAvgOrderByAggregateInput {
+  catagory_id: SortOrder
+  id: SortOrder
+  quantity: SortOrder
+  unit_price: SortOrder
+}
+
+type ItemsCount {
+  invoice_items: Int!
+  replacements: Int!
+}
+
+type ItemsCountAggregate {
+  _all: Int!
+  block_id: Int!
+  catagory_id: Int!
+  code: Int!
+  created_at: Int!
+  id: Int!
+  name: Int!
+  quantity: Int!
+  unit_price: Int!
+  updated_at: Int!
+}
+
+input ItemsCountOrderByAggregateInput {
+  catagory_id: SortOrder
+  code: SortOrder
+  created_at: SortOrder
+  id: SortOrder
+  name: SortOrder
+  quantity: SortOrder
+  unit_price: SortOrder
+  updated_at: SortOrder
+}
+
+input ItemsCreateInput {
+  catagory: catagoryCreateNestedOneWithoutItemsInput!
+  code: String!
+  created_at: DateTime
+  id: BigInt
+  invoice_items: invoice_itemsCreateNestedManyWithoutItemInput
+  name: String!
+  quantity: Float!
+  replacements: ReplacementsCreateNestedManyWithoutItemsInput
+  unit_price: Float!
+  updated_at: DateTime
+}
+
+input ItemsCreateManyBlockInput {
+  catagory_id: BigInt!
+  code: String!
+  created_at: DateTime
+  id: BigInt
+  name: String!
+  quantity: Float!
+  unit_price: Float!
+  updated_at: DateTime
+}
+
+input ItemsCreateManyBlockInputEnvelope {
+  data: [ItemsCreateManyBlockInput!]!
+  skipDuplicates: Boolean
+}
+
+input ItemsCreateManyCatagoryInput {
+  code: String!
+  created_at: DateTime
+  id: BigInt
+  name: String!
+  quantity: Float!
+  unit_price: Float!
+  updated_at: DateTime
+}
+
+input ItemsCreateManyCatagoryInputEnvelope {
+  data: [ItemsCreateManyCatagoryInput!]!
+  skipDuplicates: Boolean
+}
+
+input ItemsCreateManyItemCatagoryInput {
+  code: String!
+  created_at: DateTime
+  id: String
+  name: String!
+  quantity: Int!
+  unit_price: Float!
+  updated_at: DateTime
+}
+
+input ItemsCreateManyItemCatagoryInputEnvelope {
+  data: [ItemsCreateManyItemCatagoryInput!]!
+  skipDuplicates: Boolean
+}
+
+input ItemsCreateNestedManyWithoutBlockInput {
+  connect: [ItemsWhereUniqueInput!]
+  connectOrCreate: [ItemsCreateOrConnectWithoutBlockInput!]
+  create: [ItemsCreateWithoutBlockInput!]
+  createMany: ItemsCreateManyBlockInputEnvelope
+}
+
+input ItemsCreateNestedManyWithoutCatagoryInput {
+  connect: [ItemsWhereUniqueInput!]
+  connectOrCreate: [ItemsCreateOrConnectWithoutCatagoryInput!]
+  create: [ItemsCreateWithoutCatagoryInput!]
+  createMany: ItemsCreateManyCatagoryInputEnvelope
+}
+
+input ItemsCreateNestedManyWithoutItemCatagoryInput {
+  connect: [ItemsWhereUniqueInput!]
+  connectOrCreate: [ItemsCreateOrConnectWithoutItemCatagoryInput!]
+  create: [ItemsCreateWithoutItemCatagoryInput!]
+  createMany: ItemsCreateManyItemCatagoryInputEnvelope
+}
+
+input ItemsCreateNestedOneWithoutInvoice_itemsInput {
+  connect: ItemsWhereUniqueInput
+  connectOrCreate: ItemsCreateOrConnectWithoutInvoice_itemsInput
+  create: ItemsCreateWithoutInvoice_itemsInput
+}
+
+input ItemsCreateNestedOneWithoutReplacementsInput {
+  connect: ItemsWhereUniqueInput
+  connectOrCreate: ItemsCreateOrConnectWithoutReplacementsInput
+  create: ItemsCreateWithoutReplacementsInput
+}
+
+input ItemsCreateOrConnectWithoutBlockInput {
+  create: ItemsCreateWithoutBlockInput!
+  where: ItemsWhereUniqueInput!
+}
+
+input ItemsCreateOrConnectWithoutCatagoryInput {
+  create: ItemsCreateWithoutCatagoryInput!
+  where: ItemsWhereUniqueInput!
+}
+
+input ItemsCreateOrConnectWithoutInvoice_itemsInput {
+  create: ItemsCreateWithoutInvoice_itemsInput!
+  where: ItemsWhereUniqueInput!
+}
+
+input ItemsCreateOrConnectWithoutItemCatagoryInput {
+  create: ItemsCreateWithoutItemCatagoryInput!
+  where: ItemsWhereUniqueInput!
+}
+
+input ItemsCreateOrConnectWithoutReplacementsInput {
+  create: ItemsCreateWithoutReplacementsInput!
+  where: ItemsWhereUniqueInput!
+}
+
+input ItemsCreateWithoutBlockInput {
+  catagory: catagoryCreateNestedOneWithoutItemsInput!
+  code: String!
+  created_at: DateTime
+  id: BigInt
+  invoice_items: invoice_itemsCreateNestedManyWithoutItemInput
+  name: String!
+  quantity: Float!
+  replacements: ReplacementsCreateNestedManyWithoutItemsInput
+  unit_price: Float!
+  updated_at: DateTime
+}
+
+input ItemsCreateWithoutCatagoryInput {
+  code: String!
+  created_at: DateTime
+  id: BigInt
+  invoice_items: invoice_itemsCreateNestedManyWithoutItemInput
+  name: String!
+  quantity: Float!
+  replacements: ReplacementsCreateNestedManyWithoutItemsInput
+  unit_price: Float!
+  updated_at: DateTime
+}
+
+input ItemsCreateWithoutInvoice_itemsInput {
+  catagory: catagoryCreateNestedOneWithoutItemsInput!
+  code: String!
+  created_at: DateTime
+  id: BigInt
+  name: String!
+  quantity: Float!
+  replacements: ReplacementsCreateNestedManyWithoutItemsInput
+  unit_price: Float!
+  updated_at: DateTime
+}
+
+input ItemsCreateWithoutItemCatagoryInput {
+  code: String!
+  created_at: DateTime
+  id: String
+  name: String!
+  quantity: Int!
+  replacements_scheduled: ReplacementsCreateNestedManyWithoutItemsInput
+  unit_price: Float!
+  updated_at: DateTime
+}
+
+input ItemsCreateWithoutReplacementsInput {
+  catagory: catagoryCreateNestedOneWithoutItemsInput!
+  code: String!
+  created_at: DateTime
+  id: BigInt
+  invoice_items: invoice_itemsCreateNestedManyWithoutItemInput
+  name: String!
+  quantity: Float!
+  unit_price: Float!
+  updated_at: DateTime
+}
+
+input ItemsListRelationFilter {
+  every: ItemsWhereInput
+  none: ItemsWhereInput
+  some: ItemsWhereInput
+}
+
+type ItemsMaxAggregate {
+  block_id: BigInt
+  catagory_id: BigInt
+  code: String
+  created_at: DateTime
+  id: BigInt
+  name: String
+  quantity: Float
+  unit_price: Float
+  updated_at: DateTime
+}
+
+input ItemsMaxOrderByAggregateInput {
+  catagory_id: SortOrder
+  code: SortOrder
+  created_at: SortOrder
+  id: SortOrder
+  name: SortOrder
+  quantity: SortOrder
+  unit_price: SortOrder
+  updated_at: SortOrder
+}
+
+type ItemsMinAggregate {
+  block_id: BigInt
+  catagory_id: BigInt
+  code: String
+  created_at: DateTime
+  id: BigInt
+  name: String
+  quantity: Float
+  unit_price: Float
+  updated_at: DateTime
+}
+
+input ItemsMinOrderByAggregateInput {
+  catagory_id: SortOrder
+  code: SortOrder
+  created_at: SortOrder
+  id: SortOrder
+  name: SortOrder
+  quantity: SortOrder
+  unit_price: SortOrder
+  updated_at: SortOrder
+}
+
+input ItemsOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input ItemsOrderByWithAggregationInput {
+  _avg: ItemsAvgOrderByAggregateInput
+  _count: ItemsCountOrderByAggregateInput
+  _max: ItemsMaxOrderByAggregateInput
+  _min: ItemsMinOrderByAggregateInput
+  _sum: ItemsSumOrderByAggregateInput
+  catagory_id: SortOrder
+  code: SortOrder
+  created_at: SortOrder
+  id: SortOrder
+  name: SortOrder
+  quantity: SortOrder
+  unit_price: SortOrder
+  updated_at: SortOrder
+}
+
+input ItemsOrderByWithRelationInput {
+  catagory: catagoryOrderByWithRelationInput
+  catagory_id: SortOrder
+  code: SortOrder
+  created_at: SortOrder
+  id: SortOrder
+  name: SortOrder
+  quantity: SortOrder
+  replacements: ReplacementsOrderByRelationAggregateInput
+  unit_price: SortOrder
+  updated_at: SortOrder
+}
+
+input ItemsRelationFilter {
+  is: ItemsWhereInput
+  isNot: ItemsWhereInput
+}
+
+input ItemsScalarWhereInput {
+  AND: [ItemsScalarWhereInput!]
+  NOT: [ItemsScalarWhereInput!]
+  OR: [ItemsScalarWhereInput!]
+  catagory_id: BigIntFilter
+  code: StringFilter
+  created_at: DateTimeFilter
+  id: BigIntFilter
+  name: StringFilter
+  quantity: FloatFilter
+  unit_price: FloatFilter
+  updated_at: DateTimeFilter
+}
+
+type ItemsSumAggregate {
+  block_id: BigInt
+  catagory_id: BigInt
+  id: BigInt
+  quantity: Float
+  unit_price: Float
+}
+
+input ItemsSumOrderByAggregateInput {
+  catagory_id: SortOrder
+  id: SortOrder
+  quantity: SortOrder
+  unit_price: SortOrder
+}
+
+input ItemsUpdateInput {
+  catagory: catagoryUpdateOneRequiredWithoutItemsNestedInput
+  code: StringFieldUpdateOperationsInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  invoice_items: invoice_itemsUpdateManyWithoutItemNestedInput
+  name: StringFieldUpdateOperationsInput
+  quantity: FloatFieldUpdateOperationsInput
+  replacements: ReplacementsUpdateManyWithoutItemsNestedInput
+  unit_price: FloatFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input ItemsUpdateManyMutationInput {
+  code: StringFieldUpdateOperationsInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  quantity: FloatFieldUpdateOperationsInput
+  unit_price: FloatFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input ItemsUpdateManyWithWhereWithoutBlockInput {
+  data: ItemsUpdateManyMutationInput!
+  where: ItemsScalarWhereInput!
+}
+
+input ItemsUpdateManyWithWhereWithoutCatagoryInput {
+  data: ItemsUpdateManyMutationInput!
+  where: ItemsScalarWhereInput!
+}
+
+input ItemsUpdateManyWithWhereWithoutItemCatagoryInput {
+  data: ItemsUpdateManyMutationInput!
+  where: ItemsScalarWhereInput!
+}
+
+input ItemsUpdateManyWithoutBlockNestedInput {
+  connect: [ItemsWhereUniqueInput!]
+  connectOrCreate: [ItemsCreateOrConnectWithoutBlockInput!]
+  create: [ItemsCreateWithoutBlockInput!]
+  createMany: ItemsCreateManyBlockInputEnvelope
+  delete: [ItemsWhereUniqueInput!]
+  deleteMany: [ItemsScalarWhereInput!]
+  disconnect: [ItemsWhereUniqueInput!]
+  set: [ItemsWhereUniqueInput!]
+  update: [ItemsUpdateWithWhereUniqueWithoutBlockInput!]
+  updateMany: [ItemsUpdateManyWithWhereWithoutBlockInput!]
+  upsert: [ItemsUpsertWithWhereUniqueWithoutBlockInput!]
+}
+
+input ItemsUpdateManyWithoutCatagoryNestedInput {
+  connect: [ItemsWhereUniqueInput!]
+  connectOrCreate: [ItemsCreateOrConnectWithoutCatagoryInput!]
+  create: [ItemsCreateWithoutCatagoryInput!]
+  createMany: ItemsCreateManyCatagoryInputEnvelope
+  delete: [ItemsWhereUniqueInput!]
+  deleteMany: [ItemsScalarWhereInput!]
+  disconnect: [ItemsWhereUniqueInput!]
+  set: [ItemsWhereUniqueInput!]
+  update: [ItemsUpdateWithWhereUniqueWithoutCatagoryInput!]
+  updateMany: [ItemsUpdateManyWithWhereWithoutCatagoryInput!]
+  upsert: [ItemsUpsertWithWhereUniqueWithoutCatagoryInput!]
+}
+
+input ItemsUpdateManyWithoutItemCatagoryNestedInput {
+  connect: [ItemsWhereUniqueInput!]
+  connectOrCreate: [ItemsCreateOrConnectWithoutItemCatagoryInput!]
+  create: [ItemsCreateWithoutItemCatagoryInput!]
+  createMany: ItemsCreateManyItemCatagoryInputEnvelope
+  delete: [ItemsWhereUniqueInput!]
+  deleteMany: [ItemsScalarWhereInput!]
+  disconnect: [ItemsWhereUniqueInput!]
+  set: [ItemsWhereUniqueInput!]
+  update: [ItemsUpdateWithWhereUniqueWithoutItemCatagoryInput!]
+  updateMany: [ItemsUpdateManyWithWhereWithoutItemCatagoryInput!]
+  upsert: [ItemsUpsertWithWhereUniqueWithoutItemCatagoryInput!]
+}
+
+input ItemsUpdateOneRequiredWithoutInvoice_itemsNestedInput {
+  connect: ItemsWhereUniqueInput
+  connectOrCreate: ItemsCreateOrConnectWithoutInvoice_itemsInput
+  create: ItemsCreateWithoutInvoice_itemsInput
+  update: ItemsUpdateWithoutInvoice_itemsInput
+  upsert: ItemsUpsertWithoutInvoice_itemsInput
+}
+
+input ItemsUpdateOneRequiredWithoutReplacementsNestedInput {
+  connect: ItemsWhereUniqueInput
+  connectOrCreate: ItemsCreateOrConnectWithoutReplacementsInput
+  create: ItemsCreateWithoutReplacementsInput
+  update: ItemsUpdateWithoutReplacementsInput
+  upsert: ItemsUpsertWithoutReplacementsInput
+}
+
+input ItemsUpdateWithWhereUniqueWithoutBlockInput {
+  data: ItemsUpdateWithoutBlockInput!
+  where: ItemsWhereUniqueInput!
+}
+
+input ItemsUpdateWithWhereUniqueWithoutCatagoryInput {
+  data: ItemsUpdateWithoutCatagoryInput!
+  where: ItemsWhereUniqueInput!
+}
+
+input ItemsUpdateWithWhereUniqueWithoutItemCatagoryInput {
+  data: ItemsUpdateWithoutItemCatagoryInput!
+  where: ItemsWhereUniqueInput!
+}
+
+input ItemsUpdateWithoutBlockInput {
+  catagory: catagoryUpdateOneRequiredWithoutItemsNestedInput
+  code: StringFieldUpdateOperationsInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  invoice_items: invoice_itemsUpdateManyWithoutItemNestedInput
+  name: StringFieldUpdateOperationsInput
+  quantity: FloatFieldUpdateOperationsInput
+  replacements: ReplacementsUpdateManyWithoutItemsNestedInput
+  unit_price: FloatFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input ItemsUpdateWithoutCatagoryInput {
+  code: StringFieldUpdateOperationsInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  invoice_items: invoice_itemsUpdateManyWithoutItemNestedInput
+  name: StringFieldUpdateOperationsInput
+  quantity: FloatFieldUpdateOperationsInput
+  replacements: ReplacementsUpdateManyWithoutItemsNestedInput
+  unit_price: FloatFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input ItemsUpdateWithoutInvoice_itemsInput {
+  catagory: catagoryUpdateOneRequiredWithoutItemsNestedInput
+  code: StringFieldUpdateOperationsInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  quantity: FloatFieldUpdateOperationsInput
+  replacements: ReplacementsUpdateManyWithoutItemsNestedInput
+  unit_price: FloatFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input ItemsUpdateWithoutItemCatagoryInput {
+  code: StringFieldUpdateOperationsInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  quantity: IntFieldUpdateOperationsInput
+  replacements_scheduled: ReplacementsUpdateManyWithoutItemsNestedInput
+  unit_price: FloatFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input ItemsUpdateWithoutReplacementsInput {
+  catagory: catagoryUpdateOneRequiredWithoutItemsNestedInput
+  code: StringFieldUpdateOperationsInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  invoice_items: invoice_itemsUpdateManyWithoutItemNestedInput
+  name: StringFieldUpdateOperationsInput
+  quantity: FloatFieldUpdateOperationsInput
+  unit_price: FloatFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input ItemsUpsertWithWhereUniqueWithoutBlockInput {
+  create: ItemsCreateWithoutBlockInput!
+  update: ItemsUpdateWithoutBlockInput!
+  where: ItemsWhereUniqueInput!
+}
+
+input ItemsUpsertWithWhereUniqueWithoutCatagoryInput {
+  create: ItemsCreateWithoutCatagoryInput!
+  update: ItemsUpdateWithoutCatagoryInput!
+  where: ItemsWhereUniqueInput!
+}
+
+input ItemsUpsertWithWhereUniqueWithoutItemCatagoryInput {
+  create: ItemsCreateWithoutItemCatagoryInput!
+  update: ItemsUpdateWithoutItemCatagoryInput!
+  where: ItemsWhereUniqueInput!
+}
+
+input ItemsUpsertWithoutInvoice_itemsInput {
+  create: ItemsCreateWithoutInvoice_itemsInput!
+  update: ItemsUpdateWithoutInvoice_itemsInput!
+}
+
+input ItemsUpsertWithoutReplacementsInput {
+  create: ItemsCreateWithoutReplacementsInput!
+  update: ItemsUpdateWithoutReplacementsInput!
+}
+
+input ItemsWhereInput {
+  AND: [ItemsWhereInput!]
+  NOT: [ItemsWhereInput!]
+  OR: [ItemsWhereInput!]
+  catagory: CatagoryRelationFilter
+  catagory_id: BigIntFilter
+  code: StringFilter
+  created_at: DateTimeFilter
+  id: BigIntFilter
+  invoice_items: Invoice_itemsListRelationFilter
+  name: StringFilter
+  quantity: FloatFilter
+  replacements: ReplacementsListRelationFilter
+  unit_price: FloatFilter
+  updated_at: DateTimeFilter
+}
+
+input ItemsWhereUniqueInput {
+  id: BigInt
+}
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+
+input JsonFilter {
+  array_contains: JSON
+  array_ends_with: JSON
+  array_starts_with: JSON
+  equals: JSON
+  gt: JSON
+  gte: JSON
+  lt: JSON
+  lte: JSON
+  not: JSON
+  path: [String!]
+  string_contains: String
+  string_ends_with: String
+  string_starts_with: String
+}
+
+type Machine_catagoryAvgAggregate {
+  block_id: Float
+  id: Float
+}
+
+type Machine_catagoryCount {
+  machines: Int!
+}
+
+type Machine_catagoryCountAggregate {
+  _all: Int!
+  block_id: Int!
+  created_at: Int!
+  id: Int!
+  name: Int!
+  updated_at: Int!
+}
+
+input Machine_catagoryListRelationFilter {
+  every: machine_catagoryWhereInput
+  none: machine_catagoryWhereInput
+  some: machine_catagoryWhereInput
+}
+
+type Machine_catagoryMaxAggregate {
+  block_id: BigInt
+  created_at: DateTime
+  id: BigInt
+  name: String
+  updated_at: DateTime
+}
+
+type Machine_catagoryMinAggregate {
+  block_id: BigInt
+  created_at: DateTime
+  id: BigInt
+  name: String
+  updated_at: DateTime
+}
+
+input Machine_catagoryRelationFilter {
+  is: machine_catagoryWhereInput
+  isNot: machine_catagoryWhereInput
+}
+
+type Machine_catagorySumAggregate {
+  block_id: BigInt
+  id: BigInt
+}
+
+type Machines {
+  Ticket: [Ticket!]
+  _count: MachinesCount!
+  block: Block!
+  block_id: BigInt!
+  created_at: DateTime!
+  id: BigInt!
+  label: String!
+  machine_catagory: machine_catagory!
+  machine_catagory_id: BigInt!
+  maintenance(
+    limit: Int
+    offset: Int
+    orderBy: MaintenanceOrderByWithRelationInput
+    where: MaintenanceWhereInput
+  ): [Maintenance!]
+  name: String!
+  priority: Int!
+  profile: JSON!
+  routine_maintanances: [routine_maintanances!]
+  section: Sections!
+  section_id: BigInt!
+  updated_at: DateTime!
+}
+
+type MachinesAvgAggregate {
+  block_id: Float
+  id: Float
+  machine_catagory_id: Float
+  priority: Float
+  section_id: Float
+}
+
+input MachinesAvgOrderByAggregateInput {
+  id: SortOrder
+  machine_catagory_id: SortOrder
+  priority: SortOrder
+  section_id: SortOrder
+}
+
+type MachinesCount {
+  Ticket: Int!
+  maintenance: Int!
+  routine_maintanances: Int!
+}
+
+type MachinesCountAggregate {
+  _all: Int!
+  block_id: Int!
+  created_at: Int!
+  id: Int!
+  label: Int!
+  machine_catagory_id: Int!
+  name: Int!
+  priority: Int!
+  profile: Int!
+  section_id: Int!
+  updated_at: Int!
+}
+
+input MachinesCountOrderByAggregateInput {
+  created_at: SortOrder
+  id: SortOrder
+  label: SortOrder
+  machine_catagory_id: SortOrder
+  name: SortOrder
+  priority: SortOrder
+  profile: SortOrder
+  section_id: SortOrder
+  updated_at: SortOrder
+}
+
+input MachinesCreateInput {
+  Ticket: TicketCreateNestedManyWithoutMachinesInput
+  created_at: DateTime
+  id: BigInt
+  label: String!
+  machine_catagory: machine_catagoryCreateNestedOneWithoutMachinesInput!
+  maintenance: MaintenanceCreateNestedManyWithoutMachinesInput
+  name: String!
+  priority: Int!
+  profile: JSON
+  routine_maintanances: routine_maintanancesCreateNestedManyWithoutMeachineInput
+  section: SectionsCreateNestedOneWithoutMachinesInput!
+  updated_at: DateTime
+}
+
+input MachinesCreateManyBlockInput {
+  created_at: DateTime
+  id: BigInt
+  label: String!
+  machine_catagory_id: BigInt!
+  name: String!
+  priority: Int!
+  profile: JSON
+  section_id: BigInt!
+  updated_at: DateTime
+}
+
+input MachinesCreateManyBlockInputEnvelope {
+  data: [MachinesCreateManyBlockInput!]!
+  skipDuplicates: Boolean
+}
+
+input MachinesCreateManyMachine_catagoryInput {
+  created_at: DateTime
+  id: BigInt
+  label: String!
+  name: String!
+  priority: Int!
+  profile: JSON
+  section_id: BigInt!
+  updated_at: DateTime
+}
+
+input MachinesCreateManyMachine_catagoryInputEnvelope {
+  data: [MachinesCreateManyMachine_catagoryInput!]!
+  skipDuplicates: Boolean
+}
+
+input MachinesCreateManySectionInput {
+  created_at: DateTime
+  id: BigInt
+  label: String!
+  machine_catagory_id: BigInt!
+  name: String!
+  priority: Int!
+  profile: JSON
+  updated_at: DateTime
+}
+
+input MachinesCreateManySectionInputEnvelope {
+  data: [MachinesCreateManySectionInput!]!
+  skipDuplicates: Boolean
+}
+
+input MachinesCreateNestedManyWithoutBlockInput {
+  connect: [MachinesWhereUniqueInput!]
+  connectOrCreate: [MachinesCreateOrConnectWithoutBlockInput!]
+  create: [MachinesCreateWithoutBlockInput!]
+  createMany: MachinesCreateManyBlockInputEnvelope
+}
+
+input MachinesCreateNestedManyWithoutMachine_catagoryInput {
+  connect: [MachinesWhereUniqueInput!]
+  connectOrCreate: [MachinesCreateOrConnectWithoutMachine_catagoryInput!]
+  create: [MachinesCreateWithoutMachine_catagoryInput!]
+  createMany: MachinesCreateManyMachine_catagoryInputEnvelope
+}
+
+input MachinesCreateNestedManyWithoutSectionInput {
+  connect: [MachinesWhereUniqueInput!]
+  connectOrCreate: [MachinesCreateOrConnectWithoutSectionInput!]
+  create: [MachinesCreateWithoutSectionInput!]
+  createMany: MachinesCreateManySectionInputEnvelope
+}
+
+input MachinesCreateNestedOneWithoutMaintenanceInput {
+  connect: MachinesWhereUniqueInput
+  connectOrCreate: MachinesCreateOrConnectWithoutMaintenanceInput
+  create: MachinesCreateWithoutMaintenanceInput
+}
+
+input MachinesCreateNestedOneWithoutRoutine_maintanancesInput {
+  connect: MachinesWhereUniqueInput
+  connectOrCreate: MachinesCreateOrConnectWithoutRoutine_maintanancesInput
+  create: MachinesCreateWithoutRoutine_maintanancesInput
+}
+
+input MachinesCreateNestedOneWithoutTicketInput {
+  connect: MachinesWhereUniqueInput
+  connectOrCreate: MachinesCreateOrConnectWithoutTicketInput
+  create: MachinesCreateWithoutTicketInput
+}
+
+input MachinesCreateOrConnectWithoutBlockInput {
+  create: MachinesCreateWithoutBlockInput!
+  where: MachinesWhereUniqueInput!
+}
+
+input MachinesCreateOrConnectWithoutMachine_catagoryInput {
+  create: MachinesCreateWithoutMachine_catagoryInput!
+  where: MachinesWhereUniqueInput!
+}
+
+input MachinesCreateOrConnectWithoutMaintenanceInput {
+  create: MachinesCreateWithoutMaintenanceInput!
+  where: MachinesWhereUniqueInput!
+}
+
+input MachinesCreateOrConnectWithoutRoutine_maintanancesInput {
+  create: MachinesCreateWithoutRoutine_maintanancesInput!
+  where: MachinesWhereUniqueInput!
+}
+
+input MachinesCreateOrConnectWithoutSectionInput {
+  create: MachinesCreateWithoutSectionInput!
+  where: MachinesWhereUniqueInput!
+}
+
+input MachinesCreateOrConnectWithoutTicketInput {
+  create: MachinesCreateWithoutTicketInput!
+  where: MachinesWhereUniqueInput!
+}
+
+input MachinesCreateWithoutBlockInput {
+  Ticket: TicketCreateNestedManyWithoutMachinesInput
+  created_at: DateTime
+  id: BigInt
+  label: String!
+  machine_catagory: machine_catagoryCreateNestedOneWithoutMachinesInput!
+  maintenance: MaintenanceCreateNestedManyWithoutMachinesInput
+  name: String!
+  priority: Int!
+  profile: JSON
+  routine_maintanances: routine_maintanancesCreateNestedManyWithoutMeachineInput
+  section: SectionsCreateNestedOneWithoutMachinesInput!
+  updated_at: DateTime
+}
+
+input MachinesCreateWithoutMachine_catagoryInput {
+  Ticket: TicketCreateNestedManyWithoutMachinesInput
+  created_at: DateTime
+  id: BigInt
+  label: String!
+  maintenance: MaintenanceCreateNestedManyWithoutMachinesInput
+  name: String!
+  priority: Int!
+  profile: JSON
+  routine_maintanances: routine_maintanancesCreateNestedManyWithoutMeachineInput
+  section: SectionsCreateNestedOneWithoutMachinesInput!
+  updated_at: DateTime
+}
+
+input MachinesCreateWithoutMaintenanceInput {
+  Ticket: TicketCreateNestedManyWithoutMachinesInput
+  created_at: DateTime
+  id: BigInt
+  label: String!
+  machine_catagory: machine_catagoryCreateNestedOneWithoutMachinesInput!
+  name: String!
+  priority: Int!
+  profile: JSON
+  routine_maintanances: routine_maintanancesCreateNestedManyWithoutMeachineInput
+  section: SectionsCreateNestedOneWithoutMachinesInput!
+  updated_at: DateTime
+}
+
+input MachinesCreateWithoutRoutine_maintanancesInput {
+  Ticket: TicketCreateNestedManyWithoutMachinesInput
+  created_at: DateTime
+  id: BigInt
+  label: String!
+  machine_catagory: machine_catagoryCreateNestedOneWithoutMachinesInput!
+  maintenance: MaintenanceCreateNestedManyWithoutMachinesInput
+  name: String!
+  priority: Int!
+  profile: JSON
+  section: SectionsCreateNestedOneWithoutMachinesInput!
+  updated_at: DateTime
+}
+
+input MachinesCreateWithoutSectionInput {
+  Ticket: TicketCreateNestedManyWithoutMachinesInput
+  created_at: DateTime
+  id: BigInt
+  label: String!
+  machine_catagory: machine_catagoryCreateNestedOneWithoutMachinesInput!
+  maintenance: MaintenanceCreateNestedManyWithoutMachinesInput
+  name: String!
+  priority: Int!
+  profile: JSON
+  routine_maintanances: routine_maintanancesCreateNestedManyWithoutMeachineInput
+  updated_at: DateTime
+}
+
+input MachinesCreateWithoutTicketInput {
+  created_at: DateTime
+  id: BigInt
+  label: String!
+  machine_catagory: machine_catagoryCreateNestedOneWithoutMachinesInput!
+  maintenance: MaintenanceCreateNestedManyWithoutMachinesInput
+  name: String!
+  priority: Int!
+  profile: JSON
+  routine_maintanances: routine_maintanancesCreateNestedManyWithoutMeachineInput
+  section: SectionsCreateNestedOneWithoutMachinesInput!
+  updated_at: DateTime
+}
+
+input MachinesListRelationFilter {
+  every: MachinesWhereInput
+  none: MachinesWhereInput
+  some: MachinesWhereInput
+}
+
+type MachinesMaxAggregate {
+  block_id: BigInt
+  created_at: DateTime
+  id: BigInt
+  label: String
+  machine_catagory_id: BigInt
+  name: String
+  priority: Int
+  section_id: BigInt
+  updated_at: DateTime
+}
+
+input MachinesMaxOrderByAggregateInput {
+  created_at: SortOrder
+  id: SortOrder
+  label: SortOrder
+  machine_catagory_id: SortOrder
+  name: SortOrder
+  priority: SortOrder
+  section_id: SortOrder
+  updated_at: SortOrder
+}
+
+type MachinesMinAggregate {
+  block_id: BigInt
+  created_at: DateTime
+  id: BigInt
+  label: String
+  machine_catagory_id: BigInt
+  name: String
+  priority: Int
+  section_id: BigInt
+  updated_at: DateTime
+}
+
+input MachinesMinOrderByAggregateInput {
+  created_at: SortOrder
+  id: SortOrder
+  label: SortOrder
+  machine_catagory_id: SortOrder
+  name: SortOrder
+  priority: SortOrder
+  section_id: SortOrder
+  updated_at: SortOrder
+}
+
+input MachinesOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input MachinesOrderByWithAggregationInput {
+  _avg: MachinesAvgOrderByAggregateInput
+  _count: MachinesCountOrderByAggregateInput
+  _max: MachinesMaxOrderByAggregateInput
+  _min: MachinesMinOrderByAggregateInput
+  _sum: MachinesSumOrderByAggregateInput
+  created_at: SortOrder
+  id: SortOrder
+  label: SortOrder
+  machine_catagory_id: SortOrder
+  name: SortOrder
+  priority: SortOrder
+  profile: SortOrder
+  section_id: SortOrder
+  updated_at: SortOrder
+}
+
+input MachinesOrderByWithRelationInput {
+  Ticket: TicketOrderByRelationAggregateInput
+  block: BlockOrderByWithRelationInput
+  block_id: SortOrder
+  created_at: SortOrder
+  id: SortOrder
+  label: SortOrder
+  maintenance: MaintenanceOrderByRelationAggregateInput
+  name: SortOrder
+  priority: SortOrder
+  profile: SortOrder
+  section: SectionsOrderByWithRelationInput
+  section_id: SortOrder
+  updated_at: SortOrder
+}
+
+input MachinesRelationFilter {
+  is: MachinesWhereInput
+  isNot: MachinesWhereInput
+}
+
+input MachinesScalarWhereInput {
+  AND: [MachinesScalarWhereInput!]
+  NOT: [MachinesScalarWhereInput!]
+  OR: [MachinesScalarWhereInput!]
+  created_at: DateTimeFilter
+  id: BigIntFilter
+  label: StringFilter
+  machine_catagory_id: BigIntFilter
+  name: StringFilter
+  priority: IntFilter
+  profile: JsonFilter
+  section_id: BigIntFilter
+  updated_at: DateTimeFilter
+}
+
+type MachinesSumAggregate {
+  block_id: BigInt
+  id: BigInt
+  machine_catagory_id: BigInt
+  priority: Int
+  section_id: BigInt
+}
+
+input MachinesSumOrderByAggregateInput {
+  id: SortOrder
+  machine_catagory_id: SortOrder
+  priority: SortOrder
+  section_id: SortOrder
+}
+
+input MachinesUpdateInput {
+  Ticket: TicketUpdateManyWithoutMachinesNestedInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  label: StringFieldUpdateOperationsInput
+  machine_catagory: machine_catagoryUpdateOneRequiredWithoutMachinesNestedInput
+  maintenance: MaintenanceUpdateManyWithoutMachinesNestedInput
+  name: StringFieldUpdateOperationsInput
+  priority: IntFieldUpdateOperationsInput
+  profile: JSON
+  routine_maintanances: routine_maintanancesUpdateManyWithoutMeachineNestedInput
+  section: SectionsUpdateOneRequiredWithoutMachinesNestedInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input MachinesUpdateManyMutationInput {
+  created_at: DateTimeFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  label: StringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  priority: IntFieldUpdateOperationsInput
+  profile: JSON
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input MachinesUpdateManyWithWhereWithoutBlockInput {
+  data: MachinesUpdateManyMutationInput!
+  where: MachinesScalarWhereInput!
+}
+
+input MachinesUpdateManyWithWhereWithoutMachine_catagoryInput {
+  data: MachinesUpdateManyMutationInput!
+  where: MachinesScalarWhereInput!
+}
+
+input MachinesUpdateManyWithWhereWithoutSectionInput {
+  data: MachinesUpdateManyMutationInput!
+  where: MachinesScalarWhereInput!
+}
+
+input MachinesUpdateManyWithoutBlockNestedInput {
+  connect: [MachinesWhereUniqueInput!]
+  connectOrCreate: [MachinesCreateOrConnectWithoutBlockInput!]
+  create: [MachinesCreateWithoutBlockInput!]
+  createMany: MachinesCreateManyBlockInputEnvelope
+  delete: [MachinesWhereUniqueInput!]
+  deleteMany: [MachinesScalarWhereInput!]
+  disconnect: [MachinesWhereUniqueInput!]
+  set: [MachinesWhereUniqueInput!]
+  update: [MachinesUpdateWithWhereUniqueWithoutBlockInput!]
+  updateMany: [MachinesUpdateManyWithWhereWithoutBlockInput!]
+  upsert: [MachinesUpsertWithWhereUniqueWithoutBlockInput!]
+}
+
+input MachinesUpdateManyWithoutMachine_catagoryNestedInput {
+  connect: [MachinesWhereUniqueInput!]
+  connectOrCreate: [MachinesCreateOrConnectWithoutMachine_catagoryInput!]
+  create: [MachinesCreateWithoutMachine_catagoryInput!]
+  createMany: MachinesCreateManyMachine_catagoryInputEnvelope
+  delete: [MachinesWhereUniqueInput!]
+  deleteMany: [MachinesScalarWhereInput!]
+  disconnect: [MachinesWhereUniqueInput!]
+  set: [MachinesWhereUniqueInput!]
+  update: [MachinesUpdateWithWhereUniqueWithoutMachine_catagoryInput!]
+  updateMany: [MachinesUpdateManyWithWhereWithoutMachine_catagoryInput!]
+  upsert: [MachinesUpsertWithWhereUniqueWithoutMachine_catagoryInput!]
+}
+
+input MachinesUpdateManyWithoutSectionNestedInput {
+  connect: [MachinesWhereUniqueInput!]
+  connectOrCreate: [MachinesCreateOrConnectWithoutSectionInput!]
+  create: [MachinesCreateWithoutSectionInput!]
+  createMany: MachinesCreateManySectionInputEnvelope
+  delete: [MachinesWhereUniqueInput!]
+  deleteMany: [MachinesScalarWhereInput!]
+  disconnect: [MachinesWhereUniqueInput!]
+  set: [MachinesWhereUniqueInput!]
+  update: [MachinesUpdateWithWhereUniqueWithoutSectionInput!]
+  updateMany: [MachinesUpdateManyWithWhereWithoutSectionInput!]
+  upsert: [MachinesUpsertWithWhereUniqueWithoutSectionInput!]
+}
+
+input MachinesUpdateOneRequiredWithoutMaintenanceNestedInput {
+  connect: MachinesWhereUniqueInput
+  connectOrCreate: MachinesCreateOrConnectWithoutMaintenanceInput
+  create: MachinesCreateWithoutMaintenanceInput
+  update: MachinesUpdateWithoutMaintenanceInput
+  upsert: MachinesUpsertWithoutMaintenanceInput
+}
+
+input MachinesUpdateOneRequiredWithoutRoutine_maintanancesNestedInput {
+  connect: MachinesWhereUniqueInput
+  connectOrCreate: MachinesCreateOrConnectWithoutRoutine_maintanancesInput
+  create: MachinesCreateWithoutRoutine_maintanancesInput
+  update: MachinesUpdateWithoutRoutine_maintanancesInput
+  upsert: MachinesUpsertWithoutRoutine_maintanancesInput
+}
+
+input MachinesUpdateOneRequiredWithoutTicketNestedInput {
+  connect: MachinesWhereUniqueInput
+  connectOrCreate: MachinesCreateOrConnectWithoutTicketInput
+  create: MachinesCreateWithoutTicketInput
+  update: MachinesUpdateWithoutTicketInput
+  upsert: MachinesUpsertWithoutTicketInput
+}
+
+input MachinesUpdateWithWhereUniqueWithoutBlockInput {
+  data: MachinesUpdateWithoutBlockInput!
+  where: MachinesWhereUniqueInput!
+}
+
+input MachinesUpdateWithWhereUniqueWithoutMachine_catagoryInput {
+  data: MachinesUpdateWithoutMachine_catagoryInput!
+  where: MachinesWhereUniqueInput!
+}
+
+input MachinesUpdateWithWhereUniqueWithoutSectionInput {
+  data: MachinesUpdateWithoutSectionInput!
+  where: MachinesWhereUniqueInput!
+}
+
+input MachinesUpdateWithoutBlockInput {
+  Ticket: TicketUpdateManyWithoutMachinesNestedInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  label: StringFieldUpdateOperationsInput
+  machine_catagory: machine_catagoryUpdateOneRequiredWithoutMachinesNestedInput
+  maintenance: MaintenanceUpdateManyWithoutMachinesNestedInput
+  name: StringFieldUpdateOperationsInput
+  priority: IntFieldUpdateOperationsInput
+  profile: JSON
+  routine_maintanances: routine_maintanancesUpdateManyWithoutMeachineNestedInput
+  section: SectionsUpdateOneRequiredWithoutMachinesNestedInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input MachinesUpdateWithoutMachine_catagoryInput {
+  Ticket: TicketUpdateManyWithoutMachinesNestedInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  label: StringFieldUpdateOperationsInput
+  maintenance: MaintenanceUpdateManyWithoutMachinesNestedInput
+  name: StringFieldUpdateOperationsInput
+  priority: IntFieldUpdateOperationsInput
+  profile: JSON
+  routine_maintanances: routine_maintanancesUpdateManyWithoutMeachineNestedInput
+  section: SectionsUpdateOneRequiredWithoutMachinesNestedInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input MachinesUpdateWithoutMaintenanceInput {
+  Ticket: TicketUpdateManyWithoutMachinesNestedInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  label: StringFieldUpdateOperationsInput
+  machine_catagory: machine_catagoryUpdateOneRequiredWithoutMachinesNestedInput
+  name: StringFieldUpdateOperationsInput
+  priority: IntFieldUpdateOperationsInput
+  profile: JSON
+  routine_maintanances: routine_maintanancesUpdateManyWithoutMeachineNestedInput
+  section: SectionsUpdateOneRequiredWithoutMachinesNestedInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input MachinesUpdateWithoutRoutine_maintanancesInput {
+  Ticket: TicketUpdateManyWithoutMachinesNestedInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  label: StringFieldUpdateOperationsInput
+  machine_catagory: machine_catagoryUpdateOneRequiredWithoutMachinesNestedInput
+  maintenance: MaintenanceUpdateManyWithoutMachinesNestedInput
+  name: StringFieldUpdateOperationsInput
+  priority: IntFieldUpdateOperationsInput
+  profile: JSON
+  section: SectionsUpdateOneRequiredWithoutMachinesNestedInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input MachinesUpdateWithoutSectionInput {
+  Ticket: TicketUpdateManyWithoutMachinesNestedInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  label: StringFieldUpdateOperationsInput
+  machine_catagory: machine_catagoryUpdateOneRequiredWithoutMachinesNestedInput
+  maintenance: MaintenanceUpdateManyWithoutMachinesNestedInput
+  name: StringFieldUpdateOperationsInput
+  priority: IntFieldUpdateOperationsInput
+  profile: JSON
+  routine_maintanances: routine_maintanancesUpdateManyWithoutMeachineNestedInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input MachinesUpdateWithoutTicketInput {
+  created_at: DateTimeFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  label: StringFieldUpdateOperationsInput
+  machine_catagory: machine_catagoryUpdateOneRequiredWithoutMachinesNestedInput
+  maintenance: MaintenanceUpdateManyWithoutMachinesNestedInput
+  name: StringFieldUpdateOperationsInput
+  priority: IntFieldUpdateOperationsInput
+  profile: JSON
+  routine_maintanances: routine_maintanancesUpdateManyWithoutMeachineNestedInput
+  section: SectionsUpdateOneRequiredWithoutMachinesNestedInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input MachinesUpsertWithWhereUniqueWithoutBlockInput {
+  create: MachinesCreateWithoutBlockInput!
+  update: MachinesUpdateWithoutBlockInput!
+  where: MachinesWhereUniqueInput!
+}
+
+input MachinesUpsertWithWhereUniqueWithoutMachine_catagoryInput {
+  create: MachinesCreateWithoutMachine_catagoryInput!
+  update: MachinesUpdateWithoutMachine_catagoryInput!
+  where: MachinesWhereUniqueInput!
+}
+
+input MachinesUpsertWithWhereUniqueWithoutSectionInput {
+  create: MachinesCreateWithoutSectionInput!
+  update: MachinesUpdateWithoutSectionInput!
+  where: MachinesWhereUniqueInput!
+}
+
+input MachinesUpsertWithoutMaintenanceInput {
+  create: MachinesCreateWithoutMaintenanceInput!
+  update: MachinesUpdateWithoutMaintenanceInput!
+}
+
+input MachinesUpsertWithoutRoutine_maintanancesInput {
+  create: MachinesCreateWithoutRoutine_maintanancesInput!
+  update: MachinesUpdateWithoutRoutine_maintanancesInput!
+}
+
+input MachinesUpsertWithoutTicketInput {
+  create: MachinesCreateWithoutTicketInput!
+  update: MachinesUpdateWithoutTicketInput!
+}
+
+input MachinesWhereInput {
+  AND: [MachinesWhereInput!]
+  NOT: [MachinesWhereInput!]
+  OR: [MachinesWhereInput!]
+  Ticket: TicketListRelationFilter
+  created_at: DateTimeFilter
+  id: BigIntFilter
+  label: StringFilter
+  machine_catagory: Machine_catagoryRelationFilter
+  machine_catagory_id: BigIntFilter
+  maintenance: MaintenanceListRelationFilter
+  name: StringFilter
+  priority: IntFilter
+  profile: JsonFilter
+  routine_maintanances: Routine_maintanancesListRelationFilter
+  section: SectionsRelationFilter
+  section_id: BigIntFilter
+  updated_at: DateTimeFilter
+}
+
+input MachinesWhereUniqueInput {
+  id: BigInt
+}
+
+type Machines_itemsAvgAggregate {
+  block_id: Float
+  id: Float
+  item_id: Float
+  machine_id: Float
+}
+
+type Machines_itemsCountAggregate {
+  _all: Int!
+  block_id: Int!
+  id: Int!
+  item_id: Int!
+  machine_id: Int!
+}
+
+type Machines_itemsMaxAggregate {
+  block_id: BigInt
+  id: BigInt
+  item_id: BigInt
+  machine_id: BigInt
+}
+
+type Machines_itemsMinAggregate {
+  block_id: BigInt
+  id: BigInt
+  item_id: BigInt
+  machine_id: BigInt
+}
+
+type Machines_itemsSumAggregate {
+  block_id: BigInt
+  id: BigInt
+  item_id: BigInt
+  machine_id: BigInt
+}
+
+type Maintenance {
+  _count: MaintenanceCount!
+  assigned: Boolean
+  assignee: Users!
+  assignee_id: BigInt!
+  block: Block!
+  block_id: BigInt!
+  created_at: DateTime!
+  description: String!
+  elapsed: DateTime
+  from: DateTime!
+  id: BigInt!
+  machine: Machines!
+  machine_id: BigInt!
+  machines: Machines!
+  metadata: JSON!
+  name: String!
+  other_cost: Float
+  photo: String
+  replacements: [Replacements!]
+  reports: [Reports!]
+  resolved: Boolean!
+  service_cost: Float
+  ticket: Ticket
+  to: DateTime!
+  un_planned: Boolean!
+  updated_at: DateTime!
+}
+
+type MaintenanceAvgAggregate {
+  assignee_id: Float
+  block_id: Float
+  id: Float
+  machine_id: Float
+}
+
+type MaintenanceCount {
+  replacements: Int!
+  reports: Int!
+}
+
+type MaintenanceCountAggregate {
+  _all: Int!
+  assignee_id: Int!
+  block_id: Int!
+  created_at: Int!
+  description: Int!
+  elapsed: Int!
+  from: Int!
+  id: Int!
+  machine_id: Int!
+  metadata: Int!
+  name: Int!
+  photo: Int!
+  resolved: Int!
+  to: Int!
+  un_planned: Int!
+  updated_at: Int!
+}
+
+input MaintenanceCreateInput {
+  assignee: UsersCreateNestedOneWithoutMaintenanceInput!
+  created_at: DateTime
+  description: String!
+  elapsed: DateTime
+  from: DateTime!
+  id: BigInt
+  machines: MachinesCreateNestedOneWithoutMaintenanceInput!
+  metadata: JSON
+  name: String!
+  other_cost: Float
+  photo: String
+  replacements: ReplacementsCreateNestedManyWithoutMaintenanceInput
+  reports: ReportsCreateNestedManyWithoutMaintenanceInput
+  resolved: Boolean!
+  service_cost: Float
+  ticket: TicketCreateNestedOneWithoutMaintenanceInput
+  to: DateTime!
+  un_planned: Boolean!
+  updated_at: DateTime
+}
+
+input MaintenanceCreateManyAssigneeInput {
+  created_at: DateTime
+  description: String!
+  elapsed: DateTime
+  from: DateTime!
+  id: BigInt
+  machine_id: BigInt!
+  metadata: JSON
+  name: String!
+  photo: String
+  resolved: Boolean!
+  to: DateTime!
+  un_planned: Boolean!
+  updated_at: DateTime
+}
+
+input MaintenanceCreateManyAssigneeInputEnvelope {
+  data: [MaintenanceCreateManyAssigneeInput!]!
+  skipDuplicates: Boolean
+}
+
+input MaintenanceCreateManyBlockInput {
+  assignee_id: BigInt!
+  created_at: DateTime
+  description: String!
+  elapsed: DateTime
+  from: DateTime!
+  id: BigInt
+  machine_id: BigInt!
+  metadata: JSON
+  name: String!
+  photo: String
+  resolved: Boolean!
+  to: DateTime!
+  un_planned: Boolean!
+  updated_at: DateTime
+}
+
+input MaintenanceCreateManyBlockInputEnvelope {
+  data: [MaintenanceCreateManyBlockInput!]!
+  skipDuplicates: Boolean
+}
+
+input MaintenanceCreateManyMachinesInput {
+  assignee_id: BigInt!
+  created_at: DateTime
+  description: String!
+  elapsed: DateTime
+  from: DateTime!
+  id: BigInt
+  metadata: JSON
+  name: String!
+  photo: String
+  resolved: Boolean!
+  to: DateTime!
+  un_planned: Boolean!
+  updated_at: DateTime
+}
+
+input MaintenanceCreateManyMachinesInputEnvelope {
+  data: [MaintenanceCreateManyMachinesInput!]!
+  skipDuplicates: Boolean
+}
+
+input MaintenanceCreateNestedManyWithoutAssigneeInput {
+  connect: [MaintenanceWhereUniqueInput!]
+  connectOrCreate: [MaintenanceCreateOrConnectWithoutAssigneeInput!]
+  create: [MaintenanceCreateWithoutAssigneeInput!]
+  createMany: MaintenanceCreateManyAssigneeInputEnvelope
+}
+
+input MaintenanceCreateNestedManyWithoutBlockInput {
+  connect: [MaintenanceWhereUniqueInput!]
+  connectOrCreate: [MaintenanceCreateOrConnectWithoutBlockInput!]
+  create: [MaintenanceCreateWithoutBlockInput!]
+  createMany: MaintenanceCreateManyBlockInputEnvelope
+}
+
+input MaintenanceCreateNestedManyWithoutMachinesInput {
+  connect: [MaintenanceWhereUniqueInput!]
+  connectOrCreate: [MaintenanceCreateOrConnectWithoutMachinesInput!]
+  create: [MaintenanceCreateWithoutMachinesInput!]
+  createMany: MaintenanceCreateManyMachinesInputEnvelope
+}
+
+input MaintenanceCreateNestedOneWithoutReplacementsInput {
+  connect: MaintenanceWhereUniqueInput
+  connectOrCreate: MaintenanceCreateOrConnectWithoutReplacementsInput
+  create: MaintenanceCreateWithoutReplacementsInput
+}
+
+input MaintenanceCreateNestedOneWithoutReportsInput {
+  connect: MaintenanceWhereUniqueInput
+  connectOrCreate: MaintenanceCreateOrConnectWithoutReportsInput
+  create: MaintenanceCreateWithoutReportsInput
+}
+
+input MaintenanceCreateNestedOneWithoutTicketInput {
+  connect: MaintenanceWhereUniqueInput
+  connectOrCreate: MaintenanceCreateOrConnectWithoutTicketInput
+  create: MaintenanceCreateWithoutTicketInput
+}
+
+input MaintenanceCreateOrConnectWithoutAssigneeInput {
+  create: MaintenanceCreateWithoutAssigneeInput!
+  where: MaintenanceWhereUniqueInput!
+}
+
+input MaintenanceCreateOrConnectWithoutBlockInput {
+  create: MaintenanceCreateWithoutBlockInput!
+  where: MaintenanceWhereUniqueInput!
+}
+
+input MaintenanceCreateOrConnectWithoutMachinesInput {
+  create: MaintenanceCreateWithoutMachinesInput!
+  where: MaintenanceWhereUniqueInput!
+}
+
+input MaintenanceCreateOrConnectWithoutReplacementsInput {
+  create: MaintenanceCreateWithoutReplacementsInput!
+  where: MaintenanceWhereUniqueInput!
+}
+
+input MaintenanceCreateOrConnectWithoutReportsInput {
+  create: MaintenanceCreateWithoutReportsInput!
+  where: MaintenanceWhereUniqueInput!
+}
+
+input MaintenanceCreateOrConnectWithoutTicketInput {
+  create: MaintenanceCreateWithoutTicketInput!
+  where: MaintenanceWhereUniqueInput!
+}
+
+input MaintenanceCreateWithoutAssigneeInput {
+  created_at: DateTime
+  description: String!
+  elapsed: DateTime
+  from: DateTime!
+  id: BigInt
+  machines: MachinesCreateNestedOneWithoutMaintenanceInput!
+  metadata: JSON
+  name: String!
+  photo: String
+  replacements: ReplacementsCreateNestedManyWithoutMaintenanceInput
+  reports: ReportsCreateNestedManyWithoutMaintenanceInput
+  resolved: Boolean!
+  ticket: TicketCreateNestedOneWithoutMaintenanceInput
+  to: DateTime!
+  un_planned: Boolean!
+  updated_at: DateTime
+}
+
+input MaintenanceCreateWithoutBlockInput {
+  assignee: UsersCreateNestedOneWithoutMaintenanceInput!
+  created_at: DateTime
+  description: String!
+  elapsed: DateTime
+  from: DateTime!
+  id: BigInt
+  machines: MachinesCreateNestedOneWithoutMaintenanceInput!
+  metadata: JSON
+  name: String!
+  photo: String
+  replacements: ReplacementsCreateNestedManyWithoutMaintenanceInput
+  reports: ReportsCreateNestedManyWithoutMaintenanceInput
+  resolved: Boolean!
+  ticket: TicketCreateNestedOneWithoutMaintenanceInput
+  to: DateTime!
+  un_planned: Boolean!
+  updated_at: DateTime
+}
+
+input MaintenanceCreateWithoutMachinesInput {
+  assignee: UsersCreateNestedOneWithoutMaintenanceInput!
+  created_at: DateTime
+  description: String!
+  elapsed: DateTime
+  from: DateTime!
+  id: BigInt
+  metadata: JSON
+  name: String!
+  photo: String
+  replacements: ReplacementsCreateNestedManyWithoutMaintenanceInput
+  reports: ReportsCreateNestedManyWithoutMaintenanceInput
+  resolved: Boolean!
+  ticket: TicketCreateNestedOneWithoutMaintenanceInput
+  to: DateTime!
+  un_planned: Boolean!
+  updated_at: DateTime
+}
+
+input MaintenanceCreateWithoutReplacementsInput {
+  assignee: UsersCreateNestedOneWithoutMaintenanceInput!
+  created_at: DateTime
+  description: String!
+  elapsed: DateTime
+  from: DateTime!
+  id: BigInt
+  machines: MachinesCreateNestedOneWithoutMaintenanceInput!
+  metadata: JSON
+  name: String!
+  photo: String
+  reports: ReportsCreateNestedManyWithoutMaintenanceInput
+  resolved: Boolean!
+  ticket: TicketCreateNestedOneWithoutMaintenanceInput
+  to: DateTime!
+  un_planned: Boolean!
+  updated_at: DateTime
+}
+
+input MaintenanceCreateWithoutReportsInput {
+  assignee: UsersCreateNestedOneWithoutMaintenanceInput!
+  created_at: DateTime
+  description: String!
+  elapsed: DateTime
+  from: DateTime!
+  id: BigInt
+  machines: MachinesCreateNestedOneWithoutMaintenanceInput!
+  metadata: JSON
+  name: String!
+  photo: String
+  replacements: ReplacementsCreateNestedManyWithoutMaintenanceInput
+  resolved: Boolean!
+  ticket: TicketCreateNestedOneWithoutMaintenanceInput
+  to: DateTime!
+  un_planned: Boolean!
+  updated_at: DateTime
+}
+
+input MaintenanceCreateWithoutTicketInput {
+  assignee: UsersCreateNestedOneWithoutMaintenanceInput!
+  created_at: DateTime
+  description: String!
+  elapsed: DateTime
+  from: DateTime!
+  id: BigInt
+  machines: MachinesCreateNestedOneWithoutMaintenanceInput!
+  metadata: JSON
+  name: String!
+  photo: String
+  replacements: ReplacementsCreateNestedManyWithoutMaintenanceInput
+  reports: ReportsCreateNestedManyWithoutMaintenanceInput
+  resolved: Boolean!
+  to: DateTime!
+  un_planned: Boolean!
+  updated_at: DateTime
+}
+
+input MaintenanceListRelationFilter {
+  every: MaintenanceWhereInput
+  none: MaintenanceWhereInput
+  some: MaintenanceWhereInput
+}
+
+type MaintenanceMaxAggregate {
+  assignee_id: BigInt
+  block_id: BigInt
+  created_at: DateTime
+  description: String
+  elapsed: DateTime
+  from: DateTime
+  id: BigInt
+  machine_id: BigInt
+  name: String
+  photo: String
+  resolved: Boolean
+  to: DateTime
+  un_planned: Boolean
+  updated_at: DateTime
+}
+
+type MaintenanceMinAggregate {
+  assignee_id: BigInt
+  block_id: BigInt
+  created_at: DateTime
+  description: String
+  elapsed: DateTime
+  from: DateTime
+  id: BigInt
+  machine_id: BigInt
+  name: String
+  photo: String
+  resolved: Boolean
+  to: DateTime
+  un_planned: Boolean
+  updated_at: DateTime
+}
+
+input MaintenanceOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input MaintenanceOrderByWithRelationInput {
+  assignee: UsersOrderByWithRelationInput
+  assignee_id: SortOrder
+  created_at: SortOrder
+  description: SortOrder
+  elapsed: SortOrder
+  from: SortOrder
+  id: SortOrder
+  machine_id: SortOrder
+  machines: MachinesOrderByWithRelationInput
+  metadata: SortOrder
+  name: SortOrder
+  replacements: ReplacementsOrderByRelationAggregateInput
+  reports: ReportsOrderByRelationAggregateInput
+  resolved: SortOrder
+  ticket: TicketOrderByWithRelationInput
+  to: SortOrder
+  un_planned: SortOrder
+  updated_at: SortOrder
+}
+
+input MaintenanceRelationFilter {
+  is: MaintenanceWhereInput
+  isNot: MaintenanceWhereInput
+}
+
+input MaintenanceScalarWhereInput {
+  AND: [MaintenanceScalarWhereInput!]
+  NOT: [MaintenanceScalarWhereInput!]
+  OR: [MaintenanceScalarWhereInput!]
+  assignee_id: BigIntFilter
+  created_at: DateTimeFilter
+  description: StringFilter
+  elapsed: DateTimeNullableFilter
+  from: DateTimeFilter
+  id: BigIntFilter
+  machine_id: BigIntFilter
+  metadata: JsonFilter
+  name: StringFilter
+  photo: StringNullableFilter
+  resolved: BoolFilter
+  to: DateTimeFilter
+  un_planned: BoolFilter
+  updated_at: DateTimeFilter
+}
+
+type MaintenanceSumAggregate {
+  assignee_id: BigInt
+  block_id: BigInt
+  id: BigInt
+  machine_id: BigInt
+}
+
+input MaintenanceUpdateInput {
+  assignee: UsersUpdateOneRequiredWithoutMaintenanceNestedInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  description: StringFieldUpdateOperationsInput
+  elapsed: NullableDateTimeFieldUpdateOperationsInput
+  from: DateTimeFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  machines: MachinesUpdateOneRequiredWithoutMaintenanceNestedInput
+  metadata: JSON
+  name: StringFieldUpdateOperationsInput
+  other_cost: FloatFieldUpdateOperationsInput
+  photo: NullableStringFieldUpdateOperationsInput
+  replacements: ReplacementsUpdateManyWithoutMaintenanceNestedInput
+  reports: ReportsUpdateManyWithoutMaintenanceNestedInput
+  resolved: BoolFieldUpdateOperationsInput
+  service_cost: FloatFieldUpdateOperationsInput
+  ticket: TicketUpdateOneWithoutMaintenanceNestedInput
+  to: DateTimeFieldUpdateOperationsInput
+  un_planned: BoolFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input MaintenanceUpdateManyMutationInput {
+  created_at: DateTimeFieldUpdateOperationsInput
+  description: StringFieldUpdateOperationsInput
+  elapsed: NullableDateTimeFieldUpdateOperationsInput
+  from: DateTimeFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  metadata: JSON
+  name: StringFieldUpdateOperationsInput
+  photo: NullableStringFieldUpdateOperationsInput
+  resolved: BoolFieldUpdateOperationsInput
+  to: DateTimeFieldUpdateOperationsInput
+  un_planned: BoolFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input MaintenanceUpdateManyWithWhereWithoutAssigneeInput {
+  data: MaintenanceUpdateManyMutationInput!
+  where: MaintenanceScalarWhereInput!
+}
+
+input MaintenanceUpdateManyWithWhereWithoutBlockInput {
+  data: MaintenanceUpdateManyMutationInput!
+  where: MaintenanceScalarWhereInput!
+}
+
+input MaintenanceUpdateManyWithWhereWithoutMachinesInput {
+  data: MaintenanceUpdateManyMutationInput!
+  where: MaintenanceScalarWhereInput!
+}
+
+input MaintenanceUpdateManyWithoutAssigneeNestedInput {
+  connect: [MaintenanceWhereUniqueInput!]
+  connectOrCreate: [MaintenanceCreateOrConnectWithoutAssigneeInput!]
+  create: [MaintenanceCreateWithoutAssigneeInput!]
+  createMany: MaintenanceCreateManyAssigneeInputEnvelope
+  delete: [MaintenanceWhereUniqueInput!]
+  deleteMany: [MaintenanceScalarWhereInput!]
+  disconnect: [MaintenanceWhereUniqueInput!]
+  set: [MaintenanceWhereUniqueInput!]
+  update: [MaintenanceUpdateWithWhereUniqueWithoutAssigneeInput!]
+  updateMany: [MaintenanceUpdateManyWithWhereWithoutAssigneeInput!]
+  upsert: [MaintenanceUpsertWithWhereUniqueWithoutAssigneeInput!]
+}
+
+input MaintenanceUpdateManyWithoutBlockNestedInput {
+  connect: [MaintenanceWhereUniqueInput!]
+  connectOrCreate: [MaintenanceCreateOrConnectWithoutBlockInput!]
+  create: [MaintenanceCreateWithoutBlockInput!]
+  createMany: MaintenanceCreateManyBlockInputEnvelope
+  delete: [MaintenanceWhereUniqueInput!]
+  deleteMany: [MaintenanceScalarWhereInput!]
+  disconnect: [MaintenanceWhereUniqueInput!]
+  set: [MaintenanceWhereUniqueInput!]
+  update: [MaintenanceUpdateWithWhereUniqueWithoutBlockInput!]
+  updateMany: [MaintenanceUpdateManyWithWhereWithoutBlockInput!]
+  upsert: [MaintenanceUpsertWithWhereUniqueWithoutBlockInput!]
+}
+
+input MaintenanceUpdateManyWithoutMachinesNestedInput {
+  connect: [MaintenanceWhereUniqueInput!]
+  connectOrCreate: [MaintenanceCreateOrConnectWithoutMachinesInput!]
+  create: [MaintenanceCreateWithoutMachinesInput!]
+  createMany: MaintenanceCreateManyMachinesInputEnvelope
+  delete: [MaintenanceWhereUniqueInput!]
+  deleteMany: [MaintenanceScalarWhereInput!]
+  disconnect: [MaintenanceWhereUniqueInput!]
+  set: [MaintenanceWhereUniqueInput!]
+  update: [MaintenanceUpdateWithWhereUniqueWithoutMachinesInput!]
+  updateMany: [MaintenanceUpdateManyWithWhereWithoutMachinesInput!]
+  upsert: [MaintenanceUpsertWithWhereUniqueWithoutMachinesInput!]
+}
+
+input MaintenanceUpdateOneRequiredWithoutReplacementsNestedInput {
+  connect: MaintenanceWhereUniqueInput
+  connectOrCreate: MaintenanceCreateOrConnectWithoutReplacementsInput
+  create: MaintenanceCreateWithoutReplacementsInput
+  update: MaintenanceUpdateWithoutReplacementsInput
+  upsert: MaintenanceUpsertWithoutReplacementsInput
+}
+
+input MaintenanceUpdateOneRequiredWithoutReportsNestedInput {
+  connect: MaintenanceWhereUniqueInput
+  connectOrCreate: MaintenanceCreateOrConnectWithoutReportsInput
+  create: MaintenanceCreateWithoutReportsInput
+  update: MaintenanceUpdateWithoutReportsInput
+  upsert: MaintenanceUpsertWithoutReportsInput
+}
+
+input MaintenanceUpdateOneWithoutTicketNestedInput {
+  connect: MaintenanceWhereUniqueInput
+  connectOrCreate: MaintenanceCreateOrConnectWithoutTicketInput
+  create: MaintenanceCreateWithoutTicketInput
+  delete: Boolean
+  disconnect: Boolean
+  update: MaintenanceUpdateWithoutTicketInput
+  upsert: MaintenanceUpsertWithoutTicketInput
+}
+
+input MaintenanceUpdateWithWhereUniqueWithoutAssigneeInput {
+  data: MaintenanceUpdateWithoutAssigneeInput!
+  where: MaintenanceWhereUniqueInput!
+}
+
+input MaintenanceUpdateWithWhereUniqueWithoutBlockInput {
+  data: MaintenanceUpdateWithoutBlockInput!
+  where: MaintenanceWhereUniqueInput!
+}
+
+input MaintenanceUpdateWithWhereUniqueWithoutMachinesInput {
+  data: MaintenanceUpdateWithoutMachinesInput!
+  where: MaintenanceWhereUniqueInput!
+}
+
+input MaintenanceUpdateWithoutAssigneeInput {
+  created_at: DateTimeFieldUpdateOperationsInput
+  description: StringFieldUpdateOperationsInput
+  elapsed: NullableDateTimeFieldUpdateOperationsInput
+  from: DateTimeFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  machines: MachinesUpdateOneRequiredWithoutMaintenanceNestedInput
+  metadata: JSON
+  name: StringFieldUpdateOperationsInput
+  photo: NullableStringFieldUpdateOperationsInput
+  replacements: ReplacementsUpdateManyWithoutMaintenanceNestedInput
+  reports: ReportsUpdateManyWithoutMaintenanceNestedInput
+  resolved: BoolFieldUpdateOperationsInput
+  ticket: TicketUpdateOneWithoutMaintenanceNestedInput
+  to: DateTimeFieldUpdateOperationsInput
+  un_planned: BoolFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input MaintenanceUpdateWithoutBlockInput {
+  assignee: UsersUpdateOneRequiredWithoutMaintenanceNestedInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  description: StringFieldUpdateOperationsInput
+  elapsed: NullableDateTimeFieldUpdateOperationsInput
+  from: DateTimeFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  machines: MachinesUpdateOneRequiredWithoutMaintenanceNestedInput
+  metadata: JSON
+  name: StringFieldUpdateOperationsInput
+  photo: NullableStringFieldUpdateOperationsInput
+  replacements: ReplacementsUpdateManyWithoutMaintenanceNestedInput
+  reports: ReportsUpdateManyWithoutMaintenanceNestedInput
+  resolved: BoolFieldUpdateOperationsInput
+  ticket: TicketUpdateOneWithoutMaintenanceNestedInput
+  to: DateTimeFieldUpdateOperationsInput
+  un_planned: BoolFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input MaintenanceUpdateWithoutMachinesInput {
+  assignee: UsersUpdateOneRequiredWithoutMaintenanceNestedInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  description: StringFieldUpdateOperationsInput
+  elapsed: NullableDateTimeFieldUpdateOperationsInput
+  from: DateTimeFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  metadata: JSON
+  name: StringFieldUpdateOperationsInput
+  photo: NullableStringFieldUpdateOperationsInput
+  replacements: ReplacementsUpdateManyWithoutMaintenanceNestedInput
+  reports: ReportsUpdateManyWithoutMaintenanceNestedInput
+  resolved: BoolFieldUpdateOperationsInput
+  ticket: TicketUpdateOneWithoutMaintenanceNestedInput
+  to: DateTimeFieldUpdateOperationsInput
+  un_planned: BoolFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input MaintenanceUpdateWithoutReplacementsInput {
+  assignee: UsersUpdateOneRequiredWithoutMaintenanceNestedInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  description: StringFieldUpdateOperationsInput
+  elapsed: NullableDateTimeFieldUpdateOperationsInput
+  from: DateTimeFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  machines: MachinesUpdateOneRequiredWithoutMaintenanceNestedInput
+  metadata: JSON
+  name: StringFieldUpdateOperationsInput
+  photo: NullableStringFieldUpdateOperationsInput
+  reports: ReportsUpdateManyWithoutMaintenanceNestedInput
+  resolved: BoolFieldUpdateOperationsInput
+  ticket: TicketUpdateOneWithoutMaintenanceNestedInput
+  to: DateTimeFieldUpdateOperationsInput
+  un_planned: BoolFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input MaintenanceUpdateWithoutReportsInput {
+  assignee: UsersUpdateOneRequiredWithoutMaintenanceNestedInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  description: StringFieldUpdateOperationsInput
+  elapsed: NullableDateTimeFieldUpdateOperationsInput
+  from: DateTimeFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  machines: MachinesUpdateOneRequiredWithoutMaintenanceNestedInput
+  metadata: JSON
+  name: StringFieldUpdateOperationsInput
+  photo: NullableStringFieldUpdateOperationsInput
+  replacements: ReplacementsUpdateManyWithoutMaintenanceNestedInput
+  resolved: BoolFieldUpdateOperationsInput
+  ticket: TicketUpdateOneWithoutMaintenanceNestedInput
+  to: DateTimeFieldUpdateOperationsInput
+  un_planned: BoolFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input MaintenanceUpdateWithoutTicketInput {
+  assignee: UsersUpdateOneRequiredWithoutMaintenanceNestedInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  description: StringFieldUpdateOperationsInput
+  elapsed: NullableDateTimeFieldUpdateOperationsInput
+  from: DateTimeFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  machines: MachinesUpdateOneRequiredWithoutMaintenanceNestedInput
+  metadata: JSON
+  name: StringFieldUpdateOperationsInput
+  photo: NullableStringFieldUpdateOperationsInput
+  replacements: ReplacementsUpdateManyWithoutMaintenanceNestedInput
+  reports: ReportsUpdateManyWithoutMaintenanceNestedInput
+  resolved: BoolFieldUpdateOperationsInput
+  to: DateTimeFieldUpdateOperationsInput
+  un_planned: BoolFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input MaintenanceUpsertWithWhereUniqueWithoutAssigneeInput {
+  create: MaintenanceCreateWithoutAssigneeInput!
+  update: MaintenanceUpdateWithoutAssigneeInput!
+  where: MaintenanceWhereUniqueInput!
+}
+
+input MaintenanceUpsertWithWhereUniqueWithoutBlockInput {
+  create: MaintenanceCreateWithoutBlockInput!
+  update: MaintenanceUpdateWithoutBlockInput!
+  where: MaintenanceWhereUniqueInput!
+}
+
+input MaintenanceUpsertWithWhereUniqueWithoutMachinesInput {
+  create: MaintenanceCreateWithoutMachinesInput!
+  update: MaintenanceUpdateWithoutMachinesInput!
+  where: MaintenanceWhereUniqueInput!
+}
+
+input MaintenanceUpsertWithoutReplacementsInput {
+  create: MaintenanceCreateWithoutReplacementsInput!
+  update: MaintenanceUpdateWithoutReplacementsInput!
+}
+
+input MaintenanceUpsertWithoutReportsInput {
+  create: MaintenanceCreateWithoutReportsInput!
+  update: MaintenanceUpdateWithoutReportsInput!
+}
+
+input MaintenanceUpsertWithoutTicketInput {
+  create: MaintenanceCreateWithoutTicketInput!
+  update: MaintenanceUpdateWithoutTicketInput!
+}
+
+input MaintenanceWhereInput {
+  AND: [MaintenanceWhereInput!]
+  NOT: [MaintenanceWhereInput!]
+  OR: [MaintenanceWhereInput!]
+  assignee: UsersRelationFilter
+  assignee_id: BigIntFilter
+  created_at: DateTimeFilter
+  description: StringFilter
+  elapsed: DateTimeNullableFilter
+  from: DateTimeFilter
+  id: BigIntFilter
+  machine_id: BigIntFilter
+  machines: MachinesRelationFilter
+  metadata: JsonFilter
+  name: StringFilter
+  photo: StringNullableFilter
+  replacements: ReplacementsListRelationFilter
+  reports: ReportsListRelationFilter
+  resolved: BoolFilter
+  ticket: TicketRelationFilter
+  to: DateTimeFilter
+  un_planned: BoolFilter
+  updated_at: DateTimeFilter
+}
+
+input MaintenanceWhereUniqueInput {
+  id: BigInt
+}
+
+type Mutation {
+  createBlock(createBlockInput: BlockCreateInput!): Block!
+  createInvoice(createInvoiceInput: InvoicesCreateInput!): Invoices!
+  createItem(createItemInput: ItemsCreateInput!): Items!
+  createItemCatagory(
+    createItemCatagoryInput: ItemCatagoryCreateInput!
+  ): ItemCatagory!
+  createMachine(createMachineInput: MachinesCreateInput!): Machines!
+  createMachineCategory(
+    createCategoryInput: machine_catagoryCreateWithoutMachinesInput!
+  ): machine_catagory!
+  createMaintanance(
+    createMaintananceInput: MaintenanceCreateInput!
+  ): Maintenance!
+  createReplacement(
+    createReplacementInput: ReplacementsCreateInput!
+  ): Replacements!
+  createReport(createReportInput: ReportsCreateInput!): Reports!
+  createRoutineMaintanance(
+    createRoutineMaintananceInput: routine_maintanancesCreateInput!
+  ): routine_maintanances!
+  createSection(
+    createSectionInput: SectionCreateWithoutMachinesInput!
+  ): Section!
+  createTicket(createTicketInput: TicketCreateInput!): Ticket!
+  createUser(createUserInput: UsersCreateInput!): Users!
+  removeBlock(id: Int!): Block!
+  removeInvoices(id: Int!): Invoices!
+  removeItem(id: Int!): Items!
+  removeItemCatagory(id: Int!): ItemCatagory!
+  removeMachine(id: Int!): Machines!
+  removeMachineCatagories(id: Int!): machine_catagory!
+  removeMaintanance(id: Int!): Maintenance!
+  removeReplacement(id: Int!): Replacements!
+  removeReport(id: Int!): Reports!
+  removeRoutineMaintanance(id: Int!): routine_maintanances!
+  removeSection(id: Int!): Section!
+  removeTicket(id: Int!): Ticket!
+  removeUser(id: Int!): Users!
+  updateBlock(id: Int!, updateBlockInput: BlockUpdateInput!): Block!
+  updateInvoices(id: Int!, updateInvoiceInput: InvoicesUpdateInput!): Invoices!
+  updateItem(id: Int!, updateItemInput: ItemsUpdateInput!): Items!
+  updateItemCatagory(
+    id: Int!
+    updateItemCatagoryInput: ItemCatagoryUpdateInput!
+  ): ItemCatagory!
+  updateMachine(id: Int!, updateMachineInput: MachinesUpdateInput!): Machines!
+  updateMachineCatagories(
+    data: machine_catagoryUpdateOneWithoutMachinesNestedInput!
+    id: Int!
+  ): machine_catagory!
+  updateMaintanance(
+    id: Int!
+    updateMaintananceInput: MaintenanceUpdateInput!
+  ): Maintenance!
+  updateReplacement(
+    id: Int!
+    updateReplacementInput: ReplacementsUpdateInput!
+  ): Replacements!
+  updateReport(id: Int!, updateReportInput: ReportsUpdateInput!): Reports!
+  updateRoutineMaintanance(
+    id: Int!
+    updateRoutineMaintananceInput: routine_maintanancesUpdateInput!
+  ): routine_maintanances!
+  updateSection(
+    id: Int!
+    updateSectionInput: SectionUpdateWithoutMachinesInput!
+  ): Section!
+  updateTicket(id: Int!, updateTicketInput: TicketUpdateInput!): Ticket!
+  updateUser(id: Int!, updateUserInput: UsersUpdateInput!): Users!
+}
+
+input NestedBigIntFilter {
+  equals: BigInt
+  gt: BigInt
+  gte: BigInt
+  in: [BigInt!]
+  lt: BigInt
+  lte: BigInt
+  not: NestedBigIntFilter
+  notIn: [BigInt!]
+}
+
+input NestedBigIntNullableFilter {
+  equals: BigInt
+  gt: BigInt
+  gte: BigInt
+  in: [BigInt!]
+  lt: BigInt
+  lte: BigInt
+  not: NestedBigIntNullableFilter
+  notIn: [BigInt!]
+}
+
+input NestedBoolFilter {
+  equals: Boolean
+  not: NestedBoolFilter
+}
+
+input NestedDateTimeFilter {
+  equals: DateTime
+  gt: DateTime
+  gte: DateTime
+  in: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  not: NestedDateTimeFilter
+  notIn: [DateTime!]
+}
+
+input NestedDateTimeNullableFilter {
+  equals: DateTime
+  gt: DateTime
+  gte: DateTime
+  in: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  not: NestedDateTimeNullableFilter
+  notIn: [DateTime!]
+}
+
+input NestedEnumRoleFilter {
+  equals: Role
+  in: [Role!]
+  not: NestedEnumRoleFilter
+  notIn: [Role!]
+}
+
+input NestedEnumticket_statusFilter {
+  equals: ticket_status
+  in: [ticket_status!]
+  not: NestedEnumticket_statusFilter
+  notIn: [ticket_status!]
+}
+
+input NestedFloatFilter {
+  equals: Float
+  gt: Float
+  gte: Float
+  in: [Float!]
+  lt: Float
+  lte: Float
+  not: NestedFloatFilter
+  notIn: [Float!]
+}
+
+input NestedIntFilter {
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  lt: Int
+  lte: Int
+  not: NestedIntFilter
+  notIn: [Int!]
+}
+
+input NestedStringFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  not: NestedStringFilter
+  notIn: [String!]
+  search: String
+  startsWith: String
+}
+
+input NestedStringNullableFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  not: NestedStringNullableFilter
+  notIn: [String!]
+  search: String
+  startsWith: String
+}
+
+input NullableDateTimeFieldUpdateOperationsInput {
+  set: DateTime
+}
+
+input NullableStringFieldUpdateOperationsInput {
+  set: String
+}
+
+type Production_dataAvgAggregate {
+  blockId: Float
+  id: Float
+  updated_by: Float
+}
+
+type Production_dataCountAggregate {
+  _all: Int!
+  blockId: Int!
+  created_at: Int!
+  date: Int!
+  id: Int!
+  production: Int!
+  shift: Int!
+  updated_at: Int!
+  updated_by: Int!
+}
+
+type Production_dataMaxAggregate {
+  blockId: BigInt
+  created_at: DateTime
+  date: DateTime
+  id: BigInt
+  shift: String
+  updated_at: DateTime
+  updated_by: BigInt
+}
+
+type Production_dataMinAggregate {
+  blockId: BigInt
+  created_at: DateTime
+  date: DateTime
+  id: BigInt
+  shift: String
+  updated_at: DateTime
+  updated_by: BigInt
+}
+
+type Production_dataSumAggregate {
+  blockId: BigInt
+  id: BigInt
+  updated_by: BigInt
+}
+
+type Query {
+  block(id: Int!): Block!
+  blocks(
+    limit: Int
+    offset: Int
+    orderBy: BlockOrderByWithAggregationInput
+    where: BlockWhereInput
+  ): [Block!]!
+  blocksCount(
+    limit: Int
+    offset: Int
+    orderBy: BlockOrderByWithAggregationInput
+    where: BlockWhereInput
+  ): Int!
+  invoice(id: Int!): Invoices!
+  invoiceCount(
+    limit: Int
+    offset: Int
+    orderBy: InvoicesOrderByWithRelationAndSearchRelevanceInput
+    where: InvoicesWhereInput
+  ): Int!
+  invoices(
+    limit: Int
+    offset: Int
+    orderBy: InvoicesOrderByWithRelationAndSearchRelevanceInput
+    where: InvoicesWhereInput
+  ): [Invoices!]!
+  item(id: Int!): Items!
+  itemCatagories(
+    limit: Int
+    offset: Int
+    orderBy: ItemCatagoryOrderByWithAggregationInput
+    where: ItemCatagoryWhereInput
+  ): [ItemCatagory!]!
+  itemCatagoriesCount(
+    limit: Int
+    offset: Int
+    orderBy: ItemCatagoryOrderByWithAggregationInput
+    where: ItemCatagoryWhereInput
+  ): Int!
+  itemCatagory(id: Int!): ItemCatagory!
+  items(
+    limit: Int
+    offset: Int
+    orderBy: ItemsOrderByWithRelationInput
+    where: ItemsWhereInput
+  ): [Items!]!
+  itemsCount(
+    limit: Int
+    offset: Int
+    orderBy: ItemsOrderByWithRelationInput
+    where: ItemsWhereInput
+  ): Int!
+  machine(id: Int!): Machines!
+  machineCatagories(
+    orderBy: machine_catagoryOrderByWithRelationAndSearchRelevanceInput
+    skip: Int
+    take: Int
+    where: machine_catagoryWhereInput
+  ): [machine_catagory!]!
+  machineCatagoriesCount(
+    orderBy: machine_catagoryOrderByWithRelationAndSearchRelevanceInput
+    skip: Int
+    take: Int
+    where: machine_catagoryWhereInput
+  ): Int!
+  machineCategory(id: Int!): machine_catagory!
+  machines(
+    limit: Int
+    offset: Int
+    orderBy: MachinesOrderByWithRelationInput
+    where: MachinesWhereInput
+  ): [Machines!]!
+  machinesCount(
+    limit: Int
+    offset: Int
+    orderBy: MachinesOrderByWithRelationInput
+    where: MachinesWhereInput
+  ): Int!
+  maintenance(id: Int!): Maintenance!
+  maintenanceCount(
+    limit: Int
+    offset: Int
+    orderBy: MaintenanceOrderByWithRelationInput
+    where: MaintenanceWhereInput
+  ): Int!
+  maintenances(
+    limit: Int
+    offset: Int
+    orderBy: MaintenanceOrderByWithRelationInput
+    where: MaintenanceWhereInput
+  ): [Maintenance!]!
+  replacement(id: Int!): Replacements!
+  replacements(
+    limit: Int
+    offset: Int
+    orderBy: ReplacementsOrderByWithRelationInput
+    where: ReplacementsWhereInput
+  ): [Replacements!]!
+  replacementsCount(
+    limit: Int
+    offset: Int
+    orderBy: ReplacementsOrderByWithRelationInput
+    where: ReplacementsWhereInput
+  ): Int!
+  report(id: Int!): Reports!
+  routineMaintanance(id: Int!): routine_maintanances!
+  routineMaintanances(
+    limit: Int
+    offset: Int
+    orderBy: routine_maintanancesSumOrderByAggregateInput
+    where: routine_maintanancesWhereInput
+  ): [routine_maintanances!]!
+  routineMaintanancesCount(
+    limit: Int
+    offset: Int
+    orderBy: routine_maintanancesSumOrderByAggregateInput
+    where: routine_maintanancesWhereInput
+  ): Int!
+  section(id: Int!): Section!
+  sections(
+    orderBy: SectionOrderByWithRelationInput
+    skip: Int
+    take: Int
+    where: SectionWhereInput
+  ): [Section!]!
+  sectionsCount(
+    orderBy: SectionOrderByWithRelationInput
+    skip: Int
+    take: Int
+    where: SectionWhereInput
+  ): Int!
+  ticket(id: Int!): Ticket!
+  tickets(
+    orderBy: TicketOrderByWithRelationInput
+    skip: Float
+    take: Float
+    where: TicketWhereInput
+  ): [Ticket!]!
+  ticketsCount(
+    orderBy: TicketOrderByWithRelationInput
+    skip: Float
+    take: Float
+    where: TicketWhereInput
+  ): Int!
+  user(id: Int!): Users!
+  users(
+    limit: Int
+    offset: Int
+    orderBy: UsersOrderByWithRelationInput
+    where: UsersWhereInput
+  ): [Users!]!
+  usersCount(
+    limit: Int
+    offset: Int
+    orderBy: UsersOrderByWithRelationInput
+    where: UsersWhereInput
+  ): Int!
+}
+
+enum QueryMode {
+  default
+  insensitive
+}
+
+type Replacements {
+  approved: Boolean!
+  block: Block!
+  block_id: BigInt!
+  created_at: DateTime!
+  description: String!
+  id: BigInt!
+  item: Items!
+  item_id: BigInt!
+  items: Items!
+  maintanance_id: BigInt!
+  maintenance: Maintenance!
+  metadata: JSON!
+  name: String!
+  quantity: Int!
+  updated_at: DateTime!
+}
+
+type ReplacementsAvgAggregate {
+  block_id: Float
+  id: Float
+  item_id: Float
+  maintanance_id: Float
+  quantity: Float
+}
+
+type ReplacementsCountAggregate {
+  _all: Int!
+  approved: Int!
+  block_id: Int!
+  created_at: Int!
+  description: Int!
+  id: Int!
+  item_id: Int!
+  maintanance_id: Int!
+  metadata: Int!
+  name: Int!
+  quantity: Int!
+  updated_at: Int!
+}
+
+input ReplacementsCreateInput {
+  approved: Boolean
+  created_at: DateTime
+  description: String!
+  id: BigInt
+  items: ItemsCreateNestedOneWithoutReplacementsInput!
+  maintenance: MaintenanceCreateNestedOneWithoutReplacementsInput!
+  metadata: JSON
+  name: String!
+  quantity: Int!
+  updated_at: DateTime
+}
+
+input ReplacementsCreateManyBlockInput {
+  approved: Boolean
+  created_at: DateTime
+  description: String!
+  id: BigInt
+  item_id: BigInt!
+  maintanance_id: BigInt!
+  metadata: JSON
+  name: String!
+  quantity: Int!
+  updated_at: DateTime
+}
+
+input ReplacementsCreateManyBlockInputEnvelope {
+  data: [ReplacementsCreateManyBlockInput!]!
+  skipDuplicates: Boolean
+}
+
+input ReplacementsCreateManyItemsInput {
+  approved: Boolean
+  created_at: DateTime
+  description: String!
+  id: BigInt
+  maintanance_id: BigInt!
+  metadata: JSON
+  name: String!
+  quantity: Int!
+  updated_at: DateTime
+}
+
+input ReplacementsCreateManyItemsInputEnvelope {
+  data: [ReplacementsCreateManyItemsInput!]!
+  skipDuplicates: Boolean
+}
+
+input ReplacementsCreateManyMaintenanceInput {
+  approved: Boolean
+  created_at: DateTime
+  description: String!
+  id: BigInt
+  item_id: BigInt!
+  metadata: JSON
+  name: String!
+  quantity: Int!
+  updated_at: DateTime
+}
+
+input ReplacementsCreateManyMaintenanceInputEnvelope {
+  data: [ReplacementsCreateManyMaintenanceInput!]!
+  skipDuplicates: Boolean
+}
+
+input ReplacementsCreateNestedManyWithoutBlockInput {
+  connect: [ReplacementsWhereUniqueInput!]
+  connectOrCreate: [ReplacementsCreateOrConnectWithoutBlockInput!]
+  create: [ReplacementsCreateWithoutBlockInput!]
+  createMany: ReplacementsCreateManyBlockInputEnvelope
+}
+
+input ReplacementsCreateNestedManyWithoutItemsInput {
+  connect: [ReplacementsWhereUniqueInput!]
+  connectOrCreate: [ReplacementsCreateOrConnectWithoutItemsInput!]
+  create: [ReplacementsCreateWithoutItemsInput!]
+  createMany: ReplacementsCreateManyItemsInputEnvelope
+}
+
+input ReplacementsCreateNestedManyWithoutMaintenanceInput {
+  connect: [ReplacementsWhereUniqueInput!]
+  connectOrCreate: [ReplacementsCreateOrConnectWithoutMaintenanceInput!]
+  create: [ReplacementsCreateWithoutMaintenanceInput!]
+  createMany: ReplacementsCreateManyMaintenanceInputEnvelope
+}
+
+input ReplacementsCreateOrConnectWithoutBlockInput {
+  create: ReplacementsCreateWithoutBlockInput!
+  where: ReplacementsWhereUniqueInput!
+}
+
+input ReplacementsCreateOrConnectWithoutItemsInput {
+  create: ReplacementsCreateWithoutItemsInput!
+  where: ReplacementsWhereUniqueInput!
+}
+
+input ReplacementsCreateOrConnectWithoutMaintenanceInput {
+  create: ReplacementsCreateWithoutMaintenanceInput!
+  where: ReplacementsWhereUniqueInput!
+}
+
+input ReplacementsCreateWithoutBlockInput {
+  approved: Boolean
+  created_at: DateTime
+  description: String!
+  id: BigInt
+  items: ItemsCreateNestedOneWithoutReplacementsInput!
+  maintenance: MaintenanceCreateNestedOneWithoutReplacementsInput!
+  metadata: JSON
+  name: String!
+  quantity: Int!
+  updated_at: DateTime
+}
+
+input ReplacementsCreateWithoutItemsInput {
+  approved: Boolean
+  created_at: DateTime
+  description: String!
+  id: BigInt
+  maintenance: MaintenanceCreateNestedOneWithoutReplacementsInput!
+  metadata: JSON
+  name: String!
+  quantity: Int!
+  updated_at: DateTime
+}
+
+input ReplacementsCreateWithoutMaintenanceInput {
+  approved: Boolean
+  created_at: DateTime
+  description: String!
+  id: BigInt
+  items: ItemsCreateNestedOneWithoutReplacementsInput!
+  metadata: JSON
+  name: String!
+  quantity: Int!
+  updated_at: DateTime
+}
+
+input ReplacementsListRelationFilter {
+  every: ReplacementsWhereInput
+  none: ReplacementsWhereInput
+  some: ReplacementsWhereInput
+}
+
+type ReplacementsMaxAggregate {
+  approved: Boolean
+  block_id: BigInt
+  created_at: DateTime
+  description: String
+  id: BigInt
+  item_id: BigInt
+  maintanance_id: BigInt
+  name: String
+  quantity: Int
+  updated_at: DateTime
+}
+
+type ReplacementsMinAggregate {
+  approved: Boolean
+  block_id: BigInt
+  created_at: DateTime
+  description: String
+  id: BigInt
+  item_id: BigInt
+  maintanance_id: BigInt
+  name: String
+  quantity: Int
+  updated_at: DateTime
+}
+
+input ReplacementsOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input ReplacementsOrderByWithRelationInput {
+  approved: SortOrder
+  created_at: SortOrder
+  description: SortOrder
+  id: SortOrder
+  item_id: SortOrder
+  items: ItemsOrderByWithRelationInput
+  maintanance_id: SortOrder
+  maintenance: MaintenanceOrderByWithRelationInput
+  metadata: SortOrder
+  name: SortOrder
+  quantity: SortOrder
+  updated_at: SortOrder
+}
+
+input ReplacementsScalarWhereInput {
+  AND: [ReplacementsScalarWhereInput!]
+  NOT: [ReplacementsScalarWhereInput!]
+  OR: [ReplacementsScalarWhereInput!]
+  approved: BoolFilter
+  created_at: DateTimeFilter
+  description: StringFilter
+  id: BigIntFilter
+  item_id: BigIntFilter
+  maintanance_id: BigIntFilter
+  metadata: JsonFilter
+  name: StringFilter
+  quantity: IntFilter
+  updated_at: DateTimeFilter
+}
+
+type ReplacementsSumAggregate {
+  block_id: BigInt
+  id: BigInt
+  item_id: BigInt
+  maintanance_id: BigInt
+  quantity: Int
+}
+
+input ReplacementsUpdateInput {
+  approved: BoolFieldUpdateOperationsInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  description: StringFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  items: ItemsUpdateOneRequiredWithoutReplacementsNestedInput
+  maintenance: MaintenanceUpdateOneRequiredWithoutReplacementsNestedInput
+  metadata: JSON
+  name: StringFieldUpdateOperationsInput
+  quantity: IntFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input ReplacementsUpdateManyMutationInput {
+  approved: BoolFieldUpdateOperationsInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  description: StringFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  metadata: JSON
+  name: StringFieldUpdateOperationsInput
+  quantity: IntFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input ReplacementsUpdateManyWithWhereWithoutBlockInput {
+  data: ReplacementsUpdateManyMutationInput!
+  where: ReplacementsScalarWhereInput!
+}
+
+input ReplacementsUpdateManyWithWhereWithoutItemsInput {
+  data: ReplacementsUpdateManyMutationInput!
+  where: ReplacementsScalarWhereInput!
+}
+
+input ReplacementsUpdateManyWithWhereWithoutMaintenanceInput {
+  data: ReplacementsUpdateManyMutationInput!
+  where: ReplacementsScalarWhereInput!
+}
+
+input ReplacementsUpdateManyWithoutBlockNestedInput {
+  connect: [ReplacementsWhereUniqueInput!]
+  connectOrCreate: [ReplacementsCreateOrConnectWithoutBlockInput!]
+  create: [ReplacementsCreateWithoutBlockInput!]
+  createMany: ReplacementsCreateManyBlockInputEnvelope
+  delete: [ReplacementsWhereUniqueInput!]
+  deleteMany: [ReplacementsScalarWhereInput!]
+  disconnect: [ReplacementsWhereUniqueInput!]
+  set: [ReplacementsWhereUniqueInput!]
+  update: [ReplacementsUpdateWithWhereUniqueWithoutBlockInput!]
+  updateMany: [ReplacementsUpdateManyWithWhereWithoutBlockInput!]
+  upsert: [ReplacementsUpsertWithWhereUniqueWithoutBlockInput!]
+}
+
+input ReplacementsUpdateManyWithoutItemsNestedInput {
+  connect: [ReplacementsWhereUniqueInput!]
+  connectOrCreate: [ReplacementsCreateOrConnectWithoutItemsInput!]
+  create: [ReplacementsCreateWithoutItemsInput!]
+  createMany: ReplacementsCreateManyItemsInputEnvelope
+  delete: [ReplacementsWhereUniqueInput!]
+  deleteMany: [ReplacementsScalarWhereInput!]
+  disconnect: [ReplacementsWhereUniqueInput!]
+  set: [ReplacementsWhereUniqueInput!]
+  update: [ReplacementsUpdateWithWhereUniqueWithoutItemsInput!]
+  updateMany: [ReplacementsUpdateManyWithWhereWithoutItemsInput!]
+  upsert: [ReplacementsUpsertWithWhereUniqueWithoutItemsInput!]
+}
+
+input ReplacementsUpdateManyWithoutMaintenanceNestedInput {
+  connect: [ReplacementsWhereUniqueInput!]
+  connectOrCreate: [ReplacementsCreateOrConnectWithoutMaintenanceInput!]
+  create: [ReplacementsCreateWithoutMaintenanceInput!]
+  createMany: ReplacementsCreateManyMaintenanceInputEnvelope
+  delete: [ReplacementsWhereUniqueInput!]
+  deleteMany: [ReplacementsScalarWhereInput!]
+  disconnect: [ReplacementsWhereUniqueInput!]
+  set: [ReplacementsWhereUniqueInput!]
+  update: [ReplacementsUpdateWithWhereUniqueWithoutMaintenanceInput!]
+  updateMany: [ReplacementsUpdateManyWithWhereWithoutMaintenanceInput!]
+  upsert: [ReplacementsUpsertWithWhereUniqueWithoutMaintenanceInput!]
+}
+
+input ReplacementsUpdateWithWhereUniqueWithoutBlockInput {
+  data: ReplacementsUpdateWithoutBlockInput!
+  where: ReplacementsWhereUniqueInput!
+}
+
+input ReplacementsUpdateWithWhereUniqueWithoutItemsInput {
+  data: ReplacementsUpdateWithoutItemsInput!
+  where: ReplacementsWhereUniqueInput!
+}
+
+input ReplacementsUpdateWithWhereUniqueWithoutMaintenanceInput {
+  data: ReplacementsUpdateWithoutMaintenanceInput!
+  where: ReplacementsWhereUniqueInput!
+}
+
+input ReplacementsUpdateWithoutBlockInput {
+  approved: BoolFieldUpdateOperationsInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  description: StringFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  items: ItemsUpdateOneRequiredWithoutReplacementsNestedInput
+  maintenance: MaintenanceUpdateOneRequiredWithoutReplacementsNestedInput
+  metadata: JSON
+  name: StringFieldUpdateOperationsInput
+  quantity: IntFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input ReplacementsUpdateWithoutItemsInput {
+  approved: BoolFieldUpdateOperationsInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  description: StringFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  maintenance: MaintenanceUpdateOneRequiredWithoutReplacementsNestedInput
+  metadata: JSON
+  name: StringFieldUpdateOperationsInput
+  quantity: IntFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input ReplacementsUpdateWithoutMaintenanceInput {
+  approved: BoolFieldUpdateOperationsInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  description: StringFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  items: ItemsUpdateOneRequiredWithoutReplacementsNestedInput
+  metadata: JSON
+  name: StringFieldUpdateOperationsInput
+  quantity: IntFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input ReplacementsUpsertWithWhereUniqueWithoutBlockInput {
+  create: ReplacementsCreateWithoutBlockInput!
+  update: ReplacementsUpdateWithoutBlockInput!
+  where: ReplacementsWhereUniqueInput!
+}
+
+input ReplacementsUpsertWithWhereUniqueWithoutItemsInput {
+  create: ReplacementsCreateWithoutItemsInput!
+  update: ReplacementsUpdateWithoutItemsInput!
+  where: ReplacementsWhereUniqueInput!
+}
+
+input ReplacementsUpsertWithWhereUniqueWithoutMaintenanceInput {
+  create: ReplacementsCreateWithoutMaintenanceInput!
+  update: ReplacementsUpdateWithoutMaintenanceInput!
+  where: ReplacementsWhereUniqueInput!
+}
+
+input ReplacementsWhereInput {
+  AND: [ReplacementsWhereInput!]
+  NOT: [ReplacementsWhereInput!]
+  OR: [ReplacementsWhereInput!]
+  approved: BoolFilter
+  created_at: DateTimeFilter
+  description: StringFilter
+  id: BigIntFilter
+  item_id: BigIntFilter
+  items: ItemsRelationFilter
+  maintanance_id: BigIntFilter
+  maintenance: MaintenanceRelationFilter
+  metadata: JsonFilter
+  name: StringFilter
+  quantity: IntFilter
+  updated_at: DateTimeFilter
+}
+
+input ReplacementsWhereUniqueInput {
+  id: BigInt
+}
+
+type Reports {
+  block: Block!
+  block_id: BigInt!
+  created_at: DateTime!
+  id: BigInt!
+  maintance_id: BigInt!
+  maintenance: Maintenance!
+  report: String!
+  sign: String!
+  tag: JSON!
+  updated_at: DateTime!
+  validated: BigInt!
+  validated_sign: BigInt!
+}
+
+type ReportsAvgAggregate {
+  block_id: Float
+  id: Float
+  maintance_id: Float
+  validated: Float
+  validated_sign: Float
+}
+
+type ReportsCountAggregate {
+  _all: Int!
+  block_id: Int!
+  created_at: Int!
+  id: Int!
+  maintance_id: Int!
+  report: Int!
+  sign: Int!
+  tag: Int!
+  updated_at: Int!
+  validated: Int!
+  validated_sign: Int!
+}
+
+input ReportsCreateInput {
+  created_at: DateTime
+  id: BigInt
+  maintenance: MaintenanceCreateNestedOneWithoutReportsInput!
+  report: String!
+  sign: String!
+  tag: JSON!
+  updated_at: DateTime
+  validated: BigInt!
+  validated_sign: BigInt!
+}
+
+input ReportsCreateManyBlockInput {
+  created_at: DateTime
+  id: BigInt
+  maintance_id: BigInt!
+  report: String!
+  sign: String!
+  tag: JSON!
+  updated_at: DateTime
+  validated: BigInt!
+  validated_sign: BigInt!
+}
+
+input ReportsCreateManyBlockInputEnvelope {
+  data: [ReportsCreateManyBlockInput!]!
+  skipDuplicates: Boolean
+}
+
+input ReportsCreateManyMaintenanceInput {
+  created_at: DateTime
+  id: BigInt
+  report: String!
+  sign: String!
+  tag: JSON!
+  updated_at: DateTime
+  validated: BigInt!
+  validated_sign: BigInt!
+}
+
+input ReportsCreateManyMaintenanceInputEnvelope {
+  data: [ReportsCreateManyMaintenanceInput!]!
+  skipDuplicates: Boolean
+}
+
+input ReportsCreateNestedManyWithoutBlockInput {
+  connect: [ReportsWhereUniqueInput!]
+  connectOrCreate: [ReportsCreateOrConnectWithoutBlockInput!]
+  create: [ReportsCreateWithoutBlockInput!]
+  createMany: ReportsCreateManyBlockInputEnvelope
+}
+
+input ReportsCreateNestedManyWithoutMaintenanceInput {
+  connect: [ReportsWhereUniqueInput!]
+  connectOrCreate: [ReportsCreateOrConnectWithoutMaintenanceInput!]
+  create: [ReportsCreateWithoutMaintenanceInput!]
+  createMany: ReportsCreateManyMaintenanceInputEnvelope
+}
+
+input ReportsCreateOrConnectWithoutBlockInput {
+  create: ReportsCreateWithoutBlockInput!
+  where: ReportsWhereUniqueInput!
+}
+
+input ReportsCreateOrConnectWithoutMaintenanceInput {
+  create: ReportsCreateWithoutMaintenanceInput!
+  where: ReportsWhereUniqueInput!
+}
+
+input ReportsCreateWithoutBlockInput {
+  created_at: DateTime
+  id: BigInt
+  maintenance: MaintenanceCreateNestedOneWithoutReportsInput!
+  report: String!
+  sign: String!
+  tag: JSON!
+  updated_at: DateTime
+  validated: BigInt!
+  validated_sign: BigInt!
+}
+
+input ReportsCreateWithoutMaintenanceInput {
+  created_at: DateTime
+  id: BigInt
+  report: String!
+  sign: String!
+  tag: JSON!
+  updated_at: DateTime
+  validated: BigInt!
+  validated_sign: BigInt!
+}
+
+input ReportsListRelationFilter {
+  every: ReportsWhereInput
+  none: ReportsWhereInput
+  some: ReportsWhereInput
+}
+
+type ReportsMaxAggregate {
+  block_id: BigInt
+  created_at: DateTime
+  id: BigInt
+  maintance_id: BigInt
+  report: String
+  sign: String
+  updated_at: DateTime
+  validated: BigInt
+  validated_sign: BigInt
+}
+
+type ReportsMinAggregate {
+  block_id: BigInt
+  created_at: DateTime
+  id: BigInt
+  maintance_id: BigInt
+  report: String
+  sign: String
+  updated_at: DateTime
+  validated: BigInt
+  validated_sign: BigInt
+}
+
+input ReportsOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input ReportsScalarWhereInput {
+  AND: [ReportsScalarWhereInput!]
+  NOT: [ReportsScalarWhereInput!]
+  OR: [ReportsScalarWhereInput!]
+  created_at: DateTimeFilter
+  id: BigIntFilter
+  maintance_id: BigIntFilter
+  report: StringFilter
+  sign: StringFilter
+  tag: JsonFilter
+  updated_at: DateTimeFilter
+  validated: BigIntFilter
+  validated_sign: BigIntFilter
+}
+
+type ReportsSumAggregate {
+  block_id: BigInt
+  id: BigInt
+  maintance_id: BigInt
+  validated: BigInt
+  validated_sign: BigInt
+}
+
+input ReportsUpdateInput {
+  created_at: DateTimeFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  maintenance: MaintenanceUpdateOneRequiredWithoutReportsNestedInput
+  report: StringFieldUpdateOperationsInput
+  sign: StringFieldUpdateOperationsInput
+  tag: JSON
+  updated_at: DateTimeFieldUpdateOperationsInput
+  validated: BigIntFieldUpdateOperationsInput
+  validated_sign: BigIntFieldUpdateOperationsInput
+}
+
+input ReportsUpdateManyMutationInput {
+  created_at: DateTimeFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  report: StringFieldUpdateOperationsInput
+  sign: StringFieldUpdateOperationsInput
+  tag: JSON
+  updated_at: DateTimeFieldUpdateOperationsInput
+  validated: BigIntFieldUpdateOperationsInput
+  validated_sign: BigIntFieldUpdateOperationsInput
+}
+
+input ReportsUpdateManyWithWhereWithoutBlockInput {
+  data: ReportsUpdateManyMutationInput!
+  where: ReportsScalarWhereInput!
+}
+
+input ReportsUpdateManyWithWhereWithoutMaintenanceInput {
+  data: ReportsUpdateManyMutationInput!
+  where: ReportsScalarWhereInput!
+}
+
+input ReportsUpdateManyWithoutBlockNestedInput {
+  connect: [ReportsWhereUniqueInput!]
+  connectOrCreate: [ReportsCreateOrConnectWithoutBlockInput!]
+  create: [ReportsCreateWithoutBlockInput!]
+  createMany: ReportsCreateManyBlockInputEnvelope
+  delete: [ReportsWhereUniqueInput!]
+  deleteMany: [ReportsScalarWhereInput!]
+  disconnect: [ReportsWhereUniqueInput!]
+  set: [ReportsWhereUniqueInput!]
+  update: [ReportsUpdateWithWhereUniqueWithoutBlockInput!]
+  updateMany: [ReportsUpdateManyWithWhereWithoutBlockInput!]
+  upsert: [ReportsUpsertWithWhereUniqueWithoutBlockInput!]
+}
+
+input ReportsUpdateManyWithoutMaintenanceNestedInput {
+  connect: [ReportsWhereUniqueInput!]
+  connectOrCreate: [ReportsCreateOrConnectWithoutMaintenanceInput!]
+  create: [ReportsCreateWithoutMaintenanceInput!]
+  createMany: ReportsCreateManyMaintenanceInputEnvelope
+  delete: [ReportsWhereUniqueInput!]
+  deleteMany: [ReportsScalarWhereInput!]
+  disconnect: [ReportsWhereUniqueInput!]
+  set: [ReportsWhereUniqueInput!]
+  update: [ReportsUpdateWithWhereUniqueWithoutMaintenanceInput!]
+  updateMany: [ReportsUpdateManyWithWhereWithoutMaintenanceInput!]
+  upsert: [ReportsUpsertWithWhereUniqueWithoutMaintenanceInput!]
+}
+
+input ReportsUpdateWithWhereUniqueWithoutBlockInput {
+  data: ReportsUpdateWithoutBlockInput!
+  where: ReportsWhereUniqueInput!
+}
+
+input ReportsUpdateWithWhereUniqueWithoutMaintenanceInput {
+  data: ReportsUpdateWithoutMaintenanceInput!
+  where: ReportsWhereUniqueInput!
+}
+
+input ReportsUpdateWithoutBlockInput {
+  created_at: DateTimeFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  maintenance: MaintenanceUpdateOneRequiredWithoutReportsNestedInput
+  report: StringFieldUpdateOperationsInput
+  sign: StringFieldUpdateOperationsInput
+  tag: JSON
+  updated_at: DateTimeFieldUpdateOperationsInput
+  validated: BigIntFieldUpdateOperationsInput
+  validated_sign: BigIntFieldUpdateOperationsInput
+}
+
+input ReportsUpdateWithoutMaintenanceInput {
+  created_at: DateTimeFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  report: StringFieldUpdateOperationsInput
+  sign: StringFieldUpdateOperationsInput
+  tag: JSON
+  updated_at: DateTimeFieldUpdateOperationsInput
+  validated: BigIntFieldUpdateOperationsInput
+  validated_sign: BigIntFieldUpdateOperationsInput
+}
+
+input ReportsUpsertWithWhereUniqueWithoutBlockInput {
+  create: ReportsCreateWithoutBlockInput!
+  update: ReportsUpdateWithoutBlockInput!
+  where: ReportsWhereUniqueInput!
+}
+
+input ReportsUpsertWithWhereUniqueWithoutMaintenanceInput {
+  create: ReportsCreateWithoutMaintenanceInput!
+  update: ReportsUpdateWithoutMaintenanceInput!
+  where: ReportsWhereUniqueInput!
+}
+
+input ReportsWhereInput {
+  AND: [ReportsWhereInput!]
+  NOT: [ReportsWhereInput!]
+  OR: [ReportsWhereInput!]
+  created_at: DateTimeFilter
+  id: BigIntFilter
+  maintance_id: BigIntFilter
+  maintenance: MaintenanceRelationFilter
+  report: StringFilter
+  sign: StringFilter
+  tag: JsonFilter
+  updated_at: DateTimeFilter
+  validated: BigIntFilter
+  validated_sign: BigIntFilter
+}
+
+input ReportsWhereUniqueInput {
+  id: BigInt
+}
+
+enum Role {
+  ADMIN
+  ENGINEER
+  FITTER
+  GUEST
+  INPUT_CONTROLLER
+  MANAGER
+  PRODUCTION_CONTROLLER
+  SUPERVISOR
+}
+
+type Routine_maintanancesAvgAggregate {
+  assignee_id: Float
+  block_id: Float
+  duration: Float
+  id: Float
+  meachine_id: Float
+}
+
+type Routine_maintanancesCountAggregate {
+  _all: Int!
+  assignee_id: Int!
+  block_id: Int!
+  created_at: Int!
+  cron: Int!
+  description: Int!
+  duration: Int!
+  id: Int!
+  meachine_id: Int!
+  name: Int!
+  updated_at: Int!
+}
+
+input Routine_maintanancesListRelationFilter {
+  every: routine_maintanancesWhereInput
+  none: routine_maintanancesWhereInput
+  some: routine_maintanancesWhereInput
+}
+
+type Routine_maintanancesMaxAggregate {
+  assignee_id: BigInt
+  block_id: BigInt
+  created_at: DateTime
+  cron: String
+  description: String
+  duration: Int
+  id: BigInt
+  meachine_id: BigInt
+  name: String
+  updated_at: DateTime
+}
+
+type Routine_maintanancesMinAggregate {
+  assignee_id: BigInt
+  block_id: BigInt
+  created_at: DateTime
+  cron: String
+  description: String
+  duration: Int
+  id: BigInt
+  meachine_id: BigInt
+  name: String
+  updated_at: DateTime
+}
+
+type Routine_maintanancesSumAggregate {
+  assignee_id: BigInt
+  block_id: BigInt
+  duration: Int
+  id: BigInt
+  meachine_id: BigInt
+}
+
+type Section {
+  _count: SectionCount!
+  created_at: DateTime!
+  id: ID!
+  machines(
+    orderBy: MachinesOrderByWithRelationInput
+    skip: Int
+    take: Int
+    where: MachinesWhereInput
+  ): [Machines!]
+  name: String!
+  updated_at: DateTime!
+}
+
+type SectionAvgAggregate {
+  id: Float
+}
+
+type SectionCount {
+  machines: Int!
+}
+
+type SectionCountAggregate {
+  _all: Int!
+  created_at: Int!
+  id: Int!
+  name: Int!
+  updated_at: Int!
+}
+
+input SectionCreateWithoutMachinesInput {
+  created_at: DateTime
+  id: String
+  name: String!
+  updated_at: DateTime
+}
+
+type SectionMaxAggregate {
+  created_at: DateTime
+  id: String
+  name: String
+  updated_at: DateTime
+}
+
+type SectionMinAggregate {
+  created_at: DateTime
+  id: String
+  name: String
+  updated_at: DateTime
+}
+
+input SectionOrderByWithRelationInput {
+  created_at: SortOrder
+  id: SortOrder
+  machines: MachinesOrderByRelationAggregateInput
+  name: SortOrder
+  updated_at: SortOrder
+}
+
+type SectionSumAggregate {
+  id: String
+}
+
+input SectionUpdateWithoutMachinesInput {
+  created_at: DateTimeFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input SectionWhereInput {
+  AND: [SectionWhereInput!]
+  NOT: [SectionWhereInput!]
+  OR: [SectionWhereInput!]
+  created_at: DateTimeFilter
+  id: BigIntFilter
+  machines: MachinesListRelationFilter
+  name: StringFilter
+  updated_at: DateTimeFilter
+}
+
+type Sections {
+  _count: SectionsCount!
+  block: Block!
+  block_id: BigInt!
+  created_at: DateTime!
+  id: BigInt!
+  machines: [Machines!]
+  name: String!
+  updated_at: DateTime!
+}
+
+type SectionsCount {
+  machines: Int!
+}
+
+input SectionsCreateManyBlockInput {
+  created_at: DateTime
+  id: BigInt
+  name: String!
+  updated_at: DateTime
+}
+
+input SectionsCreateManyBlockInputEnvelope {
+  data: [SectionsCreateManyBlockInput!]!
+  skipDuplicates: Boolean
+}
+
+input SectionsCreateNestedManyWithoutBlockInput {
+  connect: [SectionsWhereUniqueInput!]
+  connectOrCreate: [SectionsCreateOrConnectWithoutBlockInput!]
+  create: [SectionsCreateWithoutBlockInput!]
+  createMany: SectionsCreateManyBlockInputEnvelope
+}
+
+input SectionsCreateNestedOneWithoutMachinesInput {
+  connect: SectionsWhereUniqueInput
+  connectOrCreate: SectionsCreateOrConnectWithoutMachinesInput
+  create: SectionsCreateWithoutMachinesInput
+}
+
+input SectionsCreateOrConnectWithoutBlockInput {
+  create: SectionsCreateWithoutBlockInput!
+  where: SectionsWhereUniqueInput!
+}
+
+input SectionsCreateOrConnectWithoutMachinesInput {
+  create: SectionsCreateWithoutMachinesInput!
+  where: SectionsWhereUniqueInput!
+}
+
+input SectionsCreateWithoutBlockInput {
+  created_at: DateTime
+  id: BigInt
+  machines: MachinesCreateNestedManyWithoutSectionInput
+  name: String!
+  updated_at: DateTime
+}
+
+input SectionsCreateWithoutMachinesInput {
+  created_at: DateTime
+  id: BigInt
+  name: String!
+  updated_at: DateTime
+}
+
+input SectionsListRelationFilter {
+  every: SectionsWhereInput
+  none: SectionsWhereInput
+  some: SectionsWhereInput
+}
+
+input SectionsOrderByWithRelationInput {
+  created_at: SortOrder
+  id: SortOrder
+  machines: MachinesOrderByRelationAggregateInput
+  name: SortOrder
+  updated_at: SortOrder
+}
+
+input SectionsRelationFilter {
+  is: SectionsWhereInput
+  isNot: SectionsWhereInput
+}
+
+input SectionsScalarWhereInput {
+  AND: [SectionsScalarWhereInput!]
+  NOT: [SectionsScalarWhereInput!]
+  OR: [SectionsScalarWhereInput!]
+  created_at: DateTimeFilter
+  id: BigIntFilter
+  name: StringFilter
+  updated_at: DateTimeFilter
+}
+
+input SectionsUpdateManyMutationInput {
+  created_at: DateTimeFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input SectionsUpdateManyWithWhereWithoutBlockInput {
+  data: SectionsUpdateManyMutationInput!
+  where: SectionsScalarWhereInput!
+}
+
+input SectionsUpdateManyWithoutBlockNestedInput {
+  connect: [SectionsWhereUniqueInput!]
+  connectOrCreate: [SectionsCreateOrConnectWithoutBlockInput!]
+  create: [SectionsCreateWithoutBlockInput!]
+  createMany: SectionsCreateManyBlockInputEnvelope
+  delete: [SectionsWhereUniqueInput!]
+  deleteMany: [SectionsScalarWhereInput!]
+  disconnect: [SectionsWhereUniqueInput!]
+  set: [SectionsWhereUniqueInput!]
+  update: [SectionsUpdateWithWhereUniqueWithoutBlockInput!]
+  updateMany: [SectionsUpdateManyWithWhereWithoutBlockInput!]
+  upsert: [SectionsUpsertWithWhereUniqueWithoutBlockInput!]
+}
+
+input SectionsUpdateOneRequiredWithoutMachinesNestedInput {
+  connect: SectionsWhereUniqueInput
+  connectOrCreate: SectionsCreateOrConnectWithoutMachinesInput
+  create: SectionsCreateWithoutMachinesInput
+  update: SectionsUpdateWithoutMachinesInput
+  upsert: SectionsUpsertWithoutMachinesInput
+}
+
+input SectionsUpdateWithWhereUniqueWithoutBlockInput {
+  data: SectionsUpdateWithoutBlockInput!
+  where: SectionsWhereUniqueInput!
+}
+
+input SectionsUpdateWithoutBlockInput {
+  created_at: DateTimeFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  machines: MachinesUpdateManyWithoutSectionNestedInput
+  name: StringFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input SectionsUpdateWithoutMachinesInput {
+  created_at: DateTimeFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input SectionsUpsertWithWhereUniqueWithoutBlockInput {
+  create: SectionsCreateWithoutBlockInput!
+  update: SectionsUpdateWithoutBlockInput!
+  where: SectionsWhereUniqueInput!
+}
+
+input SectionsUpsertWithoutMachinesInput {
+  create: SectionsCreateWithoutMachinesInput!
+  update: SectionsUpdateWithoutMachinesInput!
+}
+
+input SectionsWhereInput {
+  AND: [SectionsWhereInput!]
+  NOT: [SectionsWhereInput!]
+  OR: [SectionsWhereInput!]
+  created_at: DateTimeFilter
+  id: BigIntFilter
+  machines: MachinesListRelationFilter
+  name: StringFilter
+  updated_at: DateTimeFilter
+}
+
+input SectionsWhereUniqueInput {
+  id: BigInt
+}
+
+enum SortOrder {
+  asc
+  desc
+}
+
+input StringFieldUpdateOperationsInput {
+  set: String
+}
+
+input StringFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  mode: QueryMode
+  not: NestedStringFilter
+  notIn: [String!]
+  search: String
+  startsWith: String
+}
+
+input StringNullableFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  mode: QueryMode
+  not: NestedStringNullableFilter
+  notIn: [String!]
+  search: String
+  startsWith: String
+}
+
+input StringNullableListFilter {
+  equals: [String!]
+  has: String
+  hasEvery: [String!]
+  hasSome: [String!]
+  isEmpty: Boolean
+}
+
+type Ticket {
+  block: Block!
+  block_id: BigInt!
+  created_at: DateTime!
+  description: String!
+  id: BigInt!
+  machine: Machines!
+  machine_id: BigInt!
+  machines: Machines!
+  maintanance: Maintenance
+  maintenance: Maintenance
+  maintenance_id: BigInt
+  name: String!
+  photos: String!
+  status: ticket_status!
+  updated_at: DateTime!
+  user: Users!
+  user_id: BigInt!
+}
+
+type TicketAvgAggregate {
+  block_id: Float
+  id: Float
+  machine_id: Float
+  maintenance_id: Float
+  user_id: Float
+}
+
+type TicketCountAggregate {
+  _all: Int!
+  block_id: Int!
+  created_at: Int!
+  description: Int!
+  id: Int!
+  machine_id: Int!
+  maintenance_id: Int!
+  name: Int!
+  photos: Int!
+  status: Int!
+  updated_at: Int!
+  user_id: Int!
+}
+
+input TicketCreateInput {
+  created_at: DateTime
+  description: String!
+  id: BigInt
+  machines: MachinesCreateNestedOneWithoutTicketInput!
+  maintenance: MaintenanceCreateNestedOneWithoutTicketInput
+  name: String!
+  photos: String!
+  status: ticket_status!
+  updated_at: DateTime
+}
+
+input TicketCreateManyBlockInput {
+  created_at: DateTime
+  description: String!
+  id: BigInt
+  machine_id: BigInt!
+  maintenance_id: BigInt
+  name: String!
+  photos: String!
+  status: ticket_status!
+  updated_at: DateTime
+}
+
+input TicketCreateManyBlockInputEnvelope {
+  data: [TicketCreateManyBlockInput!]!
+  skipDuplicates: Boolean
+}
+
+input TicketCreateManyMachinesInput {
+  created_at: DateTime
+  description: String!
+  id: BigInt
+  maintenance_id: BigInt
+  name: String!
+  photos: String!
+  status: ticket_status!
+  updated_at: DateTime
+}
+
+input TicketCreateManyMachinesInputEnvelope {
+  data: [TicketCreateManyMachinesInput!]!
+  skipDuplicates: Boolean
+}
+
+input TicketCreateManyUserInput {
+  created_at: DateTime
+  description: String!
+  id: BigInt
+  machine_id: BigInt!
+  maintenance_id: BigInt
+  name: String!
+  photos: String!
+  status: ticket_status!
+  updated_at: DateTime
+}
+
+input TicketCreateManyUserInputEnvelope {
+  data: [TicketCreateManyUserInput!]!
+  skipDuplicates: Boolean
+}
+
+input TicketCreateNestedManyWithoutBlockInput {
+  connect: [TicketWhereUniqueInput!]
+  connectOrCreate: [TicketCreateOrConnectWithoutBlockInput!]
+  create: [TicketCreateWithoutBlockInput!]
+  createMany: TicketCreateManyBlockInputEnvelope
+}
+
+input TicketCreateNestedManyWithoutMachinesInput {
+  connect: [TicketWhereUniqueInput!]
+  connectOrCreate: [TicketCreateOrConnectWithoutMachinesInput!]
+  create: [TicketCreateWithoutMachinesInput!]
+  createMany: TicketCreateManyMachinesInputEnvelope
+}
+
+input TicketCreateNestedManyWithoutUserInput {
+  connect: [TicketWhereUniqueInput!]
+  connectOrCreate: [TicketCreateOrConnectWithoutUserInput!]
+  create: [TicketCreateWithoutUserInput!]
+  createMany: TicketCreateManyUserInputEnvelope
+}
+
+input TicketCreateNestedOneWithoutMaintenanceInput {
+  connect: TicketWhereUniqueInput
+  connectOrCreate: TicketCreateOrConnectWithoutMaintenanceInput
+  create: TicketCreateWithoutMaintenanceInput
+}
+
+input TicketCreateOrConnectWithoutBlockInput {
+  create: TicketCreateWithoutBlockInput!
+  where: TicketWhereUniqueInput!
+}
+
+input TicketCreateOrConnectWithoutMachinesInput {
+  create: TicketCreateWithoutMachinesInput!
+  where: TicketWhereUniqueInput!
+}
+
+input TicketCreateOrConnectWithoutMaintenanceInput {
+  create: TicketCreateWithoutMaintenanceInput!
+  where: TicketWhereUniqueInput!
+}
+
+input TicketCreateOrConnectWithoutUserInput {
+  create: TicketCreateWithoutUserInput!
+  where: TicketWhereUniqueInput!
+}
+
+input TicketCreateWithoutBlockInput {
+  created_at: DateTime
+  description: String!
+  id: BigInt
+  machines: MachinesCreateNestedOneWithoutTicketInput!
+  maintenance: MaintenanceCreateNestedOneWithoutTicketInput
+  name: String!
+  photos: String!
+  status: ticket_status!
+  updated_at: DateTime
+}
+
+input TicketCreateWithoutMachinesInput {
+  created_at: DateTime
+  description: String!
+  id: BigInt
+  maintenance: MaintenanceCreateNestedOneWithoutTicketInput
+  name: String!
+  photos: String!
+  status: ticket_status!
+  updated_at: DateTime
+}
+
+input TicketCreateWithoutMaintenanceInput {
+  created_at: DateTime
+  description: String!
+  id: BigInt
+  machines: MachinesCreateNestedOneWithoutTicketInput!
+  name: String!
+  photos: String!
+  status: ticket_status!
+  updated_at: DateTime
+}
+
+input TicketCreateWithoutUserInput {
+  created_at: DateTime
+  description: String!
+  id: BigInt
+  machines: MachinesCreateNestedOneWithoutTicketInput!
+  maintenance: MaintenanceCreateNestedOneWithoutTicketInput
+  name: String!
+  photos: String!
+  status: ticket_status!
+  updated_at: DateTime
+}
+
+input TicketListRelationFilter {
+  every: TicketWhereInput
+  none: TicketWhereInput
+  some: TicketWhereInput
+}
+
+type TicketMaxAggregate {
+  block_id: BigInt
+  created_at: DateTime
+  description: String
+  id: BigInt
+  machine_id: BigInt
+  maintenance_id: BigInt
+  name: String
+  photos: String
+  status: ticket_status
+  updated_at: DateTime
+  user_id: BigInt
+}
+
+type TicketMinAggregate {
+  block_id: BigInt
+  created_at: DateTime
+  description: String
+  id: BigInt
+  machine_id: BigInt
+  maintenance_id: BigInt
+  name: String
+  photos: String
+  status: ticket_status
+  updated_at: DateTime
+  user_id: BigInt
+}
+
+input TicketOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input TicketOrderByWithRelationInput {
+  created_at: SortOrder
+  description: SortOrder
+  id: SortOrder
+  machine_id: SortOrder
+  machines: MachinesOrderByWithRelationInput
+  maintenance: MaintenanceOrderByWithRelationInput
+  maintenance_id: SortOrder
+  name: SortOrder
+  photos: SortOrder
+  status: SortOrder
+  updated_at: SortOrder
+}
+
+input TicketRelationFilter {
+  is: TicketWhereInput
+  isNot: TicketWhereInput
+}
+
+input TicketScalarWhereInput {
+  AND: [TicketScalarWhereInput!]
+  NOT: [TicketScalarWhereInput!]
+  OR: [TicketScalarWhereInput!]
+  created_at: DateTimeFilter
+  description: StringFilter
+  id: BigIntFilter
+  machine_id: BigIntFilter
+  maintenance_id: BigIntNullableFilter
+  name: StringFilter
+  photos: StringFilter
+  status: Enumticket_statusFilter
+  updated_at: DateTimeFilter
+}
+
+type TicketSumAggregate {
+  block_id: BigInt
+  id: BigInt
+  machine_id: BigInt
+  maintenance_id: BigInt
+  user_id: BigInt
+}
+
+input TicketUpdateInput {
+  created_at: DateTimeFieldUpdateOperationsInput
+  description: StringFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  machines: MachinesUpdateOneRequiredWithoutTicketNestedInput
+  maintenance: MaintenanceUpdateOneWithoutTicketNestedInput
+  name: StringFieldUpdateOperationsInput
+  photos: StringFieldUpdateOperationsInput
+  status: Enumticket_statusFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input TicketUpdateManyMutationInput {
+  created_at: DateTimeFieldUpdateOperationsInput
+  description: StringFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  photos: StringFieldUpdateOperationsInput
+  status: Enumticket_statusFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input TicketUpdateManyWithWhereWithoutBlockInput {
+  data: TicketUpdateManyMutationInput!
+  where: TicketScalarWhereInput!
+}
+
+input TicketUpdateManyWithWhereWithoutMachinesInput {
+  data: TicketUpdateManyMutationInput!
+  where: TicketScalarWhereInput!
+}
+
+input TicketUpdateManyWithWhereWithoutUserInput {
+  data: TicketUpdateManyMutationInput!
+  where: TicketScalarWhereInput!
+}
+
+input TicketUpdateManyWithoutBlockNestedInput {
+  connect: [TicketWhereUniqueInput!]
+  connectOrCreate: [TicketCreateOrConnectWithoutBlockInput!]
+  create: [TicketCreateWithoutBlockInput!]
+  createMany: TicketCreateManyBlockInputEnvelope
+  delete: [TicketWhereUniqueInput!]
+  deleteMany: [TicketScalarWhereInput!]
+  disconnect: [TicketWhereUniqueInput!]
+  set: [TicketWhereUniqueInput!]
+  update: [TicketUpdateWithWhereUniqueWithoutBlockInput!]
+  updateMany: [TicketUpdateManyWithWhereWithoutBlockInput!]
+  upsert: [TicketUpsertWithWhereUniqueWithoutBlockInput!]
+}
+
+input TicketUpdateManyWithoutMachinesNestedInput {
+  connect: [TicketWhereUniqueInput!]
+  connectOrCreate: [TicketCreateOrConnectWithoutMachinesInput!]
+  create: [TicketCreateWithoutMachinesInput!]
+  createMany: TicketCreateManyMachinesInputEnvelope
+  delete: [TicketWhereUniqueInput!]
+  deleteMany: [TicketScalarWhereInput!]
+  disconnect: [TicketWhereUniqueInput!]
+  set: [TicketWhereUniqueInput!]
+  update: [TicketUpdateWithWhereUniqueWithoutMachinesInput!]
+  updateMany: [TicketUpdateManyWithWhereWithoutMachinesInput!]
+  upsert: [TicketUpsertWithWhereUniqueWithoutMachinesInput!]
+}
+
+input TicketUpdateManyWithoutUserNestedInput {
+  connect: [TicketWhereUniqueInput!]
+  connectOrCreate: [TicketCreateOrConnectWithoutUserInput!]
+  create: [TicketCreateWithoutUserInput!]
+  createMany: TicketCreateManyUserInputEnvelope
+  delete: [TicketWhereUniqueInput!]
+  deleteMany: [TicketScalarWhereInput!]
+  disconnect: [TicketWhereUniqueInput!]
+  set: [TicketWhereUniqueInput!]
+  update: [TicketUpdateWithWhereUniqueWithoutUserInput!]
+  updateMany: [TicketUpdateManyWithWhereWithoutUserInput!]
+  upsert: [TicketUpsertWithWhereUniqueWithoutUserInput!]
+}
+
+input TicketUpdateOneWithoutMaintenanceNestedInput {
+  connect: TicketWhereUniqueInput
+  connectOrCreate: TicketCreateOrConnectWithoutMaintenanceInput
+  create: TicketCreateWithoutMaintenanceInput
+  delete: Boolean
+  disconnect: Boolean
+  update: TicketUpdateWithoutMaintenanceInput
+  upsert: TicketUpsertWithoutMaintenanceInput
+}
+
+input TicketUpdateWithWhereUniqueWithoutBlockInput {
+  data: TicketUpdateWithoutBlockInput!
+  where: TicketWhereUniqueInput!
+}
+
+input TicketUpdateWithWhereUniqueWithoutMachinesInput {
+  data: TicketUpdateWithoutMachinesInput!
+  where: TicketWhereUniqueInput!
+}
+
+input TicketUpdateWithWhereUniqueWithoutUserInput {
+  data: TicketUpdateWithoutUserInput!
+  where: TicketWhereUniqueInput!
+}
+
+input TicketUpdateWithoutBlockInput {
+  created_at: DateTimeFieldUpdateOperationsInput
+  description: StringFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  machines: MachinesUpdateOneRequiredWithoutTicketNestedInput
+  maintenance: MaintenanceUpdateOneWithoutTicketNestedInput
+  name: StringFieldUpdateOperationsInput
+  photos: StringFieldUpdateOperationsInput
+  status: Enumticket_statusFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input TicketUpdateWithoutMachinesInput {
+  created_at: DateTimeFieldUpdateOperationsInput
+  description: StringFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  maintenance: MaintenanceUpdateOneWithoutTicketNestedInput
+  name: StringFieldUpdateOperationsInput
+  photos: StringFieldUpdateOperationsInput
+  status: Enumticket_statusFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input TicketUpdateWithoutMaintenanceInput {
+  created_at: DateTimeFieldUpdateOperationsInput
+  description: StringFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  machines: MachinesUpdateOneRequiredWithoutTicketNestedInput
+  name: StringFieldUpdateOperationsInput
+  photos: StringFieldUpdateOperationsInput
+  status: Enumticket_statusFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input TicketUpdateWithoutUserInput {
+  created_at: DateTimeFieldUpdateOperationsInput
+  description: StringFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  machines: MachinesUpdateOneRequiredWithoutTicketNestedInput
+  maintenance: MaintenanceUpdateOneWithoutTicketNestedInput
+  name: StringFieldUpdateOperationsInput
+  photos: StringFieldUpdateOperationsInput
+  status: Enumticket_statusFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input TicketUpsertWithWhereUniqueWithoutBlockInput {
+  create: TicketCreateWithoutBlockInput!
+  update: TicketUpdateWithoutBlockInput!
+  where: TicketWhereUniqueInput!
+}
+
+input TicketUpsertWithWhereUniqueWithoutMachinesInput {
+  create: TicketCreateWithoutMachinesInput!
+  update: TicketUpdateWithoutMachinesInput!
+  where: TicketWhereUniqueInput!
+}
+
+input TicketUpsertWithWhereUniqueWithoutUserInput {
+  create: TicketCreateWithoutUserInput!
+  update: TicketUpdateWithoutUserInput!
+  where: TicketWhereUniqueInput!
+}
+
+input TicketUpsertWithoutMaintenanceInput {
+  create: TicketCreateWithoutMaintenanceInput!
+  update: TicketUpdateWithoutMaintenanceInput!
+}
+
+input TicketWhereInput {
+  AND: [TicketWhereInput!]
+  NOT: [TicketWhereInput!]
+  OR: [TicketWhereInput!]
+  created_at: DateTimeFilter
+  description: StringFilter
+  id: BigIntFilter
+  machine_id: BigIntFilter
+  machines: MachinesRelationFilter
+  maintenance: MaintenanceRelationFilter
+  maintenance_id: BigIntNullableFilter
+  name: StringFilter
+  photos: StringFilter
+  status: Enumticket_statusFilter
+  updated_at: DateTimeFilter
+}
+
+input TicketWhereUniqueInput {
+  id: BigInt
+  maintenance_id: BigInt
+}
+
+type Users {
+  _count: UsersCount!
+  block: Block!
+  blockId: BigInt!
+  created_at: DateTime!
+  email: String!
+  extra_roles: [Role!]
+  id: BigInt!
+  maintenance(
+    limit: Int
+    offset: Int
+    orderBy: MaintenanceOrderByWithRelationInput
+    where: MaintenanceWhereInput
+  ): [Maintenance!]
+  name: String!
+  phone: String!
+  profile: JSON!
+  role: Role!
+  role_alias: String!
+  routine_maintanances: [routine_maintanances!]
+  ticket(
+    limit: Int
+    offset: Int
+    orderBy: TicketOrderByWithRelationInput
+    where: TicketWhereInput
+  ): [Ticket!]
+  updated_at: DateTime!
+}
+
+type UsersAvgAggregate {
+  blockId: Float
+  id: Float
+}
+
+type UsersCount {
+  maintenance: Int!
+  routine_maintanances: Int!
+  ticket: Int!
+}
+
+type UsersCountAggregate {
+  _all: Int!
+  blockId: Int!
+  created_at: Int!
+  extra_roles: Int!
+  id: Int!
+  name: Int!
+  phone: Int!
+  profile: Int!
+  role: Int!
+  role_alias: Int!
+  updated_at: Int!
+}
+
+input UsersCreateInput {
+  created_at: DateTime
+  email: String!
+  extra_roles: UsersCreateextra_rolesInput
+  id: BigInt
+  maintenance: MaintenanceCreateNestedManyWithoutAssigneeInput
+  name: String!
+  phone: String!
+  profile: JSON
+  role: Role!
+  role_alias: String
+  routine_maintanances: routine_maintanancesCreateNestedManyWithoutAssigneeInput
+  ticket: TicketCreateNestedManyWithoutUserInput
+  updated_at: DateTime
+}
+
+input UsersCreateManyBlockInput {
+  created_at: DateTime
+  extra_roles: UsersCreateextra_rolesInput
+  id: BigInt
+  name: String!
+  phone: String!
+  profile: JSON
+  role: Role!
+  role_alias: String
+  updated_at: DateTime
+}
+
+input UsersCreateManyBlockInputEnvelope {
+  data: [UsersCreateManyBlockInput!]!
+  skipDuplicates: Boolean
+}
+
+input UsersCreateNestedManyWithoutBlockInput {
+  connect: [UsersWhereUniqueInput!]
+  connectOrCreate: [UsersCreateOrConnectWithoutBlockInput!]
+  create: [UsersCreateWithoutBlockInput!]
+  createMany: UsersCreateManyBlockInputEnvelope
+}
+
+input UsersCreateNestedOneWithoutMaintenanceInput {
+  connect: UsersWhereUniqueInput
+  connectOrCreate: UsersCreateOrConnectWithoutMaintenanceInput
+  create: UsersCreateWithoutMaintenanceInput
+}
+
+input UsersCreateNestedOneWithoutRoutine_maintanancesInput {
+  connect: UsersWhereUniqueInput
+  connectOrCreate: UsersCreateOrConnectWithoutRoutine_maintanancesInput
+  create: UsersCreateWithoutRoutine_maintanancesInput
+}
+
+input UsersCreateOrConnectWithoutBlockInput {
+  create: UsersCreateWithoutBlockInput!
+  where: UsersWhereUniqueInput!
+}
+
+input UsersCreateOrConnectWithoutMaintenanceInput {
+  create: UsersCreateWithoutMaintenanceInput!
+  where: UsersWhereUniqueInput!
+}
+
+input UsersCreateOrConnectWithoutRoutine_maintanancesInput {
+  create: UsersCreateWithoutRoutine_maintanancesInput!
+  where: UsersWhereUniqueInput!
+}
+
+input UsersCreateWithoutBlockInput {
+  created_at: DateTime
+  extra_roles: UsersCreateextra_rolesInput
+  id: BigInt
+  maintenance: MaintenanceCreateNestedManyWithoutAssigneeInput
+  name: String!
+  phone: String!
+  profile: JSON
+  role: Role!
+  role_alias: String
+  routine_maintanances: routine_maintanancesCreateNestedManyWithoutAssigneeInput
+  ticket: TicketCreateNestedManyWithoutUserInput
+  updated_at: DateTime
+}
+
+input UsersCreateWithoutMaintenanceInput {
+  created_at: DateTime
+  extra_roles: UsersCreateextra_rolesInput
+  id: BigInt
+  name: String!
+  phone: String!
+  profile: JSON
+  role: Role!
+  role_alias: String
+  routine_maintanances: routine_maintanancesCreateNestedManyWithoutAssigneeInput
+  ticket: TicketCreateNestedManyWithoutUserInput
+  updated_at: DateTime
+}
+
+input UsersCreateWithoutRoutine_maintanancesInput {
+  created_at: DateTime
+  extra_roles: UsersCreateextra_rolesInput
+  id: BigInt
+  maintenance: MaintenanceCreateNestedManyWithoutAssigneeInput
+  name: String!
+  phone: String!
+  profile: JSON
+  role: Role!
+  role_alias: String
+  ticket: TicketCreateNestedManyWithoutUserInput
+  updated_at: DateTime
+}
+
+input UsersCreateextra_rolesInput {
+  set: [Role!]!
+}
+
+input UsersListRelationFilter {
+  every: UsersWhereInput
+  none: UsersWhereInput
+  some: UsersWhereInput
+}
+
+type UsersMaxAggregate {
+  blockId: BigInt
+  created_at: DateTime
+  id: BigInt
+  name: String
+  phone: String
+  role: Role
+  role_alias: String
+  updated_at: DateTime
+}
+
+type UsersMinAggregate {
+  blockId: BigInt
+  created_at: DateTime
+  id: BigInt
+  name: String
+  phone: String
+  role: Role
+  role_alias: String
+  updated_at: DateTime
+}
+
+input UsersOrderByWithRelationInput {
+  created_at: SortOrder
+  email: SortOrder
+  id: SortOrder
+  maintenance: MaintenanceOrderByRelationAggregateInput
+  name: SortOrder
+  phone: SortOrder
+  profile: SortOrder
+  role: SortOrder
+  ticket: TicketOrderByRelationAggregateInput
+  updated_at: SortOrder
+  user_auth_id: SortOrder
+}
+
+input UsersRelationFilter {
+  is: UsersWhereInput
+  isNot: UsersWhereInput
+}
+
+input UsersScalarWhereInput {
+  AND: [UsersScalarWhereInput!]
+  NOT: [UsersScalarWhereInput!]
+  OR: [UsersScalarWhereInput!]
+  created_at: DateTimeFilter
+  extra_roles: EnumRoleNullableListFilter
+  id: BigIntFilter
+  name: StringFilter
+  phone: StringFilter
+  profile: JsonFilter
+  role: EnumRoleFilter
+  role_alias: StringFilter
+  updated_at: DateTimeFilter
+}
+
+type UsersSumAggregate {
+  blockId: BigInt
+  id: BigInt
+}
+
+input UsersUpdateInput {
+  created_at: DateTimeFieldUpdateOperationsInput
+  extra_roles: UsersUpdateextra_rolesInput
+  id: BigIntFieldUpdateOperationsInput
+  maintenance: MaintenanceUpdateManyWithoutAssigneeNestedInput
+  name: StringFieldUpdateOperationsInput
+  phone: StringFieldUpdateOperationsInput
+  profile: JSON
+  role: EnumRoleFieldUpdateOperationsInput
+  role_alias: StringFieldUpdateOperationsInput
+  routine_maintanances: routine_maintanancesUpdateManyWithoutAssigneeNestedInput
+  ticket: TicketUpdateManyWithoutUserNestedInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input UsersUpdateManyMutationInput {
+  created_at: DateTimeFieldUpdateOperationsInput
+  extra_roles: UsersUpdateextra_rolesInput
+  id: BigIntFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  phone: StringFieldUpdateOperationsInput
+  profile: JSON
+  role: EnumRoleFieldUpdateOperationsInput
+  role_alias: StringFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input UsersUpdateManyWithWhereWithoutBlockInput {
+  data: UsersUpdateManyMutationInput!
+  where: UsersScalarWhereInput!
+}
+
+input UsersUpdateManyWithoutBlockNestedInput {
+  connect: [UsersWhereUniqueInput!]
+  connectOrCreate: [UsersCreateOrConnectWithoutBlockInput!]
+  create: [UsersCreateWithoutBlockInput!]
+  createMany: UsersCreateManyBlockInputEnvelope
+  delete: [UsersWhereUniqueInput!]
+  deleteMany: [UsersScalarWhereInput!]
+  disconnect: [UsersWhereUniqueInput!]
+  set: [UsersWhereUniqueInput!]
+  update: [UsersUpdateWithWhereUniqueWithoutBlockInput!]
+  updateMany: [UsersUpdateManyWithWhereWithoutBlockInput!]
+  upsert: [UsersUpsertWithWhereUniqueWithoutBlockInput!]
+}
+
+input UsersUpdateOneRequiredWithoutMaintenanceNestedInput {
+  connect: UsersWhereUniqueInput
+  connectOrCreate: UsersCreateOrConnectWithoutMaintenanceInput
+  create: UsersCreateWithoutMaintenanceInput
+  update: UsersUpdateWithoutMaintenanceInput
+  upsert: UsersUpsertWithoutMaintenanceInput
+}
+
+input UsersUpdateOneRequiredWithoutRoutine_maintanancesNestedInput {
+  connect: UsersWhereUniqueInput
+  connectOrCreate: UsersCreateOrConnectWithoutRoutine_maintanancesInput
+  create: UsersCreateWithoutRoutine_maintanancesInput
+  update: UsersUpdateWithoutRoutine_maintanancesInput
+  upsert: UsersUpsertWithoutRoutine_maintanancesInput
+}
+
+input UsersUpdateWithWhereUniqueWithoutBlockInput {
+  data: UsersUpdateWithoutBlockInput!
+  where: UsersWhereUniqueInput!
+}
+
+input UsersUpdateWithoutBlockInput {
+  created_at: DateTimeFieldUpdateOperationsInput
+  extra_roles: UsersUpdateextra_rolesInput
+  id: BigIntFieldUpdateOperationsInput
+  maintenance: MaintenanceUpdateManyWithoutAssigneeNestedInput
+  name: StringFieldUpdateOperationsInput
+  phone: StringFieldUpdateOperationsInput
+  profile: JSON
+  role: EnumRoleFieldUpdateOperationsInput
+  role_alias: StringFieldUpdateOperationsInput
+  routine_maintanances: routine_maintanancesUpdateManyWithoutAssigneeNestedInput
+  ticket: TicketUpdateManyWithoutUserNestedInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input UsersUpdateWithoutMaintenanceInput {
+  created_at: DateTimeFieldUpdateOperationsInput
+  extra_roles: UsersUpdateextra_rolesInput
+  id: BigIntFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  phone: StringFieldUpdateOperationsInput
+  profile: JSON
+  role: EnumRoleFieldUpdateOperationsInput
+  role_alias: StringFieldUpdateOperationsInput
+  routine_maintanances: routine_maintanancesUpdateManyWithoutAssigneeNestedInput
+  ticket: TicketUpdateManyWithoutUserNestedInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input UsersUpdateWithoutRoutine_maintanancesInput {
+  created_at: DateTimeFieldUpdateOperationsInput
+  extra_roles: UsersUpdateextra_rolesInput
+  id: BigIntFieldUpdateOperationsInput
+  maintenance: MaintenanceUpdateManyWithoutAssigneeNestedInput
+  name: StringFieldUpdateOperationsInput
+  phone: StringFieldUpdateOperationsInput
+  profile: JSON
+  role: EnumRoleFieldUpdateOperationsInput
+  role_alias: StringFieldUpdateOperationsInput
+  ticket: TicketUpdateManyWithoutUserNestedInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input UsersUpdateextra_rolesInput {
+  push: [Role!]
+  set: [Role!]
+}
+
+input UsersUpsertWithWhereUniqueWithoutBlockInput {
+  create: UsersCreateWithoutBlockInput!
+  update: UsersUpdateWithoutBlockInput!
+  where: UsersWhereUniqueInput!
+}
+
+input UsersUpsertWithoutMaintenanceInput {
+  create: UsersCreateWithoutMaintenanceInput!
+  update: UsersUpdateWithoutMaintenanceInput!
+}
+
+input UsersUpsertWithoutRoutine_maintanancesInput {
+  create: UsersCreateWithoutRoutine_maintanancesInput!
+  update: UsersUpdateWithoutRoutine_maintanancesInput!
+}
+
+input UsersWhereInput {
+  AND: [UsersWhereInput!]
+  NOT: [UsersWhereInput!]
+  OR: [UsersWhereInput!]
+  created_at: DateTimeFilter
+  extra_roles: EnumRoleNullableListFilter
+  id: BigIntFilter
+  maintenance: MaintenanceListRelationFilter
+  name: StringFilter
+  phone: StringFilter
+  profile: JsonFilter
+  role: EnumRoleFilter
+  role_alias: StringFilter
+  routine_maintanances: Routine_maintanancesListRelationFilter
+  ticket: TicketListRelationFilter
+  updated_at: DateTimeFilter
+}
+
+input UsersWhereUniqueInput {
+  id: BigInt
+  phone: String
+}
+
+type block_settings {
+  block: Block!
+  block_id: BigInt!
+  created_at: DateTime!
+  id: BigInt!
+  name: String!
+  updated_at: DateTime!
+  value: JSON!
+}
+
+input block_settingsBlock_idNameCompoundUniqueInput {
+  block_id: BigInt!
+  name: String!
+}
+
+input block_settingsCreateManyBlockInput {
+  created_at: DateTime
+  id: BigInt
+  name: String!
+  updated_at: DateTime
+  value: JSON!
+}
+
+input block_settingsCreateManyBlockInputEnvelope {
+  data: [block_settingsCreateManyBlockInput!]!
+  skipDuplicates: Boolean
+}
+
+input block_settingsCreateNestedManyWithoutBlockInput {
+  connect: [block_settingsWhereUniqueInput!]
+  connectOrCreate: [block_settingsCreateOrConnectWithoutBlockInput!]
+  create: [block_settingsCreateWithoutBlockInput!]
+  createMany: block_settingsCreateManyBlockInputEnvelope
+}
+
+input block_settingsCreateOrConnectWithoutBlockInput {
+  create: block_settingsCreateWithoutBlockInput!
+  where: block_settingsWhereUniqueInput!
+}
+
+input block_settingsCreateWithoutBlockInput {
+  created_at: DateTime
+  id: BigInt
+  name: String!
+  updated_at: DateTime
+  value: JSON!
+}
+
+input block_settingsScalarWhereInput {
+  AND: [block_settingsScalarWhereInput!]
+  NOT: [block_settingsScalarWhereInput!]
+  OR: [block_settingsScalarWhereInput!]
+  block_id: BigIntFilter
+  created_at: DateTimeFilter
+  id: BigIntFilter
+  name: StringFilter
+  updated_at: DateTimeFilter
+  value: JsonFilter
+}
+
+input block_settingsUpdateManyMutationInput {
+  created_at: DateTimeFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+  value: JSON
+}
+
+input block_settingsUpdateManyWithWhereWithoutBlockInput {
+  data: block_settingsUpdateManyMutationInput!
+  where: block_settingsScalarWhereInput!
+}
+
+input block_settingsUpdateManyWithoutBlockNestedInput {
+  connect: [block_settingsWhereUniqueInput!]
+  connectOrCreate: [block_settingsCreateOrConnectWithoutBlockInput!]
+  create: [block_settingsCreateWithoutBlockInput!]
+  createMany: block_settingsCreateManyBlockInputEnvelope
+  delete: [block_settingsWhereUniqueInput!]
+  deleteMany: [block_settingsScalarWhereInput!]
+  disconnect: [block_settingsWhereUniqueInput!]
+  set: [block_settingsWhereUniqueInput!]
+  update: [block_settingsUpdateWithWhereUniqueWithoutBlockInput!]
+  updateMany: [block_settingsUpdateManyWithWhereWithoutBlockInput!]
+  upsert: [block_settingsUpsertWithWhereUniqueWithoutBlockInput!]
+}
+
+input block_settingsUpdateWithWhereUniqueWithoutBlockInput {
+  data: block_settingsUpdateWithoutBlockInput!
+  where: block_settingsWhereUniqueInput!
+}
+
+input block_settingsUpdateWithoutBlockInput {
+  created_at: DateTimeFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+  value: JSON
+}
+
+input block_settingsUpsertWithWhereUniqueWithoutBlockInput {
+  create: block_settingsCreateWithoutBlockInput!
+  update: block_settingsUpdateWithoutBlockInput!
+  where: block_settingsWhereUniqueInput!
+}
+
+input block_settingsWhereInput {
+  AND: [block_settingsWhereInput!]
+  NOT: [block_settingsWhereInput!]
+  OR: [block_settingsWhereInput!]
+  block: BlockRelationFilter
+  block_id: BigIntFilter
+  created_at: DateTimeFilter
+  id: BigIntFilter
+  name: StringFilter
+  updated_at: DateTimeFilter
+  value: JsonFilter
+}
+
+input block_settingsWhereUniqueInput {
+  block_id_name: block_settingsBlock_idNameCompoundUniqueInput
+  id: BigInt
+}
+
+type catagory {
+  _count: CatagoryCount!
+  block: Block!
+  block_id: BigInt!
+  created_at: DateTime!
+  id: BigInt!
+  items: [Items!]
+  name: String!
+  updated_at: DateTime!
+}
+
+input catagoryCreateManyBlockInput {
+  created_at: DateTime
+  id: BigInt
+  name: String!
+  updated_at: DateTime
+}
+
+input catagoryCreateManyBlockInputEnvelope {
+  data: [catagoryCreateManyBlockInput!]!
+  skipDuplicates: Boolean
+}
+
+input catagoryCreateNestedManyWithoutBlockInput {
+  connect: [catagoryWhereUniqueInput!]
+  connectOrCreate: [catagoryCreateOrConnectWithoutBlockInput!]
+  create: [catagoryCreateWithoutBlockInput!]
+  createMany: catagoryCreateManyBlockInputEnvelope
+}
+
+input catagoryCreateNestedOneWithoutItemsInput {
+  connect: catagoryWhereUniqueInput
+  connectOrCreate: catagoryCreateOrConnectWithoutItemsInput
+  create: catagoryCreateWithoutItemsInput
+}
+
+input catagoryCreateOrConnectWithoutBlockInput {
+  create: catagoryCreateWithoutBlockInput!
+  where: catagoryWhereUniqueInput!
+}
+
+input catagoryCreateOrConnectWithoutItemsInput {
+  create: catagoryCreateWithoutItemsInput!
+  where: catagoryWhereUniqueInput!
+}
+
+input catagoryCreateWithoutBlockInput {
+  created_at: DateTime
+  id: BigInt
+  items: ItemsCreateNestedManyWithoutCatagoryInput
+  name: String!
+  updated_at: DateTime
+}
+
+input catagoryCreateWithoutItemsInput {
+  created_at: DateTime
+  id: BigInt
+  name: String!
+  updated_at: DateTime
+}
+
+input catagoryOrderByWithRelationInput {
+  created_at: SortOrder
+  id: SortOrder
+  items: ItemsOrderByRelationAggregateInput
+  name: SortOrder
+  updated_at: SortOrder
+}
+
+input catagoryScalarWhereInput {
+  AND: [catagoryScalarWhereInput!]
+  NOT: [catagoryScalarWhereInput!]
+  OR: [catagoryScalarWhereInput!]
+  created_at: DateTimeFilter
+  id: BigIntFilter
+  name: StringFilter
+  updated_at: DateTimeFilter
+}
+
+input catagoryUpdateManyMutationInput {
+  created_at: DateTimeFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input catagoryUpdateManyWithWhereWithoutBlockInput {
+  data: catagoryUpdateManyMutationInput!
+  where: catagoryScalarWhereInput!
+}
+
+input catagoryUpdateManyWithoutBlockNestedInput {
+  connect: [catagoryWhereUniqueInput!]
+  connectOrCreate: [catagoryCreateOrConnectWithoutBlockInput!]
+  create: [catagoryCreateWithoutBlockInput!]
+  createMany: catagoryCreateManyBlockInputEnvelope
+  delete: [catagoryWhereUniqueInput!]
+  deleteMany: [catagoryScalarWhereInput!]
+  disconnect: [catagoryWhereUniqueInput!]
+  set: [catagoryWhereUniqueInput!]
+  update: [catagoryUpdateWithWhereUniqueWithoutBlockInput!]
+  updateMany: [catagoryUpdateManyWithWhereWithoutBlockInput!]
+  upsert: [catagoryUpsertWithWhereUniqueWithoutBlockInput!]
+}
+
+input catagoryUpdateOneRequiredWithoutItemsNestedInput {
+  connect: catagoryWhereUniqueInput
+  connectOrCreate: catagoryCreateOrConnectWithoutItemsInput
+  create: catagoryCreateWithoutItemsInput
+  update: catagoryUpdateWithoutItemsInput
+  upsert: catagoryUpsertWithoutItemsInput
+}
+
+input catagoryUpdateWithWhereUniqueWithoutBlockInput {
+  data: catagoryUpdateWithoutBlockInput!
+  where: catagoryWhereUniqueInput!
+}
+
+input catagoryUpdateWithoutBlockInput {
+  created_at: DateTimeFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  items: ItemsUpdateManyWithoutCatagoryNestedInput
+  name: StringFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input catagoryUpdateWithoutItemsInput {
+  created_at: DateTimeFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input catagoryUpsertWithWhereUniqueWithoutBlockInput {
+  create: catagoryCreateWithoutBlockInput!
+  update: catagoryUpdateWithoutBlockInput!
+  where: catagoryWhereUniqueInput!
+}
+
+input catagoryUpsertWithoutItemsInput {
+  create: catagoryCreateWithoutItemsInput!
+  update: catagoryUpdateWithoutItemsInput!
+}
+
+input catagoryWhereInput {
+  AND: [catagoryWhereInput!]
+  NOT: [catagoryWhereInput!]
+  OR: [catagoryWhereInput!]
+  created_at: DateTimeFilter
+  id: BigIntFilter
+  items: ItemsListRelationFilter
+  name: StringFilter
+  updated_at: DateTimeFilter
+}
+
+input catagoryWhereUniqueInput {
+  id: BigInt
+}
+
+type invoice_items {
+  amount: Float!
+  block: Block!
+  block_id: BigInt!
+  created_at: DateTime!
+  id: BigInt!
+  invoice: Invoices!
+  invoice_id: BigInt!
+  item: Items!
+  item_id: BigInt!
+  quantity: Float!
+  unit_price: Float!
+  updated_at: DateTime!
+}
+
+input invoice_itemsCreateManyBlockInput {
+  amount: Float!
+  created_at: DateTime
+  id: BigInt
+  invoice_id: BigInt!
+  item_id: BigInt!
+  quantity: Float!
+  unit_price: Float!
+  updated_at: DateTime
+}
+
+input invoice_itemsCreateManyBlockInputEnvelope {
+  data: [invoice_itemsCreateManyBlockInput!]!
+  skipDuplicates: Boolean
+}
+
+input invoice_itemsCreateManyInvoiceInput {
+  amount: Float!
+  created_at: DateTime
+  id: BigInt
+  item_id: BigInt!
+  quantity: Float!
+  unit_price: Float!
+  updated_at: DateTime
+}
+
+input invoice_itemsCreateManyInvoiceInputEnvelope {
+  data: [invoice_itemsCreateManyInvoiceInput!]!
+  skipDuplicates: Boolean
+}
+
+input invoice_itemsCreateManyItemInput {
+  amount: Float!
+  created_at: DateTime
+  id: BigInt
+  invoice_id: BigInt!
+  quantity: Float!
+  unit_price: Float!
+  updated_at: DateTime
+}
+
+input invoice_itemsCreateManyItemInputEnvelope {
+  data: [invoice_itemsCreateManyItemInput!]!
+  skipDuplicates: Boolean
+}
+
+input invoice_itemsCreateNestedManyWithoutBlockInput {
+  connect: [invoice_itemsWhereUniqueInput!]
+  connectOrCreate: [invoice_itemsCreateOrConnectWithoutBlockInput!]
+  create: [invoice_itemsCreateWithoutBlockInput!]
+  createMany: invoice_itemsCreateManyBlockInputEnvelope
+}
+
+input invoice_itemsCreateNestedManyWithoutInvoiceInput {
+  connect: [invoice_itemsWhereUniqueInput!]
+  connectOrCreate: [invoice_itemsCreateOrConnectWithoutInvoiceInput!]
+  create: [invoice_itemsCreateWithoutInvoiceInput!]
+  createMany: invoice_itemsCreateManyInvoiceInputEnvelope
+}
+
+input invoice_itemsCreateNestedManyWithoutItemInput {
+  connect: [invoice_itemsWhereUniqueInput!]
+  connectOrCreate: [invoice_itemsCreateOrConnectWithoutItemInput!]
+  create: [invoice_itemsCreateWithoutItemInput!]
+  createMany: invoice_itemsCreateManyItemInputEnvelope
+}
+
+input invoice_itemsCreateOrConnectWithoutBlockInput {
+  create: invoice_itemsCreateWithoutBlockInput!
+  where: invoice_itemsWhereUniqueInput!
+}
+
+input invoice_itemsCreateOrConnectWithoutInvoiceInput {
+  create: invoice_itemsCreateWithoutInvoiceInput!
+  where: invoice_itemsWhereUniqueInput!
+}
+
+input invoice_itemsCreateOrConnectWithoutItemInput {
+  create: invoice_itemsCreateWithoutItemInput!
+  where: invoice_itemsWhereUniqueInput!
+}
+
+input invoice_itemsCreateWithoutBlockInput {
+  amount: Float!
+  created_at: DateTime
+  id: BigInt
+  invoice: InvoicesCreateNestedOneWithoutInvoice_itemsInput!
+  item: ItemsCreateNestedOneWithoutInvoice_itemsInput!
+  quantity: Float!
+  unit_price: Float!
+  updated_at: DateTime
+}
+
+input invoice_itemsCreateWithoutInvoiceInput {
+  amount: Float!
+  created_at: DateTime
+  id: BigInt
+  item: ItemsCreateNestedOneWithoutInvoice_itemsInput!
+  quantity: Float!
+  unit_price: Float!
+  updated_at: DateTime
+}
+
+input invoice_itemsCreateWithoutItemInput {
+  amount: Float!
+  created_at: DateTime
+  id: BigInt
+  invoice: InvoicesCreateNestedOneWithoutInvoice_itemsInput!
+  quantity: Float!
+  unit_price: Float!
+  updated_at: DateTime
+}
+
+input invoice_itemsOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input invoice_itemsScalarWhereInput {
+  AND: [invoice_itemsScalarWhereInput!]
+  NOT: [invoice_itemsScalarWhereInput!]
+  OR: [invoice_itemsScalarWhereInput!]
+  amount: FloatFilter
+  created_at: DateTimeFilter
+  id: BigIntFilter
+  invoice_id: BigIntFilter
+  item_id: BigIntFilter
+  quantity: FloatFilter
+  unit_price: FloatFilter
+  updated_at: DateTimeFilter
+}
+
+input invoice_itemsUpdateManyMutationInput {
+  amount: FloatFieldUpdateOperationsInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  quantity: FloatFieldUpdateOperationsInput
+  unit_price: FloatFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input invoice_itemsUpdateManyWithWhereWithoutBlockInput {
+  data: invoice_itemsUpdateManyMutationInput!
+  where: invoice_itemsScalarWhereInput!
+}
+
+input invoice_itemsUpdateManyWithWhereWithoutInvoiceInput {
+  data: invoice_itemsUpdateManyMutationInput!
+  where: invoice_itemsScalarWhereInput!
+}
+
+input invoice_itemsUpdateManyWithWhereWithoutItemInput {
+  data: invoice_itemsUpdateManyMutationInput!
+  where: invoice_itemsScalarWhereInput!
+}
+
+input invoice_itemsUpdateManyWithoutBlockNestedInput {
+  connect: [invoice_itemsWhereUniqueInput!]
+  connectOrCreate: [invoice_itemsCreateOrConnectWithoutBlockInput!]
+  create: [invoice_itemsCreateWithoutBlockInput!]
+  createMany: invoice_itemsCreateManyBlockInputEnvelope
+  delete: [invoice_itemsWhereUniqueInput!]
+  deleteMany: [invoice_itemsScalarWhereInput!]
+  disconnect: [invoice_itemsWhereUniqueInput!]
+  set: [invoice_itemsWhereUniqueInput!]
+  update: [invoice_itemsUpdateWithWhereUniqueWithoutBlockInput!]
+  updateMany: [invoice_itemsUpdateManyWithWhereWithoutBlockInput!]
+  upsert: [invoice_itemsUpsertWithWhereUniqueWithoutBlockInput!]
+}
+
+input invoice_itemsUpdateManyWithoutInvoiceNestedInput {
+  connect: [invoice_itemsWhereUniqueInput!]
+  connectOrCreate: [invoice_itemsCreateOrConnectWithoutInvoiceInput!]
+  create: [invoice_itemsCreateWithoutInvoiceInput!]
+  createMany: invoice_itemsCreateManyInvoiceInputEnvelope
+  delete: [invoice_itemsWhereUniqueInput!]
+  deleteMany: [invoice_itemsScalarWhereInput!]
+  disconnect: [invoice_itemsWhereUniqueInput!]
+  set: [invoice_itemsWhereUniqueInput!]
+  update: [invoice_itemsUpdateWithWhereUniqueWithoutInvoiceInput!]
+  updateMany: [invoice_itemsUpdateManyWithWhereWithoutInvoiceInput!]
+  upsert: [invoice_itemsUpsertWithWhereUniqueWithoutInvoiceInput!]
+}
+
+input invoice_itemsUpdateManyWithoutItemNestedInput {
+  connect: [invoice_itemsWhereUniqueInput!]
+  connectOrCreate: [invoice_itemsCreateOrConnectWithoutItemInput!]
+  create: [invoice_itemsCreateWithoutItemInput!]
+  createMany: invoice_itemsCreateManyItemInputEnvelope
+  delete: [invoice_itemsWhereUniqueInput!]
+  deleteMany: [invoice_itemsScalarWhereInput!]
+  disconnect: [invoice_itemsWhereUniqueInput!]
+  set: [invoice_itemsWhereUniqueInput!]
+  update: [invoice_itemsUpdateWithWhereUniqueWithoutItemInput!]
+  updateMany: [invoice_itemsUpdateManyWithWhereWithoutItemInput!]
+  upsert: [invoice_itemsUpsertWithWhereUniqueWithoutItemInput!]
+}
+
+input invoice_itemsUpdateWithWhereUniqueWithoutBlockInput {
+  data: invoice_itemsUpdateWithoutBlockInput!
+  where: invoice_itemsWhereUniqueInput!
+}
+
+input invoice_itemsUpdateWithWhereUniqueWithoutInvoiceInput {
+  data: invoice_itemsUpdateWithoutInvoiceInput!
+  where: invoice_itemsWhereUniqueInput!
+}
+
+input invoice_itemsUpdateWithWhereUniqueWithoutItemInput {
+  data: invoice_itemsUpdateWithoutItemInput!
+  where: invoice_itemsWhereUniqueInput!
+}
+
+input invoice_itemsUpdateWithoutBlockInput {
+  amount: FloatFieldUpdateOperationsInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  invoice: InvoicesUpdateOneRequiredWithoutInvoice_itemsNestedInput
+  item: ItemsUpdateOneRequiredWithoutInvoice_itemsNestedInput
+  quantity: FloatFieldUpdateOperationsInput
+  unit_price: FloatFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input invoice_itemsUpdateWithoutInvoiceInput {
+  amount: FloatFieldUpdateOperationsInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  item: ItemsUpdateOneRequiredWithoutInvoice_itemsNestedInput
+  quantity: FloatFieldUpdateOperationsInput
+  unit_price: FloatFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input invoice_itemsUpdateWithoutItemInput {
+  amount: FloatFieldUpdateOperationsInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  invoice: InvoicesUpdateOneRequiredWithoutInvoice_itemsNestedInput
+  quantity: FloatFieldUpdateOperationsInput
+  unit_price: FloatFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input invoice_itemsUpsertWithWhereUniqueWithoutBlockInput {
+  create: invoice_itemsCreateWithoutBlockInput!
+  update: invoice_itemsUpdateWithoutBlockInput!
+  where: invoice_itemsWhereUniqueInput!
+}
+
+input invoice_itemsUpsertWithWhereUniqueWithoutInvoiceInput {
+  create: invoice_itemsCreateWithoutInvoiceInput!
+  update: invoice_itemsUpdateWithoutInvoiceInput!
+  where: invoice_itemsWhereUniqueInput!
+}
+
+input invoice_itemsUpsertWithWhereUniqueWithoutItemInput {
+  create: invoice_itemsCreateWithoutItemInput!
+  update: invoice_itemsUpdateWithoutItemInput!
+  where: invoice_itemsWhereUniqueInput!
+}
+
+input invoice_itemsWhereInput {
+  AND: [invoice_itemsWhereInput!]
+  NOT: [invoice_itemsWhereInput!]
+  OR: [invoice_itemsWhereInput!]
+  amount: FloatFilter
+  created_at: DateTimeFilter
+  id: BigIntFilter
+  invoice: InvoicesRelationFilter
+  invoice_id: BigIntFilter
+  item: ItemsRelationFilter
+  item_id: BigIntFilter
+  quantity: FloatFilter
+  unit_price: FloatFilter
+  updated_at: DateTimeFilter
+}
+
+input invoice_itemsWhereUniqueInput {
+  id: BigInt
+}
+
+type machine_catagory {
+  _count: Machine_catagoryCount!
+  block: Block!
+  block_id: BigInt!
+  created_at: DateTime!
+  id: BigInt!
+  machines(
+    orderBy: MachinesOrderByWithRelationInput
+    skip: Int
+    take: Int
+    where: MachinesWhereInput
+  ): [Machines!]
+  name: String!
+  updated_at: DateTime!
+}
+
+input machine_catagoryCreateManyBlockInput {
+  created_at: DateTime
+  id: BigInt
+  name: String!
+  updated_at: DateTime
+}
+
+input machine_catagoryCreateManyBlockInputEnvelope {
+  data: [machine_catagoryCreateManyBlockInput!]!
+  skipDuplicates: Boolean
+}
+
+input machine_catagoryCreateNestedManyWithoutBlockInput {
+  connect: [machine_catagoryWhereUniqueInput!]
+  connectOrCreate: [machine_catagoryCreateOrConnectWithoutBlockInput!]
+  create: [machine_catagoryCreateWithoutBlockInput!]
+  createMany: machine_catagoryCreateManyBlockInputEnvelope
+}
+
+input machine_catagoryCreateNestedOneWithoutMachinesInput {
+  connect: machine_catagoryWhereUniqueInput
+  connectOrCreate: machine_catagoryCreateOrConnectWithoutMachinesInput
+  create: machine_catagoryCreateWithoutMachinesInput
+}
+
+input machine_catagoryCreateOrConnectWithoutBlockInput {
+  create: machine_catagoryCreateWithoutBlockInput!
+  where: machine_catagoryWhereUniqueInput!
+}
+
+input machine_catagoryCreateOrConnectWithoutMachinesInput {
+  create: machine_catagoryCreateWithoutMachinesInput!
+  where: machine_catagoryWhereUniqueInput!
+}
+
+input machine_catagoryCreateWithoutBlockInput {
+  created_at: DateTime
+  id: BigInt
+  machines: MachinesCreateNestedManyWithoutMachine_catagoryInput
+  name: String!
+  updated_at: DateTime
+}
+
+input machine_catagoryCreateWithoutMachinesInput {
+  created_at: DateTime
+  id: BigInt
+  name: String!
+  updated_at: DateTime
+}
+
+enum machine_catagoryOrderByRelevanceFieldEnum {
+  name
+}
+
+input machine_catagoryOrderByRelevanceInput {
+  fields: [machine_catagoryOrderByRelevanceFieldEnum!]!
+  search: String!
+  sort: SortOrder!
+}
+
+input machine_catagoryOrderByWithRelationAndSearchRelevanceInput {
+  _relevance: machine_catagoryOrderByRelevanceInput
+  created_at: SortOrder
+  id: SortOrder
+  machines: MachinesOrderByRelationAggregateInput
+  name: SortOrder
+  updated_at: SortOrder
+}
+
+input machine_catagoryScalarWhereInput {
+  AND: [machine_catagoryScalarWhereInput!]
+  NOT: [machine_catagoryScalarWhereInput!]
+  OR: [machine_catagoryScalarWhereInput!]
+  created_at: DateTimeFilter
+  id: BigIntFilter
+  name: StringFilter
+  updated_at: DateTimeFilter
+}
+
+input machine_catagoryUpdateManyMutationInput {
+  created_at: DateTimeFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input machine_catagoryUpdateManyWithWhereWithoutBlockInput {
+  data: machine_catagoryUpdateManyMutationInput!
+  where: machine_catagoryScalarWhereInput!
+}
+
+input machine_catagoryUpdateManyWithoutBlockNestedInput {
+  connect: [machine_catagoryWhereUniqueInput!]
+  connectOrCreate: [machine_catagoryCreateOrConnectWithoutBlockInput!]
+  create: [machine_catagoryCreateWithoutBlockInput!]
+  createMany: machine_catagoryCreateManyBlockInputEnvelope
+  delete: [machine_catagoryWhereUniqueInput!]
+  deleteMany: [machine_catagoryScalarWhereInput!]
+  disconnect: [machine_catagoryWhereUniqueInput!]
+  set: [machine_catagoryWhereUniqueInput!]
+  update: [machine_catagoryUpdateWithWhereUniqueWithoutBlockInput!]
+  updateMany: [machine_catagoryUpdateManyWithWhereWithoutBlockInput!]
+  upsert: [machine_catagoryUpsertWithWhereUniqueWithoutBlockInput!]
+}
+
+input machine_catagoryUpdateOneRequiredWithoutMachinesNestedInput {
+  connect: machine_catagoryWhereUniqueInput
+  connectOrCreate: machine_catagoryCreateOrConnectWithoutMachinesInput
+  create: machine_catagoryCreateWithoutMachinesInput
+  update: machine_catagoryUpdateWithoutMachinesInput
+  upsert: machine_catagoryUpsertWithoutMachinesInput
+}
+
+input machine_catagoryUpdateOneWithoutMachinesNestedInput {
+  connect: machine_catagoryWhereUniqueInput
+  connectOrCreate: machine_catagoryCreateOrConnectWithoutMachinesInput
+  create: machine_catagoryCreateWithoutMachinesInput
+  delete: Boolean
+  disconnect: Boolean
+  update: machine_catagoryUpdateWithoutMachinesInput
+  upsert: machine_catagoryUpsertWithoutMachinesInput
+}
+
+input machine_catagoryUpdateWithWhereUniqueWithoutBlockInput {
+  data: machine_catagoryUpdateWithoutBlockInput!
+  where: machine_catagoryWhereUniqueInput!
+}
+
+input machine_catagoryUpdateWithoutBlockInput {
+  created_at: DateTimeFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  machines: MachinesUpdateManyWithoutMachine_catagoryNestedInput
+  name: StringFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input machine_catagoryUpdateWithoutMachinesInput {
+  created_at: DateTimeFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input machine_catagoryUpsertWithWhereUniqueWithoutBlockInput {
+  create: machine_catagoryCreateWithoutBlockInput!
+  update: machine_catagoryUpdateWithoutBlockInput!
+  where: machine_catagoryWhereUniqueInput!
+}
+
+input machine_catagoryUpsertWithoutMachinesInput {
+  create: machine_catagoryCreateWithoutMachinesInput!
+  update: machine_catagoryUpdateWithoutMachinesInput!
+}
+
+input machine_catagoryWhereInput {
+  AND: [machine_catagoryWhereInput!]
+  NOT: [machine_catagoryWhereInput!]
+  OR: [machine_catagoryWhereInput!]
+  created_at: DateTimeFilter
+  id: BigIntFilter
+  machines: MachinesListRelationFilter
+  name: StringFilter
+  updated_at: DateTimeFilter
+}
+
+input machine_catagoryWhereUniqueInput {
+  id: BigInt
+}
+
+type routine_maintanances {
+  assignee: Users!
+  assignee_id: BigInt!
+  block: Block!
+  block_id: BigInt!
+  created_at: DateTime!
+  cron: String!
+  description: String!
+  duration: Int!
+  id: BigInt!
+  meachine: Machines!
+  meachine_id: BigInt!
+  name: String!
+  updated_at: DateTime!
+}
+
+input routine_maintanancesCreateInput {
+  assignee: UsersCreateNestedOneWithoutRoutine_maintanancesInput!
+  created_at: DateTime
+  cron: String!
+  description: String!
+  duration: Int!
+  id: BigInt
+  meachine: MachinesCreateNestedOneWithoutRoutine_maintanancesInput!
+  name: String!
+  updated_at: DateTime
+}
+
+input routine_maintanancesCreateManyAssigneeInput {
+  created_at: DateTime
+  cron: String!
+  description: String!
+  duration: Int!
+  id: BigInt
+  meachine_id: BigInt!
+  name: String!
+  updated_at: DateTime
+}
+
+input routine_maintanancesCreateManyAssigneeInputEnvelope {
+  data: [routine_maintanancesCreateManyAssigneeInput!]!
+  skipDuplicates: Boolean
+}
+
+input routine_maintanancesCreateManyBlockInput {
+  assignee_id: BigInt!
+  created_at: DateTime
+  cron: String!
+  description: String!
+  duration: Int!
+  id: BigInt
+  meachine_id: BigInt!
+  name: String!
+  updated_at: DateTime
+}
+
+input routine_maintanancesCreateManyBlockInputEnvelope {
+  data: [routine_maintanancesCreateManyBlockInput!]!
+  skipDuplicates: Boolean
+}
+
+input routine_maintanancesCreateManyMeachineInput {
+  assignee_id: BigInt!
+  created_at: DateTime
+  cron: String!
+  description: String!
+  duration: Int!
+  id: BigInt
+  name: String!
+  updated_at: DateTime
+}
+
+input routine_maintanancesCreateManyMeachineInputEnvelope {
+  data: [routine_maintanancesCreateManyMeachineInput!]!
+  skipDuplicates: Boolean
+}
+
+input routine_maintanancesCreateNestedManyWithoutAssigneeInput {
+  connect: [routine_maintanancesWhereUniqueInput!]
+  connectOrCreate: [routine_maintanancesCreateOrConnectWithoutAssigneeInput!]
+  create: [routine_maintanancesCreateWithoutAssigneeInput!]
+  createMany: routine_maintanancesCreateManyAssigneeInputEnvelope
+}
+
+input routine_maintanancesCreateNestedManyWithoutBlockInput {
+  connect: [routine_maintanancesWhereUniqueInput!]
+  connectOrCreate: [routine_maintanancesCreateOrConnectWithoutBlockInput!]
+  create: [routine_maintanancesCreateWithoutBlockInput!]
+  createMany: routine_maintanancesCreateManyBlockInputEnvelope
+}
+
+input routine_maintanancesCreateNestedManyWithoutMeachineInput {
+  connect: [routine_maintanancesWhereUniqueInput!]
+  connectOrCreate: [routine_maintanancesCreateOrConnectWithoutMeachineInput!]
+  create: [routine_maintanancesCreateWithoutMeachineInput!]
+  createMany: routine_maintanancesCreateManyMeachineInputEnvelope
+}
+
+input routine_maintanancesCreateOrConnectWithoutAssigneeInput {
+  create: routine_maintanancesCreateWithoutAssigneeInput!
+  where: routine_maintanancesWhereUniqueInput!
+}
+
+input routine_maintanancesCreateOrConnectWithoutBlockInput {
+  create: routine_maintanancesCreateWithoutBlockInput!
+  where: routine_maintanancesWhereUniqueInput!
+}
+
+input routine_maintanancesCreateOrConnectWithoutMeachineInput {
+  create: routine_maintanancesCreateWithoutMeachineInput!
+  where: routine_maintanancesWhereUniqueInput!
+}
+
+input routine_maintanancesCreateWithoutAssigneeInput {
+  created_at: DateTime
+  cron: String!
+  description: String!
+  duration: Int!
+  id: BigInt
+  meachine: MachinesCreateNestedOneWithoutRoutine_maintanancesInput!
+  name: String!
+  updated_at: DateTime
+}
+
+input routine_maintanancesCreateWithoutBlockInput {
+  assignee: UsersCreateNestedOneWithoutRoutine_maintanancesInput!
+  created_at: DateTime
+  cron: String!
+  description: String!
+  duration: Int!
+  id: BigInt
+  meachine: MachinesCreateNestedOneWithoutRoutine_maintanancesInput!
+  name: String!
+  updated_at: DateTime
+}
+
+input routine_maintanancesCreateWithoutMeachineInput {
+  assignee: UsersCreateNestedOneWithoutRoutine_maintanancesInput!
+  created_at: DateTime
+  cron: String!
+  description: String!
+  duration: Int!
+  id: BigInt
+  name: String!
+  updated_at: DateTime
+}
+
+input routine_maintanancesScalarWhereInput {
+  AND: [routine_maintanancesScalarWhereInput!]
+  NOT: [routine_maintanancesScalarWhereInput!]
+  OR: [routine_maintanancesScalarWhereInput!]
+  assignee_id: BigIntFilter
+  created_at: DateTimeFilter
+  cron: StringFilter
+  description: StringFilter
+  duration: IntFilter
+  id: BigIntFilter
+  meachine_id: BigIntFilter
+  name: StringFilter
+  updated_at: DateTimeFilter
+}
+
+input routine_maintanancesSumOrderByAggregateInput {
+  assignee_id: SortOrder
+  duration: SortOrder
+  id: SortOrder
+  meachine_id: SortOrder
+}
+
+input routine_maintanancesUpdateInput {
+  assignee: UsersUpdateOneRequiredWithoutRoutine_maintanancesNestedInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  cron: StringFieldUpdateOperationsInput
+  description: StringFieldUpdateOperationsInput
+  duration: IntFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  meachine: MachinesUpdateOneRequiredWithoutRoutine_maintanancesNestedInput
+  name: StringFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input routine_maintanancesUpdateManyMutationInput {
+  created_at: DateTimeFieldUpdateOperationsInput
+  cron: StringFieldUpdateOperationsInput
+  description: StringFieldUpdateOperationsInput
+  duration: IntFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input routine_maintanancesUpdateManyWithWhereWithoutAssigneeInput {
+  data: routine_maintanancesUpdateManyMutationInput!
+  where: routine_maintanancesScalarWhereInput!
+}
+
+input routine_maintanancesUpdateManyWithWhereWithoutBlockInput {
+  data: routine_maintanancesUpdateManyMutationInput!
+  where: routine_maintanancesScalarWhereInput!
+}
+
+input routine_maintanancesUpdateManyWithWhereWithoutMeachineInput {
+  data: routine_maintanancesUpdateManyMutationInput!
+  where: routine_maintanancesScalarWhereInput!
+}
+
+input routine_maintanancesUpdateManyWithoutAssigneeNestedInput {
+  connect: [routine_maintanancesWhereUniqueInput!]
+  connectOrCreate: [routine_maintanancesCreateOrConnectWithoutAssigneeInput!]
+  create: [routine_maintanancesCreateWithoutAssigneeInput!]
+  createMany: routine_maintanancesCreateManyAssigneeInputEnvelope
+  delete: [routine_maintanancesWhereUniqueInput!]
+  deleteMany: [routine_maintanancesScalarWhereInput!]
+  disconnect: [routine_maintanancesWhereUniqueInput!]
+  set: [routine_maintanancesWhereUniqueInput!]
+  update: [routine_maintanancesUpdateWithWhereUniqueWithoutAssigneeInput!]
+  updateMany: [routine_maintanancesUpdateManyWithWhereWithoutAssigneeInput!]
+  upsert: [routine_maintanancesUpsertWithWhereUniqueWithoutAssigneeInput!]
+}
+
+input routine_maintanancesUpdateManyWithoutBlockNestedInput {
+  connect: [routine_maintanancesWhereUniqueInput!]
+  connectOrCreate: [routine_maintanancesCreateOrConnectWithoutBlockInput!]
+  create: [routine_maintanancesCreateWithoutBlockInput!]
+  createMany: routine_maintanancesCreateManyBlockInputEnvelope
+  delete: [routine_maintanancesWhereUniqueInput!]
+  deleteMany: [routine_maintanancesScalarWhereInput!]
+  disconnect: [routine_maintanancesWhereUniqueInput!]
+  set: [routine_maintanancesWhereUniqueInput!]
+  update: [routine_maintanancesUpdateWithWhereUniqueWithoutBlockInput!]
+  updateMany: [routine_maintanancesUpdateManyWithWhereWithoutBlockInput!]
+  upsert: [routine_maintanancesUpsertWithWhereUniqueWithoutBlockInput!]
+}
+
+input routine_maintanancesUpdateManyWithoutMeachineNestedInput {
+  connect: [routine_maintanancesWhereUniqueInput!]
+  connectOrCreate: [routine_maintanancesCreateOrConnectWithoutMeachineInput!]
+  create: [routine_maintanancesCreateWithoutMeachineInput!]
+  createMany: routine_maintanancesCreateManyMeachineInputEnvelope
+  delete: [routine_maintanancesWhereUniqueInput!]
+  deleteMany: [routine_maintanancesScalarWhereInput!]
+  disconnect: [routine_maintanancesWhereUniqueInput!]
+  set: [routine_maintanancesWhereUniqueInput!]
+  update: [routine_maintanancesUpdateWithWhereUniqueWithoutMeachineInput!]
+  updateMany: [routine_maintanancesUpdateManyWithWhereWithoutMeachineInput!]
+  upsert: [routine_maintanancesUpsertWithWhereUniqueWithoutMeachineInput!]
+}
+
+input routine_maintanancesUpdateWithWhereUniqueWithoutAssigneeInput {
+  data: routine_maintanancesUpdateWithoutAssigneeInput!
+  where: routine_maintanancesWhereUniqueInput!
+}
+
+input routine_maintanancesUpdateWithWhereUniqueWithoutBlockInput {
+  data: routine_maintanancesUpdateWithoutBlockInput!
+  where: routine_maintanancesWhereUniqueInput!
+}
+
+input routine_maintanancesUpdateWithWhereUniqueWithoutMeachineInput {
+  data: routine_maintanancesUpdateWithoutMeachineInput!
+  where: routine_maintanancesWhereUniqueInput!
+}
+
+input routine_maintanancesUpdateWithoutAssigneeInput {
+  created_at: DateTimeFieldUpdateOperationsInput
+  cron: StringFieldUpdateOperationsInput
+  description: StringFieldUpdateOperationsInput
+  duration: IntFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  meachine: MachinesUpdateOneRequiredWithoutRoutine_maintanancesNestedInput
+  name: StringFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input routine_maintanancesUpdateWithoutBlockInput {
+  assignee: UsersUpdateOneRequiredWithoutRoutine_maintanancesNestedInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  cron: StringFieldUpdateOperationsInput
+  description: StringFieldUpdateOperationsInput
+  duration: IntFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  meachine: MachinesUpdateOneRequiredWithoutRoutine_maintanancesNestedInput
+  name: StringFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input routine_maintanancesUpdateWithoutMeachineInput {
+  assignee: UsersUpdateOneRequiredWithoutRoutine_maintanancesNestedInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  cron: StringFieldUpdateOperationsInput
+  description: StringFieldUpdateOperationsInput
+  duration: IntFieldUpdateOperationsInput
+  id: BigIntFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input routine_maintanancesUpsertWithWhereUniqueWithoutAssigneeInput {
+  create: routine_maintanancesCreateWithoutAssigneeInput!
+  update: routine_maintanancesUpdateWithoutAssigneeInput!
+  where: routine_maintanancesWhereUniqueInput!
+}
+
+input routine_maintanancesUpsertWithWhereUniqueWithoutBlockInput {
+  create: routine_maintanancesCreateWithoutBlockInput!
+  update: routine_maintanancesUpdateWithoutBlockInput!
+  where: routine_maintanancesWhereUniqueInput!
+}
+
+input routine_maintanancesUpsertWithWhereUniqueWithoutMeachineInput {
+  create: routine_maintanancesCreateWithoutMeachineInput!
+  update: routine_maintanancesUpdateWithoutMeachineInput!
+  where: routine_maintanancesWhereUniqueInput!
+}
+
+input routine_maintanancesWhereInput {
+  AND: [routine_maintanancesWhereInput!]
+  NOT: [routine_maintanancesWhereInput!]
+  OR: [routine_maintanancesWhereInput!]
+  assignee: UsersRelationFilter
+  assignee_id: BigIntFilter
+  created_at: DateTimeFilter
+  cron: StringFilter
+  description: StringFilter
+  duration: IntFilter
+  id: BigIntFilter
+  meachine: MachinesRelationFilter
+  meachine_id: BigIntFilter
+  name: StringFilter
+  updated_at: DateTimeFilter
+}
+
+input routine_maintanancesWhereUniqueInput {
+  id: BigInt
+}
+
+enum ticket_status {
+  CLOSED
+  OPEN
+  PENDING
+}

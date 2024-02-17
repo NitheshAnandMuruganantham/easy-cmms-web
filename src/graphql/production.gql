@@ -1,53 +1,53 @@
-query productionData(
-  $limit: Int
-  $offset: Int
-  $orderBy: production_dataOrderByWithAggregationInput
-  $where: production_dataWhereInput
-) {
-  productionData(
-    limit: $limit
-    offset: $offset
-    orderBy: $orderBy
-    where: $where
-  ) {
-    id
-    updatedBy {
-      id
-      name
-    }
-  shift
-  date
-  production
-    created_at
-  }
-}
-query productionDataCount($limit: Int, $offset: Int, $orderBy: production_dataOrderByWithAggregationInput, $where: production_dataWhereInput) {
-  productionDataCount(limit: $limit,offset: $offset,orderBy: $orderBy,where: $where) 
-}
+# query productionData(
+#   $limit: Int
+#   $offset: Int
+#   $orderBy: production_dataOrderByWithAggregationInput
+#   $where: production_dataWhereInput
+# ) {
+#   productionData(
+#     limit: $limit
+#     offset: $offset
+#     orderBy: $orderBy
+#     where: $where
+#   ) {
+#     id
+#     updatedBy {
+#       id
+#       name
+#     }
+#   shift
+#   date
+#   production
+#     created_at
+#   }
+# }
+# query productionDataCount($limit: Int, $offset: Int, $orderBy: production_dataOrderByWithAggregationInput, $where: production_dataWhereInput) {
+#   productionDataCount(limit: $limit,offset: $offset,orderBy: $orderBy,where: $where) 
+# }
 
-query production($productionId: Int!) {
-  production(id: $productionId) {
-       id
-    updatedBy {
-      id
-      name
-    }
-  shift
-  date
-  production
-    created_at
-  }
-  }
+# query production($productionId: Int!) {
+#   production(id: $productionId) {
+#        id
+#     updatedBy {
+#       id
+#       name
+#     }
+#   shift
+#   date
+#   production
+#     created_at
+#   }
+#   }
 
 
-mutation removeProductionData($removeProductionDataId: Int!) {
-  removeProductionData(id: $removeProductionDataId) {
-    id
-  }
-}
+# mutation removeProductionData($removeProductionDataId: Int!) {
+#   removeProductionData(id: $removeProductionDataId) {
+#     id
+#   }
+# }
 
-mutation updateProduction($updateProductionId: Int!, $updateProductionInput: production_dataUpdateInput!) {
-  updateProduction(id: $updateProductionId, updateProductionInput: $updateProductionInput) {
-    id
-  }
-}
+# mutation updateProduction($updateProductionId: Int!, $updateProductionInput: production_dataUpdateInput!) {
+#   updateProduction(id: $updateProductionId, updateProductionInput: $updateProductionInput) {
+#     id
+#   }
+# }

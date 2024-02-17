@@ -35,7 +35,7 @@ const NewMaintenance: React.FunctionComponent<Props> = (props) => {
     variables: {
       where: {
         role: {
-          equals: Role.Fitter,
+          in: [Role.Fitter, Role.Supervisor, Role.Engineer],
         },
       },
     },

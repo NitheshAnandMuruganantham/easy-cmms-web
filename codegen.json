@@ -1,13 +1,5 @@
 {
-  "schema": [
-    {
-      "http://localhost:8000/graphql": {
-        "headers": {
-          "apikey": "someapikey"
-        }
-      }
-    }
-  ],
+  "schema": ["./schema.graphql"],
   "documents": "./src/**/*{.graphql,.gql}",
   "overwrite": true,
   "generates": {
