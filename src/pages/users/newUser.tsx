@@ -28,6 +28,7 @@ const NewUser: React.FunctionComponent<Props> = (props) => {
       <DialogTitle>New User</DialogTitle>
       <Formik
         initialValues={{
+          email: "",
           phone: "+91",
           first_name: "",
           last_name: "",
@@ -38,6 +39,7 @@ const NewUser: React.FunctionComponent<Props> = (props) => {
         }}
         validationSchema={yup.object().shape({
           first_name: yup.string().required(),
+          email: yup.string().email().required(),
           last_name: yup.string().required(),
           role: yup.string().required(),
           add_role_2: yup.string(),
@@ -52,6 +54,7 @@ const NewUser: React.FunctionComponent<Props> = (props) => {
           await createUser({
             variables: {
               createUserInput: {
+                email: values.email,
                 name: values.first_name + " " + values.last_name,
                 phone: values.phone,
                 role: values.role,
@@ -100,6 +103,16 @@ const NewUser: React.FunctionComponent<Props> = (props) => {
                   />
                   <Field
                     component={TextField}
+                    type="email"
+                    fullWidth
+                    style={{
+                      marginTop: 10,
+                    }}
+                    label="email"
+                    name="email"
+                  />
+                  <Field
+                    component={TextField}
                     type="text"
                     fullWidth
                     label="last name"
@@ -140,12 +153,6 @@ const NewUser: React.FunctionComponent<Props> = (props) => {
                     name="add_role_1"
                   >
                     <MenuItem value={Role.Supervisor}>Supervisor</MenuItem>
-                    <MenuItem value={Role.InputController}>
-                      InputController
-                    </MenuItem>
-                    <MenuItem value={Role.ProductionController}>
-                      ProductionController
-                    </MenuItem>
                     <MenuItem value={Role.Engineer}>Engineer</MenuItem>
                     <MenuItem value={Role.Guest}>Guest</MenuItem>
                   </Field>
@@ -156,12 +163,6 @@ const NewUser: React.FunctionComponent<Props> = (props) => {
                     name="add_role_2"
                   >
                     <MenuItem value={Role.Supervisor}>Supervisor</MenuItem>
-                    <MenuItem value={Role.InputController}>
-                      InputController
-                    </MenuItem>
-                    <MenuItem value={Role.ProductionController}>
-                      ProductionController
-                    </MenuItem>
                     <MenuItem value={Role.Engineer}>Engineer</MenuItem>
                     <MenuItem value={Role.Guest}>Guest</MenuItem>
                   </Field>
