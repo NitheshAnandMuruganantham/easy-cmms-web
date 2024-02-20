@@ -38,9 +38,13 @@ const NewMaintenance: React.FunctionComponent<Props> = (props) => {
     useUsersDropDownQuery({
       variables: {
         where: {
-          role: {
-            equals: Role.Fitter,
-          },
+          OR: [
+            {
+              role: {
+                equals: Role.Fitter,
+              },
+            },
+          ],
         },
       },
     });

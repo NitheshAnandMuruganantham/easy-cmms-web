@@ -28,6 +28,7 @@ const NewUser: React.FunctionComponent<Props> = (props) => {
       <DialogTitle>New User</DialogTitle>
       <Formik
         initialValues={{
+          email: "",
           phone: "+91",
           first_name: "",
           last_name: "",
@@ -39,6 +40,7 @@ const NewUser: React.FunctionComponent<Props> = (props) => {
         }}
         validationSchema={yup.object().shape({
           first_name: yup.string().required(),
+          email: yup.string().email().required(),
           last_name: yup.string().required(),
           role: yup.string().required(),
           add_role_2: yup.string(),
@@ -100,6 +102,16 @@ const NewUser: React.FunctionComponent<Props> = (props) => {
                     }}
                     label="first name"
                     name="first_name"
+                  />
+                  <Field
+                    component={TextField}
+                    type="email"
+                    fullWidth
+                    style={{
+                      marginTop: 10,
+                    }}
+                    label="email"
+                    name="email"
                   />
                   <Field
                     component={TextField}
