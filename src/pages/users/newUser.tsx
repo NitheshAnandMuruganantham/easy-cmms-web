@@ -33,6 +33,7 @@ const NewUser: React.FunctionComponent<Props> = (props) => {
           first_name: "",
           last_name: "",
           role: Role.Fitter,
+          email: "",
           role_alias: "",
           add_role_1: "",
           add_role_2: "",
@@ -44,6 +45,7 @@ const NewUser: React.FunctionComponent<Props> = (props) => {
           role: yup.string().required(),
           add_role_2: yup.string(),
           add_role_1: yup.string(),
+          email: yup.string().email().required(),
           role_alias: yup.string().required(),
           phone: yup
             .string()
