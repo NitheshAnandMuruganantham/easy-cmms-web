@@ -23,7 +23,7 @@
     "@mui/icons-material": "^5.15.10",
     "@mui/material": "^5.15.10",
     "@mui/styled-engine-sc": "^5.14.12",
-    "@mui/x-data-grid": "^6.19.4",
+    "@mui/x-data-grid": "^5.17.25",
     "@mui/x-date-pickers": "^6.19.4",
     "apollo-link-logger": "^2.0.1",
     "axios": "^1.6.7",
