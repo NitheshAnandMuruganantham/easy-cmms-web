@@ -51,6 +51,7 @@ const NewUser: React.FunctionComponent<Props> = (props) => {
             .required(),
         })}
         onSubmit={async (values) => {
+          console.log(values);
           await createUser({
             variables: {
               createUserInput: {
@@ -80,7 +81,7 @@ const NewUser: React.FunctionComponent<Props> = (props) => {
             });
         }}
       >
-        {({ submitForm, setFieldValue, values, isSubmitting }) => {
+        {({ submitForm, setFieldValue, values, isSubmitting, errors }) => {
           return (
             <>
               <DialogContent>
