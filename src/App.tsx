@@ -21,6 +21,9 @@ import Invoices from "./pages/invoices";
 import { AuthProvider, NotRequireAuth, PrivateRoute } from "./provider/auth";
 import AcceptInvite from "./pages/auth/acceptInvite";
 import SignInSide from "./pages/auth/logIn";
+import { QueryClient, QueryClientProvider } from "react-query";
+
+const queryClient = new QueryClient();
 
 function App() {
   const [plantSettings, setPlantSettings] = React.useState<any>(null);
@@ -32,52 +35,56 @@ function App() {
   }, []);
 
   return (
-    <AuthProvider>
-      <PlantSettingsContext.Provider value={[plantSettings, setPlantSettings]}>
-        <Routes>
-          <reactRouterDom.Route element={<PrivateRoute />}>
-            <reactRouterDom.Route element={<NavSidebar />}>
-              <reactRouterDom.Route path="/" element={<Home />} />
-              <reactRouterDom.Route path="/tickets" element={<Ticket />} />
-              <reactRouterDom.Route
-                path="/maintanance"
-                element={<Maintanances />}
-              />
-              <reactRouterDom.Route path="/users" element={<Users />} />
-              <reactRouterDom.Route path="/settings" element={<Settings />} />
-              <reactRouterDom.Route path="/machines" element={<Machines />} />
-              <reactRouterDom.Route
-                path="/machineCategory"
-                element={<Machine_category />}
-              />
-              <reactRouterDom.Route path="/sections" element={<Section />} />
-              <reactRouterDom.Route path="/units" element={<Block />} />
-              <reactRouterDom.Route
-                path="/routine-maintenance"
-                element={<RoutineMaintenance />}
-              />
-              <reactRouterDom.Route path="/invoices" element={<Invoices />} />
-              <reactRouterDom.Route
-                path="/item-category"
-                element={<ItemCategory />}
-              />
-              <reactRouterDom.Route path="/spares" element={<Spares />} />
-              <reactRouterDom.Route
-                path="/replacements"
-                element={<Replacements />}
-              />
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <PlantSettingsContext.Provider
+          value={[plantSettings, setPlantSettings]}
+        >
+          <Routes>
+            <reactRouterDom.Route element={<PrivateRoute />}>
+              <reactRouterDom.Route element={<NavSidebar />}>
+                <reactRouterDom.Route path="/" element={<Home />} />
+                <reactRouterDom.Route path="/tickets" element={<Ticket />} />
+                <reactRouterDom.Route
+                  path="/maintanance"
+                  element={<Maintanances />}
+                />
+                <reactRouterDom.Route path="/users" element={<Users />} />
+                <reactRouterDom.Route path="/settings" element={<Settings />} />
+                <reactRouterDom.Route path="/machines" element={<Machines />} />
+                <reactRouterDom.Route
+                  path="/machineCategory"
+                  element={<Machine_category />}
+                />
+                <reactRouterDom.Route path="/sections" element={<Section />} />
+                <reactRouterDom.Route path="/units" element={<Block />} />
+                <reactRouterDom.Route
+                  path="/routine-maintenance"
+                  element={<RoutineMaintenance />}
+                />
+                <reactRouterDom.Route path="/invoices" element={<Invoices />} />
+                <reactRouterDom.Route
+                  path="/item-category"
+                  element={<ItemCategory />}
+                />
+                <reactRouterDom.Route path="/spares" element={<Spares />} />
+                <reactRouterDom.Route
+                  path="/replacements"
+                  element={<Replacements />}
+                />
+              </reactRouterDom.Route>
             </reactRouterDom.Route>
-          </reactRouterDom.Route>
-          <reactRouterDom.Route element={<NotRequireAuth />}>
-            <reactRouterDom.Route path="/login" element={<SignInSide />} />
-          </reactRouterDom.Route>
-          <reactRouterDom.Route
-            path="*"
-            element={<reactRouterDom.Navigate to="/" />}
-          />
-        </Routes>
-      </PlantSettingsContext.Provider>
-    </AuthProvider>
+            <reactRouterDom.Route element={<NotRequireAuth />}>
+              <reactRouterDom.Route path="/login" element={<SignInSide />} />
+            </reactRouterDom.Route>
+            <reactRouterDom.Route
+              path="*"
+              element={<reactRouterDom.Navigate to="/" />}
+            />
+          </Routes>
+        </PlantSettingsContext.Provider>
+      </AuthProvider>
+    </QueryClientProvider>
   );
 }
 
