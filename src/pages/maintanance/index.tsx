@@ -8,23 +8,20 @@ import {
 import AssessmentIcon from "@mui/icons-material/Assessment";
 import React, { useEffect, useState } from "react";
 import { confirmAlert } from "react-confirm-alert";
-import {
-  InputMaybe,
-  MaintenanceWhereInput,
-  SortOrder,
-  useDeleteMaintananceMutation,
-  useMaintanceCountQuery,
-  useMaintenanceQuery,
-} from "../../generated";
+
 import { filterTransform } from "../../utils/filterTransform";
 import columns from "./cols";
 import ViewMaintance from "./viewMaintanance";
 import NewMaintance from "./newMaintenance";
 import Reports from "./reports";
-import { useQuery } from "react-query";
-import axios from "../../utils/axios";
+import { useMutation, useQuery } from "react-query";
 import { useInterval } from "../../utils/reFetchQueries";
 import EditMaintenance from "./editMaintenance";
+import {
+  DeleteMaintenance,
+  GetAllMaintenance,
+  GetAllMaintenanceCount,
+} from "../../services/mainanance";
 
 const fortmatResponse = (res: any) => {
   return JSON.stringify(res, null, 2);
@@ -45,11 +42,9 @@ function Maintenance() {
     rowId: 1,
     open: false,
   });
-  const [formattedFilter, SetFormattedFilter] = useState<
-    InputMaybe<MaintenanceWhereInput>
-  >({});
+  const [formattedFilter, SetFormattedFilter] = useState<any>({});
   const [formattedSort, setFormattedSort] = useState<any>({
-    id: SortOrder.Desc,
+    id: "desc",
   });
   const [onlyUnResolved, setUnResolvedView] = useState<boolean>(false);
   const [sort, setSort] = useState<any>([
@@ -64,26 +59,39 @@ function Maintenance() {
   const {
     data: MaintenancesCount,
     error: MaintenancesCountError,
-    loading: MaintenancesCountLoading,
+    isLoading: MaintenancesCountLoading,
     refetch: RefetchMaintenanceCount,
-  } = useMaintanceCountQuery({
-    variables: {
-      where: formattedFilter,
-    },
+  } = useQuery({
+    queryKey: "maintenanceCount",
+    queryFn: () =>
+      GetAllMaintenanceCount(
+        formattedFilter,
+        pageSize,
+        (page - 1) * pageSize,
+        formattedSort
+      ),
   });
-  const [DeleteMaintenance] = useDeleteMaintananceMutation();
+
+  const { mutate: delMaintance } = useMutation({
+    mutationKey: "deleteMaintenance",
+    mutationFn: (id: number) => DeleteMaintenance(id),
+  });
+
   const {
     data: maintenances,
-    loading: maintenanceLoading,
+    isLoading: maintenanceLoading,
     refetch: RefetchMaintenances,
-  } = useMaintenanceQuery({
-    variables: {
-      where: formattedFilter,
-      orderBy: formattedSort,
-      limit: pageSize,
-      offset: (page - 1) * pageSize,
-    },
+  } = useQuery({
+    queryKey: "maintenance",
+    queryFn: () =>
+      GetAllMaintenance(
+        formattedFilter,
+        pageSize,
+        (page - 1) * pageSize,
+        formattedSort
+      ),
   });
+
   const [showEditMaintenance, setShowEditMaintenance] = useState<{
     open: boolean;
     data: any;
@@ -244,7 +252,7 @@ function Maintenance() {
           });
         }}
         onPageSizeChange={(s) => setPageSize(s)}
-        rows={maintenances?.maintenances || []}
+        rows={maintenances?.data || []}
         sortModel={sort}
         onSortModelChange={(s) => {
           setSort(s);
@@ -253,10 +261,10 @@ function Maintenance() {
             return;
           }
           setFormattedSort({
-            [s[0].field]: s[0].sort === "asc" ? SortOrder.Asc : SortOrder.Desc,
+            [s[0].field]: s[0].sort === "asc" ? "asc" : "desc",
           });
         }}
-        rowCount={MaintenancesCount?.maintenanceCount || 0}
+        rowCount={MaintenancesCount?.data || 0}
         columns={[
           ...columns,
           {
@@ -315,11 +323,7 @@ function Maintenance() {
                       {
                         label: "Yes",
                         onClick: async () => {
-                          await DeleteMaintenance({
-                            variables: {
-                              removeMaintananceId: params.row.id,
-                            },
-                          });
+                          await delMaintance(params.row.id);
                           RefetchMaintenanceCount();
                           RefetchMaintenances();
                         },

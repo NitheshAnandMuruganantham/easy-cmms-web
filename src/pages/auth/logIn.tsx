@@ -15,6 +15,7 @@ import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import Loader from "../../components/loading";
 import axios from "../../utils/axios";
+import { processSubdomain } from "../../utils/multitendancy";
 
 function Copyright(props: any) {
   return (
@@ -62,14 +63,16 @@ export default function SignInSide() {
         <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
           <Formik
             validateOnChange
-            onSubmit={async ({ email, password, org }, { setFieldError }) => {
+            onSubmit={async ({ email, password }, { setFieldError }) => {
+              const org_key = processSubdomain();
+              console.log(email, password, org_key);
               try {
                 setLoading(true);
                 toast.clearWaitingQueue();
                 const data = await axios.post("/auth/login", {
                   email,
                   password,
-                  org_id: org,
+                  org_id: org_key || null,
                 });
                 localStorage.setItem("token", data.data.access_token);
                 localStorage.setItem("refresh_token", data.data.refresh_token);
@@ -90,7 +93,6 @@ export default function SignInSide() {
             initialValues={{
               email: "",
               password: "",
-              org: 1,
             }}
           >
             {({ values }) => (
